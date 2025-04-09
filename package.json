@@ -1,0 +1,18 @@
+{
+  "name": "backv2",
+  "version": "1.0.0",
+  "description": "Root project containing DevDocs and repository",
+  "scripts": {
+    "dev:frontend": "cd DevDocs && npm run dev",
+    "dev:backend": "cd repo && python -m pip install flask flask-cors pymongo python-dotenv && python app.py",
+    "dev:all": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "test": "cd DevDocs && npm test",
+    "test:with-server": "start-server-and-test dev:all http://localhost:3004 \"cd DevDocs && npx playwright test\"",
+    "predev:backend": "python -m pip install flask flask-cors pymongo python-dotenv"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "concurrently": "^9.1.2",
+    "start-server-and-test": "^2.0.0"
+  }
+}

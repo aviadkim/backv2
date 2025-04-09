@@ -1,0 +1,32 @@
+{
+  "name": "augment-mcp-client",
+  "version": "1.0.0",
+  "description": "Client for the Augment MCP Server",
+  "main": "mcp-client.js",
+  "bin": {
+    "mcp": "./mcp-cli.js"
+  },
+  "scripts": {
+    "start": "node mcp-cli.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "mcp",
+    "augment",
+    "architecture",
+    "model",
+    "controller",
+    "provider"
+  ],
+  "author": "Augment",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "inquirer": "^8.2.6"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

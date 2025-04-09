@@ -1,0 +1,39 @@
+{
+  "name": "augment-mcp-server",
+  "version": "1.0.0",
+  "description": "Global MCP Server for Augment",
+  "port": 3030,
+  "templates": {
+    "basePath": "./templates",
+    "extensions": {
+      "model": ".ts",
+      "controller": ".ts",
+      "provider": ".tsx",
+      "repository": ".ts"
+    }
+  },
+  "projects": {
+    "findoc": {
+      "rootPath": "../../DevDocs/frontend",
+      "structure": {
+        "models": "models",
+        "controllers": "controllers",
+        "providers": "providers",
+        "repositories": "repositories"
+      }
+    },
+    "myproject": {
+      "rootPath": "./path/to/project",
+      "structure": {
+        "models": "models",
+        "controllers": "controllers",
+        "providers": "providers",
+        "repositories": "repositories"
+      }
+    }
+  },
+  "logging": {
+    "level": "info",
+    "file": "mcp-server.log"
+  }
+}
