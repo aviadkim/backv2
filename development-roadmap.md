@@ -74,6 +74,47 @@ This document outlines the development roadmap for the FinDoc application, inclu
 
 ## New Initiatives
 
+### Document Understanding Engine
+
+- [ ] Build comprehensive document processing pipeline
+  - [ ] Implement PDF parsing and text extraction
+  - [ ] Create Excel/CSV data extraction system
+  - [ ] Develop table detection and structure recognition
+  - [ ] Build financial statement format recognition
+- [ ] Create financial data extraction system
+  - [ ] Implement number and currency detection
+  - [ ] Build financial metric identification (P/E ratios, revenue, etc.)
+  - [ ] Develop date and time period recognition
+  - [ ] Create entity linking (company names, accounts, etc.)
+- [ ] Implement document understanding AI
+  - [ ] Train models for financial document classification
+  - [ ] Develop context-aware financial data extraction
+  - [ ] Create relationship mapping between financial entities
+  - [ ] Build semantic understanding of financial metrics
+- [ ] Create unified financial data store
+  - [ ] Design schema for heterogeneous financial documents
+  - [ ] Implement versioning for time-series financial data
+  - [ ] Create cross-document entity resolution
+  - [ ] Build data lineage tracking system
+
+### Financial Analysis Engine
+
+- [ ] Implement advanced query capabilities
+  - [ ] Create natural language query interface for financial data
+  - [ ] Build comparative analysis system (time periods, portfolios, accounts)
+  - [ ] Develop anomaly detection for financial transactions
+  - [ ] Implement trend analysis and forecasting
+- [ ] Create automated reporting system
+  - [ ] Build consolidated financial report generator
+  - [ ] Implement portfolio comparison reports
+  - [ ] Create income/expense analysis across accounts
+  - [ ] Develop customizable report templates
+- [ ] Implement visualization engine
+  - [ ] Create interactive financial dashboards
+  - [ ] Build time-series visualization components
+  - [ ] Implement comparative visualization tools
+  - [ ] Develop drill-down capabilities for financial data
+
 ### MCP Web Server Development
 
 - [ ] Create standalone MCP Web Server for Augment
