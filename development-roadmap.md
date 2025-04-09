@@ -67,10 +67,42 @@ This document outlines the development roadmap for the FinDoc application, inclu
   - [ ] Agent-document interaction
   - [ ] Agent-portfolio interaction
   - [ ] Multi-agent collaboration
-- [ ] Web browsing capabilities
-  - [ ] Implement MCP for web browsing
+- [x] Web browsing capabilities
+  - [x] Implement MCP for web browsing
   - [ ] Real-time financial data fetching
   - [ ] Market research integration
+
+## New Initiatives
+
+### MCP Web Server Development
+
+- [ ] Create standalone MCP Web Server for Augment
+  - [ ] Design RESTful API endpoints
+  - [ ] Implement containerization with Docker
+  - [ ] Create comprehensive API documentation
+- [ ] Develop simple data provider connections
+  - [ ] Implement Yahoo Finance integration with Gmail-like authentication
+  - [ ] Add Alpha Vantage integration with simple API key management
+  - [ ] Create visual connection flows for non-technical users
+- [ ] Build user-friendly interface
+  - [ ] Design simple connection dashboard
+  - [ ] Create data preview components
+  - [ ] Implement "Data Recipes" for common tasks
+
+### Supabase Financial Data Integration
+
+- [ ] Design optimized database schema
+  - [ ] Create core financial data tables
+  - [ ] Implement Row-Level Security policies
+  - [ ] Set up efficient indexing for performance
+- [ ] Develop data ingestion framework
+  - [ ] Create simple connectors for financial data sources
+  - [ ] Implement batch import functionality
+  - [ ] Build scheduled data refresh system
+- [ ] Implement Bloomberg-like features
+  - [ ] Add real-time price data streaming
+  - [ ] Create financial news integration
+  - [ ] Implement one-click data downloads
 
 ### Week 5: Multi-tenancy and Deployment
 
