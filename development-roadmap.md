@@ -49,23 +49,28 @@ This document outlines the development roadmap for the FinDoc application, inclu
 
 ### AI Agents and Advanced Features
 
-- [ ] Set up agent framework
-  - [ ] Agent configuration
-  - [ ] Agent communication protocol
-  - [ ] Agent state management
+- [x] Set up agent framework
+  - [x] Agent configuration
+  - [x] Agent communication protocol
+  - [x] Agent state management
 - [ ] Implement specialized agents
   - [ ] Document analysis agent
+  - [x] SQL Reasoning Agent for financial data
   - [ ] Portfolio advisor agent
   - [ ] Market research agent
   - [ ] Tax optimization agent
 - [ ] Create natural language query system
-  - [ ] Query parsing
+  - [x] Query parsing with SQL Reasoning Agent
   - [ ] Intent recognition
   - [ ] Response generation
 - [ ] Integrate all components
   - [ ] Agent-document interaction
   - [ ] Agent-portfolio interaction
   - [ ] Multi-agent collaboration
+- [ ] Web browsing capabilities
+  - [ ] Implement MCP for web browsing
+  - [ ] Real-time financial data fetching
+  - [ ] Market research integration
 
 ### Week 5: Multi-tenancy and Deployment
 
