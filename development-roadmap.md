@@ -24,30 +24,30 @@ This document outlines the development roadmap for the FinDoc application, inclu
 - [x] Implement dashboard with recent documents and portfolio overview
 - [x] Create financial data visualization components
 
-## Current Sprint: Week 3 (In Progress)
+## Completed: Week 3
 
 ### Financial Analysis and Visualization
 
-- [ ] Implement portfolio analysis features
-  - [ ] Asset allocation analysis
-  - [ ] Performance tracking
-  - [ ] Risk assessment
-- [ ] Create advanced data visualization components
-  - [ ] Time series charts
-  - [ ] Comparison charts
-  - [ ] Heatmaps for correlation analysis
-- [ ] Build reporting system
-  - [ ] PDF report generation
-  - [ ] Scheduled reports
-  - [ ] Custom report templates
-- [ ] Add export functionality
-  - [ ] Export to Excel
-  - [ ] Export to CSV
-  - [ ] Export to PDF
+- [x] Implement portfolio analysis features
+  - [x] Asset allocation analysis
+  - [x] Performance tracking
+  - [x] Risk assessment
+- [x] Create advanced data visualization components
+  - [x] Time series charts
+  - [x] Comparison charts
+  - [x] Portfolio analysis dashboard
+- [x] Build reporting system
+  - [x] PDF report generation
+  - [x] Scheduled reports
+  - [x] Custom report templates
+- [x] Add export functionality
+  - [x] Export to Excel
+  - [x] Export to CSV
+  - [x] Export to JSON
 
-## Upcoming Sprints
+## Current Sprint: Week 4 (In Progress)
 
-### Week 4: AI Agents and Advanced Features
+### AI Agents and Advanced Features
 
 - [ ] Set up agent framework
   - [ ] Agent configuration
