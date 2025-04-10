@@ -1,18 +1,25 @@
 {
   "version": 2,
-  "buildCommand": "cd DevDocs/frontend && npm install && npm run build",
-  "outputDirectory": "DevDocs/frontend/.next",
+  "buildCommand": "cd DevDocs && npm install && npm run build",
+  "outputDirectory": "DevDocs/.next",
   "framework": "nextjs",
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "http://localhost:24125/api/:path*"
+      "destination": "/api/:path*"
     }
   ],
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://findoc-api.vercel.app/api",
+    "NEXT_PUBLIC_API_URL": "/api",
     "NEXT_PUBLIC_SUPABASE_URL": "@next_public_supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@next_public_supabase_anon_key"
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@next_public_supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key"
   },
   "github": {
     "silent": true,

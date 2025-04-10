@@ -1,6 +1,6 @@
 # FinDoc - Financial Document Analyzer
 
-FinDoc is a powerful financial document analysis platform that helps users extract, analyze, and visualize financial data from various document types.
+FinDoc is a powerful financial document analysis platform that helps users extract, analyze, and visualize financial data from various document types. Built with a modern serverless architecture using Next.js, Vercel, and Supabase.
 
 ## Features
 
@@ -10,25 +10,29 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 - **AI Agents**: Intelligent agents for document analysis and insights
 - **Data Visualization**: Interactive charts and dashboards
 - **Multi-tenant Architecture**: Secure isolation of client data
+- **Serverless Architecture**: Fully serverless deployment on Vercel
+- **Google ADK Integration**: Agent Development Kit for advanced AI capabilities
 
 ## Tech Stack
 
 - **Frontend**: Next.js, React, TailwindCSS
-- **Backend**: Flask API, Python processing
+- **API**: Next.js API Routes (serverless functions)
 - **Database**: Supabase (PostgreSQL)
 - **Storage**: Supabase Storage
 - **Deployment**: Vercel
-- **AI**: OpenRouter API integration
+- **AI**: OpenRouter API, Google ADK
+- **Authentication**: Supabase Auth
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- Python 3.8+
 - npm or yarn
+- Supabase account
+- Vercel account (for deployment)
 
-### Installation
+### Local Development
 
 1. Clone the repository:
    ```
@@ -36,33 +40,44 @@ FinDoc is a powerful financial document analysis platform that helps users extra
    cd backv2
    ```
 
-2. Install frontend dependencies:
+2. Copy `.env.example` to `.env.local` and fill in your Supabase credentials:
    ```
-   cd DevDocs/frontend
-   npm install
+   cp .env.example .env.local
    ```
 
-3. Install backend dependencies:
+3. Install dependencies:
    ```
-   cd ../backend
-   pip install -r requirements.txt
+   cd DevDocs
+   npm install
    ```
 
 4. Run the development server:
    ```
-   cd ../..
-   ./run-findoc-enhanced.ps1
+   npm run dev
    ```
 
-5. Open [http://localhost:3002](http://localhost:3002) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Deployment
+
+This project is configured for deployment on Vercel with Supabase as the database and storage solution.
+
+See [VERCEL_SUPABASE_DEPLOYMENT.md](VERCEL_SUPABASE_DEPLOYMENT.md) for detailed deployment instructions.
 
 ## Development Roadmap
 
-See [FinDoc-Development-Roadmap.md](FinDoc-Development-Roadmap.md) for the detailed development plan.
+See [ROADMAP.md](ROADMAP.md) for the detailed development plan.
 
-## Database Recommendations
+## Database Schema
 
-See [FinDoc-Database-Recommendations.md](FinDoc-Database-Recommendations.md) for database architecture recommendations.
+The database schema is defined in [supabase/schema.sql](supabase/schema.sql) and includes tables for:
+
+- Users (profiles)
+- Organizations
+- Documents
+- Financial data
+- ISINs
+- API keys
 
 ## License
 
