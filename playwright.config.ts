@@ -16,18 +16,23 @@ export default defineConfig({
     ['list']
   ],
   use: {
-    baseURL: 'http://localhost:3004',
+    baseURL: 'http://localhost:3000', // Updated to match our current server port
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    ignoreHTTPSErrors: true,
+    actionTimeout: 15000,
+    navigationTimeout: 15000,
   },
   projects: [
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1280, height: 720 },
       },
     },
   ],
+  globalSetup: path.join(__dirname, './DevDocs/tests/setup-global.js'),
+  globalTeardown: path.join(__dirname, './DevDocs/tests/teardown-global.js'),
 });

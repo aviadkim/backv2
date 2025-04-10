@@ -67,7 +67,7 @@ mcp.env
 
 # Embedded git repositories
 clean-repo/
-DevDocs/
+# DevDocs/ - We want to include this now
 backv2/
 repo/
 
