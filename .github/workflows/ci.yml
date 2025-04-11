@@ -67,7 +67,7 @@ jobs:
           cache-dependency-path: 'DevDocs/frontend/package-lock.json'
 
       - name: Install dependencies
-        run: cd DevDocs/frontend && npm ci
+        run: cd DevDocs/frontend && npm install
 
       - name: Build
         run: cd DevDocs/frontend && npm run build
