@@ -1,0 +1,27 @@
+# Use a simple Node.js image for the MCP server
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json
+COPY package.json ./
+
+# Install dependencies
+RUN npm install --only=production
+
+# Install required packages
+RUN npm install express cors axios
+
+# Copy the server file
+COPY mcp-simple-server.js ./server.js
+
+# Set environment variables
+ENV PORT=8080
+ENV GOOGLE_CLOUD_PROJECT_ID=github-456508
+
+# Expose port
+EXPOSE $PORT
+
+# Start the application
+CMD ["node", "server.js"]
