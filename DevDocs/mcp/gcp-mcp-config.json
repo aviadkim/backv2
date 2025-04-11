@@ -4,5 +4,6 @@
       "command": "npx",
       "args": ["-y", "gcp-mcp"]
     }
-  }
+  },
+  "mcpServerUrl": "https://devdocs-mcp-server-678297464867.me-west1.run.app/mcp"
 }
