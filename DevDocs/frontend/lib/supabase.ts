@@ -1,4 +1,4 @@
 // Re-export from supabaseClient for backward compatibility
-import { supabase } from './supabaseClient';
+import getSupabaseClient from './supabaseClient';
 
-export default supabase;
+export default getSupabaseClient;
