@@ -1,0 +1,10 @@
+steps:
+  # Print directory structure for debugging
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['-c', 'ls -la && echo "Current directory: $(pwd)"']
+
+  # Use the cloudbuild.yaml in the DevDocs directory
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['-c', 'cd DevDocs && gcloud builds submit --config=cloudbuild.yaml']

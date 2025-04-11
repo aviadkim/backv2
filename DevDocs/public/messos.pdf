@@ -1,0 +1,102 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog
+   /Pages 2 0 R
+>>
+endobj
+2 0 obj
+<< /Type /Pages
+   /Kids [3 0 R]
+   /Count 1
+>>
+endobj
+3 0 obj
+<< /Type /Page
+   /Parent 2 0 R
+   /Resources << /Font << /F1 4 0 R >>
+               >>
+   /MediaBox [0 0 612 792]
+   /Contents 5 0 R
+>>
+endobj
+4 0 obj
+<< /Type /Font
+   /Subtype /Type1
+   /BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<< /Length 1500 >>
+stream
+BT
+/F1 24 Tf
+100 700 Td
+(Messos Group Annual Financial Report) Tj
+/F1 12 Tf
+0 -30 Td
+(Financial Year 2024) Tj
+0 -30 Td
+(Executive Summary:) Tj
+/F1 10 Tf
+0 -20 Td
+(The Messos Group has demonstrated strong financial performance in 2024, with revenue) Tj
+0 -15 Td
+(increasing by 12.3% compared to the previous year. Our gross margin improved from) Tj
+0 -15 Td
+(41.2% to 43.4%, and our operating expenses were reduced by 2.1% through cost) Tj
+0 -15 Td
+(optimization initiatives.) Tj
+0 -30 Td
+(Income Statement:) Tj
+0 -15 Td
+(Revenue: €1,234,567,000) Tj
+0 -15 Td
+(Cost of Revenue: €698,765,000) Tj
+0 -15 Td
+(Gross Profit: €535,802,000) Tj
+0 -15 Td
+(Operating Expenses: €312,456,000) Tj
+0 -15 Td
+(Operating Income: €223,346,000) Tj
+0 -15 Td
+(Net Income: €187,654,000) Tj
+0 -30 Td
+(Balance Sheet:) Tj
+0 -15 Td
+(Total Assets: €2,345,678,000) Tj
+0 -15 Td
+(Total Liabilities: €1,234,567,000) Tj
+0 -15 Td
+(Total Equity: €1,111,111,000) Tj
+0 -15 Td
+(Cash and Equivalents: €456,789,000) Tj
+0 -30 Td
+(Portfolio Holdings:) Tj
+0 -15 Td
+(1. Apple Inc. \(AAPL\): 15,000 shares, €2,745,000, 8.2%) Tj
+0 -15 Td
+(2. Microsoft Corp \(MSFT\): 12,000 shares, €4,320,000, 12.9%) Tj
+0 -15 Td
+(3. Amazon.com Inc \(AMZN\): 5,000 shares, €1,875,000, 5.6%) Tj
+0 -15 Td
+(4. Alphabet Inc \(GOOGL\): 4,000 shares, €1,240,000, 3.7%) Tj
+0 -15 Td
+(5. Tesla Inc \(TSLA\): 8,000 shares, €1,680,000, 5.0%) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000251 00000 n
+0000000318 00000 n
+trailer
+<< /Size 6
+   /Root 1 0 R
+>>
+startxref
+1870
+%%EOF

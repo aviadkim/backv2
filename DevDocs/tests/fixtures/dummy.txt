@@ -1,0 +1,1 @@
+This is a dummy text file for testing file upload validation. It should be rejected when attempting to upload to a system that only accepts PDF files.

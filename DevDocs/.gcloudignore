@@ -1,0 +1,13 @@
+# .gcloudignore file to specify files that should not be uploaded to Google Cloud
+.git
+.github
+.gitignore
+.next/cache
+node_modules
+npm-debug.log
+README.md
+.env*
+*.log
+test-results/
+playwright-report/
+.vscode/

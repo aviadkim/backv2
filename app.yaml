@@ -1,0 +1,11 @@
+runtime: nodejs18
+service: default
+
+# Explicitly point to the DevDocs directory
+env_variables:
+  APP_DIR: "DevDocs"
+
+handlers:
+  - url: /.*
+    secure: always
+    script: auto

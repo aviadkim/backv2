@@ -1,0 +1,1 @@
+scripts/mcp/check_mcp_health.sh
