@@ -196,5 +196,17 @@
     "processing": "מעבד",
     "completed": "הושלם",
     "failed": "נכשל"
+  },
+  "mcp": {
+    "title": "אינטגרציה עם GCP MCP",
+    "description": "נהל את שרת פרוטוקול הקשר של מודל Google Cloud Platform",
+    "status": "סטטוס",
+    "running": "פועל",
+    "stopped": "מושבת",
+    "refresh": "רענן",
+    "start": "הפעל שרת",
+    "stop": "עצור שרת",
+    "info_title": "מידע על שרת MCP",
+    "info_description": "שרת GCP MCP מאפשר לעוזרים מבוססי בינה מלאכותית כמו Claude לתקשר עם משאבי Google Cloud שלך ויישום DevDocs. הפעל את השרת לפני שימוש בעוזרים מבוססי בינה מלאכותית לשאילתות על המסמכים שלך."
   }
 }

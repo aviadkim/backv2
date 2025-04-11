@@ -196,5 +196,17 @@
     "processing": "Processing",
     "completed": "Completed",
     "failed": "Failed"
+  },
+  "mcp": {
+    "title": "GCP MCP Integration",
+    "description": "Manage the Google Cloud Platform Model Context Protocol server",
+    "status": "Status",
+    "running": "Running",
+    "stopped": "Stopped",
+    "refresh": "Refresh",
+    "start": "Start Server",
+    "stop": "Stop Server",
+    "info_title": "MCP Server Information",
+    "info_description": "The GCP MCP server allows AI assistants like Claude to interact with your Google Cloud resources and DevDocs implementation. Start the server before using AI assistants to query your documents."
   }
 }
