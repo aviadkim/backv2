@@ -11,45 +11,45 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    
+
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        project_id: github-456508
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
-    
+
     - name: Authenticate Docker to Google Cloud
       run: gcloud auth configure-docker
-    
+
     - name: Build and push DevDocs image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-app:${{ github.sha }} ./DevDocs
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-app:${{ github.sha }}
-    
+        docker build -t gcr.io/github-456508/devdocs-app:${{ github.sha }} ./DevDocs
+        docker push gcr.io/github-456508/devdocs-app:${{ github.sha }}
+
     - name: Build and push MCP server image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-mcp-server:${{ github.sha }} -f ./DevDocs/Dockerfile.simple ./DevDocs
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-mcp-server:${{ github.sha }}
-    
+        docker build -t gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }} -f ./DevDocs/Dockerfile.simple ./DevDocs
+        docker push gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }}
+
     - name: Deploy DevDocs to Cloud Run
       run: |
         gcloud run deploy devdocs-app \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-app:${{ github.sha }} \
+          --image gcr.io/github-456508/devdocs-app:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
           --set-env-vars=NODE_ENV=production
-    
+
     - name: Deploy MCP server to Cloud Run
       run: |
         gcloud run deploy devdocs-mcp-server \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/devdocs-mcp-server:${{ github.sha }} \
+          --image gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
-          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},MCP_API_KEY=${{ secrets.MCP_API_KEY }}
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }}
