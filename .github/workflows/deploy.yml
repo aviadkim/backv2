@@ -45,7 +45,10 @@ jobs:
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
-          --set-env-vars=NODE_ENV=production
+          --port=3002 \
+          --command="npm" \
+          --args="start" \
+          --set-env-vars=NODE_ENV=production,PORT=3002
 
     - name: Deploy MCP server to Cloud Run
       run: |
@@ -54,4 +57,7 @@ jobs:
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
-          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }}
+          --port=8080 \
+          --command="node" \
+          --args="server.js" \
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080
