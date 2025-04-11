@@ -30,7 +30,7 @@ jobs:
 
     - name: Build and push DevDocs image
       run: |
-        docker build -t gcr.io/github-456508/devdocs-app:${{ github.sha }} ./DevDocs
+        docker build -t gcr.io/github-456508/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile ./DevDocs/frontend
         docker push gcr.io/github-456508/devdocs-app:${{ github.sha }}
 
     - name: Build and push MCP server image

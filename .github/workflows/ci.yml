@@ -69,6 +69,9 @@ jobs:
       - name: Install dependencies
         run: cd DevDocs/frontend && npm install
 
+      - name: Install specific dependencies
+        run: cd DevDocs/frontend && npm install react-dropzone formidable --save
+
       - name: Build
         run: cd DevDocs/frontend && npm run build
 
