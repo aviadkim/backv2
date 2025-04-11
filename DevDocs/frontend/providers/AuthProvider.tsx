@@ -39,7 +39,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const router = useRouter();
 
+  // Check if we're in a browser environment
+  const isBrowser = typeof window !== 'undefined';
+
   useEffect(() => {
+    // Skip auth initialization on server-side
+    if (!isBrowser) return;
     // Check for existing session
     const checkSession = async () => {
       const supabase = getSupabaseClient();
@@ -253,7 +258,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`
+        redirectTo: isBrowser ? `${window.location.origin}/reset-password` : 'http://localhost:3002/reset-password'
       });
 
       if (error) {

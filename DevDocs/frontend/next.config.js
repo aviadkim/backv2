@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
+  // Disable static site generation for pages that require authentication
+  exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+    return {
+      '/': { page: '/' },
+    };
+  },
   reactStrictMode: true,
   // Enable CORS for API requests
   async headers() {
@@ -18,6 +26,11 @@ const nextConfig = {
   // Environment variables
   env: {
     NEXT_PUBLIC_API_URL: 'http://localhost:24125',
+  },
+  // Add path aliases
+  webpack(config) {
+    config.resolve.alias['@'] = path.join(__dirname, './');
+    return config;
   },
 };
 
