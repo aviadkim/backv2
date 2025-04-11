@@ -10,81 +10,81 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
           cache-dependency-path: 'DevDocs/frontend/package-lock.json'
-      
+
       - name: Install dependencies
         run: cd DevDocs/frontend && npm ci
-      
+
       - name: Run ESLint
         run: cd DevDocs/frontend && npm run lint || true
-  
+
   test:
     name: Test
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
           cache-dependency-path: 'DevDocs/frontend/package-lock.json'
-      
+
       - name: Install dependencies
         run: cd DevDocs/frontend && npm ci
-      
+
       - name: Run tests
         run: cd DevDocs/frontend && npm test || true
-  
+
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: [lint, test]
     if: github.event_name == 'push'
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
           cache-dependency-path: 'DevDocs/frontend/package-lock.json'
-      
+
       - name: Install dependencies
         run: cd DevDocs/frontend && npm ci
-      
+
       - name: Build
         run: cd DevDocs/frontend && npm run build
-      
+
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: DevDocs/frontend/.next
-  
+
   # Uncomment when ready to deploy
   # deploy:
   #   name: Deploy
   #   runs-on: ubuntu-latest
   #   needs: build
   #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-  #   
+  #
   #   steps:
   #     - name: Deploy to Vercel
   #       uses: amondnet/vercel-action@v20
