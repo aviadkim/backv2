@@ -70,7 +70,7 @@ jobs:
         run: cd DevDocs/frontend && npm install
 
       - name: Install specific dependencies
-        run: cd DevDocs/frontend && npm install react-dropzone formidable --save
+        run: cd DevDocs/frontend && npm install react-dropzone formidable @tailwindcss/postcss --save
 
       - name: Build
         run: cd DevDocs/frontend && npm run build

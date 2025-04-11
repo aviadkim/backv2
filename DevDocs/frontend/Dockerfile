@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Install specific dependencies
-RUN npm install react-dropzone formidable --save
+RUN npm install react-dropzone formidable @tailwindcss/postcss --save
 
 # Copy the rest of the application
 COPY . .
