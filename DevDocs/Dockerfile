@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci
 
+# Install additional dependencies
+RUN npm install react-dropzone formidable
+
 # Copy the rest of the application
 COPY . .
 
