@@ -13,7 +13,7 @@ const nextConfig = {
       '/portfolio': { page: '/portfolio' },
     };
   },
-  reactStrictMode: true,
+  reactStrictMode: false, // Disable strict mode to avoid double-rendering
   // Enable CORS for API requests
   async headers() {
     return [
@@ -31,6 +31,8 @@ const nextConfig = {
   // Environment variables
   env: {
     NEXT_PUBLIC_API_URL: 'http://localhost:24125',
+    NEXT_PUBLIC_SUPABASE_URL: 'https://dnjnsotemnfrjlotgved.supabase.co',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuam5zb3RlbW5mcmpsb3RndmVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI4NTI0MDAsImV4cCI6MjAyODQyODQwMH0.placeholder-key',
   },
   // Add path aliases
   webpack(config) {
