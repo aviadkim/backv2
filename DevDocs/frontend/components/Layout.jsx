@@ -1,14 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAuth } from '../providers/AuthProvider';
 
 const Layout = ({ children }) => {
   const router = useRouter();
+  const { user, signOut } = useAuth();
 
-  // Mock user for demo purposes
-  const user = { email: 'demo@example.com' };
+  // Create a demo user if none exists
+  const demoUser = user || {
+    email: 'demo@example.com',
+    fullName: 'Demo User',
+    role: 'user'
+  };
 
   const handleSignOut = async () => {
+    if (signOut) {
+      await signOut();
+    }
     router.push('/');
   };
 
@@ -24,76 +33,63 @@ const Layout = ({ children }) => {
             DevDocs
           </Link>
 
-          {user ? (
-            <div className="flex items-center space-x-4">
-              <span className="hidden md:inline">{user.email}</span>
-              <button
-                onClick={handleSignOut}
-                className="px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded"
-              >
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div className="space-x-2">
-              <Link href="/login" className="px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded">
-                Sign In
-              </Link>
-              <Link href="/signup" className="px-4 py-2 bg-white text-blue-600 hover:bg-gray-100 rounded">
-                Sign Up
-              </Link>
-            </div>
-          )}
+          <div className="flex items-center space-x-4">
+            <span className="hidden md:inline">{demoUser.email}</span>
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded"
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
 
-        {user && (
-          <nav className="bg-blue-800">
-            <div className="container mx-auto px-4">
-              <ul className="flex overflow-x-auto">
-                <li>
-                  <Link href="/dashboard" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/dashboard')}`}>
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-upload" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-upload')}`}>
-                    Upload
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-document-understanding" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-document-understanding')}`}>
-                    Document Understanding
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-visualization" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-visualization')}`}>
-                    Visualization
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-portfolio" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-portfolio')}`}>
-                    Portfolio
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-sql-agent" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-sql-agent')}`}>
-                    SQL Agent
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/test-web-browser" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-web-browser')}`}>
-                    Web Browser
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/mcp-demo" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/mcp-demo')}`}>
-                    MCP Demo
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        )}
+        <nav className="bg-blue-800">
+          <div className="container mx-auto px-4">
+            <ul className="flex overflow-x-auto">
+              <li>
+                <Link href="/dashboard" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/dashboard')}`}>
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-upload" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-upload')}`}>
+                  Upload
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-document-understanding" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-document-understanding')}`}>
+                  Document Understanding
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-visualization" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-visualization')}`}>
+                  Visualization
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-portfolio" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-portfolio')}`}>
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-sql-agent" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-sql-agent')}`}>
+                  SQL Agent
+                </Link>
+              </li>
+              <li>
+                <Link href="/test-web-browser" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/test-web-browser')}`}>
+                  Web Browser
+                </Link>
+              </li>
+              <li>
+                <Link href="/mcp-demo" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/mcp-demo')}`}>
+                  MCP Demo
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </header>
 
       <main className="flex-grow">
