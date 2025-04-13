@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDocs Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        .main-content {
+            display: flex;
+            margin-top: 20px;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-right: 20px;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            white-space: pre-wrap;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .tab-button.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">DevDocs</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="sidebar">
+                <h3>Tools</h3>
+                <ul>
+                    <li><a href="#" id="nav-storage">Google Cloud Storage</a></li>
+                    <li><a href="#" id="nav-search">Web Search</a></li>
+                    <li><a href="#" id="nav-fetch">Web Fetch</a></li>
+                    <li><a href="#" id="nav-chat">AI Chat</a></li>
+                </ul>
+                
+                <h3>Settings</h3>
+                <div>
+                    <label for="mcp-url">MCP Server URL:</label>
+                    <input type="text" id="mcp-url" value="https://devdocs-mcp-server-678297464867.me-west1.run.app/mcp">
+                </div>
+            </div>
+            
+            <div class="content">
+                <h1>DevDocs Application</h1>
+                <p>Welcome to the DevDocs application! This application helps you access and manage your documentation using Google Cloud services and AI capabilities.</p>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="storage">Google Cloud Storage</button>
+                        <button class="tab-button" data-tab="search">Web Search</button>
+                        <button class="tab-button" data-tab="fetch">Web Fetch</button>
+                        <button class="tab-button" data-tab="chat">AI Chat</button>
+                    </div>
+                    
+                    <div id="storage-tab" class="tab-content active">
+                        <h2>Google Cloud Storage</h2>
+                        <p>Access and manage your documents stored in Google Cloud Storage.</p>
+                        
+                        <div class="card">
+                            <h3>List Buckets</h3>
+                            <button id="list-buckets">List Buckets</button>
+                            <div id="buckets-result" class="result"></div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>List Files</h3>
+                            <input type="text" id="bucket-name" placeholder="Enter bucket name">
+                            <button id="list-files">List Files</button>
+                            <div id="files-result" class="result"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="search-tab" class="tab-content">
+                        <h2>Web Search</h2>
+                        <p>Search the web for documentation and resources.</p>
+                        
+                        <div class="card">
+                            <h3>Search the Web</h3>
+                            <input type="text" id="search-query" placeholder="Enter search query">
+                            <button id="search-web">Search</button>
+                            <div id="search-result" class="result"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="fetch-tab" class="tab-content">
+                        <h2>Web Fetch</h2>
+                        <p>Fetch content from a URL and convert it to a readable format.</p>
+                        
+                        <div class="card">
+                            <h3>Fetch Web Content</h3>
+                            <input type="text" id="fetch-url" placeholder="Enter URL to fetch" value="https://cloud.google.com/">
+                            <button id="fetch-web">Fetch</button>
+                            <div id="fetch-result" class="result"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="chat-tab" class="tab-content">
+                        <h2>AI Chat</h2>
+                        <p>Chat with an AI assistant to get help with your documentation.</p>
+                        
+                        <div class="card">
+                            <h3>Chat with AI</h3>
+                            <div id="chat-messages" class="result" style="height: 300px; overflow-y: auto;"></div>
+                            <textarea id="chat-input" placeholder="Type your message here..."></textarea>
+                            <button id="send-message">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and tabs
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding tab
+                button.classList.add('active');
+                document.getElementById(`${button.dataset.tab}-tab`).classList.add('active');
+            });
+        });
+        
+        // Navigation links
+        document.getElementById('nav-storage').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.tab-button[data-tab="storage"]').click();
+        });
+        
+        document.getElementById('nav-search').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.tab-button[data-tab="search"]').click();
+        });
+        
+        document.getElementById('nav-fetch').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.tab-button[data-tab="fetch"]').click();
+        });
+        
+        document.getElementById('nav-chat').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.tab-button[data-tab="chat"]').click();
+        });
+        
+        // MCP functionality
+        function getMcpUrl() {
+            return document.getElementById('mcp-url').value;
+        }
+        
+        // Helper function to make MCP requests
+        async function mcpRequest(action, parameters = {}) {
+            try {
+                const response = await fetch(getMcpUrl(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action, parameters })
+                });
+                
+                return await response.json();
+            } catch (error) {
+                console.error(`Error making MCP request for action ${action}:`, error);
+                throw new Error(`MCP request failed: ${error.message}`);
+            }
+        }
+        
+        // List buckets
+        document.getElementById('list-buckets').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('buckets-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+            
+            try {
+                const response = await mcpRequest('listBuckets');
+                
+                if (response.success) {
+                    resultDiv.innerHTML = `<h3>Buckets:</h3><ul>${response.result.map(bucket => `<li>${bucket}</li>`).join('')}</ul>`;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+        
+        // List files
+        document.getElementById('list-files').addEventListener('click', async () => {
+            const bucketName = document.getElementById('bucket-name').value;
+            if (!bucketName) {
+                alert('Please enter a bucket name');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('files-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+            
+            try {
+                const response = await mcpRequest('listFiles', { bucketName });
+                
+                if (response.success) {
+                    resultDiv.innerHTML = `<h3>Files in ${bucketName}:</h3><ul>${response.result.map(file => `<li>${file}</li>`).join('')}</ul>`;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+        
+        // Web search
+        document.getElementById('search-web').addEventListener('click', async () => {
+            const query = document.getElementById('search-query').value;
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('search-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Searching...';
+            
+            try {
+                const response = await mcpRequest('webSearch', { query });
+                
+                if (response.success) {
+                    resultDiv.innerHTML = `<h3>Search Results for "${query}":</h3><ul>${response.result.map(result => `
+                        <li>
+                            <a href="${result.link}" target="_blank">${result.title}</a>
+                            <p>${result.snippet}</p>
+                        </li>
+                    `).join('')}</ul>`;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+        
+        // Web fetch
+        document.getElementById('fetch-web').addEventListener('click', async () => {
+            const url = document.getElementById('fetch-url').value;
+            if (!url) {
+                alert('Please enter a URL to fetch');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('fetch-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Fetching...';
+            
+            try {
+                const response = await mcpRequest('webFetch', { url });
+                
+                if (response.success) {
+                    resultDiv.innerHTML = `
+                        <h3>Content from ${url}:</h3>
+                        <h4>${response.result.title}</h4>
+                        <div>${response.result.content.substring(0, 500)}...</div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+        
+        // Chat functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-message');
+        
+        function addChatMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.style.marginBottom = '10px';
+            messageElement.style.padding = '10px';
+            messageElement.style.borderRadius = '5px';
+            
+            if (sender === 'user') {
+                messageElement.style.backgroundColor = '#e6f7ff';
+                messageElement.style.textAlign = 'right';
+                messageElement.innerHTML = `<strong>You:</strong> ${message}`;
+            } else {
+                messageElement.style.backgroundColor = '#f0f0f0';
+                messageElement.innerHTML = `<strong>AI:</strong> ${message}`;
+            }
+            
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        sendButton.addEventListener('click', async () => {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            addChatMessage('user', message);
+            chatInput.value = '';
+            
+            // Simulate AI response (in a real app, this would call an AI service)
+            setTimeout(() => {
+                addChatMessage('ai', 'I\'m a simulated AI response. In a real application, this would connect to an AI service through the MCP server.');
+            }, 1000);
+        });
+        
+        // Allow sending messages with Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendButton.click();
+            }
+        });
+    </script>
+</body>
+</html>

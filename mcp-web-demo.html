@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDocs MCP Web Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            white-space: pre-wrap;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>DevDocs MCP Web Demo</h1>
+
+    <div class="section">
+        <h2>Google Cloud Storage</h2>
+        <button id="list-buckets">List Buckets</button>
+        <div id="buckets-result" class="result"></div>
+    </div>
+
+    <div class="section">
+        <h2>Web Search</h2>
+        <input type="text" id="search-query" placeholder="Enter search query">
+        <button id="search-web">Search</button>
+        <div id="search-result" class="result"></div>
+    </div>
+
+    <div class="section">
+        <h2>Web Fetch</h2>
+        <input type="text" id="fetch-url" placeholder="Enter URL to fetch" value="https://cloud.google.com/">
+        <button id="fetch-web">Fetch</button>
+        <div id="fetch-result" class="result"></div>
+    </div>
+
+    <script>
+        const MCP_SERVER_URL = 'https://devdocs-mcp-server-678297464867.me-west1.run.app/mcp';
+
+        // Helper function to make MCP requests
+        async function mcpRequest(action, parameters = {}) {
+            try {
+                const response = await fetch(MCP_SERVER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action, parameters })
+                });
+
+                return await response.json();
+            } catch (error) {
+                console.error(`Error making MCP request for action ${action}:`, error);
+                throw new Error(`MCP request failed: ${error.message}`);
+            }
+        }
+
+        // List buckets
+        document.getElementById('list-buckets').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('buckets-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+
+            try {
+                const response = await mcpRequest('listBuckets');
+
+                if (response.success) {
+                    resultDiv.innerHTML = `<h3>Buckets:</h3><ul>${response.result.map(bucket => `<li>${bucket}</li>`).join('')}</ul>`;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+
+        // Web search
+        document.getElementById('search-web').addEventListener('click', async () => {
+            const query = document.getElementById('search-query').value;
+            if (!query) return;
+
+            const resultDiv = document.getElementById('search-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Searching...';
+
+            try {
+                const response = await mcpRequest('webSearch', { query });
+
+                if (response.success) {
+                    resultDiv.innerHTML = `<h3>Search Results for "${query}":</h3><ul>${response.result.map(result => `
+                        <li>
+                            <a href="${result.link}" target="_blank">${result.title}</a>
+                            <p>${result.snippet}</p>
+                        </li>
+                    `).join('')}</ul>`;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+
+        // Web fetch
+        document.getElementById('fetch-web').addEventListener('click', async () => {
+            const url = document.getElementById('fetch-url').value;
+            if (!url) return;
+
+            const resultDiv = document.getElementById('fetch-result');
+            resultDiv.innerHTML = '<div class="loading"></div> Fetching...';
+
+            try {
+                const response = await mcpRequest('webFetch', { url });
+
+                if (response.success) {
+                    resultDiv.innerHTML = `
+                        <h3>Content from ${url}:</h3>
+                        <h4>${response.result.title}</h4>
+                        <div>${response.result.content.substring(0, 500)}...</div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `Error: ${response.error || 'Unknown error'}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

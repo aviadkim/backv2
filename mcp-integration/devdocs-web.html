@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDocs Google Cloud Integration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1, h2 {
+            color: #1a73e8;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .main-content {
+            flex: 3;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        select, input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0d62c9;
+        }
+        .action-button {
+            margin-bottom: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-list li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .file-list li:hover {
+            background-color: #f0f7ff;
+        }
+        .file-upload {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #1a73e8;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>DevDocs Google Cloud Integration</h1>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2>Actions</h2>
+            <button id="list-buckets" class="action-button">List Buckets</button>
+            <button id="list-files" class="action-button">List Files</button>
+            <button id="upload-file" class="action-button">Upload File</button>
+            <button id="process-document" class="action-button">Process Document</button>
+            <button id="web-search" class="action-button">Web Search</button>
+            <button id="web-fetch" class="action-button">Web Fetch</button>
+            
+            <div class="file-upload">
+                <h2>Upload File</h2>
+                <div class="form-group">
+                    <label for="bucket-name">Bucket Name:</label>
+                    <input type="text" id="bucket-name" value="devdocs-bucket">
+                </div>
+                <div class="form-group">
+                    <label for="file-input">Select File:</label>
+                    <input type="file" id="file-input">
+                </div>
+                <button id="upload-button">Upload</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h2>Google Cloud Resources</h2>
+            
+            <div id="buckets-container">
+                <h3>Buckets</h3>
+                <ul id="bucket-list" class="file-list"></ul>
+            </div>
+            
+            <div id="files-container">
+                <h3>Files</h3>
+                <ul id="file-list" class="file-list"></ul>
+            </div>
+            
+            <div id="action-container">
+                <h3>Action Parameters</h3>
+                <div id="parameters-container"></div>
+                <button id="execute-action">Execute</button>
+            </div>
+            
+            <h3>Result</h3>
+            <div id="result">No action executed yet.</div>
+        </div>
+    </div>
+    
+    <script>
+        // MCP server URL
+        const MCP_SERVER_URL = 'http://localhost:8080/mcp';
+        
+        // DOM elements
+        const bucketList = document.getElementById('bucket-list');
+        const fileList = document.getElementById('file-list');
+        const parametersContainer = document.getElementById('parameters-container');
+        const executeButton = document.getElementById('execute-action');
+        const resultDiv = document.getElementById('result');
+        const bucketNameInput = document.getElementById('bucket-name');
+        const fileInput = document.getElementById('file-input');
+        const uploadButton = document.getElementById('upload-button');
+        
+        // Action buttons
+        const listBucketsButton = document.getElementById('list-buckets');
+        const listFilesButton = document.getElementById('list-files');
+        const uploadFileButton = document.getElementById('upload-file');
+        const processDocumentButton = document.getElementById('process-document');
+        const webSearchButton = document.getElementById('web-search');
+        const webFetchButton = document.getElementById('web-fetch');
+        
+        // Current state
+        let currentAction = null;
+        let currentBucket = null;
+        
+        // Action parameters
+        const actionParameters = {
+            listBuckets: [],
+            listFiles: [
+                { name: 'bucketName', label: 'Bucket Name', type: 'text', value: () => currentBucket || 'devdocs-bucket' }
+            ],
+            uploadFile: [
+                { name: 'bucketName', label: 'Bucket Name', type: 'text', value: () => currentBucket || 'devdocs-bucket' },
+                { name: 'fileName', label: 'File Name', type: 'text' },
+                { name: 'fileContent', label: 'File Content', type: 'textarea' }
+            ],
+            processDocument: [
+                { name: 'bucketName', label: 'Bucket Name', type: 'text', value: () => currentBucket || 'devdocs-bucket' },
+                { name: 'fileName', label: 'File Name', type: 'text' }
+            ],
+            webSearch: [
+                { name: 'query', label: 'Search Query', type: 'text' }
+            ],
+            webFetch: [
+                { name: 'url', label: 'URL', type: 'text', value: () => 'https://cloud.google.com/' }
+            ]
+        };
+        
+        // Helper function to make MCP requests
+        async function mcpRequest(action, parameters = {}) {
+            try {
+                showLoading();
+                const response = await fetch(MCP_SERVER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action, parameters })
+                });
+                
+                const data = await response.json();
+                hideLoading();
+                return data;
+            } catch (error) {
+                hideLoading();
+                console.error(`Error making MCP request for action ${action}:`, error);
+                throw new Error(`MCP request failed: ${error.message}`);
+            }
+        }
+        
+        // Show loading indicator
+        function showLoading() {
+            resultDiv.innerHTML = '<div class="loading"></div> Loading...';
+        }
+        
+        // Hide loading indicator
+        function hideLoading() {
+            // Will be replaced by the actual result
+        }
+        
+        // Update parameters based on selected action
+        function updateParameters(action) {
+            currentAction = action;
+            const parameters = actionParameters[action] || [];
+            
+            parametersContainer.innerHTML = '';
+            
+            parameters.forEach(param => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                
+                const label = document.createElement('label');
+                label.setAttribute('for', param.name);
+                label.textContent = param.label + ':';
+                
+                let input;
+                if (param.type === 'textarea') {
+                    input = document.createElement('textarea');
+                    input.setAttribute('rows', '5');
+                } else {
+                    input = document.createElement('input');
+                    input.setAttribute('type', param.type);
+                }
+                
+                input.setAttribute('id', param.name);
+                input.setAttribute('name', param.name);
+                
+                if (param.value) {
+                    input.value = param.value();
+                }
+                
+                formGroup.appendChild(label);
+                formGroup.appendChild(input);
+                parametersContainer.appendChild(formGroup);
+            });
+        }
+        
+        // List buckets
+        async function listBuckets() {
+            try {
+                updateParameters('listBuckets');
+                const response = await mcpRequest('listBuckets');
+                
+                if (response.success) {
+                    // Display buckets
+                    bucketList.innerHTML = '';
+                    response.result.forEach(bucket => {
+                        const li = document.createElement('li');
+                        li.textContent = bucket;
+                        li.addEventListener('click', () => {
+                            currentBucket = bucket;
+                            listFiles(bucket);
+                        });
+                        bucketList.appendChild(li);
+                    });
+                    
+                    // Display result
+                    resultDiv.textContent = JSON.stringify(response, null, 2);
+                } else {
+                    resultDiv.textContent = `Error: ${response.error}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // List files in a bucket
+        async function listFiles(bucketName) {
+            try {
+                updateParameters('listFiles');
+                document.getElementById('bucketName').value = bucketName || currentBucket || 'devdocs-bucket';
+                
+                const response = await mcpRequest('listFiles', { bucketName: bucketName || currentBucket || 'devdocs-bucket' });
+                
+                if (response.success) {
+                    // Display files
+                    fileList.innerHTML = '';
+                    response.result.forEach(file => {
+                        const li = document.createElement('li');
+                        li.textContent = file;
+                        li.addEventListener('click', () => {
+                            // Set the file name in the process document form
+                            updateParameters('processDocument');
+                            document.getElementById('fileName').value = file;
+                        });
+                        fileList.appendChild(li);
+                    });
+                    
+                    // Display result
+                    resultDiv.textContent = JSON.stringify(response, null, 2);
+                } else {
+                    resultDiv.textContent = `Error: ${response.error}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // Upload a file
+        async function uploadFile() {
+            updateParameters('uploadFile');
+        }
+        
+        // Process a document
+        async function processDocument() {
+            updateParameters('processDocument');
+        }
+        
+        // Web search
+        async function webSearch() {
+            updateParameters('webSearch');
+        }
+        
+        // Web fetch
+        async function webFetch() {
+            updateParameters('webFetch');
+        }
+        
+        // Execute the current action
+        async function executeAction() {
+            try {
+                const parameters = {};
+                
+                // Collect parameter values
+                actionParameters[currentAction].forEach(param => {
+                    const input = document.getElementById(param.name);
+                    if (input) {
+                        parameters[param.name] = input.value;
+                    }
+                });
+                
+                // Make request to MCP server
+                const response = await mcpRequest(currentAction, parameters);
+                
+                // Display result
+                resultDiv.textContent = JSON.stringify(response, null, 2);
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // Upload a file from the file input
+        async function uploadFileFromInput() {
+            try {
+                const bucketName = bucketNameInput.value;
+                const file = fileInput.files[0];
+                
+                if (!file) {
+                    alert('Please select a file to upload.');
+                    return;
+                }
+                
+                showLoading();
+                
+                // Read the file as base64
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const base64Content = e.target.result.split(',')[1]; // Remove the data URL prefix
+                    
+                    // Upload the file
+                    const response = await mcpRequest('uploadFile', {
+                        bucketName,
+                        fileName: file.name,
+                        fileContent: base64Content
+                    });
+                    
+                    // Display result
+                    resultDiv.textContent = JSON.stringify(response, null, 2);
+                    
+                    // Refresh the file list
+                    listFiles(bucketName);
+                };
+                
+                reader.readAsDataURL(file);
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // Event listeners
+        listBucketsButton.addEventListener('click', listBuckets);
+        listFilesButton.addEventListener('click', () => listFiles());
+        uploadFileButton.addEventListener('click', uploadFile);
+        processDocumentButton.addEventListener('click', processDocument);
+        webSearchButton.addEventListener('click', webSearch);
+        webFetchButton.addEventListener('click', webFetch);
+        executeButton.addEventListener('click', executeAction);
+        uploadButton.addEventListener('click', uploadFileFromInput);
+        
+        // Initialize
+        listBuckets();
+    </script>
+</body>
+</html>

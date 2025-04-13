@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input, textarea, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3367d6;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>MCP Integration Test</h1>
+    
+    <div class="form-group">
+        <label for="action">Action:</label>
+        <select id="action">
+            <option value="listBuckets">List Buckets</option>
+            <option value="listFiles">List Files</option>
+            <option value="webSearch">Web Search</option>
+            <option value="webFetch">Web Fetch</option>
+        </select>
+    </div>
+    
+    <div id="parameters-container">
+        <!-- Parameters will be dynamically added here based on the selected action -->
+    </div>
+    
+    <button id="submit">Execute</button>
+    
+    <div id="result"></div>
+    
+    <script>
+        const actionSelect = document.getElementById('action');
+        const parametersContainer = document.getElementById('parameters-container');
+        const submitButton = document.getElementById('submit');
+        const resultDiv = document.getElementById('result');
+        
+        // Define parameters for each action
+        const actionParameters = {
+            listBuckets: [],
+            listFiles: [
+                { name: 'bucketName', label: 'Bucket Name', type: 'text' }
+            ],
+            webSearch: [
+                { name: 'query', label: 'Search Query', type: 'text' }
+            ],
+            webFetch: [
+                { name: 'url', label: 'URL', type: 'text' }
+            ]
+        };
+        
+        // Update parameters based on selected action
+        actionSelect.addEventListener('change', updateParameters);
+        
+        function updateParameters() {
+            const selectedAction = actionSelect.value;
+            const parameters = actionParameters[selectedAction] || [];
+            
+            parametersContainer.innerHTML = '';
+            
+            parameters.forEach(param => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                
+                const label = document.createElement('label');
+                label.setAttribute('for', param.name);
+                label.textContent = param.label + ':';
+                
+                const input = document.createElement('input');
+                input.setAttribute('type', param.type);
+                input.setAttribute('id', param.name);
+                input.setAttribute('name', param.name);
+                
+                formGroup.appendChild(label);
+                formGroup.appendChild(input);
+                parametersContainer.appendChild(formGroup);
+            });
+        }
+        
+        // Initialize parameters
+        updateParameters();
+        
+        // Handle form submission
+        submitButton.addEventListener('click', async () => {
+            const action = actionSelect.value;
+            const parameters = {};
+            
+            // Collect parameter values
+            actionParameters[action].forEach(param => {
+                const input = document.getElementById(param.name);
+                if (input) {
+                    parameters[param.name] = input.value;
+                }
+            });
+            
+            // Show loading state
+            resultDiv.textContent = 'Loading...';
+            
+            try {
+                // Make request to MCP server
+                const response = await fetch('http://localhost:8080/mcp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action, parameters })
+                });
+                
+                const data = await response.json();
+                
+                // Display result
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

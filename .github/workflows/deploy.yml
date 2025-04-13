@@ -46,8 +46,8 @@ jobs:
           --platform managed \
           --allow-unauthenticated \
           --port=3002 \
-          --command="npm" \
-          --args="start" \
+          --command="serve" \
+          --args="-s,out,-p,3002" \
           --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
     - name: Deploy MCP server to Cloud Run

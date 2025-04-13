@@ -1,0 +1,21 @@
+{
+  "name": "gcp-mcp-integration",
+  "version": "1.0.0",
+  "description": "MCP integration for Google Cloud with web browsing capabilities",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^6.11.0",
+    "@google-cloud/documentai": "^8.1.0",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.1",
+    "puppeteer": "^21.3.8",
+    "path": "^0.12.7"
+  }
+}
