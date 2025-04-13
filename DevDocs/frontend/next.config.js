@@ -8,7 +8,14 @@ const nextConfig = {
   exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       '/': { page: '/' },
+      '/dashboard': { page: '/dashboard' },
       '/mcp-demo': { page: '/mcp-demo' },
+      '/portfolio': { page: '/portfolio' },
+      '/upload': { page: '/upload' },
+      '/documents': { page: '/documents' },
+      '/settings': { page: '/settings' },
+      '/login': { page: '/login' },
+      '/signup': { page: '/signup' },
     };
   },
   reactStrictMode: true,
