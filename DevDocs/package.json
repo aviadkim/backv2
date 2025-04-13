@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:all": "concurrently \"npm run dev\" \"cd ../repo && python app.py\""
+    "dev:all": "concurrently \"npm run dev\" \"cd ../repo && python app.py\"",
+    "mcp:dev": "node mcp-simple-server.js",
+    "mcp:start": "node mcp-simple-server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.0",

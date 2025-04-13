@@ -1,0 +1,8 @@
+{
+  "projectId": "github-456508",
+  "region": "me-west1",
+  "serviceAccount": "github@github-456508.iam.gserviceaccount.com",
+  "webCapabilities": true,
+  "supabaseUrl": "https://dnjnsotemnfrjlotgved.supabase.co",
+  "apiEndpoint": "https://devdocs-mcp-server-683496987674.me-west1.run.app"
+}

@@ -11,7 +11,7 @@ COPY package.json ./
 RUN npm install --only=production
 
 # Install required packages
-RUN npm install express cors axios
+RUN npm install express cors axios gcp-mcp @supabase/supabase-js dotenv
 
 # Copy the server file
 COPY mcp-simple-server.js ./server.js

@@ -30,34 +30,34 @@ jobs:
 
     - name: Build and push DevDocs image
       run: |
-        docker build -t gcr.io/github-456508/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile ./DevDocs/frontend
-        docker push gcr.io/github-456508/devdocs-app:${{ github.sha }}
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile ./DevDocs/frontend
+        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
 
     - name: Build and push MCP server image
       run: |
-        docker build -t gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }} -f ./DevDocs/Dockerfile.simple ./DevDocs
-        docker push gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }}
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-mcp-server:${{ github.sha }} -f ./DevDocs/Dockerfile.simple ./DevDocs
+        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-mcp-server:${{ github.sha }}
 
     - name: Deploy DevDocs to Cloud Run
       run: |
         gcloud run deploy devdocs-app \
-          --image gcr.io/github-456508/devdocs-app:${{ github.sha }} \
+          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
           --port=3002 \
           --command="npm" \
           --args="start" \
-          --set-env-vars=NODE_ENV=production,PORT=3002
+          --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
     - name: Deploy MCP server to Cloud Run
       run: |
         gcloud run deploy devdocs-mcp-server \
-          --image gcr.io/github-456508/devdocs-mcp-server:${{ github.sha }} \
+          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-mcp-server:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
           --port=8080 \
           --command="node" \
           --args="server.js" \
-          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }}

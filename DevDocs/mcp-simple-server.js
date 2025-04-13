@@ -8,6 +8,23 @@ const cors = require('cors');
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
+const dotenv = require('dotenv');
+const { createClient } = require('@supabase/supabase-js');
+
+// Load environment variables
+dotenv.config();
+
+// Initialize Supabase client
+const supabaseUrl = process.env.SUPABASE_URL || 'https://dnjnsotemnfrjlotgved.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY;
+let supabase;
+
+if (supabaseUrl && supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+  console.log('Supabase client initialized');
+} else {
+  console.log('Supabase credentials not provided');
+}
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -105,17 +122,17 @@ async function webFetch(url) {
   try {
     // Use axios to fetch the URL
     const response = await axios.get(url);
-    
+
     // Extract title
     const titleMatch = response.data.match(/<title>(.*?)<\/title>/i);
     const title = titleMatch ? titleMatch[1] : 'Unknown Title';
-    
+
     // Extract content (simplified)
     let content = response.data.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
     content = content.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
     content = content.replace(/<[^>]+>/g, ' ');
     content = content.replace(/\s+/g, ' ').trim();
-    
+
     return {
       title,
       content: content.substring(0, 1000) + '...',
@@ -131,13 +148,121 @@ async function webFetch(url) {
   }
 }
 
-// MCP endpoint
+// Get context endpoint
+app.post('/context', async (req, res) => {
+  try {
+    // Check API key if it's set
+    const apiKey = process.env.MCP_API_KEY;
+    if (apiKey) {
+      const requestApiKey = req.headers['x-api-key'];
+      if (!requestApiKey || requestApiKey !== apiKey) {
+        return res.status(401).json({ success: false, error: 'Invalid API key' });
+      }
+    }
+
+    const { query, webSearch = false, maxResults = 5 } = req.body;
+
+    // Use the webSearch function to get results
+    const searchResults = await webSearch(query);
+
+    // If Supabase is available, try to get additional context
+    let docsResults = [];
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('documents')
+          .select('*')
+          .textSearch('content', query)
+          .limit(maxResults);
+
+        if (!error && data) {
+          docsResults = data.map(doc => ({
+            title: doc.title,
+            content: doc.content.substring(0, 1000),
+            source: 'supabase'
+          }));
+        }
+      } catch (err) {
+        console.error('Error fetching from Supabase:', err);
+      }
+    }
+
+    // Combine results
+    const results = [...searchResults, ...docsResults].slice(0, maxResults);
+
+    res.json({ success: true, results });
+  } catch (error) {
+    console.error('Error processing context request:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Generate response endpoint
+app.post('/generate', async (req, res) => {
+  try {
+    // Check API key if it's set
+    const apiKey = process.env.MCP_API_KEY;
+    if (apiKey) {
+      const requestApiKey = req.headers['x-api-key'];
+      if (!requestApiKey || requestApiKey !== apiKey) {
+        return res.status(401).json({ success: false, error: 'Invalid API key' });
+      }
+    }
+
+    const { query, context = [] } = req.body;
+
+    // Mock response generation
+    const response = {
+      text: `This is a response to: "${query}". Based on the provided context, I can help you with your DevDocs implementation.`,
+      sources: context.map(c => c.title || 'Unknown source')
+    };
+
+    res.json({ success: true, response });
+  } catch (error) {
+    console.error('Error processing generate request:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Web search endpoint
+app.post('/search', async (req, res) => {
+  try {
+    // Check API key if it's set
+    const apiKey = process.env.MCP_API_KEY;
+    if (apiKey) {
+      const requestApiKey = req.headers['x-api-key'];
+      if (!requestApiKey || requestApiKey !== apiKey) {
+        return res.status(401).json({ success: false, error: 'Invalid API key' });
+      }
+    }
+
+    const { query, maxResults = 5 } = req.body;
+
+    const results = await webSearch(query);
+
+    res.json({ success: true, results: results.slice(0, maxResults) });
+  } catch (error) {
+    console.error('Error processing search request:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Legacy MCP endpoint for backward compatibility
 app.post('/mcp', async (req, res) => {
   try {
+    // Check API key if it's set
+    const apiKey = process.env.MCP_API_KEY;
+    if (apiKey) {
+      const requestApiKey = req.headers['x-api-key'];
+      if (!requestApiKey || requestApiKey !== apiKey) {
+        return res.status(401).json({ success: false, error: 'Invalid API key' });
+      }
+    }
+
     const { action, parameters } = req.body;
-    
+
     let result;
-    
+
     switch (action) {
       case 'listBuckets':
         result = await listBuckets();
@@ -154,7 +279,7 @@ app.post('/mcp', async (req, res) => {
       default:
         throw new Error(`Unknown action: ${action}`);
     }
-    
+
     res.json({ success: true, result });
   } catch (error) {
     console.error('Error processing MCP request:', error);
