@@ -8,6 +8,9 @@ import random
 import uuid
 from werkzeug.utils import secure_filename
 
+# Import MCP routes
+from mcp_routes import mcp_bp
+
 # Import agents and processors
 from agents import FinancialAgent
 from agents.chat_agent import ChatAgent
@@ -31,6 +34,9 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload size
 
 # Fix CORS issues by allowing all origins
 CORS(app, resources={r"/*": {"origins": "*"}})
+
+# Register the MCP blueprint
+app.register_blueprint(mcp_bp)
 
 # Initialize agents and processors
 financial_agent = FinancialAgent(memory_path="memory/financial_agent.json")

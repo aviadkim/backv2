@@ -1,7 +1,17 @@
 @echo off
-echo Running Playwright tests for Document Understanding...
+echo Running DevDocs Tests...
+echo.
 
-cd DevDocs
-npx playwright test tests/document-understanding/
+IF "%1"=="playwright" (
+  echo Running Playwright tests for Document Understanding...
+  cd DevDocs
+  npx playwright test tests/document-understanding/
+) ELSE (
+  echo Running DevDocs comprehensive tests...
+  cd frontend
+  npm run dev:test %*
+)
 
+echo.
 echo Tests completed!
+pause

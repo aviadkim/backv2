@@ -1,0 +1,53 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies including Chrome for web browsing
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    wget \
+    gnupg \
+    ca-certificates \
+    apt-transport-https \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    CHROME_BIN=/usr/bin/google-chrome
+
+# Copy MCP server code
+COPY fast-markdown-mcp/ /app/
+COPY mcp/ /app/mcp/
+COPY mcp-integration/ /app/mcp-integration/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir google-cloud-storage google-cloud-documentai requests beautifulsoup4 selenium webdriver-manager
+
+# Install Node.js for web capabilities
+RUN apt-get update && apt-get install -y nodejs npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js dependencies
+WORKDIR /app/mcp-integration
+RUN npm install axios cheerio puppeteer cors express
+
+# Create necessary directories
+WORKDIR /app
+RUN mkdir -p /app/storage/markdown
+RUN mkdir -p /app/public
+
+# Copy web files to public directory
+COPY app/page.tsx /app/public/index.html
+COPY components/ /app/public/components/
+
+# Expose the port that the MCP server uses for communication
+EXPOSE 8080
+
+# Command to run the enhanced MCP server with web capabilities
+CMD ["python", "-m", "fast_markdown_mcp.server", "/app/storage/markdown", "--web-enabled"]

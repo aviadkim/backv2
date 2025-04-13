@@ -1,0 +1,30 @@
+steps:
+  # Print directory structure for debugging
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['-c', 'ls -la && echo "Current directory: $(pwd)"']
+
+  # Build the MCP server container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/devdocs-mcp-server:latest', '-f', 'docker/dockerfiles/Dockerfile.mcp', '.']
+
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/devdocs-mcp-server:latest']
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'devdocs-mcp-server'
+      - '--image=gcr.io/$PROJECT_ID/devdocs-mcp-server:latest'
+      - '--region=me-west1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=GOOGLE_CLOUD_PROJECT_ID=$PROJECT_ID'
+
+# Store images in Google Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/devdocs-mcp-server:latest'

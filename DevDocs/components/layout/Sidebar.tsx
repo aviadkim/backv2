@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Import usePathname
 import { cn } from '@/lib/utils';
+import TestingIcon from '../icons/TestingIcon';
 
 // Icon components
 const IconPlaceholder = ({ className }: { className?: string }) => (
@@ -70,6 +71,7 @@ const Sidebar = () => {
     { href: '/documents', label: 'My Documents', icon: IconPlaceholder },
     { href: '/document-analysis', label: 'Document Analysis', icon: DocumentIcon },
     { href: '/agents', label: 'AI Agents', icon: AgentIcon },
+    { href: '/dev-test-center', label: 'Testing', icon: TestingIcon },
     { href: '/settings', label: 'Settings', icon: IconPlaceholder },
     { href: '/api-keys', label: 'API Keys', icon: IconPlaceholder },
     { href: '/integrations', label: 'Integrations', icon: IconPlaceholder },
