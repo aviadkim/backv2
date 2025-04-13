@@ -1,0 +1,12 @@
+{
+  "name": "devdocs-test-scripts",
+  "version": "1.0.0",
+  "description": "Test scripts for DevDocs application",
+  "main": "run-tests.js",
+  "scripts": {
+    "test": "node run-tests.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

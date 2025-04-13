@@ -8,8 +8,8 @@ IF "%1"=="playwright" (
   npx playwright test tests/document-understanding/
 ) ELSE (
   echo Running DevDocs comprehensive tests...
-  cd frontend
-  npm run dev:test %*
+  cd scripts
+  node run-tests.js %*
 )
 
 echo.
