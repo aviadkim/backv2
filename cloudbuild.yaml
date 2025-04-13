@@ -1,3 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
   # Print directory structure for debugging
   - name: 'gcr.io/cloud-builders/gcloud'
