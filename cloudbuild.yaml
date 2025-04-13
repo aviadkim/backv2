@@ -6,7 +6,7 @@ steps:
 
   # Build the DevDocs container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/devdocs-app:$COMMIT_SHA', './DevDocs']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/devdocs-app:$COMMIT_SHA', '-f', 'DevDocs/frontend/Dockerfile', 'DevDocs/frontend']
 
   # Push the DevDocs container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -23,7 +23,10 @@ steps:
       - '--region=me-west1'
       - '--platform=managed'
       - '--allow-unauthenticated'
-      - '--set-env-vars=NODE_ENV=production'
+      - '--port=3002'
+      - '--command=serve'
+      - '--args=-s,out,-p,3002'
+      - '--set-env-vars=PORT=3002,NODE_ENV=production,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${_NEXT_PUBLIC_SUPABASE_ANON_KEY}'
 
   # Build the MCP server container image
   - name: 'gcr.io/cloud-builders/docker'
@@ -44,7 +47,8 @@ steps:
       - '--region=me-west1'
       - '--platform=managed'
       - '--allow-unauthenticated'
-      - '--set-env-vars=GOOGLE_CLOUD_PROJECT_ID=$PROJECT_ID'
+      - '--port=8080'
+      - '--set-env-vars=GOOGLE_CLOUD_PROJECT_ID=$PROJECT_ID,PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${_NEXT_PUBLIC_SUPABASE_ANON_KEY}'
 
 # Store images in Google Container Registry
 images:
