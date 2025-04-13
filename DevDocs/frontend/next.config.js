@@ -2,10 +2,13 @@
 const path = require('path');
 
 const nextConfig = {
-  // Disable static site generation for pages that require authentication
+  // Use static export for Cloud Run
+  output: 'export',
+  // Include all pages in the export
   exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       '/': { page: '/' },
+      '/mcp-demo': { page: '/mcp-demo' },
     };
   },
   reactStrictMode: true,
