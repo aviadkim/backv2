@@ -6,27 +6,28 @@ import { useDocument } from '../providers/DocumentProvider';
 import { useAuth } from '../providers/AuthProvider';
 import DocumentUpload from '../components/DocumentUpload';
 import FinancialDataVisualization from '../components/FinancialDataVisualization';
+import FinDocLayout from '../components/FinDocLayout';
 
 const Dashboard = () => {
   const [recentDocuments, setRecentDocuments] = useState([]);
   const [portfolioData, setPortfolioData] = useState(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  
+
   const router = useRouter();
   const { getAllDocuments } = useDocument();
   const { user } = useAuth();
-  
+
   useEffect(() => {
     // Load recent documents
     const loadRecentDocuments = async () => {
       try {
         const documents = await getAllDocuments();
-        setRecentDocuments(documents.slice(0, 5)); // Get the 5 most recent documents
+        setRecentDocuments(documents?.slice(0, 5) || []); // Get the 5 most recent documents
       } catch (error) {
         console.error('Error loading recent documents:', error);
       }
     };
-    
+
     // Load portfolio data
     const loadPortfolioData = async () => {
       try {
@@ -51,168 +52,325 @@ const Dashboard = () => {
         console.error('Error loading portfolio data:', error);
       }
     };
-    
+
     loadRecentDocuments();
     loadPortfolioData();
   }, [getAllDocuments]);
-  
+
   const handleUploadComplete = (document) => {
     setRecentDocuments(prev => [document, ...prev].slice(0, 5));
     setIsUploadModalOpen(false);
   };
-  
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <div className="flex space-x-4">
-              <button
-                type="button"
-                onClick={() => setIsUploadModalOpen(true)}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                <FiUpload className="mr-2 -ml-1 h-5 w-5" />
-                Upload Document
-              </button>
-              <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                <FiSearch className="mr-2 -ml-1 h-5 w-5" />
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-      
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <FinDocLayout>
+      <div className="dashboard-container">
         {/* Welcome message */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-2">Welcome, {user?.fullName || 'User'}</h2>
-          <p className="text-gray-600">
+        <div className="welcome-card">
+          <h2 className="welcome-title">Welcome, {user?.fullName || 'Aviad'}</h2>
+          <p className="welcome-text">
             This is your financial document dashboard. Upload documents, analyze your portfolio, and get insights from your financial data.
           </p>
         </div>
-        
+
         {/* Dashboard grid */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="dashboard-grid">
           {/* Recent documents */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-medium text-gray-900">Recent Documents</h2>
+          <div className="dashboard-card">
+            <div className="card-header">
+              <h2 className="card-title">Recent Documents</h2>
               <button
                 type="button"
                 onClick={() => router.push('/documents')}
-                className="text-sm font-medium text-blue-600 hover:text-blue-500"
+                className="view-all-button"
               >
                 View all
               </button>
             </div>
-            
-            {recentDocuments.length > 0 ? (
-              <ul className="divide-y divide-gray-200">
+
+            {recentDocuments && recentDocuments.length > 0 ? (
+              <ul className="document-list">
                 {recentDocuments.map((doc) => (
-                  <li key={doc.id} className="py-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-shrink-0">
-                        <FiFileText className="h-6 w-6 text-gray-400" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate">{doc.title}</p>
-                        <p className="text-sm text-gray-500 truncate">{doc.fileType} • {(doc.fileSize / 1024).toFixed(2)} KB</p>
-                      </div>
-                      <div className="flex-shrink-0 text-sm text-gray-500">
-                        {new Date(doc.createdAt).toLocaleDateString()}
-                      </div>
+                  <li key={doc.id} className="document-item">
+                    <div className="document-icon">
+                      <FiFileText size={24} color="#3498db" />
+                    </div>
+                    <div className="document-info">
+                      <p className="document-title">{doc.title}</p>
+                      <p className="document-meta">{doc.fileType} • {(doc.fileSize / 1024).toFixed(2)} KB</p>
+                    </div>
+                    <div className="document-date">
+                      {new Date(doc.createdAt).toLocaleDateString()}
                     </div>
                   </li>
                 ))}
               </ul>
             ) : (
-              <div className="py-12 text-center">
-                <FiFileText className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">No documents</h3>
-                <p className="mt-1 text-sm text-gray-500">Get started by uploading a document.</p>
-                <div className="mt-6">
-                  <button
-                    type="button"
-                    onClick={() => setIsUploadModalOpen(true)}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    <FiPlus className="mr-2 -ml-1 h-5 w-5" />
-                    Upload Document
-                  </button>
-                </div>
+              <div className="empty-state">
+                <FiFileText size={48} color="#a0aec0" />
+                <h3 className="empty-title">No documents</h3>
+                <p className="empty-text">Get started by uploading a document.</p>
+                <button
+                  type="button"
+                  onClick={() => setIsUploadModalOpen(true)}
+                  className="upload-button"
+                >
+                  <FiPlus size={16} />
+                  Upload Document
+                </button>
               </div>
             )}
           </div>
-          
+
           {/* Portfolio visualization */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-medium text-gray-900">Portfolio Overview</h2>
+          <div className="dashboard-card">
+            <div className="card-header">
+              <h2 className="card-title">Portfolio Overview</h2>
               <button
                 type="button"
                 onClick={() => router.push('/portfolio')}
-                className="text-sm font-medium text-blue-600 hover:text-blue-500"
+                className="view-all-button"
               >
                 View details
               </button>
             </div>
-            
+
             {portfolioData ? (
               <FinancialDataVisualization data={portfolioData} type="portfolio" />
             ) : (
-              <div className="py-12 text-center">
-                <FiPieChart className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">No portfolio data</h3>
-                <p className="mt-1 text-sm text-gray-500">Upload financial documents to build your portfolio.</p>
+              <div className="empty-state">
+                <FiPieChart size={48} color="#a0aec0" />
+                <h3 className="empty-title">No portfolio data</h3>
+                <p className="empty-text">Upload financial documents to build your portfolio.</p>
               </div>
             )}
           </div>
         </div>
-      </main>
-      
+      </div>
+
       {/* Upload modal */}
       {isUploadModalOpen && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h3 className="modal-title">Upload Document</h3>
+              <button
+                type="button"
+                onClick={() => setIsUploadModalOpen(false)}
+                className="modal-close"
+              >
+                ×
+              </button>
             </div>
-            
-            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Upload Document</h3>
-                    <div className="mt-2">
-                      <DocumentUpload onUploadComplete={handleUploadComplete} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  onClick={() => setIsUploadModalOpen(false)}
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Cancel
-                </button>
-              </div>
+            <div className="modal-body">
+              <DocumentUpload onUploadComplete={handleUploadComplete} />
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                onClick={() => setIsUploadModalOpen(false)}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
       )}
-    </div>
+
+      <style jsx>{`
+        .dashboard-container {
+          padding: 30px;
+        }
+        .welcome-card {
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 25px;
+          margin-bottom: 30px;
+        }
+        .welcome-title {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 10px;
+          color: #2c3e50;
+        }
+        .welcome-text {
+          color: #718096;
+          line-height: 1.6;
+        }
+        .dashboard-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+        }
+        @media (max-width: 1024px) {
+          .dashboard-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        .dashboard-card {
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 25px;
+        }
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        .card-title {
+          font-size: 18px;
+          font-weight: 500;
+          color: #2c3e50;
+        }
+        .view-all-button {
+          color: #3498db;
+          font-size: 14px;
+          font-weight: 500;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+        .view-all-button:hover {
+          text-decoration: underline;
+        }
+        .document-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .document-item {
+          display: flex;
+          align-items: center;
+          padding: 15px 0;
+          border-bottom: 1px solid #edf2f7;
+        }
+        .document-item:last-child {
+          border-bottom: none;
+        }
+        .document-icon {
+          margin-right: 15px;
+        }
+        .document-info {
+          flex: 1;
+        }
+        .document-title {
+          font-weight: 500;
+          margin: 0 0 5px 0;
+          color: #2c3e50;
+        }
+        .document-meta {
+          font-size: 13px;
+          color: #a0aec0;
+          margin: 0;
+        }
+        .document-date {
+          font-size: 13px;
+          color: #a0aec0;
+        }
+        .empty-state {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 0;
+          text-align: center;
+        }
+        .empty-title {
+          margin: 15px 0 5px 0;
+          font-size: 16px;
+          font-weight: 500;
+          color: #2c3e50;
+        }
+        .empty-text {
+          margin: 0 0 20px 0;
+          font-size: 14px;
+          color: #a0aec0;
+        }
+        .upload-button {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 10px 15px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .upload-button:hover {
+          background-color: #2980b9;
+        }
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+        .modal-container {
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 600px;
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 25px;
+          border-bottom: 1px solid #edf2f7;
+        }
+        .modal-title {
+          font-size: 18px;
+          font-weight: 500;
+          color: #2c3e50;
+          margin: 0;
+        }
+        .modal-close {
+          background: none;
+          border: none;
+          font-size: 24px;
+          color: #a0aec0;
+          cursor: pointer;
+        }
+        .modal-body {
+          padding: 25px;
+        }
+        .modal-footer {
+          padding: 15px 25px;
+          border-top: 1px solid #edf2f7;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .cancel-button {
+          background-color: #edf2f7;
+          color: #64748b;
+          border: none;
+          border-radius: 5px;
+          padding: 8px 15px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .cancel-button:hover {
+          background-color: #e2e8f0;
+        }
+      `}</style>
+    </FinDocLayout>
   );
 };
 
