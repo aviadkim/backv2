@@ -27,8 +27,8 @@ steps:
       - '--platform=managed'
       - '--allow-unauthenticated'
       - '--port=3002'
-      - '--command=serve'
-      - '--args=-s,out,-p,3002'
+      - '--command=node'
+      - '--args=server.js'
       - '--set-env-vars=NODE_ENV=production,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${_NEXT_PUBLIC_SUPABASE_ANON_KEY}'
 
   # Build the MCP server container image
