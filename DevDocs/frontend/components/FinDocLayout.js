@@ -17,6 +17,9 @@ function FinDocLayout({ children }) {
     { name: 'Document Understanding', path: '/document-understanding-demo', icon: 'file-search' },
     { name: 'SQL Agent', path: '/test-sql-agent', icon: 'database' },
     { name: 'Web Browser', path: '/test-web-browser', icon: 'globe' },
+    { name: 'Google Cloud MCP', path: '/mcp-integration', icon: 'cloud' },
+    { name: 'Testing', path: '/dev-test-center', icon: 'tool' },
+    { name: 'API Setup', path: '/api-key-setup', icon: 'key-square' },
     { name: 'Settings', path: '/settings', icon: 'cog' },
     { name: 'API Keys', path: '/api-keys', icon: 'key' },
   ];
@@ -388,6 +391,7 @@ function FinDocLayout({ children }) {
         .icon-file-search:before { content: '🔎'; }
         .icon-database:before { content: '💾'; }
         .icon-globe:before { content: '🌐'; }
+        .icon-cloud:before { content: '☁️'; }
       `}</style>
     </div>
   );

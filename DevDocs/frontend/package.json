@@ -6,7 +6,12 @@
     "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start -p 3002",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
+    "test:coverage": "jest --coverage",
+    "dev:test": "node ../scripts/run-tests.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",

@@ -27,6 +27,9 @@ export default function Home() {
             <Link href="/dashboard">
               <button className="primary-button">Go to Dashboard</button>
             </Link>
+            <Link href="/dev-test-center">
+              <button className="secondary-button">Testing Dashboard</button>
+            </Link>
             <Link href="/mcp-demo">
               <button className="secondary-button">MCP Demo</button>
             </Link>

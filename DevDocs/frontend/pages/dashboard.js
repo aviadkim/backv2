@@ -71,6 +71,24 @@ const Dashboard = () => {
           <p className="welcome-text">
             This is your financial document dashboard. Upload documents, analyze your portfolio, and get insights from your financial data.
           </p>
+          <div className="welcome-actions">
+            <button
+              type="button"
+              onClick={() => router.push('/dev-test-center')}
+              className="test-button"
+            >
+              <FiSearch size={16} />
+              Open Testing Dashboard
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push('/api-key-setup')}
+              className="api-button"
+            >
+              <FiPlus size={16} />
+              Configure API Keys
+            </button>
+          </div>
         </div>
 
         {/* Dashboard grid */}
@@ -198,6 +216,38 @@ const Dashboard = () => {
         .welcome-text {
           color: #718096;
           line-height: 1.6;
+          margin-bottom: 15px;
+        }
+        .welcome-actions {
+          display: flex;
+          gap: 10px;
+          margin-top: 15px;
+        }
+        .test-button, .api-button {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          transition: all 0.2s;
+        }
+        .test-button {
+          background-color: #3498db;
+          color: white;
+          border: none;
+        }
+        .test-button:hover {
+          background-color: #2980b9;
+        }
+        .api-button {
+          background-color: #f1f5f9;
+          color: #475569;
+          border: 1px solid #cbd5e1;
+        }
+        .api-button:hover {
+          background-color: #e2e8f0;
         }
         .dashboard-grid {
           display: grid;

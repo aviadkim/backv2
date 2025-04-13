@@ -182,7 +182,7 @@ export const DocumentProvider: React.FC<DocumentProviderProps> = ({ children }) 
         }
 
         // Upload to API
-        const response = await fetch('/api/documents/process-test', {
+        const response = await fetch('/api/documents/upload', {
           method: 'POST',
           body: formData
         });

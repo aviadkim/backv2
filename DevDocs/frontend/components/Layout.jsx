@@ -87,6 +87,11 @@ const Layout = ({ children }) => {
                   MCP Demo
                 </Link>
               </li>
+              <li>
+                <Link href="/dev-test-center" className={`block px-4 py-2 hover:bg-blue-700 ${isActive('/dev-test-center')}`}>
+                  Testing
+                </Link>
+              </li>
             </ul>
           </div>
         </nav>
