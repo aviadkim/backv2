@@ -4,6 +4,12 @@ const path = require('path');
 const nextConfig = {
   // Use static export for Cloud Run
   output: 'export',
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
+  // Disable trailing slash
+  trailingSlash: false,
   // Include all pages in the export
   exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
