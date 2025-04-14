@@ -238,6 +238,9 @@ The OpenRouter integration includes several agents for financial document proces
 7. **TableExtractorAgent**: Extracts tables from financial documents
 8. **FinancialReportGeneratorAgent**: Generates financial reports from extracted data
 9. **PortfolioAnalysisAgent**: Analyzes investment portfolios
+10. **DocumentIntegrationAgent**: Integrates all extracted data into a unified structure
+11. **QueryEngineAgent**: Answers natural language questions about financial documents
+12. **NotificationAgent**: Creates user notifications based on document data
 
 ### API Endpoints
 
@@ -254,6 +257,9 @@ The OpenRouter integration provides several API endpoints:
 - `POST /api/financial/detect-tables`: Detect tables in an image
 - `POST /api/financial/analyze-data`: Analyze financial data
 - `POST /api/financial/process-document`: Process a financial document (detect tables and analyze data)
+- `POST /api/financial/integrate-document`: Integrate document data into a unified structure
+- `POST /api/financial/query`: Query document data using natural language
+- `POST /api/financial/notifications`: Generate notifications based on document data
 
 ## 📜 Scripts and Their Purpose
 
@@ -264,6 +270,7 @@ DevDocs includes various utility scripts to help with development, testing, and 
 - `docker-start.sh` / `docker-start.bat` - Start all services using Docker containers.
 - `test_openrouter.sh` / `test_openrouter.bat` - Test the OpenRouter API integration.
 - `test_financial_api.sh` / `test_financial_api.bat` - Test the Financial Agents API integration.
+- `test_document_integration.sh` / `test_document_integration.bat` - Test the Document Integration and Query Engine agents.
 
 ### MCP Server Scripts
 - `check_mcp_health.sh` - Verify the MCP server's health and configuration status.
