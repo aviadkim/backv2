@@ -227,9 +227,11 @@ The OpenRouter integration includes several agents for financial document proces
 2. **HebrewOCRAgent**: Extracts text from documents with Hebrew content
 3. **ISINExtractorAgent**: Identifies and validates ISIN codes in financial documents
 4. **FinancialEntityExtractorAgent**: Extracts financial entities from documents
-5. **TableExtractorAgent**: Extracts tables from financial documents
-6. **FinancialReportGeneratorAgent**: Generates financial reports from extracted data
-7. **PortfolioAnalysisAgent**: Analyzes investment portfolios
+5. **FinancialTableDetectorAgent**: Identifies and extracts tables from financial documents
+6. **FinancialDataAnalyzerAgent**: Analyzes and organizes financial information from documents
+7. **TableExtractorAgent**: Extracts tables from financial documents
+8. **FinancialReportGeneratorAgent**: Generates financial reports from extracted data
+9. **PortfolioAnalysisAgent**: Analyzes investment portfolios
 
 ### API Endpoints
 
