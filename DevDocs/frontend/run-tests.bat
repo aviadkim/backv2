@@ -1,0 +1,3 @@
+@echo off
+echo Running offline tests...
+node scripts/run-offline-tests.js

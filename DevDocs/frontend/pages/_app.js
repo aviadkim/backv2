@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import { useState, useEffect } from 'react';
 import { AuthProvider } from '../providers/AuthProvider';
 import { DocumentProvider } from '../providers/DocumentProvider';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,10 +28,13 @@ function MyApp({ Component, pageProps }) {
     );
   }
 
+  // Check if the page should use the layout
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
+
   return (
     <AuthProvider>
       <DocumentProvider>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </DocumentProvider>
     </AuthProvider>
   );
