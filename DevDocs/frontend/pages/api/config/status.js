@@ -1,6 +1,6 @@
-import configManager from '../../../lib/configManager';
-import getSupabaseClient from '../../../lib/supabaseClient';
-import createGoogleCloudClient from '../../../lib/googleCloudClient';
+import configManager from './configManager';
+import getSupabaseClient from './supabaseClient';
+import createGoogleCloudClient from './googleCloudClient';
 
 /**
  * API handler for checking the status of all configurations
