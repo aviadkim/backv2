@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenRouter API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .response {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>OpenRouter API Test</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h2>API Status</h2>
+            <p>Check if the OpenRouter API is configured and working correctly.</p>
+            <button id="checkStatus">Check Status</button>
+            <div id="statusResponse" class="response" style="display: none;"></div>
+        </div>
+        
+        <div class="card">
+            <h2>Chat Completion</h2>
+            <div class="form-group">
+                <label for="chatPrompt">Prompt:</label>
+                <textarea id="chatPrompt" placeholder="Enter your prompt here...">Tell me about financial document analysis.</textarea>
+            </div>
+            <div class="form-group">
+                <label for="chatTemperature">Temperature:</label>
+                <input type="text" id="chatTemperature" value="0.7">
+            </div>
+            <div class="form-group">
+                <label for="chatMaxTokens">Max Tokens:</label>
+                <input type="text" id="chatMaxTokens" value="100">
+            </div>
+            <button id="sendChat">Send</button>
+            <div id="chatResponse" class="response" style="display: none;"></div>
+            <div id="chatError" class="error" style="display: none;"></div>
+        </div>
+        
+        <div class="card">
+            <h2>Text Completion</h2>
+            <div class="form-group">
+                <label for="textPrompt">Prompt:</label>
+                <textarea id="textPrompt" placeholder="Enter your prompt here...">Explain how financial document analysis works in 3 sentences.</textarea>
+            </div>
+            <div class="form-group">
+                <label for="textTemperature">Temperature:</label>
+                <input type="text" id="textTemperature" value="0.7">
+            </div>
+            <div class="form-group">
+                <label for="textMaxTokens">Max Tokens:</label>
+                <input type="text" id="textMaxTokens" value="100">
+            </div>
+            <button id="sendText">Send</button>
+            <div id="textResponse" class="response" style="display: none;"></div>
+            <div id="textError" class="error" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        // API configuration
+        const API_HOST = window.location.hostname;
+        const API_PORT = window.location.port || (window.location.protocol === 'https:' ? 443 : 80);
+        const API_URL = `${window.location.protocol}//${API_HOST}:${API_PORT}`;
+        
+        // Check API status
+        document.getElementById('checkStatus').addEventListener('click', async () => {
+            const button = document.getElementById('checkStatus');
+            const responseElement = document.getElementById('statusResponse');
+            
+            button.disabled = true;
+            button.innerHTML = '<div class="loading"></div> Checking...';
+            responseElement.style.display = 'none';
+            
+            try {
+                // Check API health
+                const healthResponse = await fetch(`${API_URL}/api/health`);
+                const healthData = await healthResponse.json();
+                
+                // Display response
+                responseElement.textContent = JSON.stringify(healthData, null, 2);
+                responseElement.style.display = 'block';
+            } catch (error) {
+                responseElement.textContent = `Error: ${error.message}`;
+                responseElement.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Check Status';
+            }
+        });
+        
+        // Send chat completion request
+        document.getElementById('sendChat').addEventListener('click', async () => {
+            const button = document.getElementById('sendChat');
+            const promptElement = document.getElementById('chatPrompt');
+            const temperatureElement = document.getElementById('chatTemperature');
+            const maxTokensElement = document.getElementById('chatMaxTokens');
+            const responseElement = document.getElementById('chatResponse');
+            const errorElement = document.getElementById('chatError');
+            
+            button.disabled = true;
+            button.innerHTML = '<div class="loading"></div> Sending...';
+            responseElement.style.display = 'none';
+            errorElement.style.display = 'none';
+            
+            try {
+                const prompt = promptElement.value;
+                const temperature = parseFloat(temperatureElement.value);
+                const maxTokens = parseInt(maxTokensElement.value);
+                
+                if (!prompt) {
+                    throw new Error('Prompt is required');
+                }
+                
+                const data = {
+                    messages: [
+                        { role: 'system', content: 'You are a helpful assistant.' },
+                        { role: 'user', content: prompt }
+                    ],
+                    temperature,
+                    max_tokens: maxTokens
+                };
+                
+                const response = await fetch(`${API_URL}/api/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || `Request failed with status ${response.status}`);
+                }
+                
+                const result = await response.json();
+                responseElement.textContent = result.choices[0].message.content;
+                responseElement.style.display = 'block';
+            } catch (error) {
+                errorElement.textContent = `Error: ${error.message}`;
+                errorElement.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Send';
+            }
+        });
+        
+        // Send text completion request
+        document.getElementById('sendText').addEventListener('click', async () => {
+            const button = document.getElementById('sendText');
+            const promptElement = document.getElementById('textPrompt');
+            const temperatureElement = document.getElementById('textTemperature');
+            const maxTokensElement = document.getElementById('textMaxTokens');
+            const responseElement = document.getElementById('textResponse');
+            const errorElement = document.getElementById('textError');
+            
+            button.disabled = true;
+            button.innerHTML = '<div class="loading"></div> Sending...';
+            responseElement.style.display = 'none';
+            errorElement.style.display = 'none';
+            
+            try {
+                const prompt = promptElement.value;
+                const temperature = parseFloat(temperatureElement.value);
+                const maxTokens = parseInt(maxTokensElement.value);
+                
+                if (!prompt) {
+                    throw new Error('Prompt is required');
+                }
+                
+                const data = {
+                    prompt,
+                    temperature,
+                    max_tokens: maxTokens
+                };
+                
+                const response = await fetch(`${API_URL}/api/completion`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || `Request failed with status ${response.status}`);
+                }
+                
+                const result = await response.json();
+                responseElement.textContent = result.completion;
+                responseElement.style.display = 'block';
+            } catch (error) {
+                errorElement.textContent = `Error: ${error.message}`;
+                errorElement.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Send';
+            }
+        });
+    </script>
+</body>
+</html>

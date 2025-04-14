@@ -71,7 +71,7 @@ DevDocs brings documentation to you. Point it at any tech documentation URL, and
 3. Organizes information logically inside an MCP server ready for your LLM to query
 4. Presents it in a clean, searchable format in MD or JSON for finetuning LLM purpose
 
-🔥 We want anyone in the world to have the ability to build amazing products quickly using the most cutting edge LLM technology. 
+🔥 We want anyone in the world to have the ability to build amazing products quickly using the most cutting edge LLM technology.
 
 ## 💰 Pricing Comparison
 
@@ -97,6 +97,7 @@ DevDocs is designed to be easy to use with Docker, requiring minimal setup for n
 
 - [Docker](https://docs.docker.com/get-docker/) installed on your system
 - Git for cloning the repository
+- OpenRouter API key (starts with `sk-or-`) for AI capabilities
 
 ### Quick Start with Docker (Recommended)
 
@@ -150,7 +151,7 @@ docker-start.bat
 > icacls storage /grant Everyone:F /T
 > icacls crawl_results /grant Everyone:F /T
 > ```
-</details> 
+</details>
 
 <details>
 <summary>Note about docker-compose.yml on Windows</summary>
@@ -184,12 +185,60 @@ When using Docker, logs can be accessed :
    docker logs devdocs-backend
    docker logs devdocs-mcp
    docker logs devdocs-crawl4ai
-   
+
    # Follow logs in real-time
    docker logs -f devdocs-backend
    ```
 
 To stop all services, press `Ctrl+C` in the terminal where docker-start is running.
+
+## 🤖 OpenRouter Integration
+
+DevDocs now integrates with OpenRouter's Optimus Alpha model for enhanced AI capabilities. This integration provides a set of agents for various financial document processing tasks.
+
+### Setting Up OpenRouter
+
+1. Get your OpenRouter API key from [openrouter.ai](https://openrouter.ai/keys)
+2. Set up the API key:
+
+```bash
+# Linux/Mac
+python DevDocs/backend/scripts/setup_openrouter_key.py --api-key YOUR_API_KEY
+
+# Windows
+python DevDocs\backend\scripts\setup_openrouter_key.py --api-key YOUR_API_KEY
+```
+
+3. Test the integration:
+
+```bash
+# Linux/Mac
+./DevDocs/test_openrouter.sh YOUR_API_KEY
+
+# Windows
+DevDocs\test_openrouter.bat YOUR_API_KEY
+```
+
+### Available Agents
+
+The OpenRouter integration includes several agents for financial document processing:
+
+1. **DocumentPreprocessorAgent**: Optimizes document images for better OCR results
+2. **HebrewOCRAgent**: Extracts text from documents with Hebrew content
+3. **ISINExtractorAgent**: Identifies and validates ISIN codes in financial documents
+4. **FinancialEntityExtractorAgent**: Extracts financial entities from documents
+5. **TableExtractorAgent**: Extracts tables from financial documents
+6. **FinancialReportGeneratorAgent**: Generates financial reports from extracted data
+7. **PortfolioAnalysisAgent**: Analyzes investment portfolios
+
+### API Endpoints
+
+The OpenRouter integration provides several API endpoints:
+
+- `GET /api/health`: Health check endpoint
+- `POST /api/openrouter/chat`: Chat completion endpoint
+- `POST /api/openrouter/completion`: Text completion endpoint
+- `GET /api/openrouter/status`: OpenRouter API status endpoint
 
 ## 📜 Scripts and Their Purpose
 
@@ -198,6 +247,7 @@ DevDocs includes various utility scripts to help with development, testing, and 
 ### Startup Scripts
 - `start.sh` / `start.bat` / `start.ps1` - Start all services (frontend, backend, MCP) for local development.
 - `docker-start.sh` / `docker-start.bat` - Start all services using Docker containers.
+- `test_openrouter.sh` / `test_openrouter.bat` - Test the OpenRouter API integration.
 
 ### MCP Server Scripts
 - `check_mcp_health.sh` - Verify the MCP server's health and configuration status.
@@ -229,16 +279,16 @@ DevDocs is more than a tool—it's your documentation companion that:
 - **Improves Understanding**: Get clean, organized documentation
 - **Enables Innovation**: Build faster with any technology
 - **Supports Teams**: Share knowledge efficiently
-- **LLM READY**: Modern times require modern solutions, using devdocs with LLM is extremely easy and intuitive. With minimal configuration you can run Devdocs and Claude App and  recognizes DevDocs's MCP server ready to chat with your data. 
+- **LLM READY**: Modern times require modern solutions, using devdocs with LLM is extremely easy and intuitive. With minimal configuration you can run Devdocs and Claude App and  recognizes DevDocs's MCP server ready to chat with your data.
 
 ## 🛠️ Setting Up the Cline/Roo Cline for Rapid software development.
 
-1. **Open the "Modes" Interface**  
+1. **Open the "Modes" Interface**
    - In **Roo Code**, click the **+** to create a new Mode-Specific Prompts.
    <br>
-   
-2. **Name**  
-   - Give the mode a **Name** (e.g., `Research_MCP`).  
+
+2. **Name**
+   - Give the mode a **Name** (e.g., `Research_MCP`).
    <br>
 3. **Role Definition Prompt**
   <details>
@@ -258,7 +308,7 @@ Behavioral Mandate: Always use the Table Of Contents and Section Access tools wh
 
 
 ```
-1. Table Of Contents Tool: Returns a full or filtered list of documentation topics. 
+1. Table Of Contents Tool: Returns a full or filtered list of documentation topics.
 2. Section Access Tool: Retrieves the detailed content of specific documentation sections.
 
 General Process: Query Interpretation: Parse the user's query to extract key topics, keywords, and context. Identify the likely relevant sections (e.g., API configurations, error handling) from the query.
@@ -271,10 +321,10 @@ Synthesis and Response Formation: Combine the retrieved content into a coherent 
 
 Error Handling: If no matching sections are found, adjust the search parameters and retry. Clearly report if the query remains ambiguous or if no relevant documentation is available.
 
-Mandatory Tool Usage: 
+Mandatory Tool Usage:
 Enforcement: Every time a query is received that requires information from the MCP server docs, the agent MUST first query the Table Of Contents tool to list potential relevant topics, then use the Section Access tool to retrieve the necessary detailed content.
 
-Search & Retrieve Workflow: 
+Search & Retrieve Workflow:
 Interpret and Isolate: Identify the key terms and data points from the user's query.
 
 Index Lookup: Immediately query the Table Of Contents tool to obtain a list of relevant documentation sections.

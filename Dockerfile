@@ -7,6 +7,13 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     ca-certificates \
     apt-transport-https \
+    python3 \
+    python3-pip \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    tesseract-ocr-heb \
+    libgl1-mesa-glx \
+    poppler-utils \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update \
@@ -19,7 +26,10 @@ WORKDIR /app
 # Copy all application files
 COPY . .
 
-# Install dependencies
+# Install Python dependencies
+RUN pip3 install -r requirements.txt
+
+# Install Node.js dependencies
 RUN cd mcp-integration && npm install
 
 # Install puppeteer for web browsing
@@ -33,6 +43,8 @@ ENV PORT=8080
 ENV GOOGLE_CLOUD_PROJECT_ID=github-456508
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV CHROME_BIN=/usr/bin/google-chrome
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
 
 # Create public directory for static files
 RUN mkdir -p public
@@ -41,8 +53,12 @@ RUN mkdir -p public
 COPY devdocs-app.html ./public/index.html
 COPY mcp-web-demo.html ./public/demo.html
 
-# Expose port
-EXPOSE $PORT
+# Start the backend API server
+RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\nnode server.js' > start.sh
+RUN chmod +x start.sh
+
+# Expose ports
+EXPOSE $PORT 8000
 
 # Start the application
-CMD ["node", "server.js"]
+CMD ["/app/start.sh"]
