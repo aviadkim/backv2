@@ -41,6 +41,12 @@ DevDocs + VSCode(cline) + Your Idea = Ship products fast with ANY technology. No
 - **Selective Crawling**: Pick exactly what you want to extract
 - **Child URL Detection**: Automatically discovers and maps website structure
 
+### 💰 Financial Document Analysis
+- **Table Detection**: Automatically detect tables in financial documents
+- **Data Extraction**: Extract structured data from financial tables
+- **Financial Analysis**: Analyze portfolio, balance sheet, and income statement data
+- **Hebrew Support**: Process documents with Hebrew content
+
 ### ⚡ Performance & Speed
 - **Parallel Processing**: Crawl multiple pages simultaneously
 - **Smart Caching**: Never waste time on duplicate content
@@ -242,6 +248,13 @@ The OpenRouter integration provides several API endpoints:
 - `POST /api/openrouter/completion`: Text completion endpoint
 - `GET /api/openrouter/status`: OpenRouter API status endpoint
 
+#### Financial Agents API Endpoints
+
+- `GET /api/financial/health`: Health check endpoint for financial agents
+- `POST /api/financial/detect-tables`: Detect tables in an image
+- `POST /api/financial/analyze-data`: Analyze financial data
+- `POST /api/financial/process-document`: Process a financial document (detect tables and analyze data)
+
 ## 📜 Scripts and Their Purpose
 
 DevDocs includes various utility scripts to help with development, testing, and maintenance. Here's a quick reference:
@@ -250,6 +263,7 @@ DevDocs includes various utility scripts to help with development, testing, and 
 - `start.sh` / `start.bat` / `start.ps1` - Start all services (frontend, backend, MCP) for local development.
 - `docker-start.sh` / `docker-start.bat` - Start all services using Docker containers.
 - `test_openrouter.sh` / `test_openrouter.bat` - Test the OpenRouter API integration.
+- `test_financial_api.sh` / `test_financial_api.bat` - Test the Financial Agents API integration.
 
 ### MCP Server Scripts
 - `check_mcp_health.sh` - Verify the MCP server's health and configuration status.
