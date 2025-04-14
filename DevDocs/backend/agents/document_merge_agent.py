@@ -105,7 +105,7 @@ class DocumentMergeAgent:
             )
 
         # יצירת סיכום מגמות
-        comparison["summary"] = self._create_trends_summary(comparison["trends"])
+        comparison["summary"] = self._generate_comparison_summary(comparison["trends"])
 
         return comparison
 
@@ -452,7 +452,7 @@ class DocumentMergeAgent:
             item_value = None
 
             # זיהוי סוג השורה (נכסים, התחייבויות, הון)
-            for key, value in row.items():
+            for _, value in row.items():
                 # חיפוש סוג הפריט
                 if isinstance(value, str):
                     value_lower = value.lower()
@@ -613,7 +613,7 @@ class DocumentMergeAgent:
             item_value = None
 
             # זיהוי סוג השורה (הכנסות, הוצאות, רווחים)
-            for key, value in row.items():
+            for _, value in row.items():
                 # חיפוש סוג הפריט
                 if isinstance(value, str):
                     value_lower = value.lower()
@@ -1025,6 +1025,468 @@ class DocumentMergeAgent:
                     }
 
         return summary
+
+    def _generate_comparison_summary(self, trends: Dict[str, Any]) -> Dict[str, Any]:
+        """יצירת סיכום של שינויים משמעותיים בהתבסס על מגמות."""
+        summary = {
+            "significant_changes": []
+        }
+
+        # סיכום תיק השקעות
+        if "portfolio" in trends and trends["portfolio"]:
+            portfolio_trends = trends["portfolio"]
+
+            # שינוי בשווי התיק
+            if "value_change_pct" in portfolio_trends:
+                change_pct = portfolio_trends["value_change_pct"]
+                change = portfolio_trends["value_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלה" if change > 0 else "ירד"
+                    summary["portfolio"] = {
+                        "portfolio_value_change": {
+                            "type": "portfolio_value",
+                            "change": change,
+                            "change_pct": change_pct,
+                            "description": f"שווי התיק {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                        }
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "portfolio_value",
+                        "change_pct": change_pct,
+                        "description": f"שווי התיק {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+        # סיכום מאזן
+        if "balance_sheet" in trends and trends["balance_sheet"]:
+            bs_trends = trends["balance_sheet"]
+
+            # שינוי בנכסים
+            if "assets_change_pct" in bs_trends:
+                change_pct = bs_trends["assets_change_pct"]
+                change = bs_trends["assets_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלו" if change > 0 else "ירדו"
+                    summary["financial_health"] = {
+                        "assets_change": {
+                            "type": "assets",
+                            "change": change,
+                            "change_pct": change_pct,
+                            "description": f"סך הנכסים {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                        }
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "assets",
+                        "change_pct": change_pct,
+                        "description": f"סך הנכסים {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+            # שינוי בהתחייבויות
+            if "liabilities_change_pct" in bs_trends:
+                change_pct = bs_trends["liabilities_change_pct"]
+                change = bs_trends["liabilities_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלו" if change > 0 else "ירדו"
+                    if "financial_health" not in summary:
+                        summary["financial_health"] = {}
+
+                    summary["financial_health"]["liabilities_change"] = {
+                        "type": "liabilities",
+                        "change": change,
+                        "change_pct": change_pct,
+                        "description": f"סך ההתחייבויות {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "liabilities",
+                        "change_pct": change_pct,
+                        "description": f"סך ההתחייבויות {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+        # סיכום דוח רווח והפסד
+        if "income_statement" in trends and trends["income_statement"]:
+            is_trends = trends["income_statement"]
+
+            # שינוי בהכנסות
+            if "revenue_change_pct" in is_trends:
+                change_pct = is_trends["revenue_change_pct"]
+                change = is_trends["revenue_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלו" if change > 0 else "ירדו"
+                    summary["income"] = {
+                        "revenue_change": {
+                            "type": "revenue",
+                            "change": change,
+                            "change_pct": change_pct,
+                            "description": f"סך ההכנסות {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                        }
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "revenue",
+                        "change_pct": change_pct,
+                        "description": f"סך ההכנסות {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+            # שינוי ברווח
+            if "profit_change_pct" in is_trends:
+                change_pct = is_trends["profit_change_pct"]
+                change = is_trends["profit_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלה" if change > 0 else "ירד"
+                    if "income" not in summary:
+                        summary["income"] = {}
+
+                    summary["income"]["profit_change"] = {
+                        "type": "profit",
+                        "change": change,
+                        "change_pct": change_pct,
+                        "description": f"הרווח הנקי {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "profit",
+                        "change_pct": change_pct,
+                        "description": f"הרווח הנקי {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+        # סיכום שכר
+        if "salary" in trends and trends["salary"]:
+            salary_trends = trends["salary"]
+
+            # שינוי בשכר ברוטו
+            if "gross_change_pct" in salary_trends:
+                change_pct = salary_trends["gross_change_pct"]
+                change = salary_trends["gross_change"]
+
+                if abs(change_pct) >= 5:  # שינוי של 5% נחשב משמעותי
+                    direction = "עלה" if change > 0 else "ירד"
+                    summary["salary"] = {
+                        "gross_change": {
+                            "type": "gross_salary",
+                            "change": change,
+                            "change_pct": change_pct,
+                            "description": f"השכר הברוטו הממוצע {direction} ב-{abs(change_pct):.2f}% ({abs(change):.2f} יחידות)."
+                        }
+                    }
+
+                    summary["significant_changes"].append({
+                        "type": "gross_salary",
+                        "change_pct": change_pct,
+                        "description": f"השכר הברוטו הממוצע {direction} ב-{abs(change_pct):.2f}%."
+                    })
+
+        return summary
+
+    def _analyze_salary_trends(self, salary_data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """ניתוח מגמות בנתוני שכר לאורך זמן."""
+        if not salary_data_list or len(salary_data_list) < 2:
+            return {}
+
+        # סינון נתונים ריקים
+        valid_data = [data for data in salary_data_list if data]
+        if len(valid_data) < 2:
+            return {}
+
+        # קבלת הנתונים הישנים והחדשים ביותר
+        oldest = valid_data[0]
+        newest = valid_data[-1]
+
+        # חישוב שינויים בשכר ברוטו ונטו
+        oldest_gross = oldest.get("summary", {}).get("average_gross", 0)
+        newest_gross = newest.get("summary", {}).get("average_gross", 0)
+
+        gross_change = newest_gross - oldest_gross
+        gross_change_pct = (gross_change / oldest_gross * 100) if oldest_gross > 0 else 0
+
+        oldest_net = oldest.get("summary", {}).get("average_net", 0)
+        newest_net = newest.get("summary", {}).get("average_net", 0)
+
+        net_change = newest_net - oldest_net
+        net_change_pct = (net_change / oldest_net * 100) if oldest_net > 0 else 0
+
+        # חישוב שינויים בניכויים
+        deduction_changes = []
+
+        # איתור כל סוגי הניכויים הקיימים
+        deduction_types = set()
+        for data in valid_data:
+            if "salary_slips" in data:
+                for slip in data["salary_slips"]:
+                    if "deductions" in slip:
+                        deduction_types.update(slip["deductions"].keys())
+
+        # חישוב ממוצעי ניכויים לכל סוג
+        for deduction_type in deduction_types:
+            oldest_avg = self._calculate_average_deduction(oldest, deduction_type)
+            newest_avg = self._calculate_average_deduction(newest, deduction_type)
+
+            if oldest_avg > 0 or newest_avg > 0:
+                change = newest_avg - oldest_avg
+                change_pct = (change / oldest_avg * 100) if oldest_avg > 0 else 0
+
+                deduction_changes.append({
+                    "type": deduction_type,
+                    "old_value": oldest_avg,
+                    "new_value": newest_avg,
+                    "change": change,
+                    "change_pct": change_pct
+                })
+
+        # מיון לפי אחוז שינוי מוחלט
+        deduction_changes.sort(key=lambda x: abs(x["change_pct"]), reverse=True)
+
+        return {
+            "gross_change": gross_change,
+            "gross_change_pct": gross_change_pct,
+            "net_change": net_change,
+            "net_change_pct": net_change_pct,
+            "deduction_changes": deduction_changes[:5]  # 5 השינויים המשמעותיים ביותר
+        }
+
+    def _calculate_average_deduction(self, salary_data: Dict[str, Any], deduction_type: str) -> float:
+        """חישוב ממוצע ניכוי מסוג מסוים בכל תלושי השכר."""
+        if "salary_slips" not in salary_data or not salary_data["salary_slips"]:
+            return 0.0
+
+        total = 0.0
+        count = 0
+
+        for slip in salary_data["salary_slips"]:
+            if "deductions" in slip and deduction_type in slip["deductions"]:
+                total += slip["deductions"][deduction_type]
+                count += 1
+
+        return total / count if count > 0 else 0.0
+
+    def _analyze_income_statement_trends(self, income_statement_data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """ניתוח מגמות בדוח רווח והפסד לאורך זמן."""
+        if not income_statement_data_list or len(income_statement_data_list) < 2:
+            return {}
+
+        # סינון נתונים ריקים
+        valid_data = [data for data in income_statement_data_list if data]
+        if len(valid_data) < 2:
+            return {}
+
+        # קבלת הנתונים הישנים והחדשים ביותר
+        oldest = valid_data[0]
+        newest = valid_data[-1]
+
+        # חישוב שינויים בהכנסות, הוצאות ורווח
+        oldest_revenue = oldest.get("summary", {}).get("total_revenue", 0)
+        newest_revenue = newest.get("summary", {}).get("total_revenue", 0)
+
+        revenue_change = newest_revenue - oldest_revenue
+        revenue_change_pct = (revenue_change / oldest_revenue * 100) if oldest_revenue > 0 else 0
+
+        oldest_expenses = oldest.get("summary", {}).get("total_expenses", 0)
+        newest_expenses = newest.get("summary", {}).get("total_expenses", 0)
+
+        expenses_change = newest_expenses - oldest_expenses
+        expenses_change_pct = (expenses_change / oldest_expenses * 100) if oldest_expenses > 0 else 0
+
+        oldest_profit = oldest.get("summary", {}).get("net_profit", 0)
+        newest_profit = newest.get("summary", {}).get("net_profit", 0)
+
+        profit_change = newest_profit - oldest_profit
+        profit_change_pct = (profit_change / oldest_profit * 100) if oldest_profit > 0 else 0
+
+        # זיהוי שינויים משמעותיים בקטגוריות הכנסה או הוצאה ספציפיות
+        major_changes = []
+
+        # בדיקת הכנסות
+        for revenue_name, revenue_value in newest.get("revenues", {}).items():
+            if revenue_name in oldest.get("revenues", {}):
+                old_value = oldest["revenues"][revenue_name]
+                change = revenue_value - old_value
+                change_pct = (change / old_value * 100) if old_value > 0 else 0
+
+                if abs(change_pct) >= 10:  # שינוי של 10% נחשב משמעותי
+                    major_changes.append({
+                        "name": revenue_name,
+                        "type": "revenue",
+                        "old_value": old_value,
+                        "new_value": revenue_value,
+                        "change": change,
+                        "change_pct": change_pct
+                    })
+
+        # בדיקת הוצאות
+        for expense_name, expense_value in newest.get("expenses", {}).items():
+            if expense_name in oldest.get("expenses", {}):
+                old_value = oldest["expenses"][expense_name]
+                change = expense_value - old_value
+                change_pct = (change / old_value * 100) if old_value > 0 else 0
+
+                if abs(change_pct) >= 10:  # שינוי של 10% נחשב משמעותי
+                    major_changes.append({
+                        "name": expense_name,
+                        "type": "expense",
+                        "old_value": old_value,
+                        "new_value": expense_value,
+                        "change": change,
+                        "change_pct": change_pct
+                    })
+
+        # מיון לפי אחוז שינוי מוחלט
+        major_changes.sort(key=lambda x: abs(x["change_pct"]), reverse=True)
+
+        return {
+            "revenue_change": revenue_change,
+            "revenue_change_pct": revenue_change_pct,
+            "expenses_change": expenses_change,
+            "expenses_change_pct": expenses_change_pct,
+            "profit_change": profit_change,
+            "profit_change_pct": profit_change_pct,
+            "major_changes": major_changes[:5]  # 5 השינויים המשמעותיים ביותר
+        }
+
+    def _analyze_balance_sheet_trends(self, balance_sheet_data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """ניתוח מגמות במאזן לאורך זמן."""
+        if not balance_sheet_data_list or len(balance_sheet_data_list) < 2:
+            return {}
+
+        # סינון נתונים ריקים
+        valid_data = [data for data in balance_sheet_data_list if data]
+        if len(valid_data) < 2:
+            return {}
+
+        # קבלת הנתונים הישנים והחדשים ביותר
+        oldest = valid_data[0]
+        newest = valid_data[-1]
+
+        # חישוב שינויים בנכסים, התחייבויות והון
+        oldest_assets = oldest.get("summary", {}).get("total_assets", 0)
+        newest_assets = newest.get("summary", {}).get("total_assets", 0)
+
+        assets_change = newest_assets - oldest_assets
+        assets_change_pct = (assets_change / oldest_assets * 100) if oldest_assets > 0 else 0
+
+        oldest_liabilities = oldest.get("summary", {}).get("total_liabilities", 0)
+        newest_liabilities = newest.get("summary", {}).get("total_liabilities", 0)
+
+        liabilities_change = newest_liabilities - oldest_liabilities
+        liabilities_change_pct = (liabilities_change / oldest_liabilities * 100) if oldest_liabilities > 0 else 0
+
+        oldest_equity = oldest.get("summary", {}).get("total_equity", 0)
+        newest_equity = newest.get("summary", {}).get("total_equity", 0)
+
+        equity_change = newest_equity - oldest_equity
+        equity_change_pct = (equity_change / oldest_equity * 100) if oldest_equity > 0 else 0
+
+        # זיהוי שינויים משמעותיים בנכסים או התחייבויות ספציפיים
+        major_changes = []
+
+        # בדיקת נכסים
+        for asset_name, asset_value in newest.get("assets", {}).items():
+            if asset_name in oldest.get("assets", {}):
+                old_value = oldest["assets"][asset_name]
+                change = asset_value - old_value
+                change_pct = (change / old_value * 100) if old_value > 0 else 0
+
+                if abs(change_pct) >= 10:  # שינוי של 10% נחשב משמעותי
+                    major_changes.append({
+                        "name": asset_name,
+                        "type": "asset",
+                        "old_value": old_value,
+                        "new_value": asset_value,
+                        "change": change,
+                        "change_pct": change_pct
+                    })
+
+        # בדיקת התחייבויות
+        for liability_name, liability_value in newest.get("liabilities", {}).items():
+            if liability_name in oldest.get("liabilities", {}):
+                old_value = oldest["liabilities"][liability_name]
+                change = liability_value - old_value
+                change_pct = (change / old_value * 100) if old_value > 0 else 0
+
+                if abs(change_pct) >= 10:  # שינוי של 10% נחשב משמעותי
+                    major_changes.append({
+                        "name": liability_name,
+                        "type": "liability",
+                        "old_value": old_value,
+                        "new_value": liability_value,
+                        "change": change,
+                        "change_pct": change_pct
+                    })
+
+        # מיון לפי אחוז שינוי מוחלט
+        major_changes.sort(key=lambda x: abs(x["change_pct"]), reverse=True)
+
+        return {
+            "assets_change": assets_change,
+            "assets_change_pct": assets_change_pct,
+            "liabilities_change": liabilities_change,
+            "liabilities_change_pct": liabilities_change_pct,
+            "equity_change": equity_change,
+            "equity_change_pct": equity_change_pct,
+            "major_changes": major_changes[:5]  # 5 השינויים המשמעותיים ביותר
+        }
+
+    def _analyze_portfolio_trends(self, portfolio_data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """ניתוח מגמות בתיק השקעות לאורך זמן."""
+        if not portfolio_data_list or len(portfolio_data_list) < 2:
+            return {}
+
+        # סינון נתונים ריקים
+        valid_data = [data for data in portfolio_data_list if data]
+        if len(valid_data) < 2:
+            return {}
+
+        # קבלת הנתונים הישנים והחדשים ביותר
+        oldest = valid_data[0]
+        newest = valid_data[-1]
+
+        # חישוב שינוי בשווי התיק
+        oldest_value = oldest.get("summary", {}).get("total_value", 0)
+        newest_value = newest.get("summary", {}).get("total_value", 0)
+
+        value_change = newest_value - oldest_value
+        value_change_pct = (value_change / oldest_value * 100) if oldest_value > 0 else 0
+
+        # זיהוי הניירות המובילים
+        top_performers = []
+        if newest.get("securities"):
+            securities = newest["securities"]
+            # מיון לפי תשואה
+            sorted_securities = sorted(securities, key=lambda x: x.get("return", 0), reverse=True)
+            # לקיחת ה-5 המובילים
+            top_performers = sorted_securities[:min(5, len(sorted_securities))]
+
+            # הוספת נתוני תשואה ממוצעת
+            for security in top_performers:
+                # חיפוש הנייר בנתונים ישנים לחישוב תשואה ממוצעת
+                security_name = security.get("name", "")
+                security_isin = security.get("isin", "")
+
+                historical_returns = []
+                for data in valid_data:
+                    if data.get("securities"):
+                        for old_security in data["securities"]:
+                            if (old_security.get("name") == security_name or
+                                old_security.get("isin") == security_isin):
+                                if "return" in old_security:
+                                    historical_returns.append(old_security["return"])
+                                break
+
+                if historical_returns:
+                    security["average_return"] = sum(historical_returns) / len(historical_returns)
+                else:
+                    security["average_return"] = security.get("return", 0)
+
+        return {
+            "value_change": value_change,
+            "value_change_pct": value_change_pct,
+            "top_performers": top_performers
+        }
 
     def _create_merged_summary(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
         """יצירת סיכום כולל של הנתונים המאוחדים."""
