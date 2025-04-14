@@ -175,73 +175,73 @@ def validate_document_merge_result(actual, expected):
         if "document_types" not in actual:
             print("Missing document_types in result")
             return False
-        
+
         # Check if all expected document types are present
         for doc_type in expected["document_types"]:
             if doc_type not in actual["document_types"]:
                 print(f"Missing document type: {doc_type}")
                 return False
-    
+
     # Check period start/end for comparison
     if "period_start" in expected and expected["period_start"]:
         if "period_start" not in actual or not actual["period_start"]:
             print("Missing period_start in result")
             return False
-    
+
     if "period_end" in expected and expected["period_end"]:
         if "period_end" not in actual or not actual["period_end"]:
             print("Missing period_end in result")
             return False
-    
+
     # Check trend types
     if "trend_types" in expected:
         if "trend_types" not in actual:
             print("Missing trend_types in result")
             return False
-        
+
         # Check if all expected trend types are present
         for trend_type in expected["trend_types"]:
             if trend_type not in actual["trend_types"]:
                 print(f"Missing trend type: {trend_type}")
                 return False
-    
+
     # Check report type
     if "report_type" in expected:
         if "report_type" not in actual:
             print("Missing report_type in result")
             return False
-        
+
         if actual["report_type"] != expected["report_type"]:
             print(f"Report type mismatch: expected {expected['report_type']}, got {actual['report_type']}")
             return False
-    
+
     # Check data sources
     if "data_sources" in expected:
         if "data_sources" not in actual:
             print("Missing data_sources in result")
             return False
-        
+
         # Check if all expected data sources are present
         for source in expected["data_sources"]:
             if source not in actual["data_sources"]:
                 print(f"Missing data source: {source}")
                 return False
-    
+
     return True
 
 def test_document_merge_agent():
     """Test the DocumentMergeAgent."""
     from DevDocs.backend.agents.document_merge_agent import DocumentMergeAgent
-    
+
     # Create the agent
     agent = DocumentMergeAgent()
-    
+
     # Create sample documents
     portfolio_doc = create_sample_portfolio_document()
     balance_sheet = create_sample_balance_sheet()
     income_statement = create_sample_income_statement()
     salary_statement = create_sample_salary_statement()
-    
+
     # Create test cases
     test_cases = [
         {
@@ -431,10 +431,10 @@ def test_document_merge_agent():
             }
         }
     ]
-    
+
     # Custom evaluation for DocumentMergeAgent since it doesn't use the process method
     print(f"\n=== Evaluating DocumentMergeAgent ===\n")
-    
+
     results = {
         "agent_name": "DocumentMergeAgent",
         "test_date": datetime.now().isoformat(),
@@ -443,13 +443,13 @@ def test_document_merge_agent():
         "failed_tests": 0,
         "test_results": []
     }
-    
+
     for i, test_case in enumerate(test_cases):
         print(f"Test {i+1}/{len(test_cases)}: {test_case.get('description', 'No description')}")
-        
+
         try:
             start_time = datetime.now()
-            
+
             # Call the appropriate method based on the test case
             if "documents" in test_case["input"]:
                 result = agent.merge_documents(test_case["input"]["documents"])
@@ -459,12 +459,12 @@ def test_document_merge_agent():
                 result = agent.generate_comprehensive_report(test_case["input"]["merged_document"])
             else:
                 raise ValueError("Unknown test case type")
-                
+
             end_time = datetime.now()
-            
+
             # Validate the result
             passed = validate_document_merge_result(result, test_case.get("expected", {}))
-            
+
             # Record the result
             test_result = {
                 "test_id": i + 1,
@@ -475,20 +475,20 @@ def test_document_merge_agent():
                 "expected": test_case.get("expected", {}),
                 "actual": result
             }
-            
+
             # Update counters
             if passed:
                 results["passed_tests"] += 1
-                print("✅ Test passed")
+                print("✓ Test passed")
             else:
                 results["failed_tests"] += 1
-                print("❌ Test failed")
-            
+                print("X Test failed")
+
             results["test_results"].append(test_result)
-            
+
         except Exception as e:
-            print(f"❌ Test failed with exception: {str(e)}")
-            
+            print(f"X Test failed with exception: {str(e)}")
+
             # Record the error
             test_result = {
                 "test_id": i + 1,
@@ -499,26 +499,26 @@ def test_document_merge_agent():
                 "expected": test_case.get("expected", {}),
                 "actual": {"error": str(e)}
             }
-            
+
             results["failed_tests"] += 1
             results["test_results"].append(test_result)
-    
+
     # Calculate success rate
     results["success_rate"] = (results["passed_tests"] / results["total_tests"]) * 100 if results["total_tests"] > 0 else 0
-    
+
     # Print summary
     print(f"\nSummary for DocumentMergeAgent:")
     print(f"Total tests: {results['total_tests']}")
     print(f"Passed tests: {results['passed_tests']}")
     print(f"Failed tests: {results['failed_tests']}")
     print(f"Success rate: {results['success_rate']:.2f}%")
-    
+
     # Save results
     output_dir = Path("./evaluation_results")
     output_dir.mkdir(exist_ok=True, parents=True)
     filename = "documentmergeagent_evaluation.json"
     file_path = output_dir / filename
-    
+
     # Save the results
     with open(file_path, 'w', encoding='utf-8') as f:
         # Clean the results for JSON serialization
@@ -536,11 +536,11 @@ def test_document_merge_agent():
                     clean_results[k].append(clean_tr)
             else:
                 clean_results[k] = v
-        
+
         json.dump(clean_results, f, indent=2)
-    
+
     print(f"Results saved to {file_path}")
-    
+
     return results
 
 if __name__ == "__main__":
