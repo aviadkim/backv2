@@ -21,6 +21,7 @@ from ..agents.query_engine_agent import QueryEngineAgent
 from ..agents.notification_agent import NotificationAgent
 from ..agents.data_export_agent import DataExportAgent
 from ..agents.document_comparison_agent import DocumentComparisonAgent
+from ..agents.financial_advisor_agent import FinancialAdvisorAgent
 
 # Create router
 router = APIRouter(
@@ -69,6 +70,13 @@ class DocumentComparisonRequest(BaseModel):
     """Document comparison request model."""
     current_doc: Dict[str, Any]
     previous_doc: Dict[str, Any]
+
+class FinancialAdvisorRequest(BaseModel):
+    """Financial advisor request model."""
+    analysis_type: str
+    document_data: Dict[str, Any]
+    risk_profile: Optional[str] = "medium"
+    investment_amount: Optional[float] = 0
 
 # Helper functions
 def get_agent_manager():
@@ -120,6 +128,12 @@ def get_agent_manager():
         manager.create_agent(
             "document_comparison",
             DocumentComparisonAgent
+        )
+
+    if "financial_advisor" not in manager.agents:
+        manager.create_agent(
+            "financial_advisor",
+            FinancialAdvisorAgent
         )
 
     return manager
@@ -558,3 +572,32 @@ async def compare_documents(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error comparing documents: {str(e)}")
+
+@router.post("/financial-advice")
+async def get_financial_advice(
+    request: FinancialAdvisorRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Get financial advice based on document data.
+
+    Args:
+        request: Financial advisor request
+        manager: Agent manager
+
+    Returns:
+        Financial advice and recommendations
+    """
+    try:
+        # Get financial advice
+        result = manager.run_agent(
+            "financial_advisor",
+            analysis_type=request.analysis_type,
+            document_data=request.document_data,
+            risk_profile=request.risk_profile,
+            investment_amount=request.investment_amount
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error getting financial advice: {str(e)}")

@@ -7,6 +7,7 @@ import FinancialQueryEngine from '../components/FinancialQueryEngine';
 import FinancialNotifications from '../components/FinancialNotifications';
 import DataExportTool from '../components/DataExportTool';
 import DocumentComparisonTool from '../components/DocumentComparisonTool';
+import FinancialAdvisorTool from '../components/FinancialAdvisorTool';
 
 const FinancialAnalysisPage = () => {
   const [documentData, setDocumentData] = useState(null);
@@ -60,6 +61,7 @@ const FinancialAnalysisPage = () => {
           <Tab>Notifications</Tab>
           <Tab>Export Data</Tab>
           <Tab>Compare Documents</Tab>
+          <Tab>Financial Advisor</Tab>
         </TabList>
 
         <TabPanels>
@@ -92,6 +94,10 @@ const FinancialAnalysisPage = () => {
               documentData={documentData}
               previousDocuments={processedDocuments.filter(doc => doc.id !== documentData?.document_id)}
             />
+          </TabPanel>
+
+          <TabPanel>
+            <FinancialAdvisorTool documentData={documentData} />
           </TabPanel>
         </TabPanels>
       </Tabs>

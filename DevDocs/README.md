@@ -243,6 +243,7 @@ The OpenRouter integration includes several agents for financial document proces
 12. **NotificationAgent**: Creates user notifications based on document data
 13. **DataExportAgent**: Exports data to various formats for use in other systems
 14. **DocumentComparisonAgent**: Compares documents and identifies changes and developments
+15. **FinancialAdvisorAgent**: Provides financial analysis, accounting, and investment advice
 
 ### API Endpoints
 
@@ -264,6 +265,7 @@ The OpenRouter integration provides several API endpoints:
 - `POST /api/financial/notifications`: Generate notifications based on document data
 - `POST /api/financial/export`: Export data to various formats (JSON, CSV, Excel, XML)
 - `POST /api/financial/compare-documents`: Compare documents and identify changes
+- `POST /api/financial/financial-advice`: Get financial advice and recommendations
 
 ## 📜 Scripts and Their Purpose
 
@@ -276,6 +278,7 @@ DevDocs includes various utility scripts to help with development, testing, and 
 - `test_financial_api.sh` / `test_financial_api.bat` - Test the Financial Agents API integration.
 - `test_document_integration.sh` / `test_document_integration.bat` - Test the Document Integration and Query Engine agents.
 - `test_data_export_comparison.sh` / `test_data_export_comparison.bat` - Test the Data Export and Document Comparison agents.
+- `test_financial_advisor.sh` / `test_financial_advisor.bat` - Test the Financial Advisor agent.
 
 ### MCP Server Scripts
 - `check_mcp_health.sh` - Verify the MCP server's health and configuration status.
