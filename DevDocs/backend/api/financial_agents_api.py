@@ -19,6 +19,8 @@ from ..agents.financial_data_analyzer_agent import FinancialDataAnalyzerAgent
 from ..agents.document_integration_agent import DocumentIntegrationAgent
 from ..agents.query_engine_agent import QueryEngineAgent
 from ..agents.notification_agent import NotificationAgent
+from ..agents.data_export_agent import DataExportAgent
+from ..agents.document_comparison_agent import DocumentComparisonAgent
 
 # Create router
 router = APIRouter(
@@ -55,6 +57,18 @@ class NotificationRequest(BaseModel):
     """Notification request model."""
     document_data: Dict[str, Any]
     user_settings: Optional[Dict[str, Any]] = None
+
+class DataExportRequest(BaseModel):
+    """Data export request model."""
+    data: Dict[str, Any]
+    format_type: str
+    filename: Optional[str] = None
+    export_type: Optional[str] = "raw"
+
+class DocumentComparisonRequest(BaseModel):
+    """Document comparison request model."""
+    current_doc: Dict[str, Any]
+    previous_doc: Dict[str, Any]
 
 # Helper functions
 def get_agent_manager():
@@ -94,6 +108,18 @@ def get_agent_manager():
         manager.create_agent(
             "notification",
             NotificationAgent
+        )
+
+    if "data_export" not in manager.agents:
+        manager.create_agent(
+            "data_export",
+            DataExportAgent
+        )
+
+    if "document_comparison" not in manager.agents:
+        manager.create_agent(
+            "document_comparison",
+            DocumentComparisonAgent
         )
 
     return manager
@@ -476,3 +502,59 @@ async def generate_notifications(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating notifications: {str(e)}")
+
+@router.post("/export")
+async def export_data(
+    request: DataExportRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Export data to various formats.
+
+    Args:
+        request: Data export request
+        manager: Agent manager
+
+    Returns:
+        Export results
+    """
+    try:
+        # Export data
+        result = manager.run_agent(
+            "data_export",
+            data=request.data,
+            format_type=request.format_type,
+            filename=request.filename,
+            export_type=request.export_type
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error exporting data: {str(e)}")
+
+@router.post("/compare-documents")
+async def compare_documents(
+    request: DocumentComparisonRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Compare documents and identify changes.
+
+    Args:
+        request: Document comparison request
+        manager: Agent manager
+
+    Returns:
+        Comparison results
+    """
+    try:
+        # Compare documents
+        result = manager.run_agent(
+            "document_comparison",
+            current_doc=request.current_doc,
+            previous_doc=request.previous_doc
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error comparing documents: {str(e)}")
