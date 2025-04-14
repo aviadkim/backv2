@@ -479,7 +479,7 @@ def test_document_merge_agent():
             # Update counters
             if passed:
                 results["passed_tests"] += 1
-                print("✓ Test passed")
+                print("Test passed")
             else:
                 results["failed_tests"] += 1
                 print("X Test failed")
