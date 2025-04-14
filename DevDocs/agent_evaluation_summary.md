@@ -30,6 +30,12 @@ This document summarizes the evaluation results for the financial agents in the 
    - Tests Passed: 0/5
    - Notes: Tests failed because Tesseract OCR is not installed on the system. This is expected since Tesseract is an external dependency.
 
+5. **FinancialTableDetectorAgent**
+   - Purpose: Detect and extract tables from financial documents
+   - Success Rate: 0% (due to missing dependencies)
+   - Tests Passed: 0/1
+   - Notes: Tests failed because Tesseract OCR is not installed on the system. This is expected since Tesseract is an external dependency.
+
 ## Detailed Results
 
 ### DocumentPreprocessorAgent
@@ -77,14 +83,30 @@ To run these tests successfully, you need to:
 
 1. **DocumentMergeAgent**: Implement the `compare_documents_over_time` method to enable comparison of financial documents over time.
 
-2. **HebrewOCRAgent**: Document the dependencies and installation instructions for Tesseract OCR and the Hebrew language pack.
+2. **HebrewOCRAgent** and **FinancialTableDetectorAgent**: Document the dependencies and installation instructions for Tesseract OCR and the Hebrew language pack.
 
-3. **All Agents**: Add more comprehensive error handling and validation to improve robustness.
+3. **API Key Management**: Implement a more robust way to manage API keys, such as storing them in environment variables or a secure configuration file.
 
-4. **Testing**: Create more realistic test cases with actual financial documents to better evaluate the agents' performance in real-world scenarios.
+4. **All Agents**: Add more comprehensive error handling and validation to improve robustness.
+
+5. **Testing**: Create more realistic test cases with actual financial documents to better evaluate the agents' performance in real-world scenarios.
+
+6. **Continuous Integration**: Set up a CI/CD pipeline to automatically run tests when changes are pushed to the repository.
 
 ## Conclusion
 
 The financial agents in the backv2 system show promising capabilities for processing and analyzing financial documents. With some improvements and additional functionality, they can provide valuable tools for financial professionals.
 
-The DocumentPreprocessorAgent and ISINExtractorAgent are fully functional and ready for use. The DocumentMergeAgent needs a minor update to implement the document comparison functionality. The HebrewOCRAgent requires external dependencies to be installed before it can be used.
+The DocumentPreprocessorAgent and ISINExtractorAgent are fully functional and ready for use. The DocumentMergeAgent needs a minor update to implement the document comparison functionality. The HebrewOCRAgent and FinancialTableDetectorAgent require external dependencies to be installed before they can be used.
+
+The tests have been updated to use the OpenRouter API key, which is required for agents that use AI models. The tests can be run with the following command:
+
+```
+python DevDocs/run_financial_agent_tests.py --api-key YOUR_API_KEY --test-type agent
+```
+
+This will run tests for all agents. You can also run tests for a specific agent with the `--agent` parameter:
+
+```
+python DevDocs/run_financial_agent_tests.py --api-key YOUR_API_KEY --test-type agent --agent document_preprocessor
+```
