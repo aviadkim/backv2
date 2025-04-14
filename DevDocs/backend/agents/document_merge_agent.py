@@ -1488,6 +1488,67 @@ class DocumentMergeAgent:
             "top_performers": top_performers
         }
 
+    def _create_financial_snapshot(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
+        """יצירת תמונת מצב פיננסית עדכנית מהנתונים המאוחדים."""
+        snapshot = {
+            "total_assets": 0,
+            "total_liabilities": 0,
+            "net_worth": 0,
+            "monthly_income": 0,
+            "monthly_expenses": 0,
+            "portfolio_value": 0,
+            "debt_to_equity_ratio": 0,
+            "profit_margin": 0
+        }
+
+        # נכסים והתחייבויות
+        if "balance_sheet" in merged_data:
+            balance_sheet = merged_data["balance_sheet"]
+
+            if "summary" in balance_sheet:
+                snapshot["total_assets"] = balance_sheet["summary"].get("total_assets", 0)
+                snapshot["total_liabilities"] = balance_sheet["summary"].get("total_liabilities", 0)
+                snapshot["net_worth"] = balance_sheet["summary"].get("total_equity", 0)
+
+                # חישוב יחס חוב להון
+                if snapshot["net_worth"] > 0:
+                    snapshot["debt_to_equity_ratio"] = snapshot["total_liabilities"] / snapshot["net_worth"]
+
+        # שווי תיק
+        if "portfolio" in merged_data and "summary" in merged_data["portfolio"]:
+            snapshot["portfolio_value"] = merged_data["portfolio"]["summary"].get("total_value", 0)
+
+        # הכנסה והוצאות
+        if "income_statement" in merged_data and "summary" in merged_data["income_statement"]:
+            income_summary = merged_data["income_statement"]["summary"]
+
+            # הנחה: הנתונים הם שנתיים, חלוקה ב-12 לקבלת נתונים חודשיים
+            snapshot["monthly_income"] = income_summary.get("total_revenue", 0) / 12
+            snapshot["monthly_expenses"] = income_summary.get("total_expenses", 0) / 12
+
+            # חישוב שולי רווח
+            if income_summary.get("total_revenue", 0) > 0:
+                snapshot["profit_margin"] = (income_summary.get("net_profit", 0) / income_summary.get("total_revenue", 0)) * 100
+
+        # שכר
+        if "salary" in merged_data and "summary" in merged_data["salary"]:
+            salary_summary = merged_data["salary"]["summary"]
+
+            # אם אין נתוני הכנסה מדוח רווח והפסד, השתמש בנתוני שכר
+            if snapshot["monthly_income"] == 0:
+                snapshot["monthly_income"] = salary_summary.get("average_gross", 0)
+
+        # בנק
+        if "bank_statements" in merged_data and "summary" in merged_data["bank_statements"]:
+            bank_summary = merged_data["bank_statements"]["summary"]
+
+            # אם אין נתוני הוצאות מדוח רווח והפסד, השתמש בנתוני בנק
+            if snapshot["monthly_expenses"] == 0:
+                # הנחה: הנתונים הם שנתיים, חלוקה ב-12 לקבלת נתונים חודשיים
+                snapshot["monthly_expenses"] = bank_summary.get("total_debits", 0) / 12
+
+        return snapshot
+
     def _create_merged_summary(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
         """יצירת סיכום כולל של הנתונים המאוחדים."""
         summary = {
