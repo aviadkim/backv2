@@ -2,7 +2,7 @@
 
 /**
  * Comprehensive Test Script
- * 
+ *
  * This script runs a comprehensive set of tests on the application,
  * identifies issues, and provides guidance on how to fix them.
  */
@@ -11,6 +11,15 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const chalk = require('chalk');
+
+// Configure chalk
+const log = {
+  blue: (text) => console.log(chalk.blue(text)),
+  green: (text) => console.log(chalk.green(text)),
+  red: (text) => console.log(chalk.red(text)),
+  yellow: (text) => console.log(chalk.yellow(text)),
+  gray: (text) => console.log(chalk.gray(text))
+};
 
 // Test categories
 const testCategories = {
@@ -74,40 +83,40 @@ const commonIssues = {
 
 // Run a test
 function runTest(test) {
-  console.log(chalk.blue(`Running test: ${test.name}`));
+  log.blue(`Running test: ${test.name}`);
   try {
     execSync(test.command, { stdio: 'inherit' });
-    console.log(chalk.green(`✓ Test passed: ${test.name}`));
+    log.green(`✓ Test passed: ${test.name}`);
     return { success: true };
   } catch (error) {
-    console.log(chalk.red(`✗ Test failed: ${test.name}`));
-    
+    log.red(`✗ Test failed: ${test.name}`);
+
     // Try to fix common issues
     const errorMessage = error.toString();
     let fixed = false;
-    
+
     for (const [issueName, issue] of Object.entries(commonIssues)) {
       const match = errorMessage.match(issue.pattern);
       if (match) {
-        console.log(chalk.yellow(`Detected issue: ${issueName}`));
+        log.yellow(`Detected issue: ${issueName}`);
         fixed = issue.fix(match);
         if (fixed) {
-          console.log(chalk.green(`Fixed issue: ${issueName}`));
-          
+          log.green(`Fixed issue: ${issueName}`);
+
           // Try running the test again
           try {
             execSync(test.command, { stdio: 'inherit' });
-            console.log(chalk.green(`✓ Test now passes: ${test.name}`));
+            log.green(`✓ Test now passes: ${test.name}`);
             return { success: true, fixed: true };
           } catch (retryError) {
-            console.log(chalk.red(`✗ Test still fails after fix: ${test.name}`));
+            log.red(`✗ Test still fails after fix: ${test.name}`);
           }
         }
       }
     }
-    
-    return { 
-      success: false, 
+
+    return {
+      success: false,
       fixed: fixed,
       error: errorMessage
     };
@@ -116,41 +125,41 @@ function runTest(test) {
 
 // Run tests for a category
 function runCategoryTests(category) {
-  console.log(chalk.blue(`\nRunning tests for category: ${category}`));
-  
+  log.blue(`\nRunning tests for category: ${category}`);
+
   const tests = testCategories[category];
   const results = {};
-  
+
   for (const test of tests) {
     results[test.id] = runTest(test);
   }
-  
+
   return results;
 }
 
 // Run all tests
 function runAllTests() {
-  console.log(chalk.blue('Running all tests'));
-  
+  log.blue('Running all tests');
+
   const results = {};
-  
+
   for (const category in testCategories) {
     const categoryResults = runCategoryTests(category);
     Object.assign(results, categoryResults);
   }
-  
+
   return results;
 }
 
 // Generate a report
 function generateReport(results) {
-  console.log(chalk.blue('\nTest Report'));
-  console.log(chalk.blue('==========='));
-  
+  log.blue('\nTest Report');
+  log.blue('===========');
+
   let passed = 0;
   let failed = 0;
   let fixed = 0;
-  
+
   for (const [testId, result] of Object.entries(results)) {
     if (result.success) {
       passed++;
@@ -161,14 +170,14 @@ function generateReport(results) {
       failed++;
     }
   }
-  
-  console.log(chalk.green(`Passed: ${passed}`));
-  console.log(chalk.yellow(`Fixed: ${fixed}`));
-  console.log(chalk.red(`Failed: ${failed}`));
-  console.log(chalk.blue(`Total: ${passed + failed}`));
-  
+
+  log.green(`Passed: ${passed}`);
+  log.yellow(`Fixed: ${fixed}`);
+  log.red(`Failed: ${failed}`);
+  log.blue(`Total: ${passed + failed}`);
+
   if (failed > 0) {
-    console.log(chalk.red('\nFailed Tests:'));
+    log.red('\nFailed Tests:');
     for (const [testId, result] of Object.entries(results)) {
       if (!result.success) {
         // Find the test name
@@ -180,44 +189,44 @@ function generateReport(results) {
             break;
           }
         }
-        
-        console.log(chalk.red(`- ${testName}`));
-        console.log(chalk.gray(`  Error: ${result.error.split('\n')[0]}`));
+
+        log.red(`- ${testName}`);
+        log.gray(`  Error: ${result.error.split('\n')[0]}`);
       }
     }
   }
-  
+
   return { passed, failed, fixed };
 }
 
 // Generate next steps
 function generateNextSteps(report) {
-  console.log(chalk.blue('\nNext Steps'));
-  console.log(chalk.blue('=========='));
-  
+  log.blue('\nNext Steps');
+  log.blue('==========');
+
   if (report.failed > 0) {
-    console.log(chalk.yellow('1. Fix the failing tests'));
-    console.log(chalk.yellow('2. Run the tests again'));
+    log.yellow('1. Fix the failing tests');
+    log.yellow('2. Run the tests again');
   } else {
-    console.log(chalk.green('All tests are passing! Here are some next steps:'));
-    console.log(chalk.green('1. Deploy the application to Google Cloud Run'));
-    console.log(chalk.green('2. Set up continuous integration with GitHub Actions'));
-    console.log(chalk.green('3. Add more features to the application'));
-    console.log(chalk.green('4. Add more tests for new features'));
+    log.green('All tests are passing! Here are some next steps:');
+    log.green('1. Deploy the application to Google Cloud Run');
+    log.green('2. Set up continuous integration with GitHub Actions');
+    log.green('3. Add more features to the application');
+    log.green('4. Add more tests for new features');
   }
 }
 
 // Main function
 function main() {
-  console.log(chalk.blue('Comprehensive Test Script'));
-  console.log(chalk.blue('=========================\n'));
-  
+  log.blue('Comprehensive Test Script');
+  log.blue('=========================\n');
+
   // Run all tests
   const results = runAllTests();
-  
+
   // Generate a report
   const report = generateReport(results);
-  
+
   // Generate next steps
   generateNextSteps(report);
 }
