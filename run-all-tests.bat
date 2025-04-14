@@ -1,0 +1,3 @@
+@echo off
+echo Running comprehensive tests...
+node DevDocs/scripts/comprehensive-test.js

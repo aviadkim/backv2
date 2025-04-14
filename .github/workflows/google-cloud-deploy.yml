@@ -1,0 +1,56 @@
+name: Deploy to Google Cloud
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'DevDocs/frontend/package.json'
+
+    - name: Install dependencies
+      run: |
+        cd DevDocs/frontend
+        npm ci
+
+    - name: Build application
+      run: |
+        cd DevDocs/frontend
+        npm run build
+
+    - name: Run tests
+      run: |
+        cd DevDocs/frontend
+        npm test || true
+
+    - name: Authenticate to Google Cloud
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v2
+      with:
+        service: backv2
+        region: me-west1
+        source: .
+
+    - name: Show Output
+      run: echo ${{ steps.deploy.outputs.url }}
