@@ -1,4 +1,4 @@
-import configManager from '../../../lib/configManager';
+import configManager from '@/lib/configManager';
 
 /**
  * API handler for updating multiple configuration values
