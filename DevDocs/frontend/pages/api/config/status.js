@@ -1,6 +1,6 @@
-import configManager from '../../../lib/configManager';
-import getSupabaseClient from '../../../lib/supabaseClient';
-import createGoogleCloudClient from '../../../lib/googleCloudClient';
+import configManager from '@/lib/configManager';
+import getSupabaseClient from '@/lib/supabaseClient';
+import createGoogleCloudClient from '@/lib/googleCloudClient';
 
 /**
  * API handler for checking the status of all configurations
@@ -10,16 +10,16 @@ import createGoogleCloudClient from '../../../lib/googleCloudClient';
 export default async function handler(req, res) {
   // Only allow GET requests
   if (req.method !== 'GET') {
-    return res.status(405).json({ 
-      success: false, 
-      error: 'Method not allowed' 
+    return res.status(405).json({
+      success: false,
+      error: 'Method not allowed'
     });
   }
 
   try {
     // Get all configurations
     const config = await configManager.readConfig();
-    
+
     // Check Supabase connection
     let supabaseStatus = 'missing';
     if (config.NEXT_PUBLIC_SUPABASE_URL && config.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         supabaseStatus = 'invalid';
       }
     }
-    
+
     // Check Google Cloud connection
     let googleCloudStatus = 'missing';
     if (config.NEXT_PUBLIC_GOOGLE_CLOUD_API_KEY) {
@@ -48,19 +48,19 @@ export default async function handler(req, res) {
         googleCloudStatus = 'invalid';
       }
     }
-    
+
     // Check OCR API status
     let ocrStatus = 'missing';
     if (config.NEXT_PUBLIC_VISION_API_ENABLED === 'true' && config.NEXT_PUBLIC_GOOGLE_CLOUD_API_KEY) {
       ocrStatus = 'valid';
     }
-    
+
     // Check Chatbot API status
     let chatbotStatus = 'missing';
     if (config.NEXT_PUBLIC_CHATBOT_ENABLED === 'true' && config.NEXT_PUBLIC_GOOGLE_CLOUD_API_KEY) {
       chatbotStatus = 'valid';
     }
-    
+
     return res.status(200).json({
       success: true,
       supabase: supabaseStatus,
@@ -70,9 +70,9 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error checking configuration status:', error);
-    return res.status(500).json({ 
-      success: false, 
-      error: error.message || 'Failed to check configuration status' 
+    return res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to check configuration status'
     });
   }
 }

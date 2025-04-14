@@ -1,4 +1,4 @@
-import configManager from '../../../lib/configManager';
+import configManager from '@/lib/configManager';
 
 /**
  * API handler for getting configuration values
@@ -8,22 +8,22 @@ import configManager from '../../../lib/configManager';
 export default async function handler(req, res) {
   // Only allow GET requests
   if (req.method !== 'GET') {
-    return res.status(405).json({ 
-      success: false, 
-      error: 'Method not allowed' 
+    return res.status(405).json({
+      success: false,
+      error: 'Method not allowed'
     });
   }
 
   try {
     const { key } = req.query;
-    
+
     if (!key) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Missing required parameter: key' 
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required parameter: key'
       });
     }
-    
+
     // Validate the key to prevent security issues
     const allowedKeys = [
       'NEXT_PUBLIC_SUPABASE_URL',
@@ -34,27 +34,27 @@ export default async function handler(req, res) {
       'NEXT_PUBLIC_CHATBOT_ENABLED',
       'NEXT_PUBLIC_DIALOGFLOW_AGENT_ID'
     ];
-    
+
     if (!allowedKeys.includes(key)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: `Invalid configuration key: ${key}` 
+      return res.status(400).json({
+        success: false,
+        error: `Invalid configuration key: ${key}`
       });
     }
-    
+
     // Get the configuration value
     const value = await configManager.getConfig(key);
-    
+
     // For security reasons, mask sensitive values
     const sensitiveKeys = [
       'NEXT_PUBLIC_SUPABASE_ANON_KEY',
       'NEXT_PUBLIC_GOOGLE_CLOUD_API_KEY'
     ];
-    
+
     const maskedValue = sensitiveKeys.includes(key) && value
       ? `${value.substring(0, 5)}...${value.substring(value.length - 5)}`
       : value;
-    
+
     return res.status(200).json({
       success: true,
       key,
@@ -63,9 +63,9 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error getting configuration:', error);
-    return res.status(500).json({ 
-      success: false, 
-      error: error.message || 'Failed to get configuration' 
+    return res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to get configuration'
     });
   }
 }

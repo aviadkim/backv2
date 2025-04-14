@@ -1,4 +1,4 @@
-import configManager from '../../../lib/configManager';
+import configManager from '@/lib/configManager';
 
 /**
  * API handler for updating configuration values
@@ -8,22 +8,22 @@ import configManager from '../../../lib/configManager';
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
-    return res.status(405).json({ 
-      success: false, 
-      error: 'Method not allowed' 
+    return res.status(405).json({
+      success: false,
+      error: 'Method not allowed'
     });
   }
 
   try {
     const { key, value } = req.body;
-    
+
     if (!key) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Missing required parameter: key' 
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required parameter: key'
       });
     }
-    
+
     // Validate the key to prevent security issues
     const allowedKeys = [
       'NEXT_PUBLIC_SUPABASE_URL',
@@ -35,26 +35,26 @@ export default async function handler(req, res) {
       'NEXT_PUBLIC_CHATBOT_ENABLED',
       'NEXT_PUBLIC_DIALOGFLOW_AGENT_ID'
     ];
-    
+
     if (!allowedKeys.includes(key)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: `Invalid configuration key: ${key}` 
+      return res.status(400).json({
+        success: false,
+        error: `Invalid configuration key: ${key}`
       });
     }
-    
+
     // Update the configuration
     await configManager.updateConfig(key, value);
-    
+
     return res.status(200).json({
       success: true,
       message: `Configuration ${key} updated successfully`
     });
   } catch (error) {
     console.error('Error updating configuration:', error);
-    return res.status(500).json({ 
-      success: false, 
-      error: error.message || 'Failed to update configuration' 
+    return res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to update configuration'
     });
   }
 }
