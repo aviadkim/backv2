@@ -23,6 +23,9 @@ from ..agents.data_export_agent import DataExportAgent
 from ..agents.document_comparison_agent import DocumentComparisonAgent
 from ..agents.financial_advisor_agent import FinancialAdvisorAgent
 from ..agents.document_merge_agent import DocumentMergeAgent
+from ..agents.document_preprocessor_agent import DocumentPreprocessorAgent
+from ..agents.hebrew_ocr_agent import HebrewOCRAgent
+from ..agents.isin_extractor_agent import ISINExtractorAgent
 
 # Create router
 router = APIRouter(
@@ -91,6 +94,23 @@ class ComprehensiveReportRequest(BaseModel):
     """Comprehensive report request model."""
     merged_document: Dict[str, Any]
 
+class DocumentPreprocessRequest(BaseModel):
+    """Document preprocess request model."""
+    image_base64: str
+    options: Optional[Dict[str, Any]] = None
+
+class HebrewOCRRequest(BaseModel):
+    """Hebrew OCR request model."""
+    image_base64: str
+    with_positions: Optional[bool] = False
+    language: Optional[str] = "heb+eng"
+
+class ISINExtractRequest(BaseModel):
+    """ISIN extract request model."""
+    text: str
+    validate: Optional[bool] = True
+    include_metadata: Optional[bool] = True
+
 # Helper functions
 def get_agent_manager():
     """Get the agent manager."""
@@ -153,6 +173,24 @@ def get_agent_manager():
         manager.create_agent(
             "document_merge",
             DocumentMergeAgent
+        )
+
+    if "document_preprocessor" not in manager.agents:
+        manager.create_agent(
+            "document_preprocessor",
+            DocumentPreprocessorAgent
+        )
+
+    if "hebrew_ocr" not in manager.agents:
+        manager.create_agent(
+            "hebrew_ocr",
+            HebrewOCRAgent
+        )
+
+    if "isin_extractor" not in manager.agents:
+        manager.create_agent(
+            "isin_extractor",
+            ISINExtractorAgent
         )
 
     return manager
@@ -700,3 +738,100 @@ async def generate_comprehensive_report(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating comprehensive report: {str(e)}")
+
+@router.post("/preprocess-document")
+async def preprocess_document(
+    request: DocumentPreprocessRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Preprocess a document image for better OCR results.
+
+    Args:
+        request: Document preprocess request
+        manager: Agent manager
+
+    Returns:
+        Preprocessed image
+    """
+    try:
+        # Decode base64 image
+        image = decode_image(request.image_base64)
+
+        # Preprocess the image
+        result = manager.run_agent(
+            "document_preprocessor",
+            image=image,
+            options=request.options
+        )
+
+        # Encode the preprocessed image to base64
+        if 'preprocessed_image' in result and result['status'] == 'success':
+            _, buffer = cv2.imencode('.png', result['preprocessed_image'])
+            preprocessed_base64 = base64.b64encode(buffer).decode('utf-8')
+            result['preprocessed_image_base64'] = preprocessed_base64
+            # Remove the numpy array from the response
+            del result['preprocessed_image']
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error preprocessing document: {str(e)}")
+
+@router.post("/hebrew-ocr")
+async def hebrew_ocr(
+    request: HebrewOCRRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Extract text from an image with Hebrew OCR.
+
+    Args:
+        request: Hebrew OCR request
+        manager: Agent manager
+
+    Returns:
+        Extracted text
+    """
+    try:
+        # Decode base64 image
+        image = decode_image(request.image_base64)
+
+        # Extract text
+        result = manager.run_agent(
+            "hebrew_ocr",
+            image=image,
+            with_positions=request.with_positions,
+            language=request.language
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting text: {str(e)}")
+
+@router.post("/extract-isins")
+async def extract_isins(
+    request: ISINExtractRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Extract ISIN numbers from text.
+
+    Args:
+        request: ISIN extract request
+        manager: Agent manager
+
+    Returns:
+        Extracted ISIN numbers
+    """
+    try:
+        # Extract ISINs
+        result = manager.run_agent(
+            "isin_extractor",
+            text=request.text,
+            validate=request.validate,
+            include_metadata=request.include_metadata
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting ISINs: {str(e)}")
