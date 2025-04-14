@@ -22,6 +22,7 @@ from ..agents.notification_agent import NotificationAgent
 from ..agents.data_export_agent import DataExportAgent
 from ..agents.document_comparison_agent import DocumentComparisonAgent
 from ..agents.financial_advisor_agent import FinancialAdvisorAgent
+from ..agents.document_merge_agent import DocumentMergeAgent
 
 # Create router
 router = APIRouter(
@@ -77,6 +78,18 @@ class FinancialAdvisorRequest(BaseModel):
     document_data: Dict[str, Any]
     risk_profile: Optional[str] = "medium"
     investment_amount: Optional[float] = 0
+
+class DocumentMergeRequest(BaseModel):
+    """Document merge request model."""
+    documents: List[Dict[str, Any]]
+
+class DocumentCompareOverTimeRequest(BaseModel):
+    """Document compare over time request model."""
+    merged_documents: List[Dict[str, Any]]
+
+class ComprehensiveReportRequest(BaseModel):
+    """Comprehensive report request model."""
+    merged_document: Dict[str, Any]
 
 # Helper functions
 def get_agent_manager():
@@ -134,6 +147,12 @@ def get_agent_manager():
         manager.create_agent(
             "financial_advisor",
             FinancialAdvisorAgent
+        )
+
+    if "document_merge" not in manager.agents:
+        manager.create_agent(
+            "document_merge",
+            DocumentMergeAgent
         )
 
     return manager
@@ -601,3 +620,83 @@ async def get_financial_advice(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error getting financial advice: {str(e)}")
+
+@router.post("/merge-documents")
+async def merge_documents(
+    request: DocumentMergeRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Merge multiple documents into a single document.
+
+    Args:
+        request: Document merge request
+        manager: Agent manager
+
+    Returns:
+        Merged document
+    """
+    try:
+        # Merge documents
+        result = manager.run_agent(
+            "document_merge",
+            documents=request.documents
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error merging documents: {str(e)}")
+
+@router.post("/compare-over-time")
+async def compare_over_time(
+    request: DocumentCompareOverTimeRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Compare merged documents over time.
+
+    Args:
+        request: Document compare over time request
+        manager: Agent manager
+
+    Returns:
+        Comparison results
+    """
+    try:
+        # Compare documents over time
+        result = manager.run_agent(
+            "document_merge",
+            method="compare_merged_document_over_time",
+            merged_documents=request.merged_documents
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error comparing documents over time: {str(e)}")
+
+@router.post("/comprehensive-report")
+async def generate_comprehensive_report(
+    request: ComprehensiveReportRequest,
+    manager: AgentManager = Depends(get_agent_manager)
+):
+    """
+    Generate a comprehensive financial report.
+
+    Args:
+        request: Comprehensive report request
+        manager: Agent manager
+
+    Returns:
+        Comprehensive report
+    """
+    try:
+        # Generate comprehensive report
+        result = manager.run_agent(
+            "document_merge",
+            method="generate_comprehensive_report",
+            merged_document=request.merged_document
+        )
+
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating comprehensive report: {str(e)}")
