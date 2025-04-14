@@ -5,14 +5,14 @@ const DocumentContext = createContext();
 export function DocumentProvider({ children }) {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+
   const fetchDocuments = async () => {
     try {
       setLoading(true);
-      
+
       // Simulate API call to fetch documents
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // For testing purposes, create mock documents
       const mockDocuments = [
         {
@@ -43,7 +43,7 @@ export function DocumentProvider({ children }) {
           preview: '/mock/receipt_preview.jpg'
         }
       ];
-      
+
       setDocuments(mockDocuments);
       return { success: true, data: mockDocuments };
     } catch (error) {
@@ -53,14 +53,14 @@ export function DocumentProvider({ children }) {
       setLoading(false);
     }
   };
-  
+
   const uploadDocument = async (file) => {
     try {
       setLoading(true);
-      
+
       // Simulate API call to upload document
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // For testing purposes, create a mock document
       const mockDocument = {
         id: Date.now().toString(),
@@ -71,7 +71,7 @@ export function DocumentProvider({ children }) {
         size: file.size,
         preview: '/mock/new_document_preview.jpg'
       };
-      
+
       setDocuments(prev => [...prev, mockDocument]);
       return { success: true, data: mockDocument };
     } catch (error) {
@@ -81,14 +81,14 @@ export function DocumentProvider({ children }) {
       setLoading(false);
     }
   };
-  
+
   const deleteDocument = async (documentId) => {
     try {
       setLoading(true);
-      
+
       // Simulate API call to delete document
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setDocuments(prev => prev.filter(doc => doc.id !== documentId));
       return { success: true };
     } catch (error) {
@@ -98,22 +98,22 @@ export function DocumentProvider({ children }) {
       setLoading(false);
     }
   };
-  
+
   const processDocument = async (documentId) => {
     try {
       setLoading(true);
-      
+
       // Simulate API call to process document
       await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      setDocuments(prev => 
-        prev.map(doc => 
-          doc.id === documentId 
-            ? { ...doc, status: 'processed' } 
+
+      setDocuments(prev =>
+        prev.map(doc =>
+          doc.id === documentId
+            ? { ...doc, status: 'processed' }
             : doc
         )
       );
-      
+
       return { success: true };
     } catch (error) {
       console.error('Error processing document:', error);
@@ -122,7 +122,7 @@ export function DocumentProvider({ children }) {
       setLoading(false);
     }
   };
-  
+
   const value = {
     documents,
     loading,
@@ -131,10 +131,15 @@ export function DocumentProvider({ children }) {
     deleteDocument,
     processDocument
   };
-  
+
   return <DocumentContext.Provider value={value}>{children}</DocumentContext.Provider>;
 }
 
 export function useDocuments() {
+  return useContext(DocumentContext);
+}
+
+// Alias for backward compatibility
+export function useDocument() {
   return useContext(DocumentContext);
 }
