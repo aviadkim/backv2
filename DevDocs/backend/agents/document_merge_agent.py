@@ -1488,6 +1488,318 @@ class DocumentMergeAgent:
             "top_performers": top_performers
         }
 
+    def _analyze_income_and_expenses(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
+        """ניתוח הכנסות והוצאות מהנתונים המאוחדים."""
+        analysis = {
+            "total_income": 0,
+            "total_expenses": 0,
+            "net_income": 0,
+            "income_breakdown": [],
+            "expense_breakdown": [],
+            "monthly_cash_flow": 0,
+            "recommendations": []
+        }
+
+        # חילוץ נתוני דוח רווח והפסד
+        if "income_statement" in merged_data:
+            income_statement = merged_data["income_statement"]
+
+            if "summary" in income_statement:
+                analysis["total_income"] = income_statement["summary"].get("total_revenue", 0)
+                analysis["total_expenses"] = income_statement["summary"].get("total_expenses", 0)
+                analysis["net_income"] = income_statement["summary"].get("net_profit", 0)
+                analysis["monthly_cash_flow"] = analysis["net_income"] / 12  # הנחה: נתונים שנתיים
+
+            # פירוט הכנסות
+            if "revenues" in income_statement:
+                for income_name, income_value in income_statement["revenues"].items():
+                    analysis["income_breakdown"].append({
+                        "name": income_name,
+                        "value": income_value,
+                        "percentage": (income_value / analysis["total_income"] * 100) if analysis["total_income"] > 0 else 0
+                    })
+
+                # מיון לפי ערך
+                analysis["income_breakdown"].sort(key=lambda x: x["value"], reverse=True)
+
+            # פירוט הוצאות
+            if "expenses" in income_statement:
+                for expense_name, expense_value in income_statement["expenses"].items():
+                    analysis["expense_breakdown"].append({
+                        "name": expense_name,
+                        "value": expense_value,
+                        "percentage": (expense_value / analysis["total_expenses"] * 100) if analysis["total_expenses"] > 0 else 0
+                    })
+
+                # מיון לפי ערך
+                analysis["expense_breakdown"].sort(key=lambda x: x["value"], reverse=True)
+
+        # אם אין נתוני דוח רווח והפסד, השתמש בנתוני שכר
+        if analysis["total_income"] == 0 and "salary" in merged_data:
+            salary_data = merged_data["salary"]
+
+            if "summary" in salary_data:
+                analysis["total_income"] = salary_data["summary"].get("average_gross", 0) * 12  # שנתי
+
+                # הוספת שכר לפירוט הכנסות
+                analysis["income_breakdown"].append({
+                    "name": "שכר עבודה",
+                    "value": analysis["total_income"],
+                    "percentage": 100
+                })
+
+        # אם אין נתוני הוצאות, השתמש בנתוני בנק
+        if analysis["total_expenses"] == 0 and "bank_statements" in merged_data:
+            bank_data = merged_data["bank_statements"]
+
+            if "summary" in bank_data:
+                analysis["total_expenses"] = bank_data["summary"].get("total_debits", 0)  # הנחה: נתונים שנתיים
+
+                # חישוב הכנסה נטו
+                analysis["net_income"] = analysis["total_income"] - analysis["total_expenses"]
+                analysis["monthly_cash_flow"] = analysis["net_income"] / 12
+
+                # הוספת הוצאות כלליות לפירוט הוצאות
+                analysis["expense_breakdown"].append({
+                    "name": "הוצאות כלליות",
+                    "value": analysis["total_expenses"],
+                    "percentage": 100
+                })
+
+        # המלצות
+        # תזרים מזומנים שלילי
+        if analysis["monthly_cash_flow"] < 0:
+            analysis["recommendations"].append({
+                "title": "תזרים מזומנים שלילי",
+                "description": f"ההוצאות שלך גבוהות מההכנסות ב-{abs(analysis['monthly_cash_flow']):.2f} לחודש.",
+                "action": "שקול להפחית הוצאות או להגדיל הכנסות כדי להימנע מהצטברות חובות.",
+                "priority": "high"
+            })
+
+        # ריכוז גבוה של הוצאות
+        if analysis["expense_breakdown"] and analysis["expense_breakdown"][0]["percentage"] > 50:
+            analysis["recommendations"].append({
+                "title": "ריכוז גבוה של הוצאות",
+                "description": f"{analysis['expense_breakdown'][0]['name']} מהווה {analysis['expense_breakdown'][0]['percentage']:.2f}% מסך ההוצאות שלך.",
+                "action": "בדוק אפשרויות להפחתת הוצאה זו או לאזן את התקציב שלך.",
+                "priority": "medium"
+            })
+
+        return analysis
+
+    def _generate_comprehensive_recommendations(self, report: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """יצירת המלצות מקיפות בהתבסס על כל הנתונים המנותחים."""
+        all_recommendations = []
+
+        # איסוף המלצות מכל הניתוחים
+        if "assets_and_liabilities" in report and "recommendations" in report["assets_and_liabilities"]:
+            all_recommendations.extend(report["assets_and_liabilities"]["recommendations"])
+
+        if "income_and_expenses" in report and "recommendations" in report["income_and_expenses"]:
+            all_recommendations.extend(report["income_and_expenses"]["recommendations"])
+
+        if "investments" in report and "recommendations" in report["investments"]:
+            all_recommendations.extend(report["investments"]["recommendations"])
+
+        # הוספת המלצות משולבות בהתבסס על נתונים משולבים
+
+        # בדיקת יחס הוצאות להכנסות
+        if "income_and_expenses" in report:
+            income_data = report["income_and_expenses"]
+            total_income = income_data.get("total_income", 0)
+            total_expenses = income_data.get("total_expenses", 0)
+
+            if total_income > 0 and total_expenses / total_income > 0.9:
+                all_recommendations.append({
+                    "title": "יחס הוצאות להכנסות גבוה",
+                    "description": f"ההוצאות שלך מהוות {(total_expenses / total_income * 100):.2f}% מההכנסות שלך.",
+                    "action": "שקול להגדיל את שיעור החיסכון שלך על ידי הפחתת הוצאות או הגדלת הכנסות.",
+                    "priority": "medium"
+                })
+
+        # בדיקת יחס נכסים נזילים
+        if "assets_and_liabilities" in report and "financial_snapshot" in report:
+            assets_data = report["assets_and_liabilities"]
+            snapshot = report["financial_snapshot"]
+
+            # חישוב נכסים נזילים
+            monthly_expenses = snapshot.get("monthly_expenses", 0) * 6  # 6 חודשי הוצאות
+
+            # בדיקה אם יש מספיק נכסים נזילים
+            liquid_assets = 0
+            for asset in assets_data.get("asset_breakdown", []):
+                if asset["name"].lower() in ["cash", "cash and cash equivalents", "מזומנים", "שווי מזומנים"]:
+                    liquid_assets += asset["value"]
+
+            if monthly_expenses > 0 and liquid_assets < monthly_expenses:
+                all_recommendations.append({
+                    "title": "רמת נזילות נמוכה",
+                    "description": f"הנכסים הנזילים שלך ({liquid_assets:.2f}) נמוכים מהוצאות ל-6 חודשים ({monthly_expenses:.2f}).",
+                    "action": "שקול להגדיל את קרן החירום שלך לכיסוי 6 חודשי הוצאות לפחות.",
+                    "priority": "high"
+                })
+
+        # בדיקת איזון תיק השקעות ביחס לגיל
+        if "investments" in report and "financial_snapshot" in report:
+            # הוספת המלצות נוספות בהתאם לנתונים הקיימים
+            pass
+
+        # מיון המלצות לפי עדיפות
+        priority_order = {"high": 0, "medium": 1, "low": 2}
+        all_recommendations.sort(key=lambda x: priority_order.get(x.get("priority", "low"), 3))
+
+        return all_recommendations
+
+    def _analyze_investments(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
+        """ניתוח השקעות מהנתונים המאוחדים."""
+        analysis = {
+            "total_portfolio_value": 0,
+            "asset_allocation": [],
+            "top_performers": [],
+            "historical_performance": {},
+            "recommendations": []
+        }
+
+        # חילוץ נתוני תיק השקעות
+        if "portfolio" in merged_data:
+            portfolio = merged_data["portfolio"]
+
+            if "summary" in portfolio:
+                analysis["total_portfolio_value"] = portfolio["summary"].get("total_value", 0)
+
+            # פירוט ניירות ערך
+            if "securities" in portfolio:
+                # חלוקה לפי סוגי נכסים
+                asset_types = {}
+
+                for security in portfolio["securities"]:
+                    security_type = security.get("type", "אחר")
+                    security_value = security.get("value", 0)
+
+                    if security_type not in asset_types:
+                        asset_types[security_type] = 0
+
+                    asset_types[security_type] += security_value
+
+                # יצירת הקצאת נכסים
+                for asset_type, value in asset_types.items():
+                    analysis["asset_allocation"].append({
+                        "type": asset_type,
+                        "value": value,
+                        "percentage": (value / analysis["total_portfolio_value"] * 100) if analysis["total_portfolio_value"] > 0 else 0
+                    })
+
+                # מיון לפי ערך
+                analysis["asset_allocation"].sort(key=lambda x: x["value"], reverse=True)
+
+                # זיהוי המובילים
+                top_performers = sorted(portfolio["securities"], key=lambda x: x.get("return", 0), reverse=True)
+                analysis["top_performers"] = top_performers[:min(5, len(top_performers))]
+
+            # נתונים היסטוריים
+            if "historical_data" in portfolio and "portfolio_values" in portfolio["historical_data"]:
+                analysis["historical_performance"] = {
+                    "values": portfolio["historical_data"]["portfolio_values"],
+                    "returns": portfolio["historical_data"].get("returns", [])
+                }
+
+        # המלצות
+        # איזון תיק
+        if len(analysis["asset_allocation"]) > 0 and analysis["asset_allocation"][0]["percentage"] > 70:
+            analysis["recommendations"].append({
+                "title": "תיק לא מאוזן",
+                "description": f"{analysis['asset_allocation'][0]['type']} מהווה {analysis['asset_allocation'][0]['percentage']:.2f}% מתיק ההשקעות שלך.",
+                "action": "שקול לגוון את התיק על ידי השקעה בסוגי נכסים נוספים.",
+                "priority": "medium"
+            })
+
+        return analysis
+
+    def _analyze_assets_and_liabilities(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
+        """ניתוח נכסים והתחייבויות מהנתונים המאוחדים."""
+        analysis = {
+            "total_assets": 0,
+            "total_liabilities": 0,
+            "net_worth": 0,
+            "debt_to_equity_ratio": 0,
+            "asset_breakdown": [],
+            "liability_breakdown": [],
+            "recommendations": []
+        }
+
+        # חילוץ נתוני מאזן
+        if "balance_sheet" in merged_data:
+            balance_sheet = merged_data["balance_sheet"]
+
+            if "summary" in balance_sheet:
+                analysis["total_assets"] = balance_sheet["summary"].get("total_assets", 0)
+                analysis["total_liabilities"] = balance_sheet["summary"].get("total_liabilities", 0)
+                analysis["net_worth"] = balance_sheet["summary"].get("total_equity", 0)
+
+                # חישוב יחס חוב להון
+                if analysis["net_worth"] > 0:
+                    analysis["debt_to_equity_ratio"] = analysis["total_liabilities"] / analysis["net_worth"]
+
+            # פירוט נכסים
+            if "assets" in balance_sheet:
+                for asset_name, asset_value in balance_sheet["assets"].items():
+                    analysis["asset_breakdown"].append({
+                        "name": asset_name,
+                        "value": asset_value,
+                        "percentage": (asset_value / analysis["total_assets"] * 100) if analysis["total_assets"] > 0 else 0
+                    })
+
+                # מיון לפי ערך
+                analysis["asset_breakdown"].sort(key=lambda x: x["value"], reverse=True)
+
+            # פירוט התחייבויות
+            if "liabilities" in balance_sheet:
+                for liability_name, liability_value in balance_sheet["liabilities"].items():
+                    analysis["liability_breakdown"].append({
+                        "name": liability_name,
+                        "value": liability_value,
+                        "percentage": (liability_value / analysis["total_liabilities"] * 100) if analysis["total_liabilities"] > 0 else 0
+                    })
+
+                # מיון לפי ערך
+                analysis["liability_breakdown"].sort(key=lambda x: x["value"], reverse=True)
+
+        # הוספת נתוני תיק השקעות
+        if "portfolio" in merged_data and "summary" in merged_data["portfolio"]:
+            portfolio_value = merged_data["portfolio"]["summary"].get("total_value", 0)
+
+            # הוספת תיק השקעות לנכסים
+            if portfolio_value > 0:
+                analysis["asset_breakdown"].append({
+                    "name": "תיק השקעות",
+                    "value": portfolio_value,
+                    "percentage": (portfolio_value / analysis["total_assets"] * 100) if analysis["total_assets"] > 0 else 0
+                })
+
+                # מיון מחדש
+                analysis["asset_breakdown"].sort(key=lambda x: x["value"], reverse=True)
+
+        # המלצות
+        # יחס חוב להון גבוה
+        if analysis["debt_to_equity_ratio"] > 0.8:
+            analysis["recommendations"].append({
+                "title": "יחס חוב להון גבוה",
+                "description": f"יחס החוב להון שלך עומד על {analysis['debt_to_equity_ratio']:.2f}, אשר נחשב גבוה.",
+                "action": "שקול להפחית את רמת החוב או להגדיל את ההון העצמי שלך.",
+                "priority": "high"
+            })
+
+        # ריכוז גבוה של נכסים
+        if analysis["asset_breakdown"] and analysis["asset_breakdown"][0]["percentage"] > 70:
+            analysis["recommendations"].append({
+                "title": "ריכוז גבוה של נכסים",
+                "description": f"{analysis['asset_breakdown'][0]['name']} מהווה {analysis['asset_breakdown'][0]['percentage']:.2f}% מסך הנכסים שלך.",
+                "action": "שקול לגוון את הנכסים שלך להפחתת סיכונים.",
+                "priority": "medium"
+            })
+
+        return analysis
+
     def _create_financial_snapshot(self, merged_data: Dict[str, Any]) -> Dict[str, Any]:
         """יצירת תמונת מצב פיננסית עדכנית מהנתונים המאוחדים."""
         snapshot = {
