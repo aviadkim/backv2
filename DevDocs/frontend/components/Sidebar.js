@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { 
-  FaHome, 
-  FaFileUpload, 
-  FaChartBar, 
-  FaFileAlt, 
-  FaCog, 
+import {
+  FaHome,
+  FaFileUpload,
+  FaChartBar,
+  FaFileAlt,
+  FaCog,
   FaClipboardCheck,
   FaUserCircle,
   FaBars,
@@ -16,20 +16,29 @@ import {
 const Sidebar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const navigation = [
     { name: 'Dashboard', href: '/', icon: FaHome },
     { name: 'Upload Documents', href: '/upload', icon: FaFileUpload },
     { name: 'Analytics', href: '/analytics', icon: FaChartBar },
     { name: 'Reports', href: '/reports', icon: FaFileAlt },
     { name: 'Testing', href: '/test-center', icon: FaClipboardCheck },
+    { name: 'Dev Testing', href: '/dev-test-center', icon: FaClipboardCheck },
+    { name: 'MCP Demo', href: '/mcp-demo', icon: FaFileAlt },
     { name: 'Settings', href: '/settings', icon: FaCog },
   ];
-  
+
+  // Secondary navigation links
+  const secondaryNavigation = [
+    { name: 'Help', href: '/help' },
+    { name: 'Documentation', href: '/docs' },
+    { name: 'API Keys', href: '/api-key-setup' },
+  ];
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <>
       {/* Mobile menu button */}
@@ -43,11 +52,11 @@ const Sidebar = () => {
           {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
         </button>
       </div>
-      
+
       {/* Sidebar for mobile */}
       <div className={`md:hidden fixed inset-0 flex z-40 ${isOpen ? 'block' : 'hidden'}`}>
         <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={toggleSidebar}></div>
-        
+
         <div className="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800">
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex-shrink-0 flex items-center px-4">
@@ -93,7 +102,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Static sidebar for desktop */}
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
