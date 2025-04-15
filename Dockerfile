@@ -52,6 +52,7 @@ RUN mkdir -p public
 # Copy web files to public directory
 COPY devdocs-app.html ./public/index.html
 COPY mcp-web-demo.html ./public/demo.html
+COPY DevDocs/ocr-test.html ./public/ocr-test.html
 
 # Start the backend API server
 RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\nnode server.js' > start.sh

@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from .openrouter_api import router as openrouter_router
+from .financial_agents_api import router as financial_router
+from .ocr_test_api import router as ocr_test_router
 
 # Load environment variables
 load_dotenv()
@@ -29,6 +31,8 @@ app.add_middleware(
 
 # Add routers
 app.include_router(openrouter_router, prefix="/api/openrouter", tags=["OpenRouter"])
+app.include_router(financial_router, tags=["Financial"])
+app.include_router(ocr_test_router, prefix="/api/ocr-test", tags=["OCR Test"])
 
 @app.get("/")
 async def root():
