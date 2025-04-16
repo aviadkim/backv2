@@ -79,10 +79,36 @@ The database schema is defined in [supabase/schema.sql](supabase/schema.sql) and
 - ISINs
 - API keys
 
+## Security
+
+### API Keys and Secrets
+
+This project uses several API keys and secrets that should never be committed to the repository:
+
+- **OpenRouter API Key**: Used for AI-enhanced document processing
+- **Google Cloud Service Account Credentials**: Used for deployment to Google Cloud Run
+- **Database Credentials**: Used for connecting to the database
+
+### Best Practices
+
+1. **Environment Variables**: Store all secrets as environment variables. Copy `.env.template` to `.env` and fill in your values.
+
+2. **Secret Management**: Use Google Secret Manager or GitHub Secrets for CI/CD pipelines.
+
+3. **Access Control**: Limit access to production environments and secrets to only those who need it.
+
+4. **Audit**: Regularly audit access to secrets and rotate them periodically.
+
+5. **Git Hygiene**: Never commit secrets to the repository. Use `.gitignore` to prevent accidental commits.
+
+### Security Reporting
+
+If you discover a security vulnerability, please send an email to aviadkim@gmail.com. All security vulnerabilities will be promptly addressed.
+
 ## License
 
 This project is proprietary and confidential.
 
 ## Contact
 
-For questions or support, please contact the development team.
+For questions or support, please contact aviadkim@gmail.com.

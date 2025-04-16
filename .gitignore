@@ -69,6 +69,55 @@ mcp.env
 key.json
 **/github-service-account-key.json
 **/service-account-key.json
+**/service-account*.json
+**/*credentials*.json
+**/*key*.json
+
+# API keys and secrets
+**/*api*key*
+**/*secret*
+**/*token*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+
+# Environment variables
+.env
+.env.*
+**/*.env
+**/*.env.*
+
+# Local development files
+*.log
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
 
 # Embedded git repositories
 clean-repo/
