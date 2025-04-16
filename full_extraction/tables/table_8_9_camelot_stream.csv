@@ -1,0 +1,43 @@
+0,1,2,3,4,5,6,7,8,9
+,,,,,,,,,Client Number 366223
+aeouiAEOUI,aeouiAEOUI,,,,,,,,Bonds
+Currency,,Nominal/,Description,Average Acquisition price,Actual Price,Perf YTD,Perf Total,Valuation in price currency,in %
+,,Quantity,,Average Acquisition FX Rate,Actual Ex. Rate,,Perf Market,Thereof accruals,of assets
+,,,,,Price Date,,Perf Currency,Countervalue USD,
+,"Bonds, Bond funds, Convertible bonds, Interest options",,,,,,,,
+USD,,200'000,TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN,100.2000,99.3080,0.36%,-0.89%,198'745,1.02%
+,,,ISIN: XS2530201644  //  Valorn.: 125350273,,,,,129,
+,,,Ordinary Bonds  //  Maturity: 23.02.2027,,28.02.2025,,,,
+,,,Coupon: 23.5  //  Quarterly  3.32%  //  Days: 7,,,,,,
+,,,Moody's: A2  //  PRC: 2.00,,,,,,
+USD,,200'000,CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28,100.2000,99.5002,0.34%,-0.70%,199'172,1.02%
+,,,VRN,,,,,172,
+,,,ISIN: XS2588105036  //  Valorn.: 112286204,,27.02.2025,,,,
+,,,Ordinary Bonds  //  Maturity: 22.02.2028,,,,,,
+,,,Coupon: 23.2  //  Annual  5.1531%  //  Days: 8,,,,,,
+,,,PRC: 4.00,,,,,,
+USD,,1'500'000,"HARP ISSUER (4% MIN/5,5% MAX) NOTES 2023-18.09.2028",99.0990,98.3900,1.51%,-0.72%,1'502'850,7.70%
+,,,SE.195,,,,,27'000,
+,,,ISIN: XS2665592833  //  Valorn.: 128829182,,28.02.2025,,,,
+,,,Ordinary Bonds  //  Maturity: 18.09.2028,,,,,,
+,,,Coupon: 18.9  //  Annual  4%  //  Days: 162,,,,,,
+,,,PRC: 4.00,,,,,,
+USD,,690'000,GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P,100.1000,106.5700,1.92%,6.46%,735'333,3.77%
+,,,ISIN: XS2692298537  //  Valorn.: 129157183,,,,,,
+,,,Ordinary Bonds  //  Maturity: 07.11.2029,,28.02.2025,,,,
+,,,YTM: -1.35  //  PRC: 4.00,,,,,,
+USD,,100'000,LUMINIS (4.2 % MIN/5.5 % MAX) NOTES 2024-17.01.30,100.2000,97.6600,1.70%,-2.53%,98'271,0.50%
+,,,ISIN: XS2754416860  //  Valorn.: 132648671,,,,,611,
+,,,Ordinary Bonds  //  Maturity: 17.01.2030,,28.02.2025,,,,
+,,,Coupon: 17.1  //  Annual  5.238%  //  Days: 42,,,,,,
+,,,PRC: 4.00,,,,,,
+USD,,100'000,CIBC 0% NOTES 2024-13.02.2030 VARIABLE RATE,100.2000,101.7291,1.73%,1.53%,101'823,0.52%
+,,,ISIN: XS2761230684  //  Valorn.: 112288215,,,,,94,
+,,,Zero Bonds  //  Maturity: 13.02.2030,,27.02.2025,,,,
+,,,Coupon: 13.2  //  Annual  2%  //  Days: 17  //  YTM: 6.91,,,,,,
+,,,PRC: 4.00,,,,,,
+USD,,250'000,BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE,100.2000,98.6200,-3.20%,-1.58%,255'383,1.31%
+,,,ISIN: XS2736388732  //  Valorn.: 131799640,,,,,8'833,
+,,,Ordinary Bonds  //  Maturity: 20.12.2031,,28.02.2025,,,,
+,,,Days: 265,,,,,,
+,,,PRC: 4.00,,,,,,

@@ -1,0 +1,70 @@
+{
+  "structured_products": [
+    {
+      "isin": null,
+      "description": "Average Acquisition FX Rate",
+      "security_type": "Structured Product",
+      "valuation": null,
+      "source": "table",
+      "extraction_method": "tabula",
+      "table_number": 13,
+      "page": null
+    },
+    {
+      "isin": null,
+      "description": "",
+      "security_type": "Structured Product",
+      "valuation": 249800.0,
+      "source": "table",
+      "extraction_method": "tabula",
+      "table_number": 13,
+      "page": null
+    },
+    {
+      "isin": "CH1259344831",
+      "description": "",
+      "security_type": "Structured Product",
+      "valuation": null,
+      "source": "table",
+      "extraction_method": "tabula",
+      "table_number": 13,
+      "page": null
+    },
+    {
+      "isin": null,
+      "description": "",
+      "security_type": "Structured Product",
+      "valuation": null,
+      "source": "table",
+      "extraction_method": "tabula",
+      "table_number": 13,
+      "page": null
+    },
+    {
+      "isin": null,
+      "description": "",
+      "security_type": "Structured Product",
+      "valuation": null,
+      "source": "table",
+      "extraction_method": "tabula",
+      "table_number": 13,
+      "page": null
+    },
+    {
+      "isin": null,
+      "description": "Missing structured products",
+      "security_type": "Structured Product",
+      "valuation": 7600457.0,
+      "source": "validation",
+      "is_placeholder": true
+    }
+  ],
+  "structured_products_total": {
+    "value": 7850257.0,
+    "source": "table",
+    "extraction_method": "tabula",
+    "table_number": 13,
+    "page": null
+  },
+  "structured_products_section": null
+}

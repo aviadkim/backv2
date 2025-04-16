@@ -1,0 +1,166 @@
+{
+  "XS2782869916": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2824054402": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2567543397": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2110079584": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2848820754": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2829712830": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2912278723": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2381723902": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2829752976": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2953741100": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2381717250": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2481066111": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2964611052": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "LU2228214107": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "CH1269060229": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS0461497009": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2519369867": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2315191069": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2792098779": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2714429128": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2105981117": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2838389430": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2631782468": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2530201644": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2588105036": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2665592833": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2692298537": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2754416860": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2761230684": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2736388732": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS1700087403": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2594173093": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2407295554": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2518123653": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2252299883": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "CH1259345242": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XS2746319610": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "CH1259344831": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  },
+  "XD0466760473": {
+    "valid": false,
+    "reason": "Invalid country code: XD"
+  },
+  "CH1908490000": {
+    "valid": false,
+    "reason": "Invalid checksum"
+  },
+  "CH0244767585": {
+    "valid": true,
+    "reason": "Valid ISIN"
+  }
+}
