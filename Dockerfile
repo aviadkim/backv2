@@ -39,6 +39,7 @@ COPY . .
 
 # Install Python dependencies
 RUN pip3 install -r requirements.txt
+RUN pip3 install requests python-dotenv pdfplumber camelot-py tabula-py opencv-python-headless
 
 # Install Node.js dependencies
 RUN cd mcp-integration && npm install

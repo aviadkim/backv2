@@ -31,6 +31,22 @@ jobs:
     - name: Authenticate Docker to Google Cloud
       run: gcloud auth configure-docker
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install frontend dependencies
+      run: |
+        cd DevDocs/frontend
+        npm install
+        npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
+
+    - name: Build frontend
+      run: |
+        cd DevDocs/frontend
+        npm run build
+
     - name: Build and push DevDocs image
       run: |
         docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile ./DevDocs/frontend
@@ -64,6 +80,17 @@ jobs:
           --command="node" \
           --args="server.js" \
           --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install requests python-dotenv pdfplumber
 
     - name: Build and push AI Enhanced Processor image
       run: |

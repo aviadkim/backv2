@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Install specific dependencies
-RUN npm install react-dropzone formidable @tailwindcss/postcss --save
+RUN npm install react-dropzone formidable @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
 
 # Copy the rest of the application
 COPY . .

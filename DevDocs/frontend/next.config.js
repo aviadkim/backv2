@@ -17,23 +17,12 @@ const nextConfig = {
       '/dashboard': { page: '/dashboard' },
       '/mcp-demo': { page: '/mcp-demo' },
       '/portfolio': { page: '/portfolio' },
+      '/financial-analysis': { page: '/FinancialAnalysisPage' },
     };
   },
   reactStrictMode: false, // Disable strict mode to avoid double-rendering
-  // Enable CORS for API requests
-  async headers() {
-    return [
-      {
-        // Apply these headers to all routes
-        source: '/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
-        ],
-      },
-    ];
-  },
+  // Note: headers are not automatically applied with output: 'export'
+  // These will be handled by the server.js file instead
   // Environment variables
   env: {
     NEXT_PUBLIC_API_URL: 'http://localhost:24125',
