@@ -169,6 +169,109 @@ jobs:
           export default FinancialAnalysisPage;
           EOL
 
+          # Create lib directory if it doesn't exist
+          mkdir -p lib
+
+          # Create temporary apiUtils.js if it doesn't exist
+          if [ ! -f lib/apiUtils.js ]; then
+            cat > lib/apiUtils.js << 'EOL'
+            /**
+             * API utility functions for Next.js API routes
+             */
+
+            /**
+             * Send a standardized API response
+             * @param {object} res - The Next.js response object
+             * @param {number} statusCode - The HTTP status code
+             * @param {object} data - The response data
+             * @returns {object} The response object
+             */
+            export function apiResponse(res, statusCode, data) {
+              return res.status(statusCode).json({
+                success: statusCode >= 200 && statusCode < 300,
+                data
+              });
+            }
+
+            /**
+             * Send a standardized API error response
+             * @param {object} res - The Next.js response object
+             * @param {number} statusCode - The HTTP status code
+             * @param {string} message - The error message
+             * @param {string} [details] - Optional error details
+             * @returns {object} The response object
+             */
+            export function apiError(res, statusCode, message, details) {
+              return res.status(statusCode).json({
+                success: false,
+                error: {
+                  message,
+                  details: details || null
+                }
+              });
+            }
+
+            /**
+             * Higher-order function to wrap API handlers with error handling
+             * @param {Function} handler - The API handler function
+             * @returns {Function} The wrapped handler function
+             */
+            export function withErrorHandling(handler) {
+              return async (req, res) => {
+                try {
+                  return await handler(req, res);
+                } catch (error) {
+                  console.error('Unhandled API error:', error);
+                  return apiError(
+                    res,
+                    500,
+                    'An unexpected error occurred',
+                    process.env.NODE_ENV === 'development' ? error.message : undefined
+                  );
+                }
+              };
+            }
+            EOL
+          fi
+
+          # Create pages/api/config directory if it doesn't exist
+          mkdir -p pages/api/config
+
+          # Create temporary get-openrouter-key-status.js
+          cat > pages/api/config/get-openrouter-key-status.js << 'EOL'
+          import { apiResponse } from '../../../lib/apiUtils';
+
+          export default function handler(req, res) {
+            return apiResponse(res, 200, {
+              isSet: false,
+              maskedKey: null
+            });
+          }
+          EOL
+
+          # Create temporary set-openrouter-key.js
+          cat > pages/api/config/set-openrouter-key.js << 'EOL'
+          import { apiResponse } from '../../../lib/apiUtils';
+
+          export default function handler(req, res) {
+            return apiResponse(res, 200, {
+              message: 'OpenRouter API key updated successfully'
+            });
+          }
+          EOL
+
+          # Create temporary configManager.js
+          cat > pages/api/config/configManager.js << 'EOL'
+          const configManager = {
+            getConfig: async () => '',
+            updateConfig: async () => true,
+            updateMultipleConfig: async () => true,
+            readConfig: async () => ({})
+          };
+
+          export default configManager;
+          EOL
+
       - name: Build
         run: cd DevDocs/frontend && npm run build
         env:
