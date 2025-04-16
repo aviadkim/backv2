@@ -1,5 +1,5 @@
 import configManager from './configManager';
-import { apiResponse, apiError, withErrorHandling } from '../../../lib/apiUtils';
+import { apiResponse, apiError, withErrorHandling } from '../lib/apiUtils';
 
 /**
  * API handler for setting the OpenRouter API key

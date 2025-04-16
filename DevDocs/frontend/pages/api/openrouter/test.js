@@ -1,4 +1,4 @@
-import { apiResponse, apiError, withErrorHandling } from '../../../lib/apiUtils';
+import { apiResponse, apiError, withErrorHandling } from '../lib/apiUtils';
 import { callOptimusAlpha, isOpenRouterConfigured } from '../lib/openRouterUtils';
 
 /**
