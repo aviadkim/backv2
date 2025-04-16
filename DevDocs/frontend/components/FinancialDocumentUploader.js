@@ -16,11 +16,12 @@ import {
 } from '@chakra-ui/react';
 
 // Import components that need to be imported separately
-import { useToast } from '@chakra-ui/react';
-import { Divider } from '@chakra-ui/react';
-import { FormControl, FormLabel } from '@chakra-ui/react';
+
+
+
 import { FiUpload, FiFile, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import axios from 'axios';
+import { FormControl, FormLabel, Divider, useToast } from '../components/chakra-components';
 
 const FinancialDocumentUploader = ({ onDocumentProcessed }) => {
   const [file, setFile] = useState(null);

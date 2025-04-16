@@ -16,12 +16,13 @@ import {
 } from '@chakra-ui/react';
 
 // Import components that need to be imported separately
-import { useToast } from '@chakra-ui/react';
-import { Divider } from '@chakra-ui/react';
-import { FormControl, FormLabel } from '@chakra-ui/react';
+
+
+
 
 const SettingsPage = () => {
   const [apiKey, setApiKey] = useState('');
+import { FormControl, FormLabel, Divider, useToast } from '../components/chakra-components';
   const [language, setLanguage] = useState('heb+eng');
   const [enableNotifications, setEnableNotifications] = useState(true);
   const [enableAutoAnalysis, setEnableAutoAnalysis] = useState(true);

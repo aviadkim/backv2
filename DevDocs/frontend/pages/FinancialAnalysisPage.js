@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Tabs } from '@chakra-ui/react';
+import { Boxs } from '@chakra-ui/react';
 
 // Create custom tab components
 const TabList = ({ children, ...props }) => (
@@ -50,6 +50,7 @@ import FinancialNotifications from '../components/FinancialNotifications';
 import DataExportTool from '../components/DataExportTool';
 import DocumentComparisonTool from '../components/DocumentComparisonTool';
 import FinancialAdvisorTool from '../components/FinancialAdvisorTool';
+import { Tab } from '../components/chakra-components';
 
 const FinancialAnalysisPage = () => {
   const [documentData, setDocumentData] = useState(null);
