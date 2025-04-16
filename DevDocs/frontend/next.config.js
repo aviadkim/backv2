@@ -23,6 +23,17 @@ const nextConfig = {
   reactStrictMode: false, // Disable strict mode to avoid double-rendering
   // Note: headers are not automatically applied with output: 'export'
   // These will be handled by the server.js file instead
+  // If you need to add headers, use the following format:
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/:path*',
+  //       headers: [
+  //         { key: 'Access-Control-Allow-Origin', value: '*' },
+  //       ],
+  //     },
+  //   ];
+  // },
   // Environment variables
   env: {
     NEXT_PUBLIC_API_URL: 'http://localhost:24125',
