@@ -17,9 +17,6 @@ jobs:
     env:
       PROJECT_ID: github-456508
       REGION: me-west1
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-      MCP_API_KEY: ${{ secrets.MCP_API_KEY }}
 
     steps:
     - name: Checkout code
@@ -116,7 +113,7 @@ jobs:
           --port=3002 \
           --command="serve" \
           --args="-s,out,-p,3002" \
-          --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ env.SUPABASE_ANON_KEY }}
+          --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
     # Deploy MCP server to Cloud Run
     - name: Deploy MCP server to Cloud Run
@@ -130,7 +127,7 @@ jobs:
           --port=8080 \
           --command="node" \
           --args="server.js" \
-          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ env.MCP_API_KEY }},PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ env.SUPABASE_ANON_KEY }},OPENROUTER_API_KEY=${{ env.OPENROUTER_API_KEY }}
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }},OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -159,4 +156,4 @@ jobs:
           --port=8081 \
           --command="python3" \
           --args="web_interface.py" \
-          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,OPENROUTER_API_KEY=${{ env.OPENROUTER_API_KEY }},PORT=8081,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ env.SUPABASE_ANON_KEY }}
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }},PORT=8081,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }}
