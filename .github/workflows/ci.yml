@@ -73,15 +73,26 @@ jobs:
           npm install react-dropzone formidable @tailwindcss/postcss --save
           npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
 
-      - name: Create temporary component files
+      - name: Create fix_frontend_components.sh script
         run: |
+          cat > fix_frontend_components.sh << 'EOL'
+          #!/bin/bash
+
+          # Navigate to the frontend directory
           cd DevDocs/frontend
+
+          # Install required dependencies
+          echo "Installing required dependencies..."
+          npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
 
           # Create components directory if it doesn't exist
           mkdir -p components
+          mkdir -p pages
+          mkdir -p lib
 
-          # Create temporary DataExportTool.js without Chakra UI dependency
-          cat > components/DataExportTool.js << 'EOL'
+          # Create simplified DataExportTool.js without Chakra UI dependency
+          echo "Creating simplified DataExportTool.js..."
+          cat > components/DataExportTool.js << 'EOF'
           import React from 'react';
 
           const DataExportTool = ({ documentData }) => {
@@ -94,10 +105,11 @@ jobs:
           };
 
           export default DataExportTool;
-          EOL
+          EOF
 
-          # Create temporary DocumentComparisonTool.js without Chakra UI dependency
-          cat > components/DocumentComparisonTool.js << 'EOL'
+          # Create simplified DocumentComparisonTool.js without Chakra UI dependency
+          echo "Creating simplified DocumentComparisonTool.js..."
+          cat > components/DocumentComparisonTool.js << 'EOF'
           import React from 'react';
 
           const DocumentComparisonTool = ({ documentData, previousDocuments }) => {
@@ -110,10 +122,11 @@ jobs:
           };
 
           export default DocumentComparisonTool;
-          EOL
+          EOF
 
-          # Create temporary FinancialAdvisorTool.js without Chakra UI dependency
-          cat > components/FinancialAdvisorTool.js << 'EOL'
+          # Create simplified FinancialAdvisorTool.js without Chakra UI dependency
+          echo "Creating simplified FinancialAdvisorTool.js..."
+          cat > components/FinancialAdvisorTool.js << 'EOF'
           import React from 'react';
 
           const FinancialAdvisorTool = ({ documentData }) => {
@@ -126,10 +139,11 @@ jobs:
           };
 
           export default FinancialAdvisorTool;
-          EOL
+          EOF
 
-          # Create temporary FinancialAnalysisDashboard.js without Chakra UI or react-router-dom dependencies
-          cat > components/FinancialAnalysisDashboard.js << 'EOL'
+          # Create simplified FinancialAnalysisDashboard.js without Chakra UI or react-router-dom dependencies
+          echo "Creating simplified FinancialAnalysisDashboard.js..."
+          cat > components/FinancialAnalysisDashboard.js << 'EOF'
           import React from 'react';
 
           const FinancialAnalysisDashboard = () => {
@@ -142,13 +156,11 @@ jobs:
           };
 
           export default FinancialAnalysisDashboard;
-          EOL
+          EOF
 
-          # Create pages directory if it doesn't exist
-          mkdir -p pages
-
-          # Create temporary FinancialAnalysisPage.js
-          cat > pages/FinancialAnalysisPage.js << 'EOL'
+          # Create simplified FinancialAnalysisPage.js
+          echo "Creating simplified FinancialAnalysisPage.js..."
+          cat > pages/FinancialAnalysisPage.js << 'EOF'
           import React from 'react';
           import DataExportTool from '../components/DataExportTool';
           import DocumentComparisonTool from '../components/DocumentComparisonTool';
@@ -159,87 +171,84 @@ jobs:
             return (
               <div>
                 <h1>Financial Analysis Page</h1>
+                <FinancialAnalysisDashboard />
                 <DataExportTool />
                 <DocumentComparisonTool />
                 <FinancialAdvisorTool />
-                <FinancialAnalysisDashboard />
               </div>
             );
           };
 
           export default FinancialAnalysisPage;
-          EOL
+          EOF
 
-          # Create lib directory if it doesn't exist
-          mkdir -p lib
+          # Create apiUtils.js
+          echo "Creating apiUtils.js..."
+          cat > lib/apiUtils.js << 'EOF'
+          /**
+           * API utility functions for Next.js API routes
+           */
 
-          # Create temporary apiUtils.js if it doesn't exist
-          if [ ! -f lib/apiUtils.js ]; then
-            cat > lib/apiUtils.js << 'EOL'
-            /**
-             * API utility functions for Next.js API routes
-             */
+          /**
+           * Send a standardized API response
+           * @param {object} res - The Next.js response object
+           * @param {number} statusCode - The HTTP status code
+           * @param {object} data - The response data
+           * @returns {object} The response object
+           */
+          export function apiResponse(res, statusCode, data) {
+            return res.status(statusCode).json({
+              success: statusCode >= 200 && statusCode < 300,
+              data
+            });
+          }
 
-            /**
-             * Send a standardized API response
-             * @param {object} res - The Next.js response object
-             * @param {number} statusCode - The HTTP status code
-             * @param {object} data - The response data
-             * @returns {object} The response object
-             */
-            export function apiResponse(res, statusCode, data) {
-              return res.status(statusCode).json({
-                success: statusCode >= 200 && statusCode < 300,
-                data
-              });
-            }
+          /**
+           * Send a standardized API error response
+           * @param {object} res - The Next.js response object
+           * @param {number} statusCode - The HTTP status code
+           * @param {string} message - The error message
+           * @param {string} [details] - Optional error details
+           * @returns {object} The response object
+           */
+          export function apiError(res, statusCode, message, details) {
+            return res.status(statusCode).json({
+              success: false,
+              error: {
+                message,
+                details: details || null
+              }
+            });
+          }
 
-            /**
-             * Send a standardized API error response
-             * @param {object} res - The Next.js response object
-             * @param {number} statusCode - The HTTP status code
-             * @param {string} message - The error message
-             * @param {string} [details] - Optional error details
-             * @returns {object} The response object
-             */
-            export function apiError(res, statusCode, message, details) {
-              return res.status(statusCode).json({
-                success: false,
-                error: {
-                  message,
-                  details: details || null
-                }
-              });
-            }
+          /**
+           * Higher-order function to wrap API handlers with error handling
+           * @param {Function} handler - The API handler function
+           * @returns {Function} The wrapped handler function
+           */
+          export function withErrorHandling(handler) {
+            return async (req, res) => {
+              try {
+                return await handler(req, res);
+              } catch (error) {
+                console.error('Unhandled API error:', error);
+                return apiError(
+                  res,
+                  500,
+                  'An unexpected error occurred',
+                  process.env.NODE_ENV === 'development' ? error.message : undefined
+                );
+              }
+            };
+          }
+          EOF
 
-            /**
-             * Higher-order function to wrap API handlers with error handling
-             * @param {Function} handler - The API handler function
-             * @returns {Function} The wrapped handler function
-             */
-            export function withErrorHandling(handler) {
-              return async (req, res) => {
-                try {
-                  return await handler(req, res);
-                } catch (error) {
-                  console.error('Unhandled API error:', error);
-                  return apiError(
-                    res,
-                    500,
-                    'An unexpected error occurred',
-                    process.env.NODE_ENV === 'development' ? error.message : undefined
-                  );
-                }
-              };
-            }
-            EOL
-          fi
-
-          # Create pages/api/config directory if it doesn't exist
+          # Create API route files
+          echo "Creating API route files..."
           mkdir -p pages/api/config
 
-          # Create temporary get-openrouter-key-status.js
-          cat > pages/api/config/get-openrouter-key-status.js << 'EOL'
+          # Create get-openrouter-key-status.js
+          cat > pages/api/config/get-openrouter-key-status.js << 'EOF'
           import { apiResponse } from '../../../lib/apiUtils';
 
           export default function handler(req, res) {
@@ -248,10 +257,10 @@ jobs:
               maskedKey: null
             });
           }
-          EOL
+          EOF
 
-          # Create temporary set-openrouter-key.js
-          cat > pages/api/config/set-openrouter-key.js << 'EOL'
+          # Create set-openrouter-key.js
+          cat > pages/api/config/set-openrouter-key.js << 'EOF'
           import { apiResponse } from '../../../lib/apiUtils';
 
           export default function handler(req, res) {
@@ -259,10 +268,10 @@ jobs:
               message: 'OpenRouter API key updated successfully'
             });
           }
-          EOL
+          EOF
 
-          # Create temporary configManager.js
-          cat > pages/api/config/configManager.js << 'EOL'
+          # Create configManager.js
+          cat > pages/api/config/configManager.js << 'EOF'
           const configManager = {
             getConfig: async () => '',
             updateConfig: async () => true,
@@ -271,13 +280,27 @@ jobs:
           };
 
           export default configManager;
+          EOF
+
+          echo "All component files have been created successfully!"
           EOL
+
+          chmod +x fix_frontend_components.sh
+
+      - name: Run fix_frontend_components.sh script
+        run: ./fix_frontend_components.sh
 
       - name: Build
         run: |
           cd DevDocs/frontend
           echo "Checking installed packages:"
           npm list @chakra-ui/react react-router-dom
+          echo "Checking component files:"
+          ls -la components/
+          echo "Checking pages files:"
+          ls -la pages/
+          echo "Checking API files:"
+          ls -la pages/api/config/
           echo "Building the application..."
           npm run build
         env:
