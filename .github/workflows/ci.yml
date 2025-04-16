@@ -67,10 +67,11 @@ jobs:
           cache-dependency-path: 'DevDocs/frontend/package-lock.json'
 
       - name: Install dependencies
-        run: cd DevDocs/frontend && npm install
-
-      - name: Install specific dependencies
-        run: cd DevDocs/frontend && npm install react-dropzone formidable @tailwindcss/postcss @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
+        run: |
+          cd DevDocs/frontend
+          npm install
+          npm install react-dropzone formidable @tailwindcss/postcss --save
+          npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
 
       - name: Create temporary component files
         run: |
@@ -79,7 +80,7 @@ jobs:
           # Create components directory if it doesn't exist
           mkdir -p components
 
-          # Create temporary DataExportTool.js
+          # Create temporary DataExportTool.js without Chakra UI dependency
           cat > components/DataExportTool.js << 'EOL'
           import React from 'react';
 
@@ -95,7 +96,7 @@ jobs:
           export default DataExportTool;
           EOL
 
-          # Create temporary DocumentComparisonTool.js
+          # Create temporary DocumentComparisonTool.js without Chakra UI dependency
           cat > components/DocumentComparisonTool.js << 'EOL'
           import React from 'react';
 
@@ -111,7 +112,7 @@ jobs:
           export default DocumentComparisonTool;
           EOL
 
-          # Create temporary FinancialAdvisorTool.js
+          # Create temporary FinancialAdvisorTool.js without Chakra UI dependency
           cat > components/FinancialAdvisorTool.js << 'EOL'
           import React from 'react';
 
@@ -127,7 +128,7 @@ jobs:
           export default FinancialAdvisorTool;
           EOL
 
-          # Create temporary FinancialAnalysisDashboard.js
+          # Create temporary FinancialAnalysisDashboard.js without Chakra UI or react-router-dom dependencies
           cat > components/FinancialAnalysisDashboard.js << 'EOL'
           import React from 'react';
 
@@ -273,7 +274,12 @@ jobs:
           EOL
 
       - name: Build
-        run: cd DevDocs/frontend && npm run build
+        run: |
+          cd DevDocs/frontend
+          echo "Checking installed packages:"
+          npm list @chakra-ui/react react-router-dom
+          echo "Building the application..."
+          npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: "https://dnjnsotemnfrjlotgved.supabase.co"
           NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuam5zb3RlbW5mcmpsb3RndmVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI4NTI0MDAsImV4cCI6MjAyODQyODQwMH0.placeholder-key"
