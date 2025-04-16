@@ -65,6 +65,11 @@ memory/
 mcp.json
 mcp.env
 
+# Google Cloud service account credentials
+key.json
+**/github-service-account-key.json
+**/service-account-key.json
+
 # Embedded git repositories
 clean-repo/
 # DevDocs/ - We want to include this now
