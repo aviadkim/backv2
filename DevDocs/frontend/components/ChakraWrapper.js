@@ -1,8 +1,8 @@
 import React from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
-// Define the theme
-const theme = extendTheme({
+// Define the theme without using extendTheme
+const theme = {
   colors: {
     brand: {
       50: '#e6f7ff',
@@ -25,7 +25,7 @@ const theme = extendTheme({
     initialColorMode: 'light',
     useSystemColorMode: false,
   },
-});
+};
 
 const ChakraWrapper = ({ children }) => {
   return (

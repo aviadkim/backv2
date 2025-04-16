@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import {
   Box,
   Button,
-  FormControl,
-  FormLabel,
   Input,
   Select,
   Text,
   VStack,
   HStack,
-  useToast,
   Progress,
   Heading,
   Card,
   CardBody,
   CardHeader,
-  Divider,
   Icon
 } from '@chakra-ui/react';
+
+// Import components that need to be imported separately
+import { useToast } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
 import { FiUpload, FiFile, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import axios from 'axios';
 
