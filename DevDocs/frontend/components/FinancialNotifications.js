@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Box, 
-  Button, 
-  Text, 
-  VStack, 
-  HStack, 
-  useToast, 
+import {
+  Box,
+  Button,
+  Text,
+  VStack,
+  HStack,
+  useToast,
   Heading,
   Card,
   CardBody,
@@ -16,23 +16,72 @@ import {
   Flex,
   Spacer,
   Switch,
+  Input,
+  Collapse,
+  useDisclosure
+} from '@chakra-ui/react';
+import {
   FormControl,
   FormLabel,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Input,
-  Collapse,
-  useDisclosure
 } from '@chakra-ui/react';
-import { 
-  FiBell, 
-  FiAlertCircle, 
-  FiCheckCircle, 
-  FiAlertTriangle, 
-  FiInfo, 
+
+// Create custom increment/decrement steppers since they're not exported directly
+const NumberIncrementStepper = (props) => (
+  <Box
+    {...props}
+    as="div"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    borderTop="1px solid"
+    borderColor="inherit"
+    cursor="pointer"
+    fontSize="xs"
+    height="50%"
+    position="absolute"
+    right="0"
+    top="0"
+    userSelect="none"
+    width="100%"
+    _hover={{ bg: "gray.200" }}
+    onClick={props.onClick}
+  >
+    +
+  </Box>
+);
+
+const NumberDecrementStepper = (props) => (
+  <Box
+    {...props}
+    as="div"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    borderBottom="1px solid"
+    borderColor="inherit"
+    cursor="pointer"
+    fontSize="xs"
+    height="50%"
+    position="absolute"
+    right="0"
+    bottom="0"
+    userSelect="none"
+    width="100%"
+    _hover={{ bg: "gray.200" }}
+    onClick={props.onClick}
+  >
+    -
+  </Box>
+);
+import {
+  FiBell,
+  FiAlertCircle,
+  FiCheckCircle,
+  FiAlertTriangle,
+  FiInfo,
   FiSettings,
   FiEye,
   FiEyeOff,
@@ -53,34 +102,34 @@ const FinancialNotifications = ({ documentData }) => {
     watched_securities: []
   });
   const [watchedSecurity, setWatchedSecurity] = useState('');
-  
+
   const { isOpen, onToggle } = useDisclosure();
   const toast = useToast();
-  
+
   useEffect(() => {
     if (documentData) {
       generateNotifications();
     }
   }, [documentData]);
-  
+
   const generateNotifications = async () => {
     if (!documentData) {
       setError('No document data available. Please upload and process a document first.');
       return;
     }
-    
+
     setIsLoading(true);
     setError(null);
-    
+
     try {
       // Send the request to the API
       const response = await axios.post('/api/financial/notifications', {
         document_data: documentData,
         user_settings: userSettings
       });
-      
+
       setNotifications(response.data.notifications || []);
-      
+
       toast({
         title: 'Notifications generated',
         description: `Generated ${response.data.notifications?.length || 0} notifications`,
@@ -102,14 +151,14 @@ const FinancialNotifications = ({ documentData }) => {
       setIsLoading(false);
     }
   };
-  
+
   const handleSettingChange = (setting, value) => {
     setUserSettings({
       ...userSettings,
       [setting]: value
     });
   };
-  
+
   const addWatchedSecurity = () => {
     if (watchedSecurity && !userSettings.watched_securities.includes(watchedSecurity)) {
       setUserSettings({
@@ -119,14 +168,14 @@ const FinancialNotifications = ({ documentData }) => {
       setWatchedSecurity('');
     }
   };
-  
+
   const removeWatchedSecurity = (security) => {
     setUserSettings({
       ...userSettings,
       watched_securities: userSettings.watched_securities.filter(s => s !== security)
     });
   };
-  
+
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
@@ -139,7 +188,7 @@ const FinancialNotifications = ({ documentData }) => {
         return 'gray';
     }
   };
-  
+
   const getNotificationIcon = (type) => {
     switch (type) {
       case 'portfolio_threshold':
@@ -156,26 +205,26 @@ const FinancialNotifications = ({ documentData }) => {
         return FiInfo;
     }
   };
-  
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString();
   };
-  
+
   return (
     <Box p={5} width="100%">
       <VStack spacing={6} align="start" width="100%">
         <Heading size="lg">Financial Notifications</Heading>
         <Text>Receive alerts and notifications about your financial documents.</Text>
-        
+
         <Card width="100%">
           <CardHeader>
             <Flex align="center">
               <Heading size="md">Notification Settings</Heading>
               <Spacer />
-              <Button 
-                rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />} 
-                onClick={onToggle} 
+              <Button
+                rightIcon={isOpen ? <FiChevronUp /> : <FiChevronDown />}
+                onClick={onToggle}
                 variant="ghost"
               >
                 {isOpen ? 'Hide' : 'Show'}
@@ -187,8 +236,8 @@ const FinancialNotifications = ({ documentData }) => {
               <VStack spacing={4} align="start" width="100%">
                 <FormControl>
                   <FormLabel>Portfolio Value Threshold</FormLabel>
-                  <NumberInput 
-                    value={userSettings.portfolio_value_threshold} 
+                  <NumberInput
+                    value={userSettings.portfolio_value_threshold}
                     onChange={(valueString) => handleSettingChange('portfolio_value_threshold', parseFloat(valueString))}
                     min={0}
                     step={10000}
@@ -203,11 +252,11 @@ const FinancialNotifications = ({ documentData }) => {
                     Alert when portfolio value falls below this threshold
                   </Text>
                 </FormControl>
-                
+
                 <FormControl>
                   <FormLabel>Portfolio Change Threshold (%)</FormLabel>
-                  <NumberInput 
-                    value={userSettings.portfolio_change_threshold} 
+                  <NumberInput
+                    value={userSettings.portfolio_change_threshold}
                     onChange={(valueString) => handleSettingChange('portfolio_change_threshold', parseFloat(valueString))}
                     min={0}
                     max={100}
@@ -223,11 +272,11 @@ const FinancialNotifications = ({ documentData }) => {
                     Alert when portfolio changes by this percentage
                   </Text>
                 </FormControl>
-                
+
                 <FormControl>
                   <FormLabel>Security Return Threshold (%)</FormLabel>
-                  <NumberInput 
-                    value={userSettings.security_return_threshold} 
+                  <NumberInput
+                    value={userSettings.security_return_threshold}
                     onChange={(valueString) => handleSettingChange('security_return_threshold', parseFloat(valueString))}
                     min={0}
                     max={100}
@@ -243,11 +292,11 @@ const FinancialNotifications = ({ documentData }) => {
                     Alert when a security's return exceeds this percentage
                   </Text>
                 </FormControl>
-                
+
                 <FormControl>
                   <FormLabel>Abnormal Change Threshold (%)</FormLabel>
-                  <NumberInput 
-                    value={userSettings.abnormal_change_threshold} 
+                  <NumberInput
+                    value={userSettings.abnormal_change_threshold}
                     onChange={(valueString) => handleSettingChange('abnormal_change_threshold', parseFloat(valueString))}
                     min={0}
                     max={100}
@@ -263,12 +312,12 @@ const FinancialNotifications = ({ documentData }) => {
                     Alert when a security changes by this percentage
                   </Text>
                 </FormControl>
-                
+
                 <FormControl>
                   <FormLabel>Watched Securities</FormLabel>
                   <HStack>
-                    <Input 
-                      value={watchedSecurity} 
+                    <Input
+                      value={watchedSecurity}
                       onChange={(e) => setWatchedSecurity(e.target.value)}
                       placeholder="Enter ISIN code (e.g., US0378331005)"
                     />
@@ -278,25 +327,25 @@ const FinancialNotifications = ({ documentData }) => {
                     Add securities to watch (using ISIN codes)
                   </Text>
                 </FormControl>
-                
+
                 {userSettings.watched_securities.length > 0 && (
                   <Box width="100%" mt={2}>
                     <Text fontWeight="bold">Watched Securities:</Text>
                     <HStack mt={2} flexWrap="wrap">
                       {userSettings.watched_securities.map((security, index) => (
-                        <Badge 
-                          key={index} 
-                          colorScheme="blue" 
-                          p={2} 
+                        <Badge
+                          key={index}
+                          colorScheme="blue"
+                          p={2}
                           borderRadius="md"
                           display="flex"
                           alignItems="center"
                         >
                           {security}
-                          <Icon 
-                            as={FiEyeOff} 
-                            ml={2} 
-                            cursor="pointer" 
+                          <Icon
+                            as={FiEyeOff}
+                            ml={2}
+                            cursor="pointer"
                             onClick={() => removeWatchedSecurity(security)}
                           />
                         </Badge>
@@ -304,8 +353,8 @@ const FinancialNotifications = ({ documentData }) => {
                     </HStack>
                   </Box>
                 )}
-                
-                <Button 
+
+                <Button
                   leftIcon={<FiBell />}
                   colorScheme="blue"
                   onClick={generateNotifications}
@@ -321,14 +370,14 @@ const FinancialNotifications = ({ documentData }) => {
             </CardBody>
           </Collapse>
         </Card>
-        
+
         {error && (
           <HStack width="100%" color="red.500">
             <Icon as={FiAlertCircle} />
             <Text>{error}</Text>
           </HStack>
         )}
-        
+
         {!documentData && (
           <Card width="100%" bg="orange.50">
             <CardBody>
@@ -339,17 +388,17 @@ const FinancialNotifications = ({ documentData }) => {
             </CardBody>
           </Card>
         )}
-        
+
         {notifications.length > 0 ? (
           <VStack spacing={4} width="100%">
             <Heading size="md">Notifications ({notifications.length})</Heading>
-            
+
             {notifications.map((notification, index) => (
               <Card key={index} width="100%" borderLeft="4px solid" borderLeftColor={`${getPriorityColor(notification.priority)}.500`}>
                 <CardBody>
                   <HStack align="start" spacing={4}>
-                    <Icon 
-                      as={getNotificationIcon(notification.type)} 
+                    <Icon
+                      as={getNotificationIcon(notification.type)}
                       color={`${getPriorityColor(notification.priority)}.500`}
                       boxSize={6}
                     />
@@ -377,7 +426,7 @@ const FinancialNotifications = ({ documentData }) => {
               <VStack>
                 <Icon as={FiBell} boxSize={8} color="gray.400" />
                 <Text>No notifications yet</Text>
-                <Button 
+                <Button
                   leftIcon={<FiBell />}
                   colorScheme="blue"
                   onClick={generateNotifications}

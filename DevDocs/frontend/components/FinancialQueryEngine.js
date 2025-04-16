@@ -1,31 +1,79 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  Button, 
-  FormControl, 
-  FormLabel, 
-  Input, 
-  Textarea, 
-  Text, 
-  VStack, 
-  HStack, 
-  useToast, 
+import {
+  Box,
+  Button,
+  Input,
+  Textarea,
+  Text,
+  VStack,
+  HStack,
   Heading,
   Card,
   CardBody,
   CardHeader,
-  Divider,
   Icon,
   Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
   Code,
   Badge
 } from '@chakra-ui/react';
+
+// Import components that need to be imported separately
+import { useToast } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
+
+// Create custom table components
+const TableContainer = ({ children, ...props }) => (
+  <Box overflowX="auto" {...props}>
+    {children}
+  </Box>
+);
+
+const Thead = ({ children, ...props }) => (
+  <Box as="thead" {...props}>
+    {children}
+  </Box>
+);
+
+const Tbody = ({ children, ...props }) => (
+  <Box as="tbody" {...props}>
+    {children}
+  </Box>
+);
+
+const Tr = ({ children, ...props }) => (
+  <Box as="tr" display="table-row" {...props}>
+    {children}
+  </Box>
+);
+
+const Th = ({ children, ...props }) => (
+  <Box
+    as="th"
+    px="4"
+    py="2"
+    borderBottom="1px"
+    borderColor="gray.200"
+    textAlign="left"
+    fontWeight="bold"
+    {...props}
+  >
+    {children}
+  </Box>
+);
+
+const Td = ({ children, ...props }) => (
+  <Box
+    as="td"
+    px="4"
+    py="2"
+    borderBottom="1px"
+    borderColor="gray.200"
+    {...props}
+  >
+    {children}
+  </Box>
+);
 import { FiSearch, FiAlertCircle, FiCheckCircle, FiHelpCircle } from 'react-icons/fi';
 import axios from 'axios';
 
@@ -42,40 +90,40 @@ const FinancialQueryEngine = ({ documentData }) => {
     "What is the return on Apple stock?",
     "How many tables are in the document?"
   ]);
-  
+
   const toast = useToast();
-  
+
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
     setError(null);
   };
-  
+
   const handleSampleQuery = (sampleQuery) => {
     setQuery(sampleQuery);
   };
-  
+
   const handleSubmit = async () => {
     if (!query.trim()) {
       setError('Please enter a query');
       return;
     }
-    
+
     if (!documentData) {
       setError('No document data available. Please upload and process a document first.');
       return;
     }
-    
+
     setIsQuerying(true);
     setResults(null);
     setError(null);
-    
+
     try {
       // Send the query to the API
       const response = await axios.post('/api/financial/query', {
         query: query,
         document_data: documentData
       });
-      
+
       setResults(response.data);
       toast({
         title: 'Query processed successfully',
@@ -97,10 +145,10 @@ const FinancialQueryEngine = ({ documentData }) => {
       setIsQuerying(false);
     }
   };
-  
+
   const renderResults = () => {
     if (!results) return null;
-    
+
     return (
       <Card mt={6} width="100%">
         <CardHeader>
@@ -113,13 +161,13 @@ const FinancialQueryEngine = ({ documentData }) => {
               <Text fontWeight="bold">Answer:</Text>
               <Text whiteSpace="pre-line">{results.answer}</Text>
             </Box>
-            
+
             <Divider />
-            
+
             {results.data && Object.keys(results.data).length > 0 && (
               <Box width="100%">
                 <Text fontWeight="bold">Data:</Text>
-                
+
                 {results.data.securities && results.data.securities.length > 0 && (
                   <Box mt={4} width="100%">
                     <Text fontWeight="semibold">Securities:</Text>
@@ -145,7 +193,7 @@ const FinancialQueryEngine = ({ documentData }) => {
                     </TableContainer>
                   </Box>
                 )}
-                
+
                 {results.data.returns && results.data.returns.length > 0 && (
                   <Box mt={4} width="100%">
                     <Text fontWeight="semibold">Returns:</Text>
@@ -171,7 +219,7 @@ const FinancialQueryEngine = ({ documentData }) => {
                     </TableContainer>
                   </Box>
                 )}
-                
+
                 {results.data.security && (
                   <Box mt={4} width="100%">
                     <Text fontWeight="semibold">Security Details:</Text>
@@ -195,20 +243,20 @@ const FinancialQueryEngine = ({ documentData }) => {
                     </TableContainer>
                   </Box>
                 )}
-                
+
                 {/* Display other simple data */}
                 {Object.entries(results.data).map(([key, value]) => {
                   // Skip arrays and objects that we've already rendered
                   if (
-                    key === 'securities' || 
-                    key === 'returns' || 
+                    key === 'securities' ||
+                    key === 'returns' ||
                     key === 'security' ||
                     Array.isArray(value) ||
                     (typeof value === 'object' && value !== null && Object.keys(value).length > 0)
                   ) {
                     return null;
                   }
-                  
+
                   return (
                     <Box key={key} mt={2}>
                       <Text>
@@ -217,16 +265,16 @@ const FinancialQueryEngine = ({ documentData }) => {
                     </Box>
                   );
                 })}
-                
+
                 {/* Display nested objects */}
                 {Object.entries(results.data).map(([key, value]) => {
                   if (
-                    key !== 'securities' && 
-                    key !== 'returns' && 
+                    key !== 'securities' &&
+                    key !== 'returns' &&
                     key !== 'security' &&
                     !Array.isArray(value) &&
-                    typeof value === 'object' && 
-                    value !== null && 
+                    typeof value === 'object' &&
+                    value !== null &&
                     Object.keys(value).length > 0
                   ) {
                     return (
@@ -262,13 +310,13 @@ const FinancialQueryEngine = ({ documentData }) => {
       </Card>
     );
   };
-  
+
   return (
     <Box p={5} width="100%">
       <VStack spacing={6} align="start" width="100%">
         <Heading size="lg">Financial Document Query Engine</Heading>
         <Text>Ask questions about your financial documents in natural language.</Text>
-        
+
         <Card width="100%">
           <CardBody>
             <VStack spacing={4} align="start" width="100%">
@@ -284,14 +332,14 @@ const FinancialQueryEngine = ({ documentData }) => {
                   Example: "What is the total value of the portfolio?" or "What securities are in the document?"
                 </Text>
               </FormControl>
-              
+
               {error && (
                 <HStack width="100%" color="red.500">
                   <Icon as={FiAlertCircle} />
                   <Text>{error}</Text>
                 </HStack>
               )}
-              
+
               <Button
                 leftIcon={<FiSearch />}
                 colorScheme="blue"
@@ -304,7 +352,7 @@ const FinancialQueryEngine = ({ documentData }) => {
               >
                 Ask Question
               </Button>
-              
+
               {!documentData && (
                 <HStack width="100%" color="orange.500">
                   <Icon as={FiHelpCircle} />
@@ -314,7 +362,7 @@ const FinancialQueryEngine = ({ documentData }) => {
             </VStack>
           </CardBody>
         </Card>
-        
+
         <Card width="100%">
           <CardHeader>
             <Heading size="sm">Sample Questions</Heading>
@@ -335,7 +383,7 @@ const FinancialQueryEngine = ({ documentData }) => {
             </VStack>
           </CardBody>
         </Card>
-        
+
         {renderResults()}
       </VStack>
     </Box>

@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  Heading, 
-  Text, 
-  FormControl, 
-  FormLabel, 
-  Input, 
-  Button, 
-  Switch, 
-  VStack, 
-  HStack, 
-  Divider, 
-  useToast, 
-  Card, 
-  CardBody, 
-  CardHeader, 
+import {
+  Box,
+  Heading,
+  Text,
+  Input,
+  Button,
+  Switch,
+  VStack,
+  HStack,
+  Card,
+  CardBody,
+  CardHeader,
   SimpleGrid,
   Select
 } from '@chakra-ui/react';
+
+// Import components that need to be imported separately
+import { useToast } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
 
 const SettingsPage = () => {
   const [apiKey, setApiKey] = useState('');
@@ -25,12 +26,12 @@ const SettingsPage = () => {
   const [enableNotifications, setEnableNotifications] = useState(true);
   const [enableAutoAnalysis, setEnableAutoAnalysis] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const toast = useToast();
-  
+
   const handleSaveAPIKey = () => {
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
@@ -43,10 +44,10 @@ const SettingsPage = () => {
       });
     }, 1000);
   };
-  
+
   const handleSavePreferences = () => {
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
@@ -59,12 +60,12 @@ const SettingsPage = () => {
       });
     }, 1000);
   };
-  
+
   return (
     <Box>
       <Heading mb={6}>Settings</Heading>
       <Text mb={6}>Configure application settings and preferences.</Text>
-      
+
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
         <Card>
           <CardHeader>
@@ -74,20 +75,20 @@ const SettingsPage = () => {
             <VStack spacing={4} align="start">
               <FormControl>
                 <FormLabel>OpenRouter API Key</FormLabel>
-                <Input 
-                  type="password" 
-                  placeholder="sk-or-..." 
-                  value={apiKey} 
-                  onChange={(e) => setApiKey(e.target.value)} 
+                <Input
+                  type="password"
+                  placeholder="sk-or-..."
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
                 />
                 <Text fontSize="sm" color="gray.500" mt={1}>
                   Your OpenRouter API key for accessing AI capabilities
                 </Text>
               </FormControl>
-              
-              <Button 
-                colorScheme="blue" 
-                onClick={handleSaveAPIKey} 
+
+              <Button
+                colorScheme="blue"
+                onClick={handleSaveAPIKey}
                 isLoading={isLoading}
                 isDisabled={!apiKey}
               >
@@ -96,7 +97,7 @@ const SettingsPage = () => {
             </VStack>
           </CardBody>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <Heading size="md">Application Preferences</Heading>
@@ -114,32 +115,32 @@ const SettingsPage = () => {
                   Default language for OCR and document processing
                 </Text>
               </FormControl>
-              
+
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="notifications" mb="0">
                   Enable Notifications
                 </FormLabel>
-                <Switch 
-                  id="notifications" 
-                  isChecked={enableNotifications} 
-                  onChange={() => setEnableNotifications(!enableNotifications)} 
+                <Switch
+                  id="notifications"
+                  isChecked={enableNotifications}
+                  onChange={() => setEnableNotifications(!enableNotifications)}
                 />
               </FormControl>
-              
+
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="auto-analysis" mb="0">
                   Auto-Analyze Documents
                 </FormLabel>
-                <Switch 
-                  id="auto-analysis" 
-                  isChecked={enableAutoAnalysis} 
-                  onChange={() => setEnableAutoAnalysis(!enableAutoAnalysis)} 
+                <Switch
+                  id="auto-analysis"
+                  isChecked={enableAutoAnalysis}
+                  onChange={() => setEnableAutoAnalysis(!enableAutoAnalysis)}
                 />
               </FormControl>
-              
-              <Button 
-                colorScheme="blue" 
-                onClick={handleSavePreferences} 
+
+              <Button
+                colorScheme="blue"
+                onClick={handleSavePreferences}
                 isLoading={isLoading}
               >
                 Save Preferences
@@ -148,7 +149,7 @@ const SettingsPage = () => {
           </CardBody>
         </Card>
       </SimpleGrid>
-      
+
       <Card mt={6}>
         <CardHeader>
           <Heading size="md">Account Information</Heading>
@@ -159,25 +160,25 @@ const SettingsPage = () => {
               <Text fontWeight="bold">User</Text>
               <Text>demo@example.com</Text>
             </Box>
-            
+
             <Box>
               <Text fontWeight="bold">Plan</Text>
               <Text>Free Tier</Text>
             </Box>
-            
+
             <Box>
               <Text fontWeight="bold">Documents Processed</Text>
               <Text>12 / 50</Text>
             </Box>
-            
+
             <Box>
               <Text fontWeight="bold">API Calls</Text>
               <Text>87 / 500</Text>
             </Box>
           </SimpleGrid>
-          
+
           <Divider my={4} />
-          
+
           <HStack spacing={4}>
             <Button colorScheme="blue" variant="outline">
               Upgrade Plan
