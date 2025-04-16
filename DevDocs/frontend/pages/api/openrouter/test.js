@@ -1,5 +1,5 @@
 import { apiResponse, apiError, withErrorHandling } from '../../../lib/apiUtils';
-import { callOptimusAlpha, isOpenRouterConfigured } from '../../../lib/openRouterUtils';
+import { callOptimusAlpha, isOpenRouterConfigured } from '../lib/openRouterUtils';
 
 /**
  * API handler for testing the OpenRouter API
