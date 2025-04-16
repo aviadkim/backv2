@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - 'DevDocs/**'
+      - 'ai_feedback_learning.py'
+      - 'ai_enhanced_processor.py'
+      - 'web_interface.py'
       - '.github/workflows/deploy.yml'
 
 jobs:
@@ -61,3 +64,20 @@ jobs:
           --command="node" \
           --args="server.js" \
           --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,MCP_API_KEY=${{ secrets.MCP_API_KEY }},PORT=8080,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+    - name: Build and push AI Enhanced Processor image
+      run: |
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }} .
+        docker push me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }}
+
+    - name: Deploy AI Enhanced Processor to Cloud Run
+      run: |
+        gcloud run deploy ai-enhanced-processor \
+          --image me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }} \
+          --region me-west1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --port=8081 \
+          --command="python3" \
+          --args="web_interface.py" \
+          --set-env-vars=GOOGLE_CLOUD_PROJECT_ID=github-456508,OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }},PORT=8081,SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,SUPABASE_KEY=${{ secrets.SUPABASE_ANON_KEY }}

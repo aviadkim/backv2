@@ -34,3 +34,8 @@ scikit-learn>=1.0.0
 PyPDF2>=2.0.0
 pdf2image>=1.16.0
 pytesseract>=0.3.8
+
+# AI enhancement
+requests>=2.26.0
+langchain>=0.0.150
+llama-index>=0.6.0

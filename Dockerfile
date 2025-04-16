@@ -13,7 +13,18 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-eng \
     tesseract-ocr-heb \
     libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxrender1 \
+    libxext6 \
+    default-jre \
     poppler-utils \
+    ghostscript \
+    unpaper \
+    qpdf \
+    liblept5 \
+    pngquant \
+    zlib1g \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update \
@@ -54,12 +65,15 @@ COPY devdocs-app.html ./public/index.html
 COPY mcp-web-demo.html ./public/demo.html
 COPY DevDocs/ocr-test.html ./public/ocr-test.html
 
-# Start the backend API server
-RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\nnode server.js' > start.sh
+# Create directories for AI-enhanced processor
+RUN mkdir -p uploads results templates
+
+# Start the backend API server with AI-enhanced processor
+RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\npython3 web_interface.py --host 0.0.0.0 --port 8081 &\nnode server.js' > start.sh
 RUN chmod +x start.sh
 
 # Expose ports
-EXPOSE $PORT 8000
+EXPOSE $PORT 8000 8081
 
 # Start the application
 CMD ["/app/start.sh"]
