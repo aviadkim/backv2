@@ -22,8 +22,13 @@ logger = logging.getLogger(__name__)
 # Initialize Flask app
 app = Flask(__name__)
 
-# Initialize the processor
-processor = AIEnhancedProcessor(api_key=os.environ.get("OPENROUTER_API_KEY"))
+# Initialize the processor with the OpenRouter API key
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+processor = AIEnhancedProcessor(api_key=OPENROUTER_API_KEY)
+if OPENROUTER_API_KEY:
+    logger.info("OpenRouter API key loaded successfully.")
+else:
+    logger.warning("No OpenRouter API key provided. AI capabilities will be limited.")
 
 # Create upload folder
 UPLOAD_FOLDER = 'uploads'
@@ -49,39 +54,39 @@ def index():
 def process_document():
     """
     Process a financial document.
-    
+
     Expects a multipart/form-data request with a 'file' field containing the PDF document.
-    
+
     Returns:
         JSON response containing processing results
     """
     # Check if file is provided
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
-    
+
     file = request.files['file']
-    
+
     # Check if file is empty
     if file.filename == '':
         return jsonify({"error": "Empty file provided"}), 400
-    
+
     # Check if file is a PDF
     if not allowed_file(file.filename):
         return jsonify({"error": "File must be a PDF"}), 400
-    
+
     try:
         # Save the uploaded file
         filename = secure_filename(file.filename)
         file_path = os.path.join(UPLOAD_FOLDER, filename)
         file.save(file_path)
-        
+
         # Create output directory
         output_dir = os.path.join(RESULTS_FOLDER, os.path.splitext(filename)[0])
         os.makedirs(output_dir, exist_ok=True)
-        
+
         # Process the document
         result = processor.process_document(file_path, output_dir=output_dir)
-        
+
         # Prepare response
         response = {
             "success": True,
@@ -93,17 +98,17 @@ def process_document():
             "structured_products_count": len(processor.get_structured_products()),
             "top_securities": processor.get_top_securities(5)
         }
-        
+
         # Add AI analysis if available
         if "ai_analysis" in result:
             response["ai_analysis"] = result["ai_analysis"]
-        
+
         # Add AI corrections if available
         if "ai_corrections" in result and result["ai_corrections"]:
             response["ai_corrections"] = result["ai_corrections"]
-        
+
         return jsonify(response)
-    
+
     except Exception as e:
         logger.error(f"Error processing document: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -112,45 +117,45 @@ def process_document():
 def record_correction():
     """
     Record a correction made by the user.
-    
+
     Expects a JSON request with 'filename', 'field', 'original_value', and 'corrected_value' fields.
-    
+
     Returns:
         JSON response indicating success or failure
     """
     # Check if request is JSON
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
-    
+
     # Get request data
     data = request.get_json()
-    
+
     # Check if required fields are provided
     if 'filename' not in data or 'field' not in data or 'original_value' not in data or 'corrected_value' not in data:
         return jsonify({"error": "Missing required fields"}), 400
-    
+
     try:
         # Get file path
         file_path = os.path.join(UPLOAD_FOLDER, secure_filename(data['filename']))
-        
+
         # Check if file exists
         if not os.path.exists(file_path):
             return jsonify({"error": "File not found"}), 404
-        
+
         # Process document
         output_dir = os.path.join(RESULTS_FOLDER, os.path.splitext(data['filename'])[0])
         processor.process_document(file_path, output_dir=output_dir)
-        
+
         # Record correction
         success = processor.record_user_correction(
             data['field'], data['original_value'], data['corrected_value']
         )
-        
+
         if success:
             return jsonify({"success": True, "message": f"Correction recorded for field: {data['field']}"})
         else:
             return jsonify({"error": "Failed to record correction"}), 500
-    
+
     except Exception as e:
         logger.error(f"Error recording correction: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -159,40 +164,40 @@ def record_correction():
 def generate_suggestions():
     """
     Generate improvement suggestions.
-    
+
     Expects a JSON request with a 'filename' field.
-    
+
     Returns:
         JSON response containing improvement suggestions
     """
     # Check if request is JSON
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
-    
+
     # Get request data
     data = request.get_json()
-    
+
     # Check if filename is provided
     if 'filename' not in data:
         return jsonify({"error": "Missing filename"}), 400
-    
+
     try:
         # Get file path
         file_path = os.path.join(UPLOAD_FOLDER, secure_filename(data['filename']))
-        
+
         # Check if file exists
         if not os.path.exists(file_path):
             return jsonify({"error": "File not found"}), 404
-        
+
         # Process document
         output_dir = os.path.join(RESULTS_FOLDER, os.path.splitext(data['filename'])[0])
         processor.process_document(file_path, output_dir=output_dir)
-        
+
         # Generate improvement suggestions
         suggestions = processor.generate_improvement_suggestions()
-        
+
         return jsonify({"success": True, "suggestions": suggestions})
-    
+
     except Exception as e:
         logger.error(f"Error generating suggestions: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -201,10 +206,10 @@ def generate_suggestions():
 def download_file(filename):
     """
     Download a result file.
-    
+
     Args:
         filename: Path to the file relative to the results folder
-    
+
     Returns:
         File download response
     """
@@ -216,10 +221,10 @@ def main():
     """Main function."""
     # Get port from environment variable or use default
     port = int(os.environ.get('PORT', 8080))
-    
+
     # Create templates directory if it doesn't exist
     os.makedirs('templates', exist_ok=True)
-    
+
     # Create index.html template
     with open('templates/index.html', 'w') as f:
         f.write("""
@@ -300,7 +305,7 @@ def main():
 <body>
     <div class="container">
         <h1>AI Enhanced Financial Document Processor</h1>
-        
+
         <div class="form-group">
             <h2>Upload Financial Document</h2>
             <form id="upload-form" enctype="multipart/form-data">
@@ -311,17 +316,17 @@ def main():
                 <button type="submit" class="btn">Process Document</button>
             </form>
         </div>
-        
+
         <div id="loading" class="loading hidden">
             <p>Processing document... This may take a few minutes.</p>
         </div>
-        
+
         <div id="error" class="error hidden"></div>
-        
+
         <div id="result" class="result hidden">
             <h2>Processing Results</h2>
             <div id="result-content"></div>
-            
+
             <h3>Top Securities</h3>
             <table id="securities-table">
                 <thead>
@@ -334,21 +339,21 @@ def main():
                 </thead>
                 <tbody></tbody>
             </table>
-            
+
             <h3>AI Analysis</h3>
             <div id="ai-analysis"></div>
-            
+
             <h3>AI Corrections</h3>
             <div id="ai-corrections"></div>
-            
+
             <button id="suggestions-btn" class="btn">Generate Improvement Suggestions</button>
-            
+
             <div id="suggestions" class="hidden">
                 <h3>Improvement Suggestions</h3>
                 <ul id="suggestions-list"></ul>
             </div>
         </div>
-        
+
         <div id="correction-form" class="correction-form hidden">
             <h2>Record Correction</h2>
             <form id="correction-submit-form">
@@ -369,29 +374,29 @@ def main():
             <div id="correction-result" class="hidden"></div>
         </div>
     </div>
-    
+
     <script>
         // Global variable to store the current filename
         let currentFilename = '';
-        
+
         // Handle form submission
         document.getElementById('upload-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Show loading indicator
             document.getElementById('loading').classList.remove('hidden');
             document.getElementById('result').classList.add('hidden');
             document.getElementById('error').classList.add('hidden');
             document.getElementById('correction-form').classList.add('hidden');
-            
+
             // Get form data
             const formData = new FormData();
             const fileInput = document.getElementById('file');
             formData.append('file', fileInput.files[0]);
-            
+
             // Store filename
             currentFilename = fileInput.files[0].name;
-            
+
             // Send request
             fetch('/process', {
                 method: 'POST',
@@ -401,7 +406,7 @@ def main():
             .then(data => {
                 // Hide loading indicator
                 document.getElementById('loading').classList.add('hidden');
-                
+
                 if (data.error) {
                     // Show error
                     const errorElement = document.getElementById('error');
@@ -411,7 +416,7 @@ def main():
                     // Show result
                     document.getElementById('result').classList.remove('hidden');
                     document.getElementById('correction-form').classList.remove('hidden');
-                    
+
                     // Populate result content
                     const resultContent = document.getElementById('result-content');
                     resultContent.innerHTML = `
@@ -420,11 +425,11 @@ def main():
                         <p><strong>Asset Allocation Count:</strong> ${data.asset_allocation_count}</p>
                         <p><strong>Structured Products Count:</strong> ${data.structured_products_count}</p>
                     `;
-                    
+
                     // Populate securities table
                     const securitiesTable = document.getElementById('securities-table').getElementsByTagName('tbody')[0];
                     securitiesTable.innerHTML = '';
-                    
+
                     if (data.top_securities && data.top_securities.length > 0) {
                         data.top_securities.forEach((security, index) => {
                             const row = securitiesTable.insertRow();
@@ -439,7 +444,7 @@ def main():
                         cell.colSpan = 4;
                         cell.textContent = 'No securities found';
                     }
-                    
+
                     // Populate AI analysis
                     const aiAnalysis = document.getElementById('ai-analysis');
                     if (data.ai_analysis) {
@@ -447,7 +452,7 @@ def main():
                     } else {
                         aiAnalysis.innerHTML = '<p>No AI analysis available</p>';
                     }
-                    
+
                     // Populate AI corrections
                     const aiCorrections = document.getElementById('ai-corrections');
                     if (data.ai_corrections && Object.keys(data.ai_corrections).length > 0) {
@@ -465,23 +470,23 @@ def main():
             .catch(error => {
                 // Hide loading indicator
                 document.getElementById('loading').classList.add('hidden');
-                
+
                 // Show error
                 const errorElement = document.getElementById('error');
                 errorElement.textContent = 'Error processing document: ' + error.message;
                 errorElement.classList.remove('hidden');
             });
         });
-        
+
         // Handle correction form submission
         document.getElementById('correction-submit-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Get form data
             const field = document.getElementById('field').value;
             const originalValue = document.getElementById('original-value').value;
             const correctedValue = document.getElementById('corrected-value').value;
-            
+
             // Send request
             fetch('/correct', {
                 method: 'POST',
@@ -500,12 +505,12 @@ def main():
                 // Show correction result
                 const correctionResult = document.getElementById('correction-result');
                 correctionResult.classList.remove('hidden');
-                
+
                 if (data.error) {
                     correctionResult.innerHTML = `<p class="error">${data.error}</p>`;
                 } else {
                     correctionResult.innerHTML = `<p>${data.message}</p>`;
-                    
+
                     // Clear form
                     document.getElementById('field').value = '';
                     document.getElementById('original-value').value = '';
@@ -519,7 +524,7 @@ def main():
                 correctionResult.innerHTML = `<p class="error">Error recording correction: ${error.message}</p>`;
             });
         });
-        
+
         // Handle suggestions button click
         document.getElementById('suggestions-btn').addEventListener('click', function() {
             // Send request
@@ -537,10 +542,10 @@ def main():
                 // Show suggestions
                 const suggestions = document.getElementById('suggestions');
                 suggestions.classList.remove('hidden');
-                
+
                 const suggestionsList = document.getElementById('suggestions-list');
                 suggestionsList.innerHTML = '';
-                
+
                 if (data.error) {
                     suggestionsList.innerHTML = `<li class="error">${data.error}</li>`;
                 } else if (data.suggestions && data.suggestions.length > 0) {
@@ -557,7 +562,7 @@ def main():
                 // Show error
                 const suggestions = document.getElementById('suggestions');
                 suggestions.classList.remove('hidden');
-                
+
                 const suggestionsList = document.getElementById('suggestions-list');
                 suggestionsList.innerHTML = `<li class="error">Error generating suggestions: ${error.message}</li>`;
             });
@@ -566,7 +571,7 @@ def main():
 </body>
 </html>
         """)
-    
+
     # Run the app
     app.run(host='0.0.0.0', port=port, debug=True)
 
