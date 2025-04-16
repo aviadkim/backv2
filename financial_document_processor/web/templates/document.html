@@ -1,0 +1,597 @@
+{% extends "base.html" %}
+
+{% block title %}{{ document.filename }} - Financial Document Processor{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ document.filename }}</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#queryModal">
+                <i class="bi bi-search"></i> Query
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tableModal">
+                <i class="bi bi-table"></i> Generate Table
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#analysisModal">
+                <i class="bi bi-graph-up"></i> Analyze
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="card-title">Document Information</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">ID</dt>
+                    <dd class="col-sm-8">{{ document.id }}</dd>
+                    
+                    <dt class="col-sm-4">Filename</dt>
+                    <dd class="col-sm-8">{{ document.filename }}</dd>
+                    
+                    <dt class="col-sm-4">Type</dt>
+                    <dd class="col-sm-8">{{ document.document_type or 'Unknown' }}</dd>
+                    
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8">
+                        {% if document.processing_status == 'completed' %}
+                        <span class="badge bg-success">Completed</span>
+                        {% elif document.processing_status == 'processing' %}
+                        <span class="badge bg-primary">Processing</span>
+                        {% elif document.processing_status == 'failed' %}
+                        <span class="badge bg-danger">Failed</span>
+                        {% else %}
+                        <span class="badge bg-secondary">{{ document.processing_status }}</span>
+                        {% endif %}
+                    </dd>
+                    
+                    <dt class="col-sm-4">Date</dt>
+                    <dd class="col-sm-8">{{ document.extraction_date.split('T')[0] if document.extraction_date else 'N/A' }}</dd>
+                    
+                    <dt class="col-sm-4">File Size</dt>
+                    <dd class="col-sm-8">{{ (document.file_size / 1024)|round(2) }} KB</dd>
+                    
+                    <dt class="col-sm-4">Pages</dt>
+                    <dd class="col-sm-8">{{ document.page_count or 'Unknown' }}</dd>
+                    
+                    <dt class="col-sm-4">Risk Profile</dt>
+                    <dd class="col-sm-8">{{ document.risk_profile or 'Unknown' }}</dd>
+                    
+                    <dt class="col-sm-4">Currency</dt>
+                    <dd class="col-sm-8">{{ document.currency or 'Unknown' }}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="card-title">Portfolio Summary</h5>
+            </div>
+            <div class="card-body">
+                {% if portfolio_value %}
+                <div class="mb-4">
+                    <h3 class="text-center">${{ '{:,.2f}'.format(portfolio_value.value) }}</h3>
+                    <p class="text-center text-muted">Total Portfolio Value</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h6>Asset Allocation</h6>
+                    <div class="progress" style="height: 25px;">
+                        {% for allocation in asset_allocations %}
+                        <div class="progress-bar 
+                            {% if loop.index % 5 == 1 %}bg-primary{% endif %}
+                            {% if loop.index % 5 == 2 %}bg-success{% endif %}
+                            {% if loop.index % 5 == 3 %}bg-info{% endif %}
+                            {% if loop.index % 5 == 4 %}bg-warning{% endif %}
+                            {% if loop.index % 5 == 0 %}bg-danger{% endif %}" 
+                            role="progressbar" 
+                            style="width: {{ allocation.percentage }}%" 
+                            aria-valuenow="{{ allocation.percentage }}" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100"
+                            title="{{ allocation.asset_class }}: {{ allocation.percentage }}%">
+                            {% if allocation.percentage > 5 %}{{ allocation.asset_class }}{% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="mt-2">
+                        {% for allocation in asset_allocations %}
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <span class="badge 
+                                    {% if loop.index % 5 == 1 %}bg-primary{% endif %}
+                                    {% if loop.index % 5 == 2 %}bg-success{% endif %}
+                                    {% if loop.index % 5 == 3 %}bg-info{% endif %}
+                                    {% if loop.index % 5 == 4 %}bg-warning{% endif %}
+                                    {% if loop.index % 5 == 0 %}bg-danger{% endif %}">&nbsp;</span>
+                                {{ allocation.asset_class }}
+                            </div>
+                            <div>
+                                {{ allocation.percentage }}% ({{ '{:,.2f}'.format(allocation.value) }})
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div>
+                    <h6>Securities</h6>
+                    <p>{{ securities|length }} securities found in this document.</p>
+                </div>
+                {% else %}
+                <div class="alert alert-warning">
+                    <p>No portfolio data available. The document may still be processing or failed to extract portfolio information.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Securities</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary" id="toggleSecuritiesBtn">
+                        <i class="bi bi-arrows-expand"></i> Expand All
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if securities %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="securitiesTable">
+                        <thead>
+                            <tr>
+                                <th>ISIN</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Valuation</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for security in securities %}
+                            <tr>
+                                <td>{{ security.isin or 'N/A' }}</td>
+                                <td>{{ security.name or security.description or 'Unknown' }}</td>
+                                <td>{{ security.security_type or 'Unknown' }}</td>
+                                <td>{{ '{:,.2f}'.format(security.valuation) if security.valuation else 'N/A' }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-info security-details-btn" data-security-id="{{ loop.index }}">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="security-details" id="security-details-{{ loop.index }}" style="display: none;">
+                                <td colspan="5">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6>Security Details</h6>
+                                            <dl class="row">
+                                                <dt class="col-sm-3">ISIN</dt>
+                                                <dd class="col-sm-9">{{ security.isin or 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Name</dt>
+                                                <dd class="col-sm-9">{{ security.name or 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Description</dt>
+                                                <dd class="col-sm-9">{{ security.description or 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Type</dt>
+                                                <dd class="col-sm-9">{{ security.security_type or 'Unknown' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Asset Class</dt>
+                                                <dd class="col-sm-9">{{ security.asset_class or 'Unknown' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Valuation</dt>
+                                                <dd class="col-sm-9">{{ '{:,.2f}'.format(security.valuation) if security.valuation else 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Price</dt>
+                                                <dd class="col-sm-9">{{ '{:,.2f}'.format(security.price) if security.price else 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Quantity</dt>
+                                                <dd class="col-sm-9">{{ '{:,.2f}'.format(security.quantity) if security.quantity else 'N/A' }}</dd>
+                                                
+                                                <dt class="col-sm-3">Currency</dt>
+                                                <dd class="col-sm-9">{{ security.currency or 'Unknown' }}</dd>
+                                                
+                                                {% if security.coupon_rate %}
+                                                <dt class="col-sm-3">Coupon Rate</dt>
+                                                <dd class="col-sm-9">{{ '{:.2f}'.format(security.coupon_rate) }}%</dd>
+                                                {% endif %}
+                                                
+                                                {% if security.maturity_date %}
+                                                <dt class="col-sm-3">Maturity Date</dt>
+                                                <dd class="col-sm-9">{{ security.maturity_date.split('T')[0] }}</dd>
+                                                {% endif %}
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    <p>No securities found in this document.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Query Modal -->
+<div class="modal fade" id="queryModal" tabindex="-1" aria-labelledby="queryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="queryModalLabel">Query Document</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="queryInput" class="form-label">Ask a question about this document:</label>
+                    <input type="text" class="form-control" id="queryInput" placeholder="e.g., What is the total portfolio value?">
+                </div>
+                
+                <div id="queryResult" class="mt-4" style="display: none;">
+                    <h6>Answer:</h6>
+                    <div class="card">
+                        <div class="card-body" id="queryAnswer">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="queryLoading" class="text-center mt-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Processing your query...</p>
+                </div>
+                
+                <div id="queryError" class="alert alert-danger mt-4" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitQueryBtn">Submit Query</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Table Modal -->
+<div class="modal fade" id="tableModal" tabindex="-1" aria-labelledby="tableModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tableModalLabel">Generate Table</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="tableRequestInput" class="form-label">Describe the table you want to generate:</label>
+                    <input type="text" class="form-control" id="tableRequestInput" placeholder="e.g., Create a table of top 10 holdings by value">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="tableFormatSelect" class="form-label">Format:</label>
+                    <select class="form-select" id="tableFormatSelect">
+                        <option value="markdown">Markdown</option>
+                        <option value="html">HTML</option>
+                        <option value="csv">CSV</option>
+                    </select>
+                </div>
+                
+                <div id="tableResult" class="mt-4" style="display: none;">
+                    <h6>Generated Table:</h6>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="tableContent"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tableLoading" class="text-center mt-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Generating table...</p>
+                </div>
+                
+                <div id="tableError" class="alert alert-danger mt-4" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="generateTableBtn">Generate Table</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analysis Modal -->
+<div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="analysisModalLabel">Analyze Document</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="analysisRequestInput" class="form-label">Describe the analysis you want to perform:</label>
+                    <input type="text" class="form-control" id="analysisRequestInput" placeholder="e.g., Analyze the asset allocation and provide recommendations">
+                </div>
+                
+                <div id="analysisResult" class="mt-4" style="display: none;">
+                    <h6>Analysis:</h6>
+                    <div class="card mb-3">
+                        <div class="card-body" id="analysisContent">
+                        </div>
+                    </div>
+                    
+                    <h6>Key Points:</h6>
+                    <ul id="analysisKeyPoints" class="list-group mb-3">
+                    </ul>
+                    
+                    <h6>Recommendations:</h6>
+                    <ul id="analysisRecommendations" class="list-group">
+                    </ul>
+                </div>
+                
+                <div id="analysisLoading" class="text-center mt-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Analyzing document...</p>
+                </div>
+                
+                <div id="analysisError" class="alert alert-danger mt-4" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="analyzeBtn">Analyze</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Securities table expand/collapse
+        const toggleSecuritiesBtn = document.getElementById('toggleSecuritiesBtn');
+        const securityDetailsBtns = document.querySelectorAll('.security-details-btn');
+        let expanded = false;
+        
+        toggleSecuritiesBtn.addEventListener('click', function() {
+            expanded = !expanded;
+            document.querySelectorAll('.security-details').forEach(row => {
+                row.style.display = expanded ? 'table-row' : 'none';
+            });
+            toggleSecuritiesBtn.innerHTML = expanded ? 
+                '<i class="bi bi-arrows-collapse"></i> Collapse All' : 
+                '<i class="bi bi-arrows-expand"></i> Expand All';
+        });
+        
+        securityDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const securityId = this.getAttribute('data-security-id');
+                const detailsRow = document.getElementById(`security-details-${securityId}`);
+                const currentDisplay = detailsRow.style.display;
+                detailsRow.style.display = currentDisplay === 'none' ? 'table-row' : 'none';
+            });
+        });
+        
+        // Query document
+        const submitQueryBtn = document.getElementById('submitQueryBtn');
+        const queryInput = document.getElementById('queryInput');
+        const queryResult = document.getElementById('queryResult');
+        const queryAnswer = document.getElementById('queryAnswer');
+        const queryLoading = document.getElementById('queryLoading');
+        const queryError = document.getElementById('queryError');
+        
+        submitQueryBtn.addEventListener('click', function() {
+            const question = queryInput.value.trim();
+            if (!question) {
+                queryError.textContent = 'Please enter a question.';
+                queryError.style.display = 'block';
+                return;
+            }
+            
+            queryResult.style.display = 'none';
+            queryError.style.display = 'none';
+            queryLoading.style.display = 'block';
+            
+            fetch('/api/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    question: question,
+                    document_id: {{ document.id }}
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to query document');
+                }
+                return response.json();
+            })
+            .then(data => {
+                queryLoading.style.display = 'none';
+                queryAnswer.textContent = data.answer;
+                queryResult.style.display = 'block';
+            })
+            .catch(error => {
+                queryLoading.style.display = 'none';
+                queryError.textContent = error.message;
+                queryError.style.display = 'block';
+            });
+        });
+        
+        // Generate table
+        const generateTableBtn = document.getElementById('generateTableBtn');
+        const tableRequestInput = document.getElementById('tableRequestInput');
+        const tableFormatSelect = document.getElementById('tableFormatSelect');
+        const tableResult = document.getElementById('tableResult');
+        const tableContent = document.getElementById('tableContent');
+        const tableLoading = document.getElementById('tableLoading');
+        const tableError = document.getElementById('tableError');
+        
+        generateTableBtn.addEventListener('click', function() {
+            const request = tableRequestInput.value.trim();
+            const format = tableFormatSelect.value;
+            
+            if (!request) {
+                tableError.textContent = 'Please enter a table request.';
+                tableError.style.display = 'block';
+                return;
+            }
+            
+            tableResult.style.display = 'none';
+            tableError.style.display = 'none';
+            tableLoading.style.display = 'block';
+            
+            fetch('/api/generate-table', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    request: request,
+                    document_id: {{ document.id }},
+                    format: format
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to generate table');
+                }
+                return response.json();
+            })
+            .then(data => {
+                tableLoading.style.display = 'none';
+                
+                if (format === 'markdown') {
+                    tableContent.innerHTML = marked.parse(data.table);
+                } else if (format === 'html') {
+                    tableContent.innerHTML = data.table;
+                } else if (format === 'csv') {
+                    tableContent.innerHTML = `<pre>${data.table}</pre>`;
+                }
+                
+                tableResult.style.display = 'block';
+            })
+            .catch(error => {
+                tableLoading.style.display = 'none';
+                tableError.textContent = error.message;
+                tableError.style.display = 'block';
+            });
+        });
+        
+        // Analyze document
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const analysisRequestInput = document.getElementById('analysisRequestInput');
+        const analysisResult = document.getElementById('analysisResult');
+        const analysisContent = document.getElementById('analysisContent');
+        const analysisKeyPoints = document.getElementById('analysisKeyPoints');
+        const analysisRecommendations = document.getElementById('analysisRecommendations');
+        const analysisLoading = document.getElementById('analysisLoading');
+        const analysisError = document.getElementById('analysisError');
+        
+        analyzeBtn.addEventListener('click', function() {
+            const request = analysisRequestInput.value.trim();
+            
+            if (!request) {
+                analysisError.textContent = 'Please enter an analysis request.';
+                analysisError.style.display = 'block';
+                return;
+            }
+            
+            analysisResult.style.display = 'none';
+            analysisError.style.display = 'none';
+            analysisLoading.style.display = 'block';
+            
+            fetch('/api/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    request: request,
+                    document_id: {{ document.id }}
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to analyze document');
+                }
+                return response.json();
+            })
+            .then(data => {
+                analysisLoading.style.display = 'none';
+                
+                analysisContent.textContent = data.analysis.analysis || data.analysis;
+                
+                // Clear previous key points
+                analysisKeyPoints.innerHTML = '';
+                if (data.analysis.key_points && data.analysis.key_points.length > 0) {
+                    data.analysis.key_points.forEach(point => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.textContent = point;
+                        analysisKeyPoints.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = 'No key points available.';
+                    analysisKeyPoints.appendChild(li);
+                }
+                
+                // Clear previous recommendations
+                analysisRecommendations.innerHTML = '';
+                if (data.analysis.recommendations && data.analysis.recommendations.length > 0) {
+                    data.analysis.recommendations.forEach(recommendation => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.textContent = recommendation;
+                        analysisRecommendations.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = 'No recommendations available.';
+                    analysisRecommendations.appendChild(li);
+                }
+                
+                analysisResult.style.display = 'block';
+            })
+            .catch(error => {
+                analysisLoading.style.display = 'none';
+                analysisError.textContent = error.message;
+                analysisError.style.display = 'block';
+            });
+        });
+    });
+</script>
+{% endblock %}

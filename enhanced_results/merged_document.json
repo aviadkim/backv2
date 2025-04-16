@@ -1,0 +1,25 @@
+{
+  "merge_date": "2025-04-16T11:44:29.315802",
+  "original_documents": 1,
+  "document_types": [
+    "portfolio_statement"
+  ],
+  "merged_data": {
+    "portfolio": {
+      "securities": [],
+      "summary": {
+        "total_value": 0,
+        "total_securities": 0
+      }
+    }
+  },
+  "summary": {
+    "financial_health": {},
+    "asset_overview": {
+      "total_portfolio_value": 0,
+      "security_count": 0
+    },
+    "income_overview": {},
+    "key_metrics": {}
+  }
+}

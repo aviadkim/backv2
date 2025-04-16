@@ -1,4 +1,5 @@
 import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../providers/AuthProvider';
@@ -26,6 +27,8 @@ const Layout = ({ children }) => {
   };
 
   return (
+    <AccessibilityWrapper>
+      
     <div className="min-h-screen flex flex-col">
       <header className="bg-blue-600 text-white">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">

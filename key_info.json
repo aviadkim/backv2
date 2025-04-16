@@ -1,0 +1,48 @@
+{
+  "client_info": {
+    "name": "MESSOS ENTERPRISES LTD.",
+    "number": "366223"
+  },
+  "document_date": "2025-02-28",
+  "portfolio_value": 19510599.0,
+  "securities_count": 41,
+  "asset_allocation": {
+    "Bonds": 59.24,
+    "Equities": 0.14,
+    "Structured products": 40.24,
+    "Other assets": 0.13,
+    "Liquidity": 0.25
+  },
+  "structured_products": {
+    "total_value": 7850257.0,
+    "ch1259344831_value": 249800.0
+  },
+  "top_holdings": [
+    {
+      "isin": "XS2567543397",
+      "value": 2560667.0,
+      "percentage": 13.12
+    },
+    {
+      "isin": "XS2838389430",
+      "value": 1623560.0,
+      "percentage": 8.32
+    },
+    {
+      "isin": "XS2964611052",
+      "value": 1488375.0,
+      "percentage": 7.63
+    },
+    {
+      "isin": "XS2792098779",
+      "value": 1176780.0,
+      "percentage": 6.03
+    },
+    {
+      "isin": "XS2665592833",
+      "value": 1502850.0,
+      "percentage": 7.7
+    }
+  ],
+  "analysis_summary": "\"Client Information\": The client is MESSOS ENTERPRISES LTD. with client number 366223.\n        \"Document Date\": The document was created on 2025-02-28.\n        \"Portfolio Value\": The total portfolio value is $19,510,599.\n        \"Securities\": The portfolio contains 41 securities.\n        \"Asset Allocation\": The portfolio is primarily invested in Bonds (59.24%), Structured Products (40.24%), and a small allocation to Equities (0.14%) and Other Assets (0.13%). The Liquidity allocation is 0.25%.\n        \"Structured Products\": The total value of structured products is $7,850,257. The value of the security with ISIN CH1259344831 is $249,800.\n        \"Top Holdings\": The top 5 holdings by value are:\n            1. XS2567543397 - $2,560,667 (13.12%)\n            2. XS2838389430 - $1,623,560 (8.32%)\n            3. XS2964611052 - $1,488,375 (7.63%)\n            4. XS2792098779 - $1,176,780 (6.03%)\n            5. XS2665592833 - $1,502,850 (7.7%)\n        \"Missing Information\": Some securities are missing detailed descriptions, and valuation information is not available for all securities.\n    }"
+}

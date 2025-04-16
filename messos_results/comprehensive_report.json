@@ -1,0 +1,111 @@
+{
+  "report_date": "2025-04-15T10:22:13.158417",
+  "report_type": "comprehensive_financial_report",
+  "data_sources": [
+    "portfolio_statement"
+  ],
+  "financial_snapshot": {
+    "total_assets": 0,
+    "total_liabilities": 0,
+    "net_worth": 0,
+    "monthly_income": 0,
+    "monthly_expenses": 0,
+    "portfolio_value": 19510599,
+    "debt_to_equity_ratio": 0,
+    "profit_margin": 0
+  },
+  "assets_and_liabilities": {
+    "total_assets": 0,
+    "total_liabilities": 0,
+    "net_worth": 0,
+    "debt_to_equity_ratio": 0,
+    "asset_breakdown": [
+      {
+        "name": "\u05ea\u05d9\u05e7 \u05d4\u05e9\u05e7\u05e2\u05d5\u05ea",
+        "value": 19510599,
+        "percentage": 0
+      }
+    ],
+    "liability_breakdown": [],
+    "recommendations": []
+  },
+  "income_and_expenses": {
+    "total_income": 0,
+    "total_expenses": 0,
+    "net_income": 0,
+    "income_breakdown": [],
+    "expense_breakdown": [],
+    "monthly_cash_flow": 0,
+    "recommendations": []
+  },
+  "investments": {
+    "total_portfolio_value": 19510599,
+    "asset_allocation": [
+      {
+        "type": "structured_product",
+        "value": 261580.0,
+        "percentage": 1.3407071715225145
+      },
+      {
+        "type": "bond",
+        "value": 11780.0,
+        "percentage": 0.06037743894997791
+      }
+    ],
+    "top_performers": [
+      {
+        "type": "bond",
+        "isin": "XS2530201644",
+        "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+        "currency": "USD",
+        "nominal": "1500000",
+        "price": 3.32,
+        "value": 0,
+        "weight": 0
+      },
+      {
+        "type": "bond",
+        "isin": "XS2692298537",
+        "description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+        "currency": "USD",
+        "nominal": "100000",
+        "price": 0,
+        "value": 0,
+        "weight": 0
+      },
+      {
+        "type": "bond",
+        "isin": "XS2736388732",
+        "description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE",
+        "currency": "USD",
+        "nominal": "250000",
+        "price": 0.36,
+        "value": 3080.0,
+        "weight": 0.36
+      },
+      {
+        "type": "bond",
+        "isin": "XS2110079584",
+        "description": "CITIGROUP 0% MTN 2024-09.07.34 REGS",
+        "currency": "USD",
+        "nominal": "1100000",
+        "price": 0,
+        "value": 0,
+        "weight": 0
+      },
+      {
+        "type": "bond",
+        "isin": "XS2829712830",
+        "description": "GOLDMAN SACHS EMTN 2024-30.09.2024",
+        "currency": "USD",
+        "nominal": "100000",
+        "price": 0,
+        "value": 0,
+        "weight": 0
+      }
+    ],
+    "historical_performance": {},
+    "recommendations": []
+  },
+  "recommendations": []
+}

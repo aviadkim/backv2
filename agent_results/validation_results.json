@@ -1,0 +1,80 @@
+{
+  "issues": [
+    {
+      "type": "portfolio_value_discrepancy",
+      "description": "Significant discrepancy between portfolio value ($19,510,599.00) and securities total ($6,410,808.00)",
+      "discrepancy": 13099791.0,
+      "discrepancy_percentage": 67.14192116807895
+    },
+    {
+      "type": "asset_allocation_discrepancy",
+      "description": "Asset allocation total ($14,516,314.68) does not match portfolio value ($19,510,599.00)",
+      "discrepancy": 4994284.32,
+      "discrepancy_percentage": 25.597801072124955
+    },
+    {
+      "type": "asset_class_discrepancy",
+      "description": "Asset class Cash value from securities ($0.00) does not match asset allocation ($0.25)",
+      "discrepancy": 0.25,
+      "discrepancy_percentage": 100.0
+    },
+    {
+      "type": "asset_class_discrepancy",
+      "description": "Asset class Bonds value from securities ($6,359,959.00) does not match asset allocation ($500,000.00)",
+      "discrepancy": -5859959.0,
+      "discrepancy_percentage": -1171.9918
+    },
+    {
+      "type": "asset_class_discrepancy",
+      "description": "Asset class Equities value from securities ($50,849.00) does not match asset allocation ($15.05)",
+      "discrepancy": -50833.95,
+      "discrepancy_percentage": -337767.10963455145
+    },
+    {
+      "type": "missing_security_field",
+      "description": "Security CH1908490000 is missing value",
+      "security": {
+        "isin": "CH1908490000",
+        "name": "ate Actual Ex. Rate Perf Market Thereof accruals of assets\nPrice Date Perf Currency Countervalue USD\nCash accounts credit\nUSD 47",
+        "quantity": null,
+        "price": null,
+        "value": null,
+        "maturity_date": null,
+        "asset_class": "Cash",
+        "sources": [
+          "text",
+          "table"
+        ]
+      }
+    },
+    {
+      "type": "missing_security_field",
+      "description": "Security XS2792098779 is missing name",
+      "security": {
+        "isin": "XS2792098779",
+        "name": "",
+        "quantity": 7036.149492683425,
+        "price": 98.065,
+        "value": 690000.0,
+        "maturity_date": "08.01.2029",
+        "asset_class": "Bonds",
+        "page": 13,
+        "source": "text"
+      }
+    }
+  ],
+  "corrections": [
+    {
+      "type": "incomplete_securities",
+      "description": "Securities data appears to be incomplete. Portfolio value ($19,510,599.00) is correct.",
+      "action": "Keep portfolio value, flag securities as incomplete"
+    }
+  ],
+  "confidence_scores": {
+    "portfolio_value": 0.95,
+    "securities": 0.95,
+    "overall": 0.95
+  },
+  "validated_portfolio_value": 19510599.0,
+  "validated_securities_total": 6410808.0
+}

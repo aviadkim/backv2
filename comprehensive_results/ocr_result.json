@@ -1,0 +1,4 @@
+{
+  "status": "error",
+  "message": "Failed to read image from DevDocs/public/messos.pdf: cannot identify image file 'DevDocs/public/messos.pdf'"
+}

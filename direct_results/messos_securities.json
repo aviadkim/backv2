@@ -1,0 +1,277 @@
+[
+  {
+    "isin": "CH1908490000",
+    "description": "MESSOS ENTERPRISES LTD.\nV",
+    "valuation": 366.0
+  },
+  {
+    "isin": "XS2530201644",
+    "description": "AEOUI",
+    "valuation": 125.0
+  },
+  {
+    "isin": "XS2588105036",
+    "description": "USD 200",
+    "valuation": 112.0
+  },
+  {
+    "isin": "XS2665592833",
+    "description": "USD 200",
+    "valuation": 128.0
+  },
+  {
+    "isin": "XS2692298537",
+    "description": "HARP ISSUER (4",
+    "valuation": 129.0
+  },
+  {
+    "isin": "XS2754416860",
+    "description": "SE.195 27",
+    "valuation": 132.0
+  },
+  {
+    "isin": "XS2761230684",
+    "description": "XS2692298537",
+    "valuation": 112.0
+  },
+  {
+    "isin": "XS2736388732",
+    "description": "USD 100",
+    "valuation": 131.0
+  },
+  {
+    "isin": "XS2782869916",
+    "description": "AEOUI",
+    "valuation": 132.0
+  },
+  {
+    "isin": "XS2824054402",
+    "description": "USD 50",
+    "valuation": 135.0
+  },
+  {
+    "isin": "XS2567543397",
+    "description": "XS2782869916",
+    "valuation": 134.0
+  },
+  {
+    "isin": "XS2110079584",
+    "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034 100.1000 100.5",
+    "valuation": 136.0
+  },
+  {
+    "isin": "XS2848820754",
+    "description": "XS2567543397",
+    "valuation": 135.0
+  },
+  {
+    "isin": "XS2829712830",
+    "description": "CITIGROUP 0",
+    "valuation": 134.0
+  },
+  {
+    "isin": "XS2912278723",
+    "description": "UP GLBL 0",
+    "valuation": 138.0
+  },
+  {
+    "isin": "XS2381723902",
+    "description": "N 2024-30.09.2024 99.9996 93.0200 1.93",
+    "valuation": 128.0
+  },
+  {
+    "isin": "XS2829752976",
+    "description": "AEOUI",
+    "valuation": 138.0
+  },
+  {
+    "isin": "XS2953741100",
+    "description": "USD 250",
+    "valuation": 138.0
+  },
+  {
+    "isin": "XS2381717250",
+    "description": "M TERM NOTES 2024- 99.6790 97.8700 1.81",
+    "valuation": 128.0
+  },
+  {
+    "isin": "XS2481066111",
+    "description": "BANK OF AMERICA 0",
+    "valuation": 126.0
+  },
+  {
+    "isin": "XS2964611052",
+    "description": "SD 500",
+    "valuation": 141.0
+  },
+  {
+    "isin": "LU2228214107",
+    "description": "XS2481066111",
+    "valuation": 572.0
+  },
+  {
+    "isin": "CH1269060229",
+    "description": "ES 2025-14.02.35 100.0000 101.2500 1.25",
+    "valuation": 126.0
+  },
+  {
+    "isin": "XS0461497009",
+    "description": "SP\nISIN",
+    "valuation": 130.0
+  },
+  {
+    "isin": "XS2746319610",
+    "description": "AEOUI",
+    "valuation": 133.0
+  },
+  {
+    "isin": "CH0244767585",
+    "description": "IVA\n\nMESSOS ENTERPRISES LTD.\nV",
+    "valuation": 244.0
+  },
+  {
+    "isin": "XS2519369867",
+    "description": "AEOUI",
+    "valuation": 121.0
+  },
+  {
+    "isin": "XS2315191069",
+    "description": "USD 200",
+    "valuation": 111.0
+  },
+  {
+    "isin": "XS2792098779",
+    "description": "CITD 26 1",
+    "valuation": 140.0
+  },
+  {
+    "isin": "XS2714429128",
+    "description": "XS2315191069",
+    "valuation": 130.0
+  },
+  {
+    "isin": "XS2105981117",
+    "description": "USD 690",
+    "valuation": 114.0
+  },
+  {
+    "isin": "XS2838389430",
+    "description": "XS2714429128",
+    "valuation": 135.0
+  },
+  {
+    "isin": "XS2631782468",
+    "description": "LUMINIS 5.7",
+    "valuation": 127.0
+  },
+  {
+    "isin": "XS1700087403",
+    "description": "SES LTD.\nV",
+    "valuation": 398.0
+  },
+  {
+    "isin": "XS2594173093",
+    "description": "USD 100",
+    "valuation": 125.0
+  },
+  {
+    "isin": "XS2407295554",
+    "description": "XS1700087403",
+    "valuation": 114.0
+  },
+  {
+    "isin": "XS2518123653",
+    "description": "USD 500",
+    "valuation": 121.0
+  },
+  {
+    "isin": "XS2252299883",
+    "description": "USD 100",
+    "valuation": 580.0
+  },
+  {
+    "isin": "CH1259345242",
+    "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS 10",
+    "valuation": 125.0
+  },
+  {
+    "isin": "CH1259344831",
+    "description": "ENTERPRISES LTD.\nV",
+    "valuation": 125.0
+  },
+  {
+    "isin": "XD0466760473",
+    "description": "PRISES LTD.\nV",
+    "valuation": 466.0
+  },
+  {
+    "isin": null,
+    "description": "MESSOS ENTERPRISES LTD.\nC",
+    "valuation": 223.0
+  },
+  {
+    "isin": null,
+    "description": "CBLUCH2280A",
+    "valuation": 0.0
+  },
+  {
+    "isin": null,
+    "description": "CHE-105.962.409IVA\n\nMESSOS ENTERPRISES LTD.\nV",
+    "valuation": 202.0
+  },
+  {
+    "isin": null,
+    "description": "USD 19",
+    "valuation": 193.0
+  },
+  {
+    "isin": null,
+    "description": "CHF 24",
+    "valuation": 1.1
+  },
+  {
+    "isin": null,
+    "description": "USD CHF\nL",
+    "valuation": 850.0
+  },
+  {
+    "isin": null,
+    "description": "AEOUI\nE",
+    "valuation": 202.0
+  },
+  {
+    "isin": null,
+    "description": "TWR 337",
+    "valuation": 1.76
+  },
+  {
+    "isin": null,
+    "description": "CHE-105.962.409IVA\n4202",
+    "valuation": 420.0
+  },
+  {
+    "isin": null,
+    "description": "USD 208",
+    "valuation": 9.0
+  },
+  {
+    "isin": null,
+    "description": "USD 10",
+    "valuation": 442.0
+  },
+  {
+    "isin": null,
+    "description": "AEOUI\nN",
+    "valuation": 2.0
+  },
+  {
+    "isin": null,
+    "description": "USD 420",
+    "valuation": 285.0
+  },
+  {
+    "isin": null,
+    "description": "CHE-105.962.4",
+    "valuation": 9.0
+  }
+]

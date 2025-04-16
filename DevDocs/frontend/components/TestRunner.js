@@ -1,3 +1,6 @@
+import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
+
 import { useState, useEffect } from 'react';
 import { FaCheckCircle, FaTimesCircle, FaExclamationTriangle, FaSpinner } from 'react-icons/fa';
 
@@ -22,12 +25,12 @@ const TestRunner = () => {
     { id: 'layout-components', category: 'ui', name: 'Layout Components', description: 'Tests the layout components like header, footer, and sidebar' },
     { id: 'form-components', category: 'ui', name: 'Form Components', description: 'Tests form components like inputs, buttons, and validation' },
     { id: 'data-display', category: 'ui', name: 'Data Display Components', description: 'Tests components that display data like tables, charts, and cards' },
-    
+
     // Functionality Tests
     { id: 'document-upload', category: 'functionality', name: 'Document Upload', description: 'Tests document upload functionality with mocked API responses' },
     { id: 'data-processing', category: 'functionality', name: 'Data Processing', description: 'Tests data processing functionality with sample data' },
     { id: 'report-generation', category: 'functionality', name: 'Report Generation', description: 'Tests report generation with sample data' },
-    
+
     // Integration Tests
     { id: 'workflow', category: 'integration', name: 'User Workflow', description: 'Tests complete user workflows from upload to report generation' },
     { id: 'error-handling', category: 'integration', name: 'Error Handling', description: 'Tests error handling across the application' }
@@ -39,15 +42,15 @@ const TestRunner = () => {
   }, []);
 
   // Filter tests by category
-  const filteredTests = selectedCategory === 'all' 
-    ? tests 
+  const filteredTests = selectedCategory === 'all'
+    ? tests
     : tests.filter(test => test.category === selectedCategory);
 
   // Run tests
   const runTests = async () => {
     setRunning(true);
     setResults({});
-    
+
     // Mock test results
     const mockResults = {
       'layout-components': { success: true, message: 'All layout components render correctly' },
@@ -59,7 +62,7 @@ const TestRunner = () => {
       'workflow': { success: true, message: 'User workflow works correctly' },
       'error-handling': { success: false, message: 'Validation error handling does not display user-friendly messages', fix: 'Update validation error handling to display user-friendly messages' }
     };
-    
+
     // Simulate running tests
     for (const test of filteredTests) {
       // Update UI to show test is running
@@ -67,35 +70,35 @@ const TestRunner = () => {
         ...prev,
         [test.id]: { running: true }
       }));
-      
+
       // Simulate test execution time
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // Update results
       setResults(prev => ({
         ...prev,
         [test.id]: mockResults[test.id] || { success: true, message: 'Test passed' }
       }));
     }
-    
+
     setRunning(false);
-    
+
     // Auto-fix if enabled
     if (autoFix) {
       await fixIssues();
     }
   };
-  
+
   // Fix issues
   const fixIssues = async () => {
     const failedTests = Object.entries(results)
       .filter(([_, result]) => !result.success && result.fix)
       .map(([id, result]) => ({ id, ...result }));
-    
+
     if (failedTests.length === 0) {
       return;
     }
-    
+
     // Simulate fixing issues
     for (const test of failedTests) {
       // Update UI to show fix is in progress
@@ -103,10 +106,10 @@ const TestRunner = () => {
         ...prev,
         [test.id]: { ...prev[test.id], fixing: true }
       }));
-      
+
       // Simulate fix execution time
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Update results
       setResults(prev => ({
         ...prev,
@@ -114,30 +117,30 @@ const TestRunner = () => {
       }));
     }
   };
-  
+
   // Get test status
   const getTestStatus = (testId) => {
     const result = results[testId];
-    
+
     if (!result) {
       return 'pending';
     }
-    
+
     if (result.running) {
       return 'running';
     }
-    
+
     if (result.fixing) {
       return 'fixing';
     }
-    
+
     if (result.success) {
       return result.fixed ? 'fixed' : 'passed';
     }
-    
+
     return 'failed';
   };
-  
+
   // Get status icon
   const getStatusIcon = (status) => {
     switch (status) {
@@ -154,42 +157,43 @@ const TestRunner = () => {
         return <FaExclamationTriangle className="text-gray-300" />;
     }
   };
-  
+
   // Get summary
   const getSummary = () => {
     const total = filteredTests.length;
-    const completed = Object.keys(results).filter(id => 
-      filteredTests.some(test => test.id === id) && 
-      !results[id].running && 
+    const completed = Object.keys(results).filter(id =>
+      filteredTests.some(test => test.id === id) &&
+      !results[id].running &&
       !results[id].fixing
     ).length;
-    
-    const passed = Object.entries(results).filter(([id, result]) => 
-      filteredTests.some(test => test.id === id) && 
+
+    const passed = Object.entries(results).filter(([id, result]) =>
+      filteredTests.some(test => test.id === id) &&
       result.success
     ).length;
-    
-    const failed = Object.entries(results).filter(([id, result]) => 
-      filteredTests.some(test => test.id === id) && 
-      !result.success && 
-      !result.running && 
+
+    const failed = Object.entries(results).filter(([id, result]) =>
+      filteredTests.some(test => test.id === id) &&
+      !result.success &&
+      !result.running &&
       !result.fixing
     ).length;
-    
-    const fixed = Object.entries(results).filter(([id, result]) => 
-      filteredTests.some(test => test.id === id) && 
+
+    const fixed = Object.entries(results).filter(([id, result]) =>
+      filteredTests.some(test => test.id === id) &&
       result.fixed
     ).length;
-    
+
     return { total, completed, passed, failed, fixed };
   };
-  
+
   const summary = getSummary();
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <AccessibilityWrapper>
+      <div className="bg-white shadow rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-6">Test Runner</h2>
-      
+
       {/* Controls */}
       <div className="flex flex-wrap gap-4 mb-6">
         <div>
@@ -210,7 +214,7 @@ const TestRunner = () => {
             ))}
           </select>
         </div>
-        
+
         <div className="flex items-end">
           <label className="flex items-center">
             <input
@@ -223,7 +227,7 @@ const TestRunner = () => {
             <span className="ml-2 text-sm text-gray-700">Auto-fix issues</span>
           </label>
         </div>
-        
+
         <div className="flex items-end ml-auto">
           <button
             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -241,7 +245,7 @@ const TestRunner = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Summary */}
       {Object.keys(results).length > 0 && (
         <div className="bg-gray-50 p-4 rounded-md mb-6">
@@ -266,7 +270,7 @@ const TestRunner = () => {
           </div>
         </div>
       )}
-      
+
       {/* Test List */}
       <div className="border rounded-md overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
@@ -294,7 +298,7 @@ const TestRunner = () => {
               filteredTests.map(test => {
                 const status = getTestStatus(test.id);
                 const result = results[test.id] || {};
-                
+
                 return (
                   <tr key={test.id}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -336,6 +340,7 @@ const TestRunner = () => {
         </table>
       </div>
     </div>
+    </AccessibilityWrapper>
   );
 };
 

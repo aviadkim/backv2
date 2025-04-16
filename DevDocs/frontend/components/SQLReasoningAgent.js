@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiSend, FiDatabase, FiCode, FiSearch, FiInfo, FiCpu } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -17,25 +18,25 @@ const SQLReasoningAgent = () => {
   const [knowledgeBase, setKnowledgeBase] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  
+
   const messagesEndRef = useRef(null);
-  
+
   useEffect(() => {
     // Fetch schema and tables on component mount
     fetchSchema();
     fetchTables();
     fetchKnowledgeBase();
   }, []);
-  
+
   useEffect(() => {
     // Scroll to bottom of messages
     scrollToBottom();
   }, [conversations]);
-  
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-  
+
   const fetchSchema = async () => {
     try {
       const response = await fetch('/api/sql-agent/schema');
@@ -45,7 +46,7 @@ const SQLReasoningAgent = () => {
       console.error('Error fetching schema:', error);
     }
   };
-  
+
   const fetchTables = async () => {
     try {
       const response = await fetch('/api/sql-agent/tables');
@@ -55,7 +56,7 @@ const SQLReasoningAgent = () => {
       console.error('Error fetching tables:', error);
     }
   };
-  
+
   const fetchKnowledgeBase = async () => {
     try {
       const response = await fetch('/api/sql-agent/knowledge');
@@ -65,21 +66,21 @@ const SQLReasoningAgent = () => {
       console.error('Error fetching knowledge base:', error);
     }
   };
-  
+
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!question.trim()) return;
-    
+
     // Add user question to conversations
     setConversations(prev => [...prev, { role: 'user', content: question }]);
-    
+
     // Clear input
     setQuestion('');
-    
+
     // Set loading state
     setLoading(true);
-    
+
     try {
       // Call API
       const response = await fetch('/api/sql-agent/query', {
@@ -89,9 +90,9 @@ const SQLReasoningAgent = () => {
         },
         body: JSON.stringify({ question: question.trim() })
       });
-      
+
       const data = await response.json();
-      
+
       // Add agent response to conversations
       setConversations(prev => [...prev, {
         role: 'agent',
@@ -103,7 +104,7 @@ const SQLReasoningAgent = () => {
       }]);
     } catch (error) {
       console.error('Error querying SQL agent:', error);
-      
+
       // Add error message to conversations
       setConversations(prev => [...prev, {
         role: 'agent',
@@ -115,16 +116,16 @@ const SQLReasoningAgent = () => {
       setLoading(false);
     }
   };
-  
+
   const handleCustomQuerySubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!customQuery.trim()) return;
-    
+
     setLoading(true);
     setQueryResults(null);
     setQueryError(null);
-    
+
     try {
       // Call API to execute custom query
       const response = await fetch('/api/sql-agent/execute', {
@@ -134,9 +135,9 @@ const SQLReasoningAgent = () => {
         },
         body: JSON.stringify({ query: customQuery.trim() })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.error) {
         setQueryError(data.error);
       } else {
@@ -149,15 +150,15 @@ const SQLReasoningAgent = () => {
       setLoading(false);
     }
   };
-  
+
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!searchQuery.trim()) return;
-    
+
     setLoading(true);
     setSearchResults([]);
-    
+
     try {
       // Call API to search knowledge base
       const response = await fetch('/api/sql-agent/search', {
@@ -167,7 +168,7 @@ const SQLReasoningAgent = () => {
         },
         body: JSON.stringify({ query: searchQuery.trim(), k: 5 })
       });
-      
+
       const data = await response.json();
       setSearchResults(data.results || []);
     } catch (error) {
@@ -176,7 +177,7 @@ const SQLReasoningAgent = () => {
       setLoading(false);
     }
   };
-  
+
   const renderChatTab = () => {
     return (
       <div className="flex flex-col h-full">
@@ -250,7 +251,7 @@ const SQLReasoningAgent = () => {
                       >
                         {message.content}
                       </ReactMarkdown>
-                      
+
                       {message.sql_query && (
                         <div className="mt-2 p-2 bg-gray-800 rounded text-white">
                           <p className="text-xs text-gray-400 mb-1">SQL Query:</p>
@@ -263,7 +264,7 @@ const SQLReasoningAgent = () => {
                           </SyntaxHighlighter>
                         </div>
                       )}
-                      
+
                       {message.results && message.results.length > 0 && (
                         <div className="mt-2">
                           <p className="text-xs text-gray-500 mb-1">Results:</p>
@@ -307,7 +308,7 @@ const SQLReasoningAgent = () => {
           )}
           <div ref={messagesEndRef} />
         </div>
-        
+
         <div className="border-t border-gray-200 p-4">
           <form onSubmit={handleQuestionSubmit} className="flex space-x-2">
             <input
@@ -336,16 +337,16 @@ const SQLReasoningAgent = () => {
       </div>
     );
   };
-  
+
   const renderSchemaTab = () => {
     return (
       <div className="p-4 h-full overflow-y-auto">
         <h3 className="text-lg font-medium text-gray-900 mb-4">Database Schema</h3>
-        
+
         <div className="bg-gray-50 p-4 rounded-lg">
           <pre className="whitespace-pre-wrap text-sm">{schema}</pre>
         </div>
-        
+
         <div className="mt-6">
           <h4 className="text-md font-medium text-gray-900 mb-2">Tables</h4>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
@@ -359,12 +360,12 @@ const SQLReasoningAgent = () => {
       </div>
     );
   };
-  
+
   const renderQueryTab = () => {
     return (
       <div className="p-4 h-full flex flex-col">
         <h3 className="text-lg font-medium text-gray-900 mb-4">Custom SQL Query</h3>
-        
+
         <form onSubmit={handleCustomQuerySubmit} className="flex-1 flex flex-col">
           <div className="flex-1">
             <textarea
@@ -375,7 +376,7 @@ const SQLReasoningAgent = () => {
               disabled={loading}
             />
           </div>
-          
+
           <div className="mt-4">
             <button
               type="submit"
@@ -388,14 +389,14 @@ const SQLReasoningAgent = () => {
             </button>
           </div>
         </form>
-        
+
         {queryError && (
           <div className="mt-4 p-4 bg-red-50 rounded-md">
             <h4 className="text-sm font-medium text-red-800 mb-1">Error:</h4>
             <p className="text-sm text-red-700">{queryError}</p>
           </div>
         )}
-        
+
         {queryResults && queryResults.length > 0 && (
           <div className="mt-4">
             <h4 className="text-sm font-medium text-gray-900 mb-2">Results:</h4>
@@ -434,12 +435,12 @@ const SQLReasoningAgent = () => {
       </div>
     );
   };
-  
+
   const renderKnowledgeTab = () => {
     return (
       <div className="p-4 h-full overflow-y-auto">
         <h3 className="text-lg font-medium text-gray-900 mb-4">Knowledge Base</h3>
-        
+
         <form onSubmit={handleSearchSubmit} className="mb-6">
           <div className="flex space-x-2">
             <input
@@ -461,7 +462,7 @@ const SQLReasoningAgent = () => {
             </button>
           </div>
         </form>
-        
+
         {searchResults.length > 0 && (
           <div className="mb-6">
             <h4 className="text-md font-medium text-gray-900 mb-2">Search Results</h4>
@@ -492,7 +493,7 @@ const SQLReasoningAgent = () => {
             </div>
           </div>
         )}
-        
+
         {knowledgeBase && (
           <div className="space-y-6">
             <div>
@@ -507,7 +508,7 @@ const SQLReasoningAgent = () => {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-md font-medium text-gray-900 mb-2">Rules</h4>
               <div className="space-y-2">
@@ -525,7 +526,7 @@ const SQLReasoningAgent = () => {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-md font-medium text-gray-900 mb-2">Table Metadata</h4>
               <div className="space-y-2">
@@ -550,9 +551,10 @@ const SQLReasoningAgent = () => {
       </div>
     );
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-[calc(100vh-12rem)]">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden h-[calc(100vh-12rem)]">
       <div className="border-b border-gray-200">
         <nav className="flex -mb-px">
           <button
@@ -601,7 +603,7 @@ const SQLReasoningAgent = () => {
           </button>
         </nav>
       </div>
-      
+
       <div className="h-full">
         {activeTab === 'chat' && renderChatTab()}
         {activeTab === 'schema' && renderSchemaTab()}
@@ -609,6 +611,7 @@ const SQLReasoningAgent = () => {
         {activeTab === 'knowledge' && renderKnowledgeTab()}
       </div>
     </div>
+    </AccessibilityWrapper>
   );
 };
 

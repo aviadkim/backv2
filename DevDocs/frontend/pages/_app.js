@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { AuthProvider } from '../providers/AuthProvider';
 import { DocumentProvider } from '../providers/DocumentProvider';
 import Layout from '../components/Layout';
+import ChakraWrapper from '../components/ChakraWrapper';
+import RouterWrapper from '../components/RouterWrapper';
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,11 +34,15 @@ function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
   return (
-    <AuthProvider>
-      <DocumentProvider>
-        {getLayout(<Component {...pageProps} />)}
-      </DocumentProvider>
-    </AuthProvider>
+    <ChakraWrapper>
+      <RouterWrapper>
+        <AuthProvider>
+          <DocumentProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </DocumentProvider>
+        </AuthProvider>
+      </RouterWrapper>
+    </ChakraWrapper>
   );
 }
 

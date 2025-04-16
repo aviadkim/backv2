@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Document - Financial Document Processor{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Upload Document</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Upload Financial Document</h5>
+            </div>
+            <div class="card-body">
+                <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select PDF File</label>
+                        <input class="form-control" type="file" id="file" name="file" accept=".pdf" required>
+                        <div class="form-text">Upload a financial document in PDF format.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="document_type" class="form-label">Document Type</label>
+                        <select class="form-select" id="document_type" name="document_type">
+                            <option value="">Select document type</option>
+                            <option value="portfolio_report">Portfolio Report</option>
+                            <option value="bank_statement">Bank Statement</option>
+                            <option value="investment_summary">Investment Summary</option>
+                            <option value="financial_statement">Financial Statement</option>
+                            <option value="tax_document">Tax Document</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit" id="uploadBtn">
+                            <i class="bi bi-cloud-upload"></i> Upload Document
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="mt-4" id="uploadProgress" style="display: none;">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                    <p class="text-center mt-2">Uploading document...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Supported Documents</h5>
+            </div>
+            <div class="card-body">
+                <p>The Financial Document Processor supports various types of financial documents, including:</p>
+                <ul>
+                    <li><strong>Portfolio Reports</strong>: Documents showing portfolio holdings, values, and allocations</li>
+                    <li><strong>Bank Statements</strong>: Monthly or quarterly statements from financial institutions</li>
+                    <li><strong>Investment Summaries</strong>: Summaries of investment accounts and performance</li>
+                    <li><strong>Financial Statements</strong>: Balance sheets, income statements, etc.</li>
+                    <li><strong>Tax Documents</strong>: Tax-related financial documents</li>
+                </ul>
+                <p>For best results, upload PDF documents with clear text and tables.</p>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">Processing Information</h5>
+            </div>
+            <div class="card-body">
+                <p>After uploading, your document will be processed to extract:</p>
+                <ul>
+                    <li>Portfolio value</li>
+                    <li>Securities (stocks, bonds, funds, etc.)</li>
+                    <li>Asset allocation</li>
+                    <li>Risk profile</li>
+                    <li>Other financial information</li>
+                </ul>
+                <p>Processing may take a few moments depending on the document size and complexity.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadForm = document.getElementById('uploadForm');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadProgress = document.getElementById('uploadProgress');
+        
+        uploadForm.addEventListener('submit', function() {
+            uploadBtn.disabled = true;
+            uploadProgress.style.display = 'block';
+        });
+    });
+</script>
+{% endblock %}

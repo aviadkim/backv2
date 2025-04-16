@@ -1,0 +1,56 @@
+{
+  "extraction_date": "2025-04-14T20:15:18.743636",
+  "document_id": "",
+  "portfolio_summary": {
+    "total_value": 152583.75,
+    "total_securities": 5,
+    "type_distribution": {
+      "Stocks": 100.0,
+      "Bonds": 0.0,
+      "Cash": 0.0,
+      "Other": 0.0
+    }
+  },
+  "securities": [
+    {
+      "security_name": "Apple Inc.",
+      "isin": "US0378331005",
+      "quantity": 100,
+      "price": 150.25,
+      "value": 15025.0,
+      "return": 12.5
+    },
+    {
+      "security_name": "Microsoft Corp.",
+      "isin": "US5949181045",
+      "quantity": 50,
+      "price": 300.5,
+      "value": 15025.0,
+      "return": 8.3
+    },
+    {
+      "security_name": "Amazon.com Inc.",
+      "isin": "US0231351067",
+      "quantity": 20,
+      "price": 3200.75,
+      "value": 64015.0,
+      "return": -2.1
+    },
+    {
+      "security_name": "Tesla Inc.",
+      "isin": "US88160R1014",
+      "quantity": 30,
+      "price": 700.5,
+      "value": 21015.0,
+      "return": 15.7
+    },
+    {
+      "security_name": "Alphabet Inc.",
+      "isin": "US02079K1079",
+      "quantity": 15,
+      "price": 2500.25,
+      "value": 37503.75,
+      "return": 5.2
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "agent_name": "HebrewOCRAgent",
+  "test_date": "2025-04-14T23:03:36.872031",
+  "total_tests": 5,
+  "passed_tests": 0,
+  "failed_tests": 5,
+  "test_results": [
+    {
+      "test_id": 1,
+      "description": "Basic Hebrew text extraction",
+      "passed": false,
+      "execution_time": 0,
+      "input": {
+        "with_positions": false
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "error": "tesseract is not installed or it's not in your PATH. See README file for more information."
+      }
+    },
+    {
+      "test_id": 2,
+      "description": "Hebrew text extraction with positions",
+      "passed": false,
+      "execution_time": 0,
+      "input": {
+        "with_positions": true
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "error": "tesseract is not installed or it's not in your PATH. See README file for more information."
+      }
+    },
+    {
+      "test_id": 3,
+      "description": "Hebrew financial text extraction",
+      "passed": false,
+      "execution_time": 0,
+      "input": {
+        "with_positions": false
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "error": "tesseract is not installed or it's not in your PATH. See README file for more information."
+      }
+    },
+    {
+      "test_id": 4,
+      "description": "Hebrew text extraction with skew",
+      "passed": false,
+      "execution_time": 0,
+      "input": {
+        "with_positions": false
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "error": "tesseract is not installed or it's not in your PATH. See README file for more information."
+      }
+    },
+    {
+      "test_id": 5,
+      "description": "Hebrew text extraction with noise",
+      "passed": false,
+      "execution_time": 0,
+      "input": {
+        "with_positions": false
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "error": "tesseract is not installed or it's not in your PATH. See README file for more information."
+      }
+    }
+  ],
+  "success_rate": 0.0
+}

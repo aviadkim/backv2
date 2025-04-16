@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -43,13 +44,13 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
   const [chartType, setChartType] = useState('doughnut');
   const [chartData, setChartData] = useState(null);
   const [chartOptions, setChartOptions] = useState({});
-  
+
   useEffect(() => {
     if (!data) return;
-    
+
     prepareChartData();
   }, [data, chartType]);
-  
+
   const prepareChartData = () => {
     if (type === 'portfolio') {
       preparePortfolioData();
@@ -59,15 +60,15 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
       prepareComparisonData();
     }
   };
-  
+
   const preparePortfolioData = () => {
     if (!data || !data.holdings) return;
-    
+
     const holdings = data.holdings;
     const labels = holdings.map(h => h.name || h.isin);
     const values = holdings.map(h => h.value);
     const backgroundColors = generateColors(labels.length);
-    
+
     // Prepare data based on chart type
     if (chartType === 'doughnut' || chartType === 'pie') {
       setChartData({
@@ -81,7 +82,7 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
           }
         ]
       });
-      
+
       setChartOptions({
         responsive: true,
         plugins: {
@@ -127,7 +128,7 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
           }
         ]
       });
-      
+
       setChartOptions({
         responsive: true,
         plugins: {
@@ -154,12 +155,12 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
       });
     }
   };
-  
+
   const prepareTimeSeriesData = () => {
     if (!data || !data.timeSeries) return;
-    
+
     const { dates, values } = data.timeSeries;
-    
+
     setChartData({
       labels: dates,
       datasets: [
@@ -173,7 +174,7 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
         }
       ]
     });
-    
+
     setChartOptions({
       responsive: true,
       plugins: {
@@ -205,12 +206,12 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
       }
     });
   };
-  
+
   const prepareComparisonData = () => {
     if (!data || !data.comparison) return;
-    
+
     const { categories, series } = data.comparison;
-    
+
     setChartData({
       labels: categories,
       datasets: series.map((s, index) => ({
@@ -221,7 +222,7 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
         borderWidth: 1
       }))
     });
-    
+
     setChartOptions({
       responsive: true,
       plugins: {
@@ -247,10 +248,10 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
       }
     });
   };
-  
+
   const renderChart = () => {
     if (!chartData) return <div className="flex justify-center items-center h-64 bg-gray-100 rounded-lg">No data available</div>;
-    
+
     switch (chartType) {
       case 'bar':
         return <Bar data={chartData} options={chartOptions} />;
@@ -264,9 +265,10 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
         return <Doughnut data={chartData} options={chartOptions} />;
     }
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-md p-4">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-medium text-gray-900">Financial Data Visualization</h3>
         <div className="flex space-x-2">
@@ -304,11 +306,11 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
           </button>
         </div>
       </div>
-      
+
       <div className="h-80">
         {renderChart()}
       </div>
-      
+
       {data && data.summary && (
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {Object.entries(data.summary).map(([key, value]) => {
@@ -320,11 +322,11 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
                 </div>
               );
             }
-            
+
             if (typeof value === 'object') {
               return null; // Skip nested objects, they're visualized in the chart
             }
-            
+
             return (
               <div key={key} className="bg-gray-50 p-3 rounded-lg">
                 <h4 className="text-xs font-medium text-gray-500 uppercase">
@@ -337,6 +339,7 @@ const FinancialDataVisualization = ({ data, type = 'portfolio' }) => {
         </div>
       )}
     </div>
+    </AccessibilityWrapper>
   );
 };
 

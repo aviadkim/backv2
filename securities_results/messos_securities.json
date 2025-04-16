@@ -1,0 +1,242 @@
+[
+  {
+    "isin": "XS2530201644",
+    "description": "S LTD.\nV",
+    "valuation": 200000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2588105036",
+    "description": "USD 200",
+    "valuation": 1500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2665592833",
+    "description": "USD 200",
+    "valuation": 690000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2692298537",
+    "description": "HARP ISSUER (4",
+    "valuation": 100000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2754416860",
+    "description": "SE.195 27",
+    "valuation": 100000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2761230684",
+    "description": "XS2692298537",
+    "valuation": 250000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2736388732",
+    "description": "XS2754416860",
+    "valuation": 16690.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2782869916",
+    "description": "AEOUI",
+    "valuation": 440000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2824054402",
+    "description": "USD 50",
+    "valuation": 18548.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2567543397",
+    "description": "XS2782869916",
+    "valuation": 96212.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2110079584",
+    "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034 100.1000 100.5",
+    "valuation": 90000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2848820754",
+    "description": "XS2567543397",
+    "valuation": 100000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2829712830",
+    "description": "CITIGROUP 0",
+    "valuation": 200000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2912278723",
+    "description": "ITIGROUP GLBL 0",
+    "valuation": 100000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2381723902",
+    "description": "HS EMTN 2024-30.09.2024 99.9996 93.0200 1.93",
+    "valuation": 16690.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2829752976",
+    "description": "AEOUI",
+    "valuation": 150000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2953741100",
+    "description": "USD 250",
+    "valuation": 500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2381717250",
+    "description": "MEDIUM TERM NOTES 2024- 99.6790 97.8700 1.81",
+    "valuation": 50000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2481066111",
+    "description": "USD 150",
+    "valuation": 1470000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2964611052",
+    "description": "USD 500",
+    "valuation": 115613.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "LU2228214107",
+    "description": "NOTES 2025-03.02.2035 100.1000 100.8900 0.79",
+    "valuation": 350000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "CH1269060229",
+    "description": "NOTES 2025-14.02.35 100.0000 101.2500 1.25",
+    "valuation": 690000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS0461497009",
+    "description": "SP\nISIN",
+    "valuation": 11807.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2746319610",
+    "description": "LTD.\nV",
+    "valuation": 44560.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "CH0244767585",
+    "description": "IVA\n\nMESSOS ENTERPRISES LTD.\nV",
+    "valuation": 27406.0,
+    "section": "Equities"
+  },
+  {
+    "isin": "XS2519369867",
+    "description": "AEOUI",
+    "valuation": 500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2315191069",
+    "description": "USD 200",
+    "valuation": 1200000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2792098779",
+    "description": "CITD 26 1",
+    "valuation": 690000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2714429128",
+    "description": "XS2315191069",
+    "valuation": 500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2105981117",
+    "description": "XS2792098779",
+    "valuation": 1600000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2838389430",
+    "description": "XS2714429128",
+    "valuation": 63080.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2631782468",
+    "description": "XS2105981117",
+    "valuation": 16690.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS1700087403",
+    "description": "TERPRISES LTD.\nV",
+    "valuation": 200000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2594173093",
+    "description": "USD 100",
+    "valuation": 500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2407295554",
+    "description": "SRN\nISIN",
+    "valuation": 100000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2518123653",
+    "description": "S2594173093",
+    "valuation": 1000000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XS2252299883",
+    "description": "USD 100",
+    "valuation": 500000.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "CH1259345242",
+    "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS 10",
+    "valuation": 16690.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "CH1259344831",
+    "description": "ESSOS ENTERPRISES LTD.\nV",
+    "valuation": 7850257.0,
+    "section": "Bonds"
+  },
+  {
+    "isin": "XD0466760473",
+    "description": "ENTERPRISES LTD.\nV",
+    "valuation": 26129.0,
+    "section": "Equities"
+  }
+]

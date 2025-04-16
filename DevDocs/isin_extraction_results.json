@@ -1,0 +1,56 @@
+{
+  "status": "success",
+  "isins": [
+    {
+      "isin": "US0231351067",
+      "metadata": {
+        "country_code": "US",
+        "country_name": "United States",
+        "security_code": "023135106",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "US5949181045",
+      "metadata": {
+        "country_code": "US",
+        "country_name": "United States",
+        "security_code": "594918104",
+        "check_digit": "5",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "US0378331005",
+      "metadata": {
+        "country_code": "US",
+        "country_name": "United States",
+        "security_code": "037833100",
+        "check_digit": "5",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "US67066G1040",
+      "metadata": {
+        "country_code": "US",
+        "country_name": "United States",
+        "security_code": "67066G104",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "US88160R1014",
+      "metadata": {
+        "country_code": "US",
+        "country_name": "United States",
+        "security_code": "88160R101",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    }
+  ],
+  "count": 5
+}

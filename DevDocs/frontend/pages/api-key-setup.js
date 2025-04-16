@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiClipboard, FiCheck, FiExternalLink, FiInfo, FiKey } from 'react-icons/fi';
+import OpenRouterKeyManager from '../components/OpenRouterKeyManager';
 import Link from 'next/link';
 
 const ApiKeySetup = () => {
@@ -484,6 +485,22 @@ const ApiKeySetup = () => {
               </div>
             </li>
           </ol>
+        </div>
+      </div>
+
+      {/* OpenRouter API Key */}
+      <div id="openrouter" className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          <FiKey className="h-6 w-6 mr-2 text-indigo-600" />
+          OpenRouter API Key
+        </h2>
+
+        <div className="mb-4">
+          <p className="text-gray-700 mb-4">
+            OpenRouter provides access to 300+ AI models including Optimus Alpha. This API key will be used by all agents in the application.
+          </p>
+
+          <OpenRouterKeyManager />
         </div>
       </div>
 

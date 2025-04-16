@@ -1,0 +1,8 @@
+{
+  "name": "DeepSeek v1",
+  "model": "deepseek-ai/deepseek-v1",
+  "key": "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",
+  "status": "error",
+  "error_code": 400,
+  "error_message": "{\"error\":{\"message\":\"deepseek-ai/deepseek-v1 is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+}

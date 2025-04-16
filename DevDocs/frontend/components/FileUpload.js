@@ -1,3 +1,6 @@
+import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
+
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaUpload, FaFile, FaFileAlt, FaFilePdf, FaFileImage, FaFileExcel, FaTimes } from 'react-icons/fa';
@@ -119,6 +122,8 @@ const FileUpload = ({ onUpload, maxFiles = 5, maxSize = MAX_FILE_SIZE, acceptedT
   };
 
   return (
+    <AccessibilityWrapper>
+      
     <div className="space-y-4">
       {/* Dropzone */}
       <div 

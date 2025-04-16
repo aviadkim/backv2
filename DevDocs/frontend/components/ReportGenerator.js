@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiFileText, FiCalendar, FiDownload, FiMail, FiPlus, FiTrash2 } from 'react-icons/fi';
 import reportController from '../controllers/reportController';
 
@@ -29,7 +30,7 @@ const ReportGenerator = ({ portfolio, document }) => {
   });
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
-  
+
   useEffect(() => {
     // Load report schedules
     const loadSchedules = async () => {
@@ -43,24 +44,24 @@ const ReportGenerator = ({ portfolio, document }) => {
         setLoading(false);
       }
     };
-    
+
     loadSchedules();
   }, []);
-  
+
   const handleConfigChange = (key, value) => {
     setConfig(prev => ({
       ...prev,
       [key]: value
     }));
   };
-  
+
   const handleNewScheduleChange = (key, value) => {
     setNewSchedule(prev => ({
       ...prev,
       [key]: value
     }));
   };
-  
+
   const handleNewScheduleConfigChange = (key, value) => {
     setNewSchedule(prev => ({
       ...prev,
@@ -70,7 +71,7 @@ const ReportGenerator = ({ portfolio, document }) => {
       }
     }));
   };
-  
+
   const handleRecipientChange = (index, value) => {
     const newRecipients = [...newSchedule.recipients];
     newRecipients[index] = value;
@@ -79,14 +80,14 @@ const ReportGenerator = ({ portfolio, document }) => {
       recipients: newRecipients
     }));
   };
-  
+
   const addRecipient = () => {
     setNewSchedule(prev => ({
       ...prev,
       recipients: [...prev.recipients, '']
     }));
   };
-  
+
   const removeRecipient = (index) => {
     const newRecipients = [...newSchedule.recipients];
     newRecipients.splice(index, 1);
@@ -95,23 +96,23 @@ const ReportGenerator = ({ portfolio, document }) => {
       recipients: newRecipients
     }));
   };
-  
+
   const handleGenerateReport = async (format) => {
     if (!portfolio && reportType === 'portfolio') {
       alert('Please select a portfolio');
       return;
     }
-    
+
     if (!document && reportType === 'document') {
       alert('Please select a document');
       return;
     }
-    
+
     setGenerating(true);
-    
+
     try {
       let reportData;
-      
+
       if (reportType === 'portfolio') {
         reportData = await reportController.generatePortfolioReport(
           portfolio,
@@ -125,15 +126,15 @@ const ReportGenerator = ({ portfolio, document }) => {
           config
         );
       }
-      
+
       let blob;
-      
+
       if (format === 'pdf') {
         blob = await reportController.generatePdfReport(reportData);
       } else {
         blob = await reportController.generateExcelReport(reportData);
       }
-      
+
       // Create a download link
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -150,30 +151,30 @@ const ReportGenerator = ({ portfolio, document }) => {
       setGenerating(false);
     }
   };
-  
+
   const handleCreateSchedule = async () => {
     if (!newSchedule.name) {
       alert('Please enter a schedule name');
       return;
     }
-    
+
     if (newSchedule.recipients.some(r => !r)) {
       alert('Please enter all recipient email addresses');
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
       const schedule = {
         ...newSchedule,
         portfolioId: reportType === 'portfolio' ? portfolio?.id : undefined,
         documentId: reportType === 'document' ? document?.id : undefined
       };
-      
+
       const createdSchedule = await reportController.scheduleReport(schedule);
       setSchedules(prev => [...prev, createdSchedule]);
-      
+
       // Reset form
       setNewSchedule({
         name: '',
@@ -195,17 +196,17 @@ const ReportGenerator = ({ portfolio, document }) => {
       setLoading(false);
     }
   };
-  
+
   const handleDeleteSchedule = async (scheduleId) => {
     if (!confirm('Are you sure you want to delete this schedule?')) {
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
       const success = await reportController.deleteReportSchedule(scheduleId);
-      
+
       if (success) {
         setSchedules(prev => prev.filter(s => s.id !== scheduleId));
       }
@@ -216,13 +217,13 @@ const ReportGenerator = ({ portfolio, document }) => {
       setLoading(false);
     }
   };
-  
+
   const renderGenerateTab = () => {
     return (
       <div className="space-y-6">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Report Configuration</h3>
-          
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
@@ -247,7 +248,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 </label>
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Report Template</label>
               <select
@@ -261,7 +262,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 <option value="risk">Risk</option>
               </select>
             </div>
-            
+
             {reportType === 'portfolio' && (
               <>
                 <div>
@@ -278,7 +279,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                     <option value="5Y">5 Years</option>
                   </select>
                 </div>
-                
+
                 <div className="flex items-center">
                   <input
                     id="include-benchmark"
@@ -291,7 +292,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                     Include Benchmark Comparison
                   </label>
                 </div>
-                
+
                 {config.includeBenchmark && (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Benchmark</label>
@@ -310,7 +311,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 )}
               </>
             )}
-            
+
             <div className="flex items-center">
               <input
                 id="include-holdings"
@@ -323,7 +324,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 Include Holdings Details
               </label>
             </div>
-            
+
             <div className="flex items-center">
               <input
                 id="include-charts"
@@ -338,10 +339,10 @@ const ReportGenerator = ({ portfolio, document }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Generate Report</h3>
-          
+
           <div className="flex space-x-4">
             <button
               type="button"
@@ -354,7 +355,7 @@ const ReportGenerator = ({ portfolio, document }) => {
               <FiDownload className="mr-2 -ml-1 h-5 w-5" />
               {generating ? 'Generating...' : 'Download PDF'}
             </button>
-            
+
             <button
               type="button"
               onClick={() => handleGenerateReport('excel')}
@@ -371,13 +372,13 @@ const ReportGenerator = ({ portfolio, document }) => {
       </div>
     );
   };
-  
+
   const renderScheduleTab = () => {
     return (
       <div className="space-y-6">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Scheduled Reports</h3>
-          
+
           {loading ? (
             <div className="flex justify-center py-4">
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
@@ -455,10 +456,10 @@ const ReportGenerator = ({ portfolio, document }) => {
             </div>
           )}
         </div>
-        
+
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Create Schedule</h3>
-          
+
           <div className="space-y-4">
             <div>
               <label htmlFor="schedule-name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -473,7 +474,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 placeholder="Monthly Portfolio Report"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
               <div className="flex space-x-4">
@@ -497,7 +498,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 </label>
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Report Template</label>
               <select
@@ -511,7 +512,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 <option value="risk">Risk</option>
               </select>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
               <select
@@ -526,7 +527,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 <option value="annually">Annually</option>
               </select>
             </div>
-            
+
             <div>
               <label htmlFor="next-run-date" className="block text-sm font-medium text-gray-700 mb-1">
                 First Run Date
@@ -539,7 +540,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Recipients</label>
               {newSchedule.recipients.map((recipient, index) => (
@@ -571,7 +572,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 Add Recipient
               </button>
             </div>
-            
+
             {newSchedule.type === 'portfolio' && (
               <>
                 <div>
@@ -588,7 +589,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                     <option value="5Y">5 Years</option>
                   </select>
                 </div>
-                
+
                 <div className="flex items-center">
                   <input
                     id="schedule-include-benchmark"
@@ -601,7 +602,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                     Include Benchmark Comparison
                   </label>
                 </div>
-                
+
                 {newSchedule.config.includeBenchmark && (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Benchmark</label>
@@ -620,7 +621,7 @@ const ReportGenerator = ({ portfolio, document }) => {
                 )}
               </>
             )}
-            
+
             <div className="pt-4">
               <button
                 type="button"
@@ -639,9 +640,10 @@ const ReportGenerator = ({ portfolio, document }) => {
       </div>
     );
   };
-  
+
   return (
-    <div className="space-y-6">
+    <AccessibilityWrapper>
+      <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-md">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
@@ -670,9 +672,10 @@ const ReportGenerator = ({ portfolio, document }) => {
           </nav>
         </div>
       </div>
-      
+
       {activeTab === 'generate' ? renderGenerateTab() : renderScheduleTab()}
     </div>
+    </AccessibilityWrapper>
   );
 };
 

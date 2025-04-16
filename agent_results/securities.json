@@ -1,0 +1,964 @@
+{
+  "securities": [
+    {
+      "isin": "CH1908490000",
+      "name": "ate Actual Ex. Rate Perf Market Thereof accruals of assets\nPrice Date Perf Currency Countervalue USD\nCash accounts credit\nUSD 47",
+      "quantity": null,
+      "price": null,
+      "value": null,
+      "maturity_date": null,
+      "asset_class": "Cash",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2530201644",
+      "name": "e Perf Currency Countervalue USD\nBonds",
+      "quantity": 2001.2989890039069,
+      "price": 99.308,
+      "value": 198745.0,
+      "maturity_date": "23.02.2027",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2588105036",
+      "name": ".02.2025\nCoupon",
+      "quantity": 2009.8285552831007,
+      "price": 99.099,
+      "value": 199172.0,
+      "maturity_date": "22.02.2028",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2665592833",
+      "name": "rity",
+      "quantity": 274.41813192397603,
+      "price": 98.39,
+      "value": 27000.0,
+      "maturity_date": "18.09.2028",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2692298537",
+      "name": ".2025\nOrdinary Bonds",
+      "quantity": 1006.2563997542495,
+      "price": 97.66,
+      "value": 98271.0,
+      "maturity_date": "18.09.2028",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2754416860",
+      "name": "rn.",
+      "quantity": 1006.2563997542495,
+      "price": 97.66,
+      "value": 98271.0,
+      "maturity_date": "07.11.2029",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2761230684",
+      "name": "Bonds",
+      "quantity": 1063.8297872340424,
+      "price": 94.0,
+      "value": 100000.0,
+      "maturity_date": "17.01.2030",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2736388732",
+      "name": "ty",
+      "quantity": 169.23544919894545,
+      "price": 98.62,
+      "value": 16690.0,
+      "maturity_date": "20.12.2031",
+      "asset_class": "Bonds",
+      "page": 8,
+      "source": "text"
+    },
+    {
+      "isin": "XS2782869916",
+      "name": "Currency Countervalue USD\nBonds",
+      "quantity": 500.0,
+      "price": 97.516,
+      "value": 48758.0,
+      "maturity_date": "09.05.2034",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2824054402",
+      "name": "69916",
+      "quantity": 185.2947052947053,
+      "price": 100.1,
+      "value": 18548.0,
+      "maturity_date": "09.05.2034",
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2567543397",
+      "name": "Callable",
+      "quantity": 961.1588411588413,
+      "price": 100.1,
+      "value": 96212.0,
+      "maturity_date": null,
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2110079584",
+      "name": "Callable",
+      "quantity": 900.0,
+      "price": 99.95,
+      "value": 89955.0,
+      "maturity_date": null,
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2848820754",
+      "name": "136429245\nZero Bonds",
+      "quantity": 967.0500967533864,
+      "price": 93.02,
+      "value": 89955.0,
+      "maturity_date": "01.08.2034",
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2829712830",
+      "name": "OBAL RE\nISIN",
+      "quantity": 1000.0,
+      "price": 93.02,
+      "value": 93020.0,
+      "maturity_date": "01.08.2034",
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2912278723",
+      "name": "0",
+      "quantity": 1000.0103253518363,
+      "price": 96.849,
+      "value": 96850.0,
+      "maturity_date": "30.09.2034",
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2381723902",
+      "name": "138689613\nZero Bonds",
+      "quantity": 172.3301221489122,
+      "price": 96.849,
+      "value": 16690.0,
+      "maturity_date": "17.10.2034",
+      "asset_class": "Bonds",
+      "page": 9,
+      "source": "text"
+    },
+    {
+      "isin": "XS2829752976",
+      "name": "Currency Countervalue USD\nBonds",
+      "quantity": 1513.0274854398692,
+      "price": 97.87,
+      "value": 148080.0,
+      "maturity_date": "18.11.2034",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2953741100",
+      "name": "Valorn.",
+      "quantity": 1500.0,
+      "price": 98.72,
+      "value": 148080.0,
+      "maturity_date": "18.11.2034",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "XS2381717250",
+      "name": "741100",
+      "quantity": 500.0,
+      "price": 100.0,
+      "value": 50000.0,
+      "maturity_date": "11.12.2034",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "XS2481066111",
+      "name": "66",
+      "quantity": 500.0,
+      "price": 100.0,
+      "value": 50000.0,
+      "maturity_date": "19.12.2034",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "XS2964611052",
+      "name": "111",
+      "quantity": 1418.0424383662455,
+      "price": 81.53,
+      "value": 115613.0,
+      "maturity_date": "03.02.2035",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "LU2228214107",
+      "name": "141235167\nZero Bonds",
+      "quantity": 1418.0424383662455,
+      "price": 81.53,
+      "value": 115613.0,
+      "maturity_date": "14.02.2035",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "CH1269060229",
+      "name": "214107",
+      "quantity": 3748.769230769231,
+      "price": 91.0,
+      "value": 341138.0,
+      "maturity_date": "26.05.2028",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "XS0461497009",
+      "name": "nds",
+      "quantity": 117.95204795204796,
+      "price": 100.1,
+      "value": 11807.0,
+      "maturity_date": "26.05.2028",
+      "asset_class": "Bonds",
+      "page": 10,
+      "source": "text"
+    },
+    {
+      "isin": "XS2746319610",
+      "name": "Perf Currency Countervalue USD\nBonds",
+      "quantity": 444.71057884231533,
+      "price": 100.2,
+      "value": 44560.0,
+      "maturity_date": "01.03.2030",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "CH0244767585",
+      "name": "of accruals of assets\nPrice Date Perf Currency Countervalue USD\nEquities",
+      "quantity": 287.2748402091807,
+      "price": 86.05,
+      "value": 24720.0,
+      "maturity_date": null,
+      "asset_class": "Equities",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2519369867",
+      "name": "s\nPrice Date Perf Currency Countervalue USD\nStructured products",
+      "quantity": 2019.5744246568352,
+      "price": 97.985,
+      "value": 197888.0,
+      "maturity_date": "21.06.2027",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2315191069",
+      "name": "28.02.2025\nOther convertible bonds",
+      "quantity": 5079.620659766481,
+      "price": 98.065,
+      "value": 498133.0,
+      "maturity_date": "21.06.2027",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS2792098779",
+      "name": "",
+      "quantity": 7036.149492683425,
+      "price": 98.065,
+      "value": 690000.0,
+      "maturity_date": "08.01.2029",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS2714429128",
+      "name": "ds",
+      "quantity": 174.86713000817662,
+      "price": 97.84,
+      "value": 17109.0,
+      "maturity_date": "02.12.2034",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS2105981117",
+      "name": "ed Bonds",
+      "quantity": 5074.479647288013,
+      "price": 97.53,
+      "value": 494914.0,
+      "maturity_date": "17.09.2029",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS2838389430",
+      "name": ".2025\nStructured Bonds",
+      "quantity": 646.7753511739977,
+      "price": 97.53,
+      "value": 63080.0,
+      "maturity_date": "20.12.2028",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS2631782468",
+      "name": "aturity",
+      "quantity": 5016.588789814115,
+      "price": 98.018,
+      "value": 491716.0,
+      "maturity_date": "25.05.2029",
+      "asset_class": "Bonds",
+      "page": 13,
+      "source": "text"
+    },
+    {
+      "isin": "XS1700087403",
+      "name": "ls of assets\nPrice Date Perf Currency Countervalue USD\nStructured products",
+      "quantity": 1095.4505004339658,
+      "price": 91.021,
+      "value": 99709.0,
+      "maturity_date": "20.06.2026",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XS2594173093",
+      "name": "5 28.02.2025\nStructured Bonds",
+      "quantity": 2030.4736842105262,
+      "price": 95.0,
+      "value": 192895.0,
+      "maturity_date": "20.06.2026",
+      "asset_class": "Bonds",
+      "page": 14,
+      "source": "text"
+    },
+    {
+      "isin": "XS2407295554",
+      "name": "urity",
+      "quantity": 999.0009990009991,
+      "price": 100.1,
+      "value": 100000.0,
+      "maturity_date": "12.01.2028",
+      "asset_class": "Bonds",
+      "page": 14,
+      "source": "text"
+    },
+    {
+      "isin": "XS2518123653",
+      "name": "Structured Bonds",
+      "quantity": 999.0009990009991,
+      "price": 100.1,
+      "value": 100000.0,
+      "maturity_date": "12.01.2028",
+      "asset_class": "Bonds",
+      "page": 14,
+      "source": "text"
+    },
+    {
+      "isin": "XS2252299883",
+      "name": ".2025\nDays",
+      "quantity": 5062.778452814905,
+      "price": 98.76,
+      "value": 500000.0,
+      "maturity_date": "15.05.2026",
+      "asset_class": "Bonds",
+      "page": 14,
+      "source": "text"
+    },
+    {
+      "isin": "CH1259345242",
+      "name": "ty",
+      "quantity": 5075.163166495802,
+      "price": 98.519,
+      "value": 500000.0,
+      "maturity_date": "15.05.2026",
+      "asset_class": "Bonds",
+      "page": 14,
+      "source": "text"
+    },
+    {
+      "isin": "CH1259344831",
+      "name": "f accruals of assets\nPrice Date Perf Currency Countervalue USD\nStructured products",
+      "quantity": 1044.1801364295784,
+      "price": 97.193,
+      "value": 101487.0,
+      "maturity_date": "11.07.2028",
+      "asset_class": "Bonds",
+      "sources": [
+        "text",
+        "table"
+      ]
+    },
+    {
+      "isin": "XD0466760473",
+      "name": "f assets\nPrice Date Perf Currency Countervalue USD\nHedge Funds & Private Equity\nUSD 204.071 EXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1 1",
+      "quantity": 299.3012600229095,
+      "price": 87.3,
+      "value": 26129.0,
+      "maturity_date": null,
+      "asset_class": "Equities",
+      "sources": [
+        "text",
+        "table"
+      ]
+    }
+  ],
+  "asset_classes": {
+    "Cash": {
+      "securities": [
+        {
+          "isin": "CH1908490000",
+          "name": "ate Actual Ex. Rate Perf Market Thereof accruals of assets\nPrice Date Perf Currency Countervalue USD\nCash accounts credit\nUSD 47",
+          "quantity": null,
+          "price": null,
+          "value": null,
+          "maturity_date": null,
+          "asset_class": "Cash",
+          "sources": [
+            "text",
+            "table"
+          ]
+        }
+      ],
+      "total_value": 0
+    },
+    "Bonds": {
+      "securities": [
+        {
+          "isin": "XS2530201644",
+          "name": "e Perf Currency Countervalue USD\nBonds",
+          "quantity": 2001.2989890039069,
+          "price": 99.308,
+          "value": 198745.0,
+          "maturity_date": "23.02.2027",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2588105036",
+          "name": ".02.2025\nCoupon",
+          "quantity": 2009.8285552831007,
+          "price": 99.099,
+          "value": 199172.0,
+          "maturity_date": "22.02.2028",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2665592833",
+          "name": "rity",
+          "quantity": 274.41813192397603,
+          "price": 98.39,
+          "value": 27000.0,
+          "maturity_date": "18.09.2028",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2692298537",
+          "name": ".2025\nOrdinary Bonds",
+          "quantity": 1006.2563997542495,
+          "price": 97.66,
+          "value": 98271.0,
+          "maturity_date": "18.09.2028",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2754416860",
+          "name": "rn.",
+          "quantity": 1006.2563997542495,
+          "price": 97.66,
+          "value": 98271.0,
+          "maturity_date": "07.11.2029",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2761230684",
+          "name": "Bonds",
+          "quantity": 1063.8297872340424,
+          "price": 94.0,
+          "value": 100000.0,
+          "maturity_date": "17.01.2030",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2736388732",
+          "name": "ty",
+          "quantity": 169.23544919894545,
+          "price": 98.62,
+          "value": 16690.0,
+          "maturity_date": "20.12.2031",
+          "asset_class": "Bonds",
+          "page": 8,
+          "source": "text"
+        },
+        {
+          "isin": "XS2782869916",
+          "name": "Currency Countervalue USD\nBonds",
+          "quantity": 500.0,
+          "price": 97.516,
+          "value": 48758.0,
+          "maturity_date": "09.05.2034",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2824054402",
+          "name": "69916",
+          "quantity": 185.2947052947053,
+          "price": 100.1,
+          "value": 18548.0,
+          "maturity_date": "09.05.2034",
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2567543397",
+          "name": "Callable",
+          "quantity": 961.1588411588413,
+          "price": 100.1,
+          "value": 96212.0,
+          "maturity_date": null,
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2110079584",
+          "name": "Callable",
+          "quantity": 900.0,
+          "price": 99.95,
+          "value": 89955.0,
+          "maturity_date": null,
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2848820754",
+          "name": "136429245\nZero Bonds",
+          "quantity": 967.0500967533864,
+          "price": 93.02,
+          "value": 89955.0,
+          "maturity_date": "01.08.2034",
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2829712830",
+          "name": "OBAL RE\nISIN",
+          "quantity": 1000.0,
+          "price": 93.02,
+          "value": 93020.0,
+          "maturity_date": "01.08.2034",
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2912278723",
+          "name": "0",
+          "quantity": 1000.0103253518363,
+          "price": 96.849,
+          "value": 96850.0,
+          "maturity_date": "30.09.2034",
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2381723902",
+          "name": "138689613\nZero Bonds",
+          "quantity": 172.3301221489122,
+          "price": 96.849,
+          "value": 16690.0,
+          "maturity_date": "17.10.2034",
+          "asset_class": "Bonds",
+          "page": 9,
+          "source": "text"
+        },
+        {
+          "isin": "XS2829752976",
+          "name": "Currency Countervalue USD\nBonds",
+          "quantity": 1513.0274854398692,
+          "price": 97.87,
+          "value": 148080.0,
+          "maturity_date": "18.11.2034",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2953741100",
+          "name": "Valorn.",
+          "quantity": 1500.0,
+          "price": 98.72,
+          "value": 148080.0,
+          "maturity_date": "18.11.2034",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "XS2381717250",
+          "name": "741100",
+          "quantity": 500.0,
+          "price": 100.0,
+          "value": 50000.0,
+          "maturity_date": "11.12.2034",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "XS2481066111",
+          "name": "66",
+          "quantity": 500.0,
+          "price": 100.0,
+          "value": 50000.0,
+          "maturity_date": "19.12.2034",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "XS2964611052",
+          "name": "111",
+          "quantity": 1418.0424383662455,
+          "price": 81.53,
+          "value": 115613.0,
+          "maturity_date": "03.02.2035",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "LU2228214107",
+          "name": "141235167\nZero Bonds",
+          "quantity": 1418.0424383662455,
+          "price": 81.53,
+          "value": 115613.0,
+          "maturity_date": "14.02.2035",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "CH1269060229",
+          "name": "214107",
+          "quantity": 3748.769230769231,
+          "price": 91.0,
+          "value": 341138.0,
+          "maturity_date": "26.05.2028",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "XS0461497009",
+          "name": "nds",
+          "quantity": 117.95204795204796,
+          "price": 100.1,
+          "value": 11807.0,
+          "maturity_date": "26.05.2028",
+          "asset_class": "Bonds",
+          "page": 10,
+          "source": "text"
+        },
+        {
+          "isin": "XS2746319610",
+          "name": "Perf Currency Countervalue USD\nBonds",
+          "quantity": 444.71057884231533,
+          "price": 100.2,
+          "value": 44560.0,
+          "maturity_date": "01.03.2030",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2519369867",
+          "name": "s\nPrice Date Perf Currency Countervalue USD\nStructured products",
+          "quantity": 2019.5744246568352,
+          "price": 97.985,
+          "value": 197888.0,
+          "maturity_date": "21.06.2027",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2315191069",
+          "name": "28.02.2025\nOther convertible bonds",
+          "quantity": 5079.620659766481,
+          "price": 98.065,
+          "value": 498133.0,
+          "maturity_date": "21.06.2027",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS2792098779",
+          "name": "",
+          "quantity": 7036.149492683425,
+          "price": 98.065,
+          "value": 690000.0,
+          "maturity_date": "08.01.2029",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS2714429128",
+          "name": "ds",
+          "quantity": 174.86713000817662,
+          "price": 97.84,
+          "value": 17109.0,
+          "maturity_date": "02.12.2034",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS2105981117",
+          "name": "ed Bonds",
+          "quantity": 5074.479647288013,
+          "price": 97.53,
+          "value": 494914.0,
+          "maturity_date": "17.09.2029",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS2838389430",
+          "name": ".2025\nStructured Bonds",
+          "quantity": 646.7753511739977,
+          "price": 97.53,
+          "value": 63080.0,
+          "maturity_date": "20.12.2028",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS2631782468",
+          "name": "aturity",
+          "quantity": 5016.588789814115,
+          "price": 98.018,
+          "value": 491716.0,
+          "maturity_date": "25.05.2029",
+          "asset_class": "Bonds",
+          "page": 13,
+          "source": "text"
+        },
+        {
+          "isin": "XS1700087403",
+          "name": "ls of assets\nPrice Date Perf Currency Countervalue USD\nStructured products",
+          "quantity": 1095.4505004339658,
+          "price": 91.021,
+          "value": 99709.0,
+          "maturity_date": "20.06.2026",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XS2594173093",
+          "name": "5 28.02.2025\nStructured Bonds",
+          "quantity": 2030.4736842105262,
+          "price": 95.0,
+          "value": 192895.0,
+          "maturity_date": "20.06.2026",
+          "asset_class": "Bonds",
+          "page": 14,
+          "source": "text"
+        },
+        {
+          "isin": "XS2407295554",
+          "name": "urity",
+          "quantity": 999.0009990009991,
+          "price": 100.1,
+          "value": 100000.0,
+          "maturity_date": "12.01.2028",
+          "asset_class": "Bonds",
+          "page": 14,
+          "source": "text"
+        },
+        {
+          "isin": "XS2518123653",
+          "name": "Structured Bonds",
+          "quantity": 999.0009990009991,
+          "price": 100.1,
+          "value": 100000.0,
+          "maturity_date": "12.01.2028",
+          "asset_class": "Bonds",
+          "page": 14,
+          "source": "text"
+        },
+        {
+          "isin": "XS2252299883",
+          "name": ".2025\nDays",
+          "quantity": 5062.778452814905,
+          "price": 98.76,
+          "value": 500000.0,
+          "maturity_date": "15.05.2026",
+          "asset_class": "Bonds",
+          "page": 14,
+          "source": "text"
+        },
+        {
+          "isin": "CH1259345242",
+          "name": "ty",
+          "quantity": 5075.163166495802,
+          "price": 98.519,
+          "value": 500000.0,
+          "maturity_date": "15.05.2026",
+          "asset_class": "Bonds",
+          "page": 14,
+          "source": "text"
+        },
+        {
+          "isin": "CH1259344831",
+          "name": "f accruals of assets\nPrice Date Perf Currency Countervalue USD\nStructured products",
+          "quantity": 1044.1801364295784,
+          "price": 97.193,
+          "value": 101487.0,
+          "maturity_date": "11.07.2028",
+          "asset_class": "Bonds",
+          "sources": [
+            "text",
+            "table"
+          ]
+        }
+      ],
+      "total_value": 6359959.0
+    },
+    "Equities": {
+      "securities": [
+        {
+          "isin": "CH0244767585",
+          "name": "of accruals of assets\nPrice Date Perf Currency Countervalue USD\nEquities",
+          "quantity": 287.2748402091807,
+          "price": 86.05,
+          "value": 24720.0,
+          "maturity_date": null,
+          "asset_class": "Equities",
+          "sources": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "isin": "XD0466760473",
+          "name": "f assets\nPrice Date Perf Currency Countervalue USD\nHedge Funds & Private Equity\nUSD 204.071 EXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1 1",
+          "quantity": 299.3012600229095,
+          "price": 87.3,
+          "value": 26129.0,
+          "maturity_date": null,
+          "asset_class": "Equities",
+          "sources": [
+            "text",
+            "table"
+          ]
+        }
+      ],
+      "total_value": 50849.0
+    }
+  },
+  "total_value": 6410808.0
+}

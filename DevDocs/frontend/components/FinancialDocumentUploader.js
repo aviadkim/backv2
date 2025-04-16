@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  Button, 
-  FormControl, 
-  FormLabel, 
-  Input, 
-  Select, 
-  Text, 
-  VStack, 
-  HStack, 
-  useToast, 
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Text,
+  VStack,
+  HStack,
+  useToast,
   Progress,
   Heading,
   Card,
@@ -21,16 +21,16 @@ import {
 import { FiUpload, FiFile, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import axios from 'axios';
 
-const FinancialDocumentUploader = () => {
+const FinancialDocumentUploader = ({ onDocumentProcessed }) => {
   const [file, setFile] = useState(null);
   const [language, setLanguage] = useState('heb+eng');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
-  
+
   const toast = useToast();
-  
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -38,26 +38,26 @@ const FinancialDocumentUploader = () => {
       setError(null);
     }
   };
-  
+
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
   };
-  
+
   const handleUpload = async () => {
     if (!file) {
       setError('Please select a file to upload');
       return;
     }
-    
+
     setIsUploading(true);
     setUploadProgress(0);
     setResults(null);
     setError(null);
-    
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('lang', language);
-    
+
     try {
       const response = await axios.post('/api/financial/process-document', formData, {
         headers: {
@@ -68,8 +68,14 @@ const FinancialDocumentUploader = () => {
           setUploadProgress(percentCompleted);
         }
       });
-      
+
       setResults(response.data);
+
+      // Call the callback if provided
+      if (onDocumentProcessed) {
+        onDocumentProcessed(response.data);
+      }
+
       toast({
         title: 'Document processed successfully',
         status: 'success',
@@ -90,10 +96,10 @@ const FinancialDocumentUploader = () => {
       setIsUploading(false);
     }
   };
-  
+
   const renderResults = () => {
     if (!results) return null;
-    
+
     return (
       <Card mt={6} width="100%">
         <CardHeader>
@@ -105,7 +111,7 @@ const FinancialDocumentUploader = () => {
               <Text fontWeight="bold">File Name:</Text>
               <Text>{results.file_name}</Text>
             </Box>
-            
+
             {results.detection && (
               <Box width="100%">
                 <Text fontWeight="bold">Detected Tables: {results.detection.num_tables}</Text>
@@ -114,7 +120,7 @@ const FinancialDocumentUploader = () => {
                 )}
               </Box>
             )}
-            
+
             {results.analysis && results.analysis.length > 0 ? (
               <VStack align="start" width="100%" spacing={4}>
                 <Text fontWeight="bold">Analysis:</Text>
@@ -137,7 +143,7 @@ const FinancialDocumentUploader = () => {
                             </Box>
                           </Box>
                         )}
-                        
+
                         {item.analysis.securities && item.analysis.securities.length > 0 && (
                           <Box width="100%">
                             <Text fontWeight="bold">Securities ({item.analysis.securities.length}):</Text>
@@ -200,13 +206,13 @@ const FinancialDocumentUploader = () => {
       </Card>
     );
   };
-  
+
   return (
     <Box p={5} width="100%">
       <VStack spacing={6} align="start" width="100%">
         <Heading size="lg">Financial Document Analysis</Heading>
         <Text>Upload a financial document to detect tables and analyze the data.</Text>
-        
+
         <Card width="100%">
           <CardBody>
             <VStack spacing={4} align="start" width="100%">
@@ -222,7 +228,7 @@ const FinancialDocumentUploader = () => {
                   Supported formats: JPG, PNG, PDF, CSV
                 </Text>
               </FormControl>
-              
+
               <FormControl>
                 <FormLabel>OCR Language</FormLabel>
                 <Select value={language} onChange={handleLanguageChange}>
@@ -234,21 +240,21 @@ const FinancialDocumentUploader = () => {
                   Select the language(s) in the document for better OCR results
                 </Text>
               </FormControl>
-              
+
               {file && (
                 <HStack width="100%">
                   <Icon as={FiFile} color="blue.500" />
                   <Text>{file.name}</Text>
                 </HStack>
               )}
-              
+
               {error && (
                 <HStack width="100%" color="red.500">
                   <Icon as={FiAlertCircle} />
                   <Text>{error}</Text>
                 </HStack>
               )}
-              
+
               <Button
                 leftIcon={<FiUpload />}
                 colorScheme="blue"
@@ -260,7 +266,7 @@ const FinancialDocumentUploader = () => {
               >
                 Upload & Analyze
               </Button>
-              
+
               {isUploading && (
                 <Box width="100%">
                   <Text mb={2}>Uploading and processing document...</Text>
@@ -270,7 +276,7 @@ const FinancialDocumentUploader = () => {
             </VStack>
           </CardBody>
         </Card>
-        
+
         {renderResults()}
       </VStack>
     </Box>

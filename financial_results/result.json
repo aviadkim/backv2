@@ -1,0 +1,352 @@
+{
+  "document_info": {
+    "filename": "messos.pdf",
+    "risk_profile": "Medium-high",
+    "currency": null
+  },
+  "portfolio_value": 19510599.0,
+  "asset_allocation": [
+    {
+      "asset_class": "Other assets Liquidity\nLiquidity",
+      "value": 47850.0,
+      "percentage": 0.25
+    },
+    {
+      "asset_class": "Bonds",
+      "value": 11558957.0,
+      "percentage": 59.24
+    },
+    {
+      "asset_class": "Equities",
+      "value": 27406.0,
+      "percentage": 0.14
+    },
+    {
+      "asset_class": "Mixed funds\nStructured products Structured products",
+      "value": 7850257.0,
+      "percentage": 40.24
+    },
+    {
+      "asset_class": "Precious metals\nAssets Real Estate\nOther assets",
+      "value": 26129.0,
+      "percentage": 0.13
+    },
+    {
+      "asset_class": "Bonds Total",
+      "value": 19510599.0,
+      "percentage": 100.0
+    },
+    {
+      "asset_class": "USD",
+      "value": 19483193.0,
+      "percentage": 99.86
+    },
+    {
+      "asset_class": "Total",
+      "value": 19510599.0,
+      "percentage": 100.0
+    },
+    {
+      "asset_class": "Assets and Liabilities Structure\naeouiAEOUI aeouiAEOUI\nAsset Allocation Countervalue USD Weight Liabilities and obligations Countervalue USD\nLiquidity",
+      "value": 47850.0,
+      "percentage": 0.25
+    },
+    {
+      "asset_class": "Liabilities\nCash accounts",
+      "value": 47850.0,
+      "percentage": 0.25
+    },
+    {
+      "asset_class": "loss\nBonds",
+      "value": 11558957.0,
+      "percentage": 59.24
+    },
+    {
+      "asset_class": "IRS\nFutures\nBonds",
+      "value": 10211442.0,
+      "percentage": 52.34
+    },
+    {
+      "asset_class": "certificates",
+      "value": 1347515.0,
+      "percentage": 6.91
+    },
+    {
+      "asset_class": "Convertibles\nEquities",
+      "value": 27406.0,
+      "percentage": 0.14
+    },
+    {
+      "asset_class": "Equities",
+      "value": 27406.0,
+      "percentage": 0.14
+    },
+    {
+      "asset_class": "certificates\nMixed funds\nStructured products",
+      "value": 7850257.0,
+      "percentage": 40.24
+    },
+    {
+      "asset_class": "Various Certificates\nMetal accounts and precious metals\nMetal accounts\nPrecious metals\nReal Estate\nOther assets",
+      "value": 26129.0,
+      "percentage": 0.13
+    },
+    {
+      "asset_class": "Private Equity",
+      "value": 26129.0,
+      "percentage": 0.13
+    }
+  ],
+  "securities": {
+    "count": 40,
+    "total_value": 22090372.0,
+    "coverage": 113.22241823533967,
+    "items": [
+      {
+        "isin": "XS2530201644",
+        "description": "S LTD.\nV",
+        "security_type": "Bond",
+        "valuation": 200000.0
+      },
+      {
+        "isin": "XS2588105036",
+        "description": "USD 200",
+        "security_type": "Bond",
+        "valuation": 1500000.0
+      },
+      {
+        "isin": "XS2665592833",
+        "description": "USD 200",
+        "security_type": "Bond",
+        "valuation": 690000.0
+      },
+      {
+        "isin": "XS2692298537",
+        "description": "HARP ISSUER (4",
+        "security_type": "Bond",
+        "valuation": 100000.0
+      },
+      {
+        "isin": "XS2754416860",
+        "description": "SE.195 27",
+        "security_type": "Bond",
+        "valuation": 100000.0
+      },
+      {
+        "isin": "XS2761230684",
+        "description": "XS2692298537",
+        "security_type": "Bond",
+        "valuation": 250000.0
+      },
+      {
+        "isin": "XS2736388732",
+        "description": "XS2754416860",
+        "security_type": "Bond",
+        "valuation": 16690.0
+      },
+      {
+        "isin": "XS2782869916",
+        "description": "AEOUI",
+        "security_type": "Bond",
+        "valuation": 440000.0
+      },
+      {
+        "isin": "XS2824054402",
+        "description": "USD 50",
+        "security_type": "Bond",
+        "valuation": 18548.0
+      },
+      {
+        "isin": "XS2567543397",
+        "description": "XS2782869916",
+        "security_type": "Bond",
+        "valuation": 96212.0
+      },
+      {
+        "isin": "XS2110079584",
+        "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034 100.1000 100.5",
+        "security_type": "Bond",
+        "valuation": 90000.0
+      },
+      {
+        "isin": "XS2848820754",
+        "description": "XS2567543397",
+        "security_type": "Bond",
+        "valuation": 100000.0
+      },
+      {
+        "isin": "XS2829712830",
+        "description": "CITIGROUP 0",
+        "security_type": "Bond",
+        "valuation": 200000.0
+      },
+      {
+        "isin": "XS2912278723",
+        "description": "ITIGROUP GLBL 0",
+        "security_type": "Bond",
+        "valuation": 100000.0
+      },
+      {
+        "isin": "XS2381723902",
+        "description": "HS EMTN 2024-30.09.2024 99.9996 93.0200 1.93",
+        "security_type": "Bond",
+        "valuation": 16690.0
+      },
+      {
+        "isin": "XS2829752976",
+        "description": "AEOUI",
+        "security_type": "Bond",
+        "valuation": 150000.0
+      },
+      {
+        "isin": "XS2953741100",
+        "description": "USD 250",
+        "security_type": "Bond",
+        "valuation": 500000.0
+      },
+      {
+        "isin": "XS2381717250",
+        "description": "MEDIUM TERM NOTES 2024- 99.6790 97.8700 1.81",
+        "security_type": "Bond",
+        "valuation": 50000.0
+      },
+      {
+        "isin": "XS2481066111",
+        "description": "USD 150",
+        "security_type": "Bond",
+        "valuation": 1470000.0
+      },
+      {
+        "isin": "XS2964611052",
+        "description": "USD 500",
+        "security_type": "Bond",
+        "valuation": 115613.0
+      },
+      {
+        "isin": "LU2228214107",
+        "description": "NOTES 2025-03.02.2035 100.1000 100.8900 0.79",
+        "security_type": "Bond",
+        "valuation": 350000.0
+      },
+      {
+        "isin": "CH1269060229",
+        "description": "NOTES 2025-14.02.35 100.0000 101.2500 1.25",
+        "security_type": "Bond",
+        "valuation": 690000.0
+      },
+      {
+        "isin": "XS0461497009",
+        "description": "SP\nISIN",
+        "security_type": "Bond",
+        "valuation": 11807.0
+      },
+      {
+        "isin": "XS2746319610",
+        "description": "LTD.\nV",
+        "security_type": "Bond",
+        "valuation": 44560.0
+      },
+      {
+        "isin": "CH0244767585",
+        "description": "MESSOS ENTERPRISES LTD.\nV",
+        "security_type": "Equity",
+        "valuation": 27406.0
+      },
+      {
+        "isin": "XS2519369867",
+        "description": "AEOUI",
+        "security_type": "Bond",
+        "valuation": 500000.0
+      },
+      {
+        "isin": "XS2315191069",
+        "description": "USD 200",
+        "security_type": "Bond",
+        "valuation": 1200000.0
+      },
+      {
+        "isin": "XS2792098779",
+        "description": "CITD 26 1",
+        "security_type": "Bond",
+        "valuation": 690000.0
+      },
+      {
+        "isin": "XS2714429128",
+        "description": "XS2315191069",
+        "security_type": "Bond",
+        "valuation": 500000.0
+      },
+      {
+        "isin": "XS2105981117",
+        "description": "XS2792098779",
+        "security_type": "Bond",
+        "valuation": 1600000.0
+      },
+      {
+        "isin": "XS2838389430",
+        "description": "XS2714429128",
+        "security_type": "Bond",
+        "valuation": 63080.0
+      },
+      {
+        "isin": "XS2631782468",
+        "description": "XS2105981117",
+        "security_type": "Bond",
+        "valuation": 16690.0
+      },
+      {
+        "isin": "XS1700087403",
+        "description": "TERPRISES LTD.\nV",
+        "security_type": "Bond",
+        "valuation": 200000.0
+      },
+      {
+        "isin": "XS2594173093",
+        "description": "USD 100",
+        "security_type": "Bond",
+        "valuation": 500000.0
+      },
+      {
+        "isin": "XS2407295554",
+        "description": "SRN\nISIN",
+        "security_type": "Bond",
+        "valuation": 100000.0
+      },
+      {
+        "isin": "XS2518123653",
+        "description": "S2594173093",
+        "security_type": "Bond",
+        "valuation": 1000000.0
+      },
+      {
+        "isin": "XS2252299883",
+        "description": "USD 100",
+        "security_type": "Bond",
+        "valuation": 500000.0
+      },
+      {
+        "isin": "CH1259345242",
+        "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS 10",
+        "security_type": "Bond",
+        "valuation": 16690.0
+      },
+      {
+        "isin": "CH1259344831",
+        "description": "ESSOS ENTERPRISES LTD.\nV",
+        "security_type": "Bond",
+        "valuation": 7850257.0
+      },
+      {
+        "isin": "XD0466760473",
+        "description": "ENTERPRISES LTD.\nV",
+        "security_type": "Equity",
+        "valuation": 26129.0
+      }
+    ]
+  },
+  "extraction_stats": {
+    "text_length": 30961,
+    "pdfplumber_tables": 25,
+    "camelot_tables": 23
+  }
+}

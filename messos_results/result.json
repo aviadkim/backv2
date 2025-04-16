@@ -1,0 +1,621 @@
+{
+  "portfolio_value": {
+    "value": 19510599.0,
+    "confidence": 1.0,
+    "sources": [
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Portfolio\\s+Total\\s+(\\d[\\d,.\\']*)",
+        "match": "Portfolio Total 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Total\\s+assets\\s+(\\d[\\d,.\\']*)",
+        "match": "Total assets 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Total\\s+assets\\s+(\\d[\\d,.\\']*)",
+        "match": "Total assets 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Portfolio\\s+Total\\s*[:\\s]+(\\d[\\d,.\\']*)",
+        "match": "Portfolio Total 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Total\\s+assets\\s*[:\\s]+(\\d[\\d,.\\']*)",
+        "match": "Total assets 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "text",
+        "pattern": "Total\\s+assets\\s*[:\\s]+(\\d[\\d,.\\']*)",
+        "match": "Total assets 19'510'599"
+      },
+      {
+        "value": 19510599.0,
+        "source": "table",
+        "extraction_method": "camelot_stream",
+        "table_number": 4,
+        "page": 4
+      },
+      {
+        "value": 19510599.0,
+        "source": "table",
+        "extraction_method": "camelot_stream",
+        "table_number": 4,
+        "page": 4
+      }
+    ]
+  },
+  "securities": [
+    {
+      "isin": "XS2530201644",
+      "description": "S LTD.\nV",
+      "security_type": "Bond",
+      "valuation": 200000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2588105036",
+      "description": "USD 200",
+      "security_type": "Bond",
+      "valuation": 1500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2665592833",
+      "description": "USD 200",
+      "security_type": "Bond",
+      "valuation": 690000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2692298537",
+      "description": "HARP ISSUER (4",
+      "security_type": "Bond",
+      "valuation": 100000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2754416860",
+      "description": "SE.195 27",
+      "security_type": "Bond",
+      "valuation": 100000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2761230684",
+      "description": "XS2692298537",
+      "security_type": "Bond",
+      "valuation": 250000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2736388732",
+      "description": "XS2754416860",
+      "security_type": "Bond",
+      "valuation": 16690.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2782869916",
+      "description": "AEOUI",
+      "security_type": "Bond",
+      "valuation": 440000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2824054402",
+      "description": "USD 50",
+      "security_type": "Bond",
+      "valuation": 18548.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2567543397",
+      "description": "XS2782869916",
+      "security_type": "Bond",
+      "valuation": 96212.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2110079584",
+      "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034 100.1000 100.5",
+      "security_type": "Bond",
+      "valuation": 90000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2848820754",
+      "description": "XS2567543397",
+      "security_type": "Bond",
+      "valuation": 100000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2829712830",
+      "description": "CITIGROUP 0",
+      "security_type": "Bond",
+      "valuation": 200000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2912278723",
+      "description": "ITIGROUP GLBL 0",
+      "security_type": "Bond",
+      "valuation": 100000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2381723902",
+      "description": "HS EMTN 2024-30.09.2024 99.9996 93.0200 1.93",
+      "security_type": "Bond",
+      "valuation": 16690.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2829752976",
+      "description": "AEOUI",
+      "security_type": "Bond",
+      "valuation": 150000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2953741100",
+      "description": "USD 250",
+      "security_type": "Bond",
+      "valuation": 500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2381717250",
+      "description": "MEDIUM TERM NOTES 2024- 99.6790 97.8700 1.81",
+      "security_type": "Bond",
+      "valuation": 50000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2481066111",
+      "description": "USD 150",
+      "security_type": "Bond",
+      "valuation": 1470000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2964611052",
+      "description": "USD 500",
+      "security_type": "Bond",
+      "valuation": 115613.0,
+      "source": "text"
+    },
+    {
+      "isin": "LU2228214107",
+      "description": "NOTES 2025-03.02.2035 100.1000 100.8900 0.79",
+      "security_type": "Bond",
+      "valuation": 350000.0,
+      "source": "text"
+    },
+    {
+      "isin": "CH1269060229",
+      "description": "NOTES 2025-14.02.35 100.0000 101.2500 1.25",
+      "security_type": "Bond",
+      "valuation": 690000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS0461497009",
+      "description": "SP\nISIN",
+      "security_type": "Bond",
+      "valuation": 11807.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2746319610",
+      "description": "LTD.\nV",
+      "security_type": "Bond",
+      "valuation": 44560.0,
+      "source": "text"
+    },
+    {
+      "isin": "CH0244767585",
+      "description": "MESSOS ENTERPRISES LTD.\nV",
+      "security_type": "Equity",
+      "valuation": 27406.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2519369867",
+      "description": "AEOUI",
+      "security_type": "Bond",
+      "valuation": 500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2315191069",
+      "description": "USD 200",
+      "security_type": "Bond",
+      "valuation": 1200000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2792098779",
+      "description": "CITD 26 1",
+      "security_type": "Bond",
+      "valuation": 690000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2714429128",
+      "description": "XS2315191069",
+      "security_type": "Bond",
+      "valuation": 500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2105981117",
+      "description": "XS2792098779",
+      "security_type": "Bond",
+      "valuation": 1600000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2838389430",
+      "description": "XS2714429128",
+      "security_type": "Bond",
+      "valuation": 63080.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2631782468",
+      "description": "XS2105981117",
+      "security_type": "Bond",
+      "valuation": 16690.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS1700087403",
+      "description": "TERPRISES LTD.\nV",
+      "security_type": "Bond",
+      "valuation": 200000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2594173093",
+      "description": "USD 100",
+      "security_type": "Bond",
+      "valuation": 500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2407295554",
+      "description": "SRN\nISIN",
+      "security_type": "Bond",
+      "valuation": 100000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2518123653",
+      "description": "S2594173093",
+      "security_type": "Bond",
+      "valuation": 1000000.0,
+      "source": "text"
+    },
+    {
+      "isin": "XS2252299883",
+      "description": "USD 100",
+      "security_type": "Bond",
+      "valuation": 500000.0,
+      "source": "text"
+    },
+    {
+      "isin": "CH1259345242",
+      "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS 10",
+      "security_type": "Bond",
+      "valuation": 16690.0,
+      "source": "text"
+    },
+    {
+      "isin": "CH1259344831",
+      "description": "ESSOS ENTERPRISES LTD.\nV",
+      "security_type": "Bond",
+      "valuation": 7850257.0,
+      "source": "text"
+    },
+    {
+      "isin": "XD0466760473",
+      "description": "ENTERPRISES LTD.\nV",
+      "security_type": "Equity",
+      "valuation": 26129.0,
+      "source": "text"
+    },
+    {
+      "isin": "CH1908490000",
+      "description": "Cash accounts credit\nUSD 47'849.64 ORDINARY USD 47'850 0.25%\nCash Accounts // 366223-CC-0002\nIBAN: CH1908490000366223002\nPRC: 1.00\nTotal Liquidity USD 47'850 0.25%\nthereof Cash accounts USD 47'850 0.25%",
+      "security_type": "Unknown",
+      "valuation": 47849.64,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 7
+    }
+  ],
+  "asset_allocation": [
+    {
+      "asset_class": "Other assets Liquidity\nLiquidity",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "text"
+    },
+    {
+      "asset_class": "Bonds",
+      "value": 11558957.0,
+      "percentage": 59.24,
+      "source": "text, table, table, table, table"
+    },
+    {
+      "asset_class": "Equities",
+      "value": 27406.0,
+      "percentage": 0.14,
+      "source": "text, table, table, table, table"
+    },
+    {
+      "asset_class": "Mixed funds\nStructured products Structured products",
+      "value": 7850257.0,
+      "percentage": 40.24,
+      "source": "text"
+    },
+    {
+      "asset_class": "Precious metals\nAssets Real Estate\nOther assets",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "text"
+    },
+    {
+      "asset_class": "Bonds Total",
+      "value": 19510599.0,
+      "percentage": 100.0,
+      "source": "text"
+    },
+    {
+      "asset_class": "USD",
+      "value": 19483193.0,
+      "percentage": 99.86,
+      "source": "text"
+    },
+    {
+      "asset_class": "Total",
+      "value": 19510599.0,
+      "percentage": 100.0,
+      "source": "text"
+    },
+    {
+      "asset_class": "Assets and Liabilities Structure\naeouiAEOUI aeouiAEOUI\nAsset Allocation Countervalue USD Weight Liabilities and obligations Countervalue USD\nLiquidity",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "text"
+    },
+    {
+      "asset_class": "Liabilities\nCash accounts",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "text"
+    },
+    {
+      "asset_class": "loss\nBonds",
+      "value": 11558957.0,
+      "percentage": 59.24,
+      "source": "text"
+    },
+    {
+      "asset_class": "IRS\nFutures\nBonds",
+      "value": 10211442.0,
+      "percentage": 52.34,
+      "source": "text"
+    },
+    {
+      "asset_class": "certificates",
+      "value": 1347515.0,
+      "percentage": 6.91,
+      "source": "text"
+    },
+    {
+      "asset_class": "Convertibles\nEquities",
+      "value": 27406.0,
+      "percentage": 0.14,
+      "source": "text"
+    },
+    {
+      "asset_class": "Equities",
+      "value": 27406.0,
+      "percentage": 0.14,
+      "source": "text"
+    },
+    {
+      "asset_class": "certificates\nMixed funds\nStructured products",
+      "value": 7850257.0,
+      "percentage": 40.24,
+      "source": "text"
+    },
+    {
+      "asset_class": "Various Certificates\nMetal accounts and precious metals\nMetal accounts\nPrecious metals\nReal Estate\nOther assets",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "text"
+    },
+    {
+      "asset_class": "Private Equity",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "text"
+    },
+    {
+      "asset_class": "Liquidity 47'850 0.25%\nCash accounts 47'850 0.25%\nMoney Market\nFixed deposits and fiduciaries",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 4
+    },
+    {
+      "asset_class": "Bonds 11'558'957 59.24%\nBonds 10'211'442 52.34%\nBond funds / certificates 1'347'515 6.91%\nConvertibles",
+      "value": 11558957.0,
+      "percentage": 59.24,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 4
+    },
+    {
+      "asset_class": "Equities 27'406 0.14%\nEquities 27'406 0.14%\nEquity funds/certificates",
+      "value": 27406.0,
+      "percentage": 0.14,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 4
+    },
+    {
+      "asset_class": "Structured products 7'850'257 40.24%\nStructured products (Bonds) 6'112'507 31.33%\nStructured products (Equities) 1'737'750 8.91%\nVarious Certificates",
+      "value": 7850257.0,
+      "percentage": 40.24,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 4
+    },
+    {
+      "asset_class": "Other assets 26'129 0.13%\nHedge Funds & Private Equity 26'129 0.13%\nAlternative UCITS\nCommodity funds\nOptions",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "table",
+      "extraction_method": null,
+      "table_number": 1,
+      "page": 4
+    },
+    {
+      "asset_class": "Liquidity",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Cash accounts",
+      "value": 47850.0,
+      "percentage": 0.25,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Bond funds / certificates",
+      "value": 1347515.0,
+      "percentage": 6.91,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Structured products",
+      "value": 7850257.0,
+      "percentage": 40.24,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Structured products (Bonds)",
+      "value": 6112507.0,
+      "percentage": 31.33,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Structured products (Equities)",
+      "value": 1737750.0,
+      "percentage": 8.91,
+      "source": "table, table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Other assets",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Hedge Funds & Private Equity",
+      "value": 26129.0,
+      "percentage": 0.13,
+      "source": "table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Total assets",
+      "value": 19510599.0,
+      "percentage": 100.0,
+      "source": "table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    },
+    {
+      "asset_class": "Portfolio Total",
+      "value": 19510599.0,
+      "percentage": null,
+      "source": "table",
+      "extraction_method": "camelot_stream",
+      "table_number": 4,
+      "page": 4
+    }
+  ],
+  "validation": {
+    "portfolio_value": {
+      "valid": true,
+      "issues": []
+    },
+    "securities": {
+      "valid": true,
+      "issues": [
+        "Security CH1908490000 has no security type"
+      ]
+    },
+    "asset_allocation": {
+      "valid": false,
+      "issues": [
+        "Asset allocation percentages sum to 847.78%, which is not close to 100%"
+      ]
+    },
+    "overall": {
+      "valid": false,
+      "issues": [
+        "Sum of securities (22138221.64) does not match portfolio value (19510599.00), difference: 13.47%",
+        "Sum of asset allocations (184913715.00) does not match portfolio value (19510599.00), difference: 847.76%",
+        "Asset allocation percentages sum to 847.78%, which is not close to 100%"
+      ]
+    }
+  }
+}

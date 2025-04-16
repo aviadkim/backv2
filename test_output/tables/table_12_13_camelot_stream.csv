@@ -1,0 +1,16 @@
+0,1,2,3,4,5,6,7
+"aeouiAEOUI
+aeouiAEOUI",,,,,,,Equities
+"Nominal/
+Description
+Currency",Average Acquisition price,Actual Price,Perf YTD,Perf Total,,Valuation in price currency,in %
+Quantity,Average Acquisition FX Rate,Actual Ex. Rate,,Perf Market,,Thereof accruals,of assets
+,,Price Date,,Perf Currency,,Countervalue USD,
+"Equities, Equity funds, Options on equities/indices",,,,,,,
+"CHF
+800
+UBS GROUP INC NAMEN-AKT.",221.5641,30.9000,11.43%,-86.37%,,24'720,0.14%
+ISIN: CH0244767585  //  Valorn.: 24476758,1.1340,1.1086,,-86.05%,,,
+Ordinary Stocks  //  PRC: 3.35,,28.02.2025,,-2.24%,,27'406,
+Total Equities,,,,,USD,27'406,0.14%
+thereof Equities (without options),,,,,USD,27'406,0.14%

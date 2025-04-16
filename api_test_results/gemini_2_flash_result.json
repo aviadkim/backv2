@@ -1,0 +1,8 @@
+{
+  "name": "Gemini 2 Flash",
+  "model": "google/gemini-1.5-flash",
+  "key": "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",
+  "status": "error",
+  "error_code": 400,
+  "error_message": "{\"error\":{\"message\":\"google/gemini-1.5-flash is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+}

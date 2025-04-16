@@ -1,0 +1,14 @@
+{
+  "Cash": {
+    "total_value": 0,
+    "percentage": 0.0
+  },
+  "Bonds": {
+    "total_value": 6359959.0,
+    "percentage": 99.20682385122124
+  },
+  "Equities": {
+    "total_value": 50849.0,
+    "percentage": 0.7931761487787499
+  }
+}

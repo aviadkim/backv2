@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiFileText, FiDollarSign, FiPieChart, FiBarChart2, FiCalendar, FiDownload } from 'react-icons/fi';
 
 const DocumentAnalysisViewer = ({ analysisResults }) => {
   const [activeTab, setActiveTab] = useState('overview');
-  
+
   if (!analysisResults) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="text-center py-8">
-          <FiFileText className="mx-auto h-12 w-12 text-gray-400" />
-          <h3 className="mt-2 text-sm font-medium text-gray-900">No document analysis available</h3>
-          <p className="mt-1 text-sm text-gray-500">Upload a document to view analysis results.</p>
+      <AccessibilityWrapper>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="text-center py-8">
+            <FiFileText className="mx-auto h-12 w-12 text-gray-400" />
+            <h3 className="mt-2 text-sm font-medium text-gray-900">No document analysis available</h3>
+            <p className="mt-1 text-sm text-gray-500">Upload a document to view analysis results.</p>
+          </div>
         </div>
-      </div>
+      </AccessibilityWrapper>
     );
   }
-  
+
   const { document_info, company_info, financial_data, financial_ratios } = analysisResults;
-  
+
   const renderOverviewTab = () => {
     return (
       <div className="space-y-6">
@@ -36,7 +39,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
             </div>
           </div>
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Company Information</h3>
           <div className="bg-gray-50 rounded-lg p-4">
@@ -58,14 +61,14 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                 <p className="text-sm font-medium text-gray-900">{company_info.sector || 'N/A'}</p>
               </div>
             </div>
-            
+
             {company_info.description && (
               <div className="mt-4">
                 <p className="text-sm text-gray-500">Description</p>
                 <p className="text-sm text-gray-700">{company_info.description}</p>
               </div>
             )}
-            
+
             {company_info.executives && company_info.executives.length > 0 && (
               <div className="mt-4">
                 <p className="text-sm text-gray-500 mb-2">Key Executives</p>
@@ -80,7 +83,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
             )}
           </div>
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Analysis Summary</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -95,7 +98,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-green-50 rounded-lg p-4">
               <div className="flex items-center">
                 <FiDollarSign className="h-8 w-8 text-green-500 mr-2" />
@@ -107,7 +110,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-purple-50 rounded-lg p-4">
               <div className="flex items-center">
                 <FiPieChart className="h-8 w-8 text-purple-500 mr-2" />
@@ -121,7 +124,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
             </div>
           </div>
         </div>
-        
+
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Key Financial Metrics</h3>
           <div className="overflow-x-auto">
@@ -146,9 +149,9 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                       {metric.display_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {typeof metric.value === 'number' 
-                        ? new Intl.NumberFormat('en-US', { 
-                            style: metric.name.includes('ratio') ? 'decimal' : 'currency', 
+                      {typeof metric.value === 'number'
+                        ? new Intl.NumberFormat('en-US', {
+                            style: metric.name.includes('ratio') ? 'decimal' : 'currency',
                             currency: 'USD',
                             maximumFractionDigits: 2
                           }).format(metric.value)
@@ -162,7 +165,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
               </tbody>
             </table>
           </div>
-          
+
           {financial_data.financial_metrics.length > 5 && (
             <div className="mt-2 text-right">
               <button
@@ -178,12 +181,12 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
       </div>
     );
   };
-  
+
   const renderFinancialStatementsTab = () => {
     return (
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">Financial Statements</h3>
-        
+
         {financial_data.financial_statements.length === 0 ? (
           <div className="text-center py-8 bg-gray-50 rounded-lg">
             <FiFileText className="mx-auto h-12 w-12 text-gray-400" />
@@ -198,7 +201,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                     {statement.type.replace('_', ' ')}
                   </h4>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
@@ -222,8 +225,8 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                           {lineItem.values.map((value, valueIndex) => (
                             <td key={valueIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                               {value.value !== null
-                                ? new Intl.NumberFormat('en-US', { 
-                                    style: 'currency', 
+                                ? new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
                                     currency: 'USD',
                                     maximumFractionDigits: 0
                                   }).format(value.value)
@@ -242,12 +245,12 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
       </div>
     );
   };
-  
+
   const renderMetricsTab = () => {
     return (
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">Financial Metrics</h3>
-        
+
         {financial_data.financial_metrics.length === 0 ? (
           <div className="text-center py-8 bg-gray-50 rounded-lg">
             <FiBarChart2 className="mx-auto h-12 w-12 text-gray-400" />
@@ -279,9 +282,9 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                       {metric.display_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {typeof metric.value === 'number' 
-                        ? new Intl.NumberFormat('en-US', { 
-                            style: metric.name.includes('ratio') ? 'decimal' : 'currency', 
+                      {typeof metric.value === 'number'
+                        ? new Intl.NumberFormat('en-US', {
+                            style: metric.name.includes('ratio') ? 'decimal' : 'currency',
                             currency: 'USD',
                             maximumFractionDigits: 2
                           }).format(metric.value)
@@ -299,9 +302,9 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
             </table>
           </div>
         )}
-        
+
         <h3 className="text-lg font-medium text-gray-900 mt-8 mb-4">Financial Ratios</h3>
-        
+
         {financial_ratios.length === 0 ? (
           <div className="text-center py-8 bg-gray-50 rounded-lg">
             <FiPieChart className="mx-auto h-12 w-12 text-gray-400" />
@@ -354,12 +357,12 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
       </div>
     );
   };
-  
+
   const renderEntitiesTab = () => {
     return (
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">Extracted Entities</h3>
-        
+
         <div className="space-y-6">
           <div>
             <h4 className="text-md font-medium text-gray-900 mb-2">Time Periods</h4>
@@ -376,7 +379,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
               </div>
             )}
           </div>
-          
+
           <div>
             <h4 className="text-md font-medium text-gray-900 mb-2">Organizations</h4>
             {financial_data.entities.organizations.length === 0 ? (
@@ -391,7 +394,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
               </div>
             )}
           </div>
-          
+
           <div>
             <h4 className="text-md font-medium text-gray-900 mb-2">Currencies</h4>
             {financial_data.entities.currencies.length === 0 ? (
@@ -417,7 +420,7 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {currency.value !== null
-                            ? new Intl.NumberFormat('en-US', { 
+                            ? new Intl.NumberFormat('en-US', {
                                 style: 'decimal',
                                 maximumFractionDigits: 2
                               }).format(currency.value)
@@ -434,71 +437,78 @@ const DocumentAnalysisViewer = ({ analysisResults }) => {
       </div>
     );
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="border-b border-gray-200">
-        <nav className="flex -mb-px">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="border-b border-gray-200">
+          <nav className="flex -mb-px">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`py-4 px-6 text-sm font-medium flex items-center ${
+                activeTab === 'overview'
+                  ? 'border-b-2 border-blue-500 text-blue-600'
+                  : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+              aria-label="Overview tab"
+            >
+              Overview
+            </button>
+            <button
+              onClick={() => setActiveTab('statements')}
+              className={`py-4 px-6 text-sm font-medium flex items-center ${
+                activeTab === 'statements'
+                  ? 'border-b-2 border-blue-500 text-blue-600'
+                  : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+              aria-label="Financial Statements tab"
+            >
+              Financial Statements
+            </button>
+            <button
+              onClick={() => setActiveTab('metrics')}
+              className={`py-4 px-6 text-sm font-medium flex items-center ${
+                activeTab === 'metrics'
+                  ? 'border-b-2 border-blue-500 text-blue-600'
+                  : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+              aria-label="Metrics & Ratios tab"
+            >
+              Metrics & Ratios
+            </button>
+            <button
+              onClick={() => setActiveTab('entities')}
+              className={`py-4 px-6 text-sm font-medium flex items-center ${
+                activeTab === 'entities'
+                  ? 'border-b-2 border-blue-500 text-blue-600'
+                  : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+              aria-label="Entities tab"
+            >
+              Entities
+            </button>
+          </nav>
+        </div>
+
+        <div className="p-6">
+          {activeTab === 'overview' && renderOverviewTab()}
+          {activeTab === 'statements' && renderFinancialStatementsTab()}
+          {activeTab === 'metrics' && renderMetricsTab()}
+          {activeTab === 'entities' && renderEntitiesTab()}
+        </div>
+
+        <div className="bg-gray-50 px-6 py-3 flex justify-end">
           <button
-            onClick={() => setActiveTab('overview')}
-            className={`py-4 px-6 text-sm font-medium flex items-center ${
-              activeTab === 'overview'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+            type="button"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            aria-label="Export Analysis"
           >
-            Overview
+            <FiDownload className="mr-2 -ml-1 h-5 w-5" />
+            Export Analysis
           </button>
-          <button
-            onClick={() => setActiveTab('statements')}
-            className={`py-4 px-6 text-sm font-medium flex items-center ${
-              activeTab === 'statements'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
-          >
-            Financial Statements
-          </button>
-          <button
-            onClick={() => setActiveTab('metrics')}
-            className={`py-4 px-6 text-sm font-medium flex items-center ${
-              activeTab === 'metrics'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
-          >
-            Metrics & Ratios
-          </button>
-          <button
-            onClick={() => setActiveTab('entities')}
-            className={`py-4 px-6 text-sm font-medium flex items-center ${
-              activeTab === 'entities'
-                ? 'border-b-2 border-blue-500 text-blue-600'
-                : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
-          >
-            Entities
-          </button>
-        </nav>
+        </div>
       </div>
-      
-      <div className="p-6">
-        {activeTab === 'overview' && renderOverviewTab()}
-        {activeTab === 'statements' && renderFinancialStatementsTab()}
-        {activeTab === 'metrics' && renderMetricsTab()}
-        {activeTab === 'entities' && renderEntitiesTab()}
-      </div>
-      
-      <div className="bg-gray-50 px-6 py-3 flex justify-end">
-        <button
-          type="button"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          <FiDownload className="mr-2 -ml-1 h-5 w-5" />
-          Export Analysis
-        </button>
-      </div>
-    </div>
+    </AccessibilityWrapper>
   );
 };
 

@@ -1,0 +1,207 @@
+{
+  "summary": [],
+  "asset_allocation": [],
+  "bonds": [
+    {
+      "Currency": "USD",
+      "Nominal": "1500000",
+      "Description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+      "ISIN": "XS2530201644",
+      "Price": "3.32",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "100000",
+      "Description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+      "ISIN": "XS2692298537",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "250000",
+      "Description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE",
+      "ISIN": "XS2736388732",
+      "Price": "0.36",
+      "Value (USD)": "3080",
+      "Weight (%)": "0.36"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "1100000",
+      "Description": "CITIGROUP 0% MTN 2024-09.07.34 REGS",
+      "ISIN": "XS2110079584",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "100000",
+      "Description": "GOLDMAN SACHS EMTN 2024-30.09.2024",
+      "ISIN": "XS2829712830",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "AMERICA",
+      "Nominal": "0",
+      "Description": "% NOTES 2024-11.12.34 REG S",
+      "ISIN": "XS2953741100",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "BANK",
+      "Nominal": "0",
+      "Description": "% NOTES 2025-14.02.35",
+      "ISIN": "XS2964611052",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "690000",
+      "Description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+      "ISIN": "XS0461497009",
+      "Price": "5.5",
+      "Value (USD)": "8700",
+      "Weight (%)": "1.81"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "140000",
+      "Description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+      "ISIN": "XS2746319610",
+      "Price": "32.46",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    }
+  ],
+  "equities": null,
+  "structured_products": [
+    {
+      "Currency": "USD",
+      "Nominal": "1500000",
+      "Description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+      "ISIN": "XS2530201644",
+      "Price": "3.32",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "100000",
+      "Description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+      "ISIN": "XS2692298537",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "250000",
+      "Description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE",
+      "ISIN": "XS2736388732",
+      "Price": "0.36",
+      "Value (USD)": "3080",
+      "Weight (%)": "0.36"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "1100000",
+      "Description": "CITIGROUP 0% MTN 2024-09.07.34 REGS",
+      "ISIN": "XS2110079584",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "100000",
+      "Description": "GOLDMAN SACHS EMTN 2024-30.09.2024",
+      "ISIN": "XS2829712830",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "AMERICA",
+      "Nominal": "0",
+      "Description": "% NOTES 2024-11.12.34 REG S",
+      "ISIN": "XS2953741100",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "BANK",
+      "Nominal": "0",
+      "Description": "% NOTES 2025-14.02.35",
+      "ISIN": "XS2964611052",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "690000",
+      "Description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+      "ISIN": "XS0461497009",
+      "Price": "5.5",
+      "Value (USD)": "8700",
+      "Weight (%)": "1.81"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "140000",
+      "Description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+      "ISIN": "XS2746319610",
+      "Price": "32.46",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "CHF",
+      "Nominal": "800",
+      "Description": "UBS GROUP INC NAMEN-AKT.",
+      "ISIN": "CH0244767585",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "DBDK",
+      "Nominal": "29",
+      "Description": "631",
+      "ISIN": "XS2315191069",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "METLIFE",
+      "Nominal": "21",
+      "Description": "SRN",
+      "ISIN": "XS1700087403",
+      "Price": "N/A",
+      "Value (USD)": "N/A",
+      "Weight (%)": "N/A"
+    },
+    {
+      "Currency": "USD",
+      "Nominal": "250000",
+      "Description": "RAIFF 4.75% STR.NTS 23-11.07.28 ON REF ASSET",
+      "ISIN": "CH1259344831",
+      "Price": "0.05",
+      "Value (USD)": "249800",
+      "Weight (%)": "1.28"
+    }
+  ]
+}

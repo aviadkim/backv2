@@ -1,0 +1,192 @@
+{
+  "total_value": 4829197.0,
+  "total_securities": 40,
+  "asset_allocation": {
+    "Ordinary Bonds": {
+      "value": 3943334.0,
+      "weight": 81.65610141810326
+    },
+    "Ordinary Stocks": {
+      "value": 800.0,
+      "weight": 0.01656590112186353
+    },
+    "Structured Bonds": {
+      "value": 634859.0,
+      "weight": 13.14626427540645
+    },
+    "Structured products equity": {
+      "value": 250000.0,
+      "weight": 5.176844100582353
+    }
+  },
+  "currency_allocation": {
+    "CHF": {
+      "value": 800.0,
+      "weight": 0.01656590112186353
+    },
+    "CHS": {
+      "value": 63.0,
+      "weight": 0.0013045647133467532
+    },
+    "OFA": {
+      "value": 5.0,
+      "weight": 0.00010353688201164706
+    },
+    "OTE": {
+      "value": 23197.0,
+      "weight": 0.48034901040483535
+    },
+    "TES": {
+      "value": 11830.0,
+      "weight": 0.24496826283955697
+    },
+    "USD": {
+      "value": 4793302.0,
+      "weight": 99.25670872403839
+    }
+  },
+  "maturity_profile": {
+    "2026": {
+      "value": 206032.0,
+      "weight": 4.500290835270597
+    },
+    "2027": {
+      "value": 648220.0,
+      "weight": 14.158861367356074
+    },
+    "2028": {
+      "value": 4067.0,
+      "weight": 0.08883417540501241
+    },
+    "2029": {
+      "value": 697759.0,
+      "weight": 15.240925841265321
+    },
+    "2030": {
+      "value": 140000.0,
+      "weight": 3.0579750569711672
+    },
+    "2034": {
+      "value": 2192052.0,
+      "weight": 47.88028813988401
+    },
+    "2035": {
+      "value": 690063.0,
+      "weight": 15.072824583847819
+    }
+  },
+  "performance": {
+    "average_ytd": 0.0,
+    "average_total": 0.0,
+    "best_performers": [],
+    "worst_performers": [],
+    "best_performers_ytd": [
+      {
+        "isin": "XS2530201644",
+        "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS2588105036",
+        "description": "CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28\nVRN",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS0461497009",
+        "description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS2746319610",
+        "description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "CH0244767585",
+        "description": "CHF\n\n800\n\nUBS GROUP INC NAMEN-AKT.",
+        "performance_ytd": 0.0
+      }
+    ],
+    "worst_performers_ytd": [
+      {
+        "isin": "XS2381723902",
+        "description": "JPMORGAN CHASE  0 % NOTES 2024-29.10.34 SERIES 2021-\n37954",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS2829752976",
+        "description": "GOLDMAN SACHS 0% EURO MEDIUM TERM NOTES 2024-\n18.11.2034",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS2953741100",
+        "description": "BANK OF AMERICA 0 % NOTES 2024-11.12.34 REG S",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XS2381717250",
+        "description": "JPMORGAN CHASE 0% NOTES 2024-19.12.2034",
+        "performance_ytd": 0.0
+      },
+      {
+        "isin": "XD0466760473",
+        "description": "USD\n\n204.071\n\nEXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1\nR",
+        "performance_ytd": 0.0
+      }
+    ],
+    "best_performers_total": [
+      {
+        "isin": "XS2530201644",
+        "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS2588105036",
+        "description": "CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28\nVRN",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS0461497009",
+        "description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS2746319610",
+        "description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "CH0244767585",
+        "description": "CHF\n\n800\n\nUBS GROUP INC NAMEN-AKT.",
+        "performance_total": 0.0
+      }
+    ],
+    "worst_performers_total": [
+      {
+        "isin": "XS2381723902",
+        "description": "JPMORGAN CHASE  0 % NOTES 2024-29.10.34 SERIES 2021-\n37954",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS2829752976",
+        "description": "GOLDMAN SACHS 0% EURO MEDIUM TERM NOTES 2024-\n18.11.2034",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS2953741100",
+        "description": "BANK OF AMERICA 0 % NOTES 2024-11.12.34 REG S",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XS2381717250",
+        "description": "JPMORGAN CHASE 0% NOTES 2024-19.12.2034",
+        "performance_total": 0.0
+      },
+      {
+        "isin": "XD0466760473",
+        "description": "USD\n\n204.071\n\nEXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1\nR",
+        "performance_total": 0.0
+      }
+    ]
+  }
+}

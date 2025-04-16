@@ -1,3 +1,6 @@
+import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -33,6 +36,7 @@ const Sidebar = () => {
     { name: 'Help', href: '/help' },
     { name: 'Documentation', href: '/docs' },
     { name: 'API Keys', href: '/api-key-setup' },
+    { name: 'OpenRouter Test', href: '/openrouter-test' },
   ];
 
   const toggleSidebar = () => {
@@ -40,7 +44,8 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <AccessibilityWrapper>
+      <>
       {/* Mobile menu button */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
@@ -151,6 +156,7 @@ const Sidebar = () => {
         </div>
       </div>
     </>
+    </AccessibilityWrapper>
   );
 };
 

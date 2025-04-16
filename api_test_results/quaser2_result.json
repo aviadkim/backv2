@@ -1,0 +1,8 @@
+{
+  "name": "Quaser2",
+  "model": "anthropic/claude-3-haiku",
+  "key": "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",
+  "status": "success",
+  "response_time": 1.6116559505462646,
+  "answer": "Based on the information provided, the key details are:\n\nClient:\n- Name: MESSOS ENTERPRISES LTD.\n- Number: 366223\n\nDocument Date:\n- 28.02.2025\n\nPortfolio Value:\n- 19510599.0\n\nTo summarize:\n\n1. The client is MESSOS ENTERPRISES LTD. with client number 366223.\n\n2. The total portfolio value is 19,510,599.0."
+}

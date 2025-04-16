@@ -1,0 +1,809 @@
+{
+  "entities": {
+    "securities": [
+      {
+        "id": "XS2782869916",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2782869916",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2824054402",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2824054402",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2567543397",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2567543397",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2110079584",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2110079584",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2848820754",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2848820754",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2829712830",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2829712830",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2912278723",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2912278723",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2381723902",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2381723902",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 10,
+          "page": 9
+        }
+      },
+      {
+        "id": "XS2829752976",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2829752976",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS2953741100",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2953741100",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS2381717250",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2381717250",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS2481066111",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2481066111",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS2964611052",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2964611052",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "LU2228214107",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "LU2228214107",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "CH1269060229",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "CH1269060229",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS0461497009",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS0461497009",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 11,
+          "page": 10
+        }
+      },
+      {
+        "id": "XS2519369867",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2519369867",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2315191069",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2315191069",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2792098779",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2792098779",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2714429128",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2714429128",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2105981117",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2105981117",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2838389430",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2838389430",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2631782468",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2631782468",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 14,
+          "page": 13
+        }
+      },
+      {
+        "id": "XS2530201644",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2530201644",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2588105036",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2588105036",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2665592833",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2665592833",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2692298537",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2692298537",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2754416860",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2754416860",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2761230684",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2761230684",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS2736388732",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2736388732",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 9,
+          "page": 8
+        }
+      },
+      {
+        "id": "XS1700087403",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS1700087403",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "XS2594173093",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2594173093",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "XS2407295554",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2407295554",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "XS2518123653",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2518123653",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "XS2252299883",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XS2252299883",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "CH1259345242",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "CH1259345242",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 15,
+          "page": 14
+        }
+      },
+      {
+        "id": "XS2746319610",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": "",
+        "valuation": 44560.0,
+        "data": {
+          "isin": "XS2746319610",
+          "description": "",
+          "security_type": "Unknown",
+          "valuation": 44560.0,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 9,
+          "page": null
+        }
+      },
+      {
+        "id": "CH1259344831",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": "",
+        "valuation": null,
+        "data": {
+          "isin": "CH1259344831",
+          "description": "",
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "XD0466760473",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "XD0466760473",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 17,
+          "page": 16
+        }
+      },
+      {
+        "id": "CH1908490000",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": null,
+        "valuation": null,
+        "data": {
+          "isin": "CH1908490000",
+          "description": null,
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "camelot_stream",
+          "table_number": 8,
+          "page": 7
+        }
+      },
+      {
+        "id": "CH0244767585",
+        "type": "security",
+        "security_type": "Unknown",
+        "description": "ISIN: CH0244767585  //  Valorn.: 24476758",
+        "valuation": null,
+        "data": {
+          "isin": "CH0244767585",
+          "description": "ISIN: CH0244767585  //  Valorn.: 24476758",
+          "security_type": "Unknown",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 10,
+          "page": null
+        }
+      }
+    ],
+    "asset_classes": [],
+    "portfolio": null,
+    "structured_products": [
+      {
+        "id": "structured_product_0",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": null,
+          "description": "Average Acquisition FX Rate",
+          "security_type": "Structured Product",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "structured_product_1",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": null,
+          "description": "",
+          "security_type": "Structured Product",
+          "valuation": 249800.0,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "structured_product_2",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": "CH1259344831",
+          "description": "",
+          "security_type": "Structured Product",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "structured_product_3",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": null,
+          "description": "",
+          "security_type": "Structured Product",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "structured_product_4",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": null,
+          "description": "",
+          "security_type": "Structured Product",
+          "valuation": null,
+          "source": "table",
+          "extraction_method": "tabula",
+          "table_number": 13,
+          "page": null
+        }
+      },
+      {
+        "id": "structured_product_5",
+        "type": "structured_product",
+        "product_type": "Structured Product",
+        "value": null,
+        "percentage": null,
+        "data": {
+          "isin": null,
+          "description": "Missing structured products",
+          "security_type": "Structured Product",
+          "valuation": 7600457.0,
+          "source": "validation",
+          "is_placeholder": true
+        }
+      }
+    ],
+    "accounts": []
+  },
+  "relationships": []
+}

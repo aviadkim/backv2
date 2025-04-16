@@ -1,0 +1,8 @@
+{
+  "name": "DeepSeek v3",
+  "model": "deepseek-ai/deepseek-v3",
+  "key": "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",
+  "status": "error",
+  "error_code": 401,
+  "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
+}

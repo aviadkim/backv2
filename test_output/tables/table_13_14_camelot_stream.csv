@@ -1,0 +1,46 @@
+0,1,2,3,4,5,6,7,8,9
+,,,,,,,,,Client Number 366223
+aeouiAEOUI,aeouiAEOUI,,,,,,,Structured products,
+Currency,,Nominal/,Description,Average Acquisition price,Actual Price,Perf YTD,Perf Total,Valuation in price currency,in %
+,,Quantity,,Average Acquisition FX Rate,Actual Ex. Rate,,Perf Market,Thereof accruals,of assets
+,,,,,Price Date,,Perf Currency,Countervalue USD,
+,Structured products (Bonds),,,,,,,,
+USD,,200'000,"BCO SAFRA CAYMAN 5% STRUCT.NOTE 2022-21.06.27 3,4%",100.7288,97.9853,-2.01%,-2.72%,197'888,1.01%
+,,,CITD 26,,,,,1'917,
+,,,ISIN: XS2519369867  //  Valorn.: 121050656,,28.02.2025,,,,
+,,,Other convertible bonds  //  Maturity: 21.06.2027,,,,,,
+,,,Days: 69  //  PRC: 5.00,,,,,,
+USD,,500'000,BNP PARIBAS ISS STRUCT.NOTE 21-08.01.29 ON DBDK 29 631,100.5241,98.7000,-0.08%,-1.81%,498'133,2.55%
+,,,ISIN: XS2315191069  //  Valorn.: 111918998,,,,,4'633,
+,,,Structured Bonds  //  Maturity: 08.01.2029,,28.02.2025,,,,
+,,,Days: 52  //  PRC: 5.00,,,,,,
+,,,Price to be verified,,,,,,
+USD,,1'200'000,CITIGROUP,100.0000,98.0650,0.08%,-1.94%,1'176'780,6.03%
+,,,ISIN: XS2792098779  //  Valorn.: 140288136,,,,,,
+,,,Structured Bonds  //  Maturity: 02.12.2034  //  PRC: 5.00,,28.02.2025,,,,
+,,,Price to be verified,,,,,,
+USD,,690'000,EMERALD BAY NOTES 23-17.09.29 S.2023-05 REG-S VRN,100.4462,102.6130,1.55%,2.16%,725'139,3.72%
+,,,WELLS F.,,,,,17'109,
+,,,ISIN: XS2714429128  //  Valorn.: 130738882,,28.02.2025,,,,
+,,,Structured Bonds  //  Maturity: 17.09.2029,,,,,,
+,,,Days: 164  //  PRC: 5.00,,,,,,
+,,,Price to be verified,,,,,,
+USD,,500'000,GOLDMAN SACHS GR.STRUCT.NOTE 21-20.12.28 VRN ON NAT,100.5243,97.8400,0.93%,-2.67%,494'914,2.54%
+,,,34,,,,,5'714,
+,,,ISIN: XS2105981117  //  Valorn.: 114118068,,28.02.2025,,,,
+,,,Structured Bonds  //  Maturity: 20.12.2028,,,,,,
+,,,Days: 70  //  PRC: 5.00,,,,,,
+,,,Price to be verified,,,,,,
+USD,,1'600'000,LUMINIS 5.7% STR NOTE 2024-26.04.33 WFC 24W,100.1000,97.5300,0.82%,-2.57%,1'623'560,8.32%
+,,,ISIN: XS2838389430  //  Valorn.: 135968317,,,,,63'080,
+,,,Structured Bonds  //  Maturity: 26.04.2033,,28.02.2025,,,,
+,,,Days: 249  //  PRC: 5.00,,,,,,
+,,,Price to be verified,,,,,,
+USD,,500'000,"LUMINIS REPACK NOTES 23-25.05.29 VRN ON 4,625%",98.0181,98.0600,0.86%,0.04%,491'716,2.52%
+,,,RABOBANK 29,,,,,1'416,
+,,,ISIN: XS2631782468  //  Valorn.: 127708275,,28.02.2025,,,,
+,,,Structured Bonds  //  Maturity: 25.05.2029,,,,,,
+,,,Days: 19  //  PRC: 5.00,,,,,,
+,,,Price to be verified,,,,,,
+,,,"Underlying:
+FED RES BK SOFR US",,,,,,

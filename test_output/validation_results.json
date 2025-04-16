@@ -1,0 +1,65 @@
+{
+  "portfolio_value": {
+    "valid": false,
+    "issues": [
+      "Portfolio value not found"
+    ]
+  },
+  "securities": {
+    "valid": true,
+    "issues": [
+      "Security XS2782869916 has no valuation",
+      "Security XS2824054402 has no valuation",
+      "Security XS2567543397 has no valuation",
+      "Security XS2110079584 has no valuation",
+      "Security XS2848820754 has no valuation",
+      "Security XS2829712830 has no valuation",
+      "Security XS2912278723 has no valuation",
+      "Security XS2381723902 has no valuation",
+      "Security XS2829752976 has no valuation",
+      "Security XS2953741100 has no valuation",
+      "Security XS2381717250 has no valuation",
+      "Security XS2481066111 has no valuation",
+      "Security XS2964611052 has no valuation",
+      "Security LU2228214107 has no valuation",
+      "Security CH1269060229 has no valuation",
+      "Security XS0461497009 has no valuation",
+      "Security XS2519369867 has no valuation",
+      "Security XS2315191069 has no valuation",
+      "Security XS2792098779 has no valuation",
+      "Security XS2714429128 has no valuation",
+      "Security XS2105981117 has no valuation",
+      "Security XS2838389430 has no valuation",
+      "Security XS2631782468 has no valuation",
+      "Security XS2530201644 has no valuation",
+      "Security XS2588105036 has no valuation",
+      "Security XS2665592833 has no valuation",
+      "Security XS2692298537 has no valuation",
+      "Security XS2754416860 has no valuation",
+      "Security XS2761230684 has no valuation",
+      "Security XS2736388732 has no valuation",
+      "Security XS1700087403 has no valuation",
+      "Security XS2594173093 has no valuation",
+      "Security XS2407295554 has no valuation",
+      "Security XS2518123653 has no valuation",
+      "Security XS2252299883 has no valuation",
+      "Security CH1259345242 has no valuation",
+      "Security CH1259344831 has no valuation",
+      "Security XD0466760473 has no valuation",
+      "Security CH1908490000 has no valuation",
+      "Security CH0244767585 has no valuation"
+    ]
+  },
+  "asset_allocation": {
+    "valid": false,
+    "issues": [
+      "No asset allocation found"
+    ]
+  },
+  "overall": {
+    "valid": false,
+    "issues": [
+      "Portfolio value not found"
+    ]
+  }
+}

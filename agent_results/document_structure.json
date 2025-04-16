@@ -1,0 +1,277 @@
+{
+  "document_type": "Valuation",
+  "document_date": "28.02.2025",
+  "client_info": {
+    "number": "//366223"
+  },
+  "headlines": [
+    {
+      "text": "Valuation",
+      "page": 1,
+      "y_position": 125,
+      "font_size": 29.999852999999973
+    },
+    {
+      "text": "as of 28.02.2025",
+      "page": 1,
+      "y_position": 158,
+      "font_size": 29.99985300000003
+    },
+    {
+      "text": "MESSOS ENTERPRISES LTD.",
+      "page": 1,
+      "y_position": 208,
+      "font_size": 14.040076
+    },
+    {
+      "text": "Client Number //366223",
+      "page": 1,
+      "y_position": 232,
+      "font_size": 11.04005699999999
+    },
+    {
+      "text": "Valuation currency // USD",
+      "page": 1,
+      "y_position": 248,
+      "font_size": 11.04005699999999
+    },
+    {
+      "text": "Investment profile //Undefined",
+      "page": 1,
+      "y_position": 263,
+      "font_size": 11.04005699999999
+    },
+    {
+      "text": "Risk Profile //Medium-high",
+      "page": 1,
+      "y_position": 279,
+      "font_size": 11.04005699999999
+    },
+    {
+      "text": "Index",
+      "page": 2,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Summary 1",
+      "page": 2,
+      "y_position": 96,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Asset Allocation 2",
+      "page": 2,
+      "y_position": 113,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Assets and Liabilities Structure 2",
+      "page": 2,
+      "y_position": 131,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Currency allocation 3",
+      "page": 2,
+      "y_position": 149,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Performance Overview/Evolution 4",
+      "page": 2,
+      "y_position": 167,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Asset Listing 5",
+      "page": 2,
+      "y_position": 185,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Liquidity and liabilities 5",
+      "page": 2,
+      "y_position": 202,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Bonds 6",
+      "page": 2,
+      "y_position": 220,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Equities 10",
+      "page": 2,
+      "y_position": 238,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Structured products 11",
+      "page": 2,
+      "y_position": 256,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Other assets 14",
+      "page": 2,
+      "y_position": 274,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Expected Cash Flows (Overview) 15",
+      "page": 2,
+      "y_position": 292,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Glossary 16",
+      "page": 2,
+      "y_position": 310,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Notices and other information 18",
+      "page": 2,
+      "y_position": 328,
+      "font_size": 11.519898000000012
+    },
+    {
+      "text": "Summary",
+      "page": 3,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Assets and Liabilities Structure",
+      "page": 4,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Currency allocation",
+      "page": 5,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Performance Overview/Evolution",
+      "page": 6,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Liquidity and liabilities",
+      "page": 7,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Bonds",
+      "page": 8,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Bonds",
+      "page": 9,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Bonds",
+      "page": 10,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Bonds",
+      "page": 11,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Equities",
+      "page": 12,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Structured products",
+      "page": 13,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Structured products",
+      "page": 14,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Structured products",
+      "page": 15,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Other assets",
+      "page": 16,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Expected Cash Flows (Overview)",
+      "page": 17,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Glossary",
+      "page": 18,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Glossary",
+      "page": 19,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Notices and other information",
+      "page": 20,
+      "y_position": 70,
+      "font_size": 12.960096000000021
+    },
+    {
+      "text": "Your financial advisor will be happy to answer any questions you may have about the terms and positions set forth in the present statement.",
+      "page": 20,
+      "y_position": 343,
+      "font_size": 9.96007689999999
+    }
+  ],
+  "sections": [
+    {
+      "headline": {
+        "text": "Valuation",
+        "page": 1,
+        "y_position": 125,
+        "font_size": 29.999852999999973
+      },
+      "start_page": 1,
+      "end_page": 1
+    },
+    {
+      "headline": {
+        "text": "as of 28.02.2025",
+        "page": 1,
+        "y_position": 158,
+        "font_size": 29.99985300000003
+      },
+      "start_page": 1,
+      "end_page": 1
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "portfolio_value": null,
+  "security_values": {
+    "XS2530201644": {
+      "nominal": 26129.0,
+      "value": 5002.0,
+      "percentage": 0.34
+    },
+    "XS2665592833": {
+      "nominal": 1500000.0,
+      "value": 5700.0,
+      "percentage": 1.92
+    },
+    "XS2754416860": {
+      "nominal": 100000.0,
+      "value": 7291.0,
+      "percentage": 1.73
+    },
+    "XS2736388732": {
+      "nominal": 250000.0,
+      "value": 5160.0,
+      "percentage": 1.26
+    },
+    "XS2824054402": {
+      "nominal": 440000.0,
+      "value": 5900.0,
+      "percentage": 1.33
+    },
+    "XS2110079584": {
+      "nominal": 1100000.0,
+      "value": 9500.0,
+      "percentage": 2.24
+    },
+    "XS2829712830": {
+      "nominal": 100000.0,
+      "value": 7771.0,
+      "percentage": 1.11
+    },
+    "XS2381723902": {
+      "nominal": 100000.0,
+      "value": 8700.0,
+      "percentage": 1.81
+    },
+    "XS2953741100": {
+      "nominal": 150000.0,
+      "value": 8400.0,
+      "percentage": 6.51
+    },
+    "XS2481066111": {
+      "nominal": 50000.0,
+      "value": 2500.0,
+      "percentage": 1.25
+    },
+    "CH1269060229": {
+      "nominal": 350000.0,
+      "value": 2700.0,
+      "percentage": 0.92
+    },
+    "XS2746319610": {
+      "nominal": 140000.0,
+      "value": 11558957.0,
+      "percentage": 59.24
+    },
+    "CH0244767585": {
+      "nominal": 10211442.0,
+      "value": 27406.0,
+      "percentage": 0.14
+    },
+    "XS2519369867": {
+      "nominal": 27406.0,
+      "value": 498133.0,
+      "percentage": 2.55
+    },
+    "XS2792098779": {
+      "nominal": 1200000.0,
+      "value": 6130.0,
+      "percentage": 1.55
+    },
+    "XS2105981117": {
+      "nominal": 500000.0,
+      "value": 5300.0,
+      "percentage": 0.82
+    },
+    "XS2631782468": {
+      "nominal": 500000.0,
+      "value": 7085.0,
+      "percentage": 0.98
+    },
+    "XS2594173093": {
+      "nominal": 200000.0,
+      "value": 8300.0,
+      "percentage": 4.48
+    },
+    "XS2518123653": {
+      "nominal": 100000.0,
+      "value": 7600.0,
+      "percentage": 0.38
+    },
+    "CH1259345242": {
+      "nominal": 500000.0,
+      "value": 249800.0,
+      "percentage": 1.28
+    },
+    "XD0466760473": {
+      "nominal": 7850257.0,
+      "value": 26129.0,
+      "percentage": 0.13
+    }
+  },
+  "asset_allocation": {
+    "Bonds": {
+      "value": 11558957.0,
+      "percentage": 59.24
+    },
+    "Equities": {
+      "value": 27406.0,
+      "percentage": 0.14
+    },
+    "Structured products": {
+      "value": 7850257.0,
+      "percentage": 40.24
+    },
+    "Other assets": {
+      "value": 26129.0,
+      "percentage": 0.13
+    },
+    "Liquidity": {
+      "value": 47850.0,
+      "percentage": 0.25
+    }
+  }
+}

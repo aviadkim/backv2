@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiSearch, FiBookmark, FiClock, FiExternalLink, FiDownload, FiRefreshCw, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useBrowsing } from '../providers/BrowsingProvider';
 
@@ -9,7 +10,7 @@ const WebBrowser = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [showBookmarks, setShowBookmarks] = useState(false);
   const [extractedData, setExtractedData] = useState(null);
-  
+
   const {
     currentPage,
     history,
@@ -24,19 +25,19 @@ const WebBrowser = () => {
     removeBookmark,
     clearHistory
   } = useBrowsing();
-  
+
   const handleUrlSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!url) return;
-    
+
     try {
       // Add protocol if missing
       let fullUrl = url;
       if (!url.startsWith('http://') && !url.startsWith('https://')) {
         fullUrl = `https://${url}`;
       }
-      
+
       await fetchPage(fullUrl);
       setShowHistory(false);
       setShowBookmarks(false);
@@ -44,12 +45,12 @@ const WebBrowser = () => {
       console.error('Error fetching page:', error);
     }
   };
-  
+
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!searchQuery) return;
-    
+
     try {
       await search(searchQuery);
       setActiveTab('search');
@@ -59,10 +60,10 @@ const WebBrowser = () => {
       console.error('Error searching:', error);
     }
   };
-  
+
   const handleExtractFinancialData = async () => {
     if (!currentPage) return;
-    
+
     try {
       const data = await extractFinancialData(currentPage.url);
       setExtractedData(data);
@@ -71,29 +72,29 @@ const WebBrowser = () => {
       console.error('Error extracting financial data:', error);
     }
   };
-  
+
   const handleBookmarkToggle = () => {
     if (!currentPage) return;
-    
+
     const isBookmarked = bookmarks.some(b => b.url === currentPage.url);
-    
+
     if (isBookmarked) {
       removeBookmark(currentPage.url);
     } else {
       addBookmark(currentPage);
     }
   };
-  
+
   const handleHistoryClick = (historyItem) => {
     fetchPage(historyItem.url);
     setShowHistory(false);
   };
-  
+
   const handleBookmarkClick = (bookmark) => {
     fetchPage(bookmark.url);
     setShowBookmarks(false);
   };
-  
+
   const renderBrowserTab = () => {
     return (
       <div className="h-full flex flex-col">
@@ -102,7 +103,7 @@ const WebBrowser = () => {
             <div className="bg-white rounded-lg shadow-md p-4 mb-4">
               <h2 className="text-xl font-semibold mb-2">{currentPage.title}</h2>
               <p className="text-sm text-gray-500 mb-4">{currentPage.url}</p>
-              
+
               <div className="flex space-x-2 mb-4">
                 <button
                   type="button"
@@ -116,7 +117,7 @@ const WebBrowser = () => {
                   <FiBookmark className="mr-2 -ml-1 h-4 w-4" />
                   {bookmarks.some(b => b.url === currentPage.url) ? 'Bookmarked' : 'Bookmark'}
                 </button>
-                
+
                 <button
                   type="button"
                   onClick={handleExtractFinancialData}
@@ -125,7 +126,7 @@ const WebBrowser = () => {
                   <FiDownload className="mr-2 -ml-1 h-4 w-4" />
                   Extract Financial Data
                 </button>
-                
+
                 <a
                   href={currentPage.url}
                   target="_blank"
@@ -136,7 +137,7 @@ const WebBrowser = () => {
                   Open in New Tab
                 </a>
               </div>
-              
+
               {currentPage.metadata && Object.keys(currentPage.metadata).length > 0 && (
                 <div className="mb-4">
                   <h3 className="text-sm font-medium text-gray-700 mb-1">Metadata</h3>
@@ -153,7 +154,7 @@ const WebBrowser = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="prose max-w-none">
                 <div className="whitespace-pre-wrap">{currentPage.content}</div>
               </div>
@@ -171,7 +172,7 @@ const WebBrowser = () => {
       </div>
     );
   };
-  
+
   const renderSearchTab = () => {
     return (
       <div className="h-full overflow-auto p-4">
@@ -183,7 +184,7 @@ const WebBrowser = () => {
                 {lastSearch.totalResults} results ({lastSearch.searchTime.toFixed(2)} seconds)
               </p>
             </div>
-            
+
             <div className="space-y-4">
               {lastSearch.results.map((result, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-md p-4">
@@ -213,7 +214,7 @@ const WebBrowser = () => {
       </div>
     );
   };
-  
+
   const renderDataTab = () => {
     return (
       <div className="h-full overflow-auto p-4">
@@ -228,7 +229,7 @@ const WebBrowser = () => {
                 Extracted at: {new Date(extractedData.extractedAt).toLocaleString()}
               </p>
             </div>
-            
+
             {extractedData.securities.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-4 mb-4">
                 <h3 className="text-md font-medium text-gray-900 mb-2">Securities</h3>
@@ -254,7 +255,7 @@ const WebBrowser = () => {
                 </div>
               </div>
             )}
-            
+
             {Object.keys(extractedData.metrics).length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-4 mb-4">
                 <h3 className="text-md font-medium text-gray-900 mb-2">Financial Metrics</h3>
@@ -268,7 +269,7 @@ const WebBrowser = () => {
                 </div>
               </div>
             )}
-            
+
             {extractedData.tables.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-4 mb-4">
                 <h3 className="text-md font-medium text-gray-900 mb-2">Tables</h3>
@@ -307,7 +308,7 @@ const WebBrowser = () => {
                 </div>
               </div>
             )}
-            
+
             {extractedData.charts.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-4 mb-4">
                 <h3 className="text-md font-medium text-gray-900 mb-2">Charts</h3>
@@ -338,9 +339,10 @@ const WebBrowser = () => {
       </div>
     );
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-[calc(100vh-12rem)]">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden h-[calc(100vh-12rem)]">
       <div className="bg-gray-100 p-4 border-b border-gray-200">
         <div className="flex space-x-2 mb-2">
           <button
@@ -368,7 +370,7 @@ const WebBrowser = () => {
             <FiRefreshCw className="h-5 w-5" />
           </button>
         </div>
-        
+
         <div className="flex space-x-2">
           <div className="flex-1">
             <form onSubmit={handleUrlSubmit} className="flex">
@@ -391,7 +393,7 @@ const WebBrowser = () => {
               </button>
             </form>
           </div>
-          
+
           <div className="flex-1">
             <form onSubmit={handleSearchSubmit} className="flex">
               <input
@@ -414,7 +416,7 @@ const WebBrowser = () => {
             </form>
           </div>
         </div>
-        
+
         <div className="flex mt-2">
           <div className="flex space-x-2">
             <button
@@ -427,7 +429,7 @@ const WebBrowser = () => {
               <FiClock className="mr-2 -ml-1 h-4 w-4" />
               History
             </button>
-            
+
             <button
               type="button"
               onClick={() => setShowBookmarks(!showBookmarks)}
@@ -439,7 +441,7 @@ const WebBrowser = () => {
               Bookmarks
             </button>
           </div>
-          
+
           <div className="ml-auto">
             <div className="flex space-x-2">
               <button
@@ -451,7 +453,7 @@ const WebBrowser = () => {
               >
                 Browser
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => setActiveTab('search')}
@@ -461,7 +463,7 @@ const WebBrowser = () => {
               >
                 Search
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => setActiveTab('data')}
@@ -474,7 +476,7 @@ const WebBrowser = () => {
             </div>
           </div>
         </div>
-        
+
         {showHistory && (
           <div className="absolute z-10 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200">
             <div className="p-2 border-b border-gray-200 flex justify-between items-center">
@@ -509,7 +511,7 @@ const WebBrowser = () => {
             </div>
           </div>
         )}
-        
+
         {showBookmarks && (
           <div className="absolute z-10 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200">
             <div className="p-2 border-b border-gray-200">
@@ -538,13 +540,13 @@ const WebBrowser = () => {
           </div>
         )}
       </div>
-      
+
       {loading && (
         <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
       )}
-      
+
       {error && (
         <div className="bg-red-50 p-4 border-b border-red-200">
           <div className="flex">
@@ -562,13 +564,14 @@ const WebBrowser = () => {
           </div>
         </div>
       )}
-      
+
       <div className="h-full">
         {activeTab === 'browser' && renderBrowserTab()}
         {activeTab === 'search' && renderSearchTab()}
         {activeTab === 'data' && renderDataTab()}
       </div>
     </div>
+    </AccessibilityWrapper>
   );
 };
 

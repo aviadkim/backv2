@@ -1,27 +1,19 @@
 import configManager from './configManager';
+import { apiResponse, apiError, withErrorHandling } from '../../../lib/apiUtils';
 
 /**
  * API handler for getting configuration values
- * @param {import('next').NextApiRequest} req - The request object
- * @param {import('next').NextApiResponse} res - The response object
  */
-export default async function handler(req, res) {
-  // Only allow GET requests
+const handler = async (req, res) => {
   if (req.method !== 'GET') {
-    return res.status(405).json({
-      success: false,
-      error: 'Method not allowed'
-    });
+    return apiError(res, 405, 'Method not allowed');
   }
 
   try {
     const { key } = req.query;
 
     if (!key) {
-      return res.status(400).json({
-        success: false,
-        error: 'Missing required parameter: key'
-      });
+      return apiError(res, 400, 'Missing required parameter: key');
     }
 
     // Validate the key to prevent security issues
@@ -36,10 +28,7 @@ export default async function handler(req, res) {
     ];
 
     if (!allowedKeys.includes(key)) {
-      return res.status(400).json({
-        success: false,
-        error: `Invalid configuration key: ${key}`
-      });
+      return apiError(res, 400, `Invalid configuration key: ${key}`);
     }
 
     // Get the configuration value
@@ -55,17 +44,15 @@ export default async function handler(req, res) {
       ? `${value.substring(0, 5)}...${value.substring(value.length - 5)}`
       : value;
 
-    return res.status(200).json({
-      success: true,
+    return apiResponse(res, 200, {
       key,
       value: maskedValue,
       isSet: !!value
     });
   } catch (error) {
     console.error('Error getting configuration:', error);
-    return res.status(500).json({
-      success: false,
-      error: error.message || 'Failed to get configuration'
-    });
+    return apiError(res, 500, 'Failed to get configuration', error.message);
   }
-}
+};
+
+export default withErrorHandling(handler);

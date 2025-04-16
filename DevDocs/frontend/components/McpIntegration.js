@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:24125';
@@ -164,12 +165,13 @@ const McpIntegration = () => {
   };
 
   return (
-    <div className="mcp-integration">
+    <AccessibilityWrapper>
+      <div className="mcp-integration">
       <h1>Google Cloud Integration</h1>
 
       {error && <div className="error">{error}</div>}
 
-      <div className="section">
+      <section className="section">
         <h2>Storage Buckets</h2>
         {loading && <div className="loading">Loading...</div>}
         <div className="buckets">
@@ -189,9 +191,9 @@ const McpIntegration = () => {
             Refresh Buckets
           </button>
         </div>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Files in {selectedBucket}</h2>
         {loading && <div className="loading">Loading...</div>}
         <div className="files">
@@ -209,9 +211,9 @@ const McpIntegration = () => {
             <input type="file" onChange={handleFileUpload} disabled={loading} />
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Web Search</h2>
         <div className="search">
           <input
@@ -238,9 +240,9 @@ const McpIntegration = () => {
             ))}
           </ul>
         </div>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Web Fetch</h2>
         <div className="fetch">
           <input
@@ -259,11 +261,11 @@ const McpIntegration = () => {
           {fetchedContent && (
             <div>
               <h3>Fetched Content</h3>
-              <div className="content">{fetchedContent}</div>
+              <div className="content" role="main">{fetchedContent}</div>
             </div>
           )}
         </div>
-      </div>
+      </section>
 
       <style jsx>{`
         .mcp-integration {
@@ -332,6 +334,7 @@ const McpIntegration = () => {
         }
       `}</style>
     </div>
+    </AccessibilityWrapper>
   );
 };
 

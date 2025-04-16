@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import mcpClient from '../lib/mcpClient';
 
 const MCPDemo = () => {
@@ -9,16 +10,16 @@ const MCPDemo = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    
+
     if (!query.trim()) return;
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
       // Get context from MCP
       const contextResponse = await mcpClient.getContext(query, { webSearch: true });
-      
+
       if (contextResponse && contextResponse.results) {
         setResults(contextResponse.results);
       } else {
@@ -33,9 +34,10 @@ const MCPDemo = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <AccessibilityWrapper>
+      <div className="p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">MCP Demo</h2>
-      
+
       <form onSubmit={handleSearch} className="mb-6">
         <div className="flex gap-2">
           <input
@@ -45,8 +47,8 @@ const MCPDemo = () => {
             placeholder="Enter your query..."
             className="flex-1 p-2 border border-gray-300 rounded"
           />
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             disabled={loading}
           >
@@ -54,13 +56,13 @@ const MCPDemo = () => {
           </button>
         </div>
       </form>
-      
+
       {error && (
         <div className="p-4 mb-4 bg-red-100 text-red-700 rounded">
           {error}
         </div>
       )}
-      
+
       {results.length > 0 ? (
         <div>
           <h3 className="text-xl font-semibold mb-2">Results</h3>
@@ -69,9 +71,9 @@ const MCPDemo = () => {
               <div key={index} className="p-4 border border-gray-200 rounded">
                 <h4 className="font-bold">{result.title}</h4>
                 {result.link && (
-                  <a 
-                    href={result.link} 
-                    target="_blank" 
+                  <a
+                    href={result.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
@@ -94,6 +96,7 @@ const MCPDemo = () => {
         <p className="text-gray-500">No results to display. Try searching for something!</p>
       )}
     </div>
+    </AccessibilityWrapper>
   );
 };
 

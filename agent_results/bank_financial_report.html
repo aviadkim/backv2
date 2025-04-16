@@ -1,0 +1,753 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Investment Portfolio Statement</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+                :root {
+                    --primary-color: #003366;
+                    --secondary-color: #0066cc;
+                    --accent-color: #ff9900;
+                    --light-gray: #f5f5f5;
+                    --medium-gray: #e0e0e0;
+                    --dark-gray: #333333;
+                    --success-color: #28a745;
+                    --warning-color: #ffc107;
+                    --danger-color: #dc3545;
+                }
+
+                body {
+                    font-family: 'Open Sans', Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    color: var(--dark-gray);
+                    background-color: #f9f9f9;
+                }
+
+                .container {
+                    max-width: 1000px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: white;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                }
+
+                .header {
+                    background-color: var(--primary-color);
+                    color: white;
+                    padding: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .logo {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+
+                .document-info {
+                    text-align: right;
+                }
+
+                h1, h2, h3, h4 {
+                    color: var(--primary-color);
+                    margin-top: 30px;
+                }
+
+                .summary-box {
+                    background-color: var(--light-gray);
+                    border-left: 5px solid var(--primary-color);
+                    padding: 20px;
+                    margin: 20px 0;
+                    border-radius: 5px;
+                }
+
+                .value {
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: var(--primary-color);
+                }
+
+                .warning {
+                    color: var(--danger-color);
+                }
+
+                .chart-container {
+                    margin: 30px 0;
+                }
+
+                .chart {
+                    width: 100%;
+                    height: 30px;
+                    background-color: var(--medium-gray);
+                    border-radius: 15px;
+                    overflow: hidden;
+                    margin-bottom: 15px;
+                }
+
+                .chart-segment {
+                    height: 100%;
+                    float: left;
+                    text-align: center;
+                    color: white;
+                    font-weight: 600;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+
+                .chart-legend {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    margin-top: 10px;
+                }
+
+                .legend-item {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 15px;
+                }
+
+                .legend-color {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 3px;
+                    margin-right: 5px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                }
+
+                th {
+                    background-color: var(--primary-color);
+                    color: white;
+                    padding: 12px 15px;
+                    text-align: left;
+                }
+
+                td {
+                    padding: 10px 15px;
+                    border-bottom: 1px solid var(--medium-gray);
+                }
+
+                tr:nth-child(even) {
+                    background-color: var(--light-gray);
+                }
+
+                tr:hover {
+                    background-color: rgba(0, 102, 204, 0.1);
+                }
+
+                .footer {
+                    margin-top: 50px;
+                    padding: 20px;
+                    background-color: var(--primary-color);
+                    color: white;
+                    text-align: center;
+                    font-size: 14px;
+                }
+
+                .disclaimer {
+                    font-size: 12px;
+                    color: #666;
+                    margin-top: 30px;
+                    padding: 15px;
+                    border: 1px solid var(--medium-gray);
+                    border-radius: 5px;
+                }
+
+                .performance-indicator {
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                }
+
+                .positive {
+                    background-color: var(--success-color);
+                }
+
+                .negative {
+                    background-color: var(--danger-color);
+                }
+
+                .neutral {
+                    background-color: var(--warning-color);
+                }
+
+                @media print {
+                    body {
+                        background-color: white;
+                    }
+
+                    .container {
+                        box-shadow: none;
+                        padding: 0;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <div class="logo">GLOBAL INVESTMENT BANK</div>
+                    <div class="document-info">
+                        <div>Investment Portfolio Statement</div>
+                        <div>28.02.2025</div>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <h2>Portfolio Summary</h2>
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 14px; color: #666;">Total Portfolio Value</div>
+                                <div class="value">$19,510,599.00</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; color: #666;">Number of Securities</div>
+                                <div style="font-size: 18px; font-weight: 600;">41</div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 14px; color: #666;">Account Number</div>
+                                <div style="font-size: 18px; font-weight: 600;">12345-678</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; color: #666;">Client Name</div>
+                                <div style="font-size: 18px; font-weight: 600;">Valued Client</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <h2>Asset Allocation</h2>
+                <div class="chart-container">
+                    <div class="chart">
+            
+                    <div class="chart-segment" style="width: 0.0%; background-color: #17a2b8;">
+                        0.0%
+                    </div>
+                    
+                    <div class="chart-segment" style="width: 99.20682385122124%; background-color: #0066cc;">
+                        99.2%
+                    </div>
+                    
+                    <div class="chart-segment" style="width: 0.7931761487787499%; background-color: #28a745;">
+                        0.8%
+                    </div>
+                    
+                    </div>
+                    <div class="chart-legend">
+            
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #17a2b8;"></div>
+                        <div>Cash: 0.0%</div>
+                    </div>
+                    
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #0066cc;"></div>
+                        <div>Bonds: 99.2%</div>
+                    </div>
+                    
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #28a745;"></div>
+                        <div>Equities: 0.8%</div>
+                    </div>
+                    
+                    </div>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Asset Class</th>
+                        <th>Value</th>
+                        <th>Allocation</th>
+                    </tr>
+            
+                    <tr>
+                        <td>Cash</td>
+                        <td>$0.00</td>
+                        <td>0.00%</td>
+                    </tr>
+                
+                    <tr>
+                        <td>Bonds</td>
+                        <td>$6,359,959.00</td>
+                        <td>99.21%</td>
+                    </tr>
+                
+                    <tr>
+                        <td>Equities</td>
+                        <td>$50,849.00</td>
+                        <td>0.79%</td>
+                    </tr>
+                
+                    <tr style="font-weight: bold;">
+                        <td>Total</td>
+                        <td>$6,410,808.00</td>
+                        <td>100.00%</td>
+                    </tr>
+                </table>
+            
+                <h2>Cash Holdings</h2>
+                <table>
+                    <tr>
+                        <th>Security</th>
+                        <th>ISIN</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                        <th>% of Portfolio</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>ate Actual Ex. Rate Perf Market Thereof accruals of assets
+Price Date Perf Currency Countervalue USD
+Cash accounts credit
+USD 47</td>
+                        <td>CH1908490000</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>$0.00</td>
+                        <td>0.00%</td>
+                    </tr>
+                        
+                </table>
+                    
+                <h2>Bonds Holdings</h2>
+                <table>
+                    <tr>
+                        <th>Security</th>
+                        <th>ISIN</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                        <th>% of Portfolio</th>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>XS2792098779</td>
+                        <td>7,036.15</td>
+                        <td>$98.06</td>
+                        <td>$690,000.00</td>
+                        <td>3.54%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>.2025
+Days</td>
+                        <td>XS2252299883</td>
+                        <td>5,062.78</td>
+                        <td>$98.76</td>
+                        <td>$500,000.00</td>
+                        <td>2.56%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>ty</td>
+                        <td>CH1259345242</td>
+                        <td>5,075.16</td>
+                        <td>$98.52</td>
+                        <td>$500,000.00</td>
+                        <td>2.56%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>28.02.2025
+Other convertible bonds</td>
+                        <td>XS2315191069</td>
+                        <td>5,079.62</td>
+                        <td>$98.06</td>
+                        <td>$498,133.00</td>
+                        <td>2.55%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>ed Bonds</td>
+                        <td>XS2105981117</td>
+                        <td>5,074.48</td>
+                        <td>$97.53</td>
+                        <td>$494,914.00</td>
+                        <td>2.54%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>aturity</td>
+                        <td>XS2631782468</td>
+                        <td>5,016.59</td>
+                        <td>$98.02</td>
+                        <td>$491,716.00</td>
+                        <td>2.52%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>214107</td>
+                        <td>CH1269060229</td>
+                        <td>3,748.77</td>
+                        <td>$91.00</td>
+                        <td>$341,138.00</td>
+                        <td>1.75%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>.02.2025
+Coupon</td>
+                        <td>XS2588105036</td>
+                        <td>2,009.83</td>
+                        <td>$99.10</td>
+                        <td>$199,172.00</td>
+                        <td>1.02%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>e Perf Currency Countervalue USD
+Bonds</td>
+                        <td>XS2530201644</td>
+                        <td>2,001.30</td>
+                        <td>$99.31</td>
+                        <td>$198,745.00</td>
+                        <td>1.02%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>s
+Price Date Perf Currency Countervalue USD
+Structured products</td>
+                        <td>XS2519369867</td>
+                        <td>2,019.57</td>
+                        <td>$97.98</td>
+                        <td>$197,888.00</td>
+                        <td>1.01%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>5 28.02.2025
+Structured Bonds</td>
+                        <td>XS2594173093</td>
+                        <td>2,030.47</td>
+                        <td>$95.00</td>
+                        <td>$192,895.00</td>
+                        <td>0.99%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Currency Countervalue USD
+Bonds</td>
+                        <td>XS2829752976</td>
+                        <td>1,513.03</td>
+                        <td>$97.87</td>
+                        <td>$148,080.00</td>
+                        <td>0.76%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Valorn.</td>
+                        <td>XS2953741100</td>
+                        <td>1,500.00</td>
+                        <td>$98.72</td>
+                        <td>$148,080.00</td>
+                        <td>0.76%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>111</td>
+                        <td>XS2964611052</td>
+                        <td>1,418.04</td>
+                        <td>$81.53</td>
+                        <td>$115,613.00</td>
+                        <td>0.59%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>141235167
+Zero Bonds</td>
+                        <td>LU2228214107</td>
+                        <td>1,418.04</td>
+                        <td>$81.53</td>
+                        <td>$115,613.00</td>
+                        <td>0.59%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>f accruals of assets
+Price Date Perf Currency Countervalue USD
+Structured products</td>
+                        <td>CH1259344831</td>
+                        <td>1,044.18</td>
+                        <td>$97.19</td>
+                        <td>$101,487.00</td>
+                        <td>0.52%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Bonds</td>
+                        <td>XS2761230684</td>
+                        <td>1,063.83</td>
+                        <td>$94.00</td>
+                        <td>$100,000.00</td>
+                        <td>0.51%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>urity</td>
+                        <td>XS2407295554</td>
+                        <td>999.00</td>
+                        <td>$100.10</td>
+                        <td>$100,000.00</td>
+                        <td>0.51%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Structured Bonds</td>
+                        <td>XS2518123653</td>
+                        <td>999.00</td>
+                        <td>$100.10</td>
+                        <td>$100,000.00</td>
+                        <td>0.51%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>ls of assets
+Price Date Perf Currency Countervalue USD
+Structured products</td>
+                        <td>XS1700087403</td>
+                        <td>1,095.45</td>
+                        <td>$91.02</td>
+                        <td>$99,709.00</td>
+                        <td>0.51%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>.2025
+Ordinary Bonds</td>
+                        <td>XS2692298537</td>
+                        <td>1,006.26</td>
+                        <td>$97.66</td>
+                        <td>$98,271.00</td>
+                        <td>0.50%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>rn.</td>
+                        <td>XS2754416860</td>
+                        <td>1,006.26</td>
+                        <td>$97.66</td>
+                        <td>$98,271.00</td>
+                        <td>0.50%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>0</td>
+                        <td>XS2912278723</td>
+                        <td>1,000.01</td>
+                        <td>$96.85</td>
+                        <td>$96,850.00</td>
+                        <td>0.50%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Callable</td>
+                        <td>XS2567543397</td>
+                        <td>961.16</td>
+                        <td>$100.10</td>
+                        <td>$96,212.00</td>
+                        <td>0.49%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>OBAL RE
+ISIN</td>
+                        <td>XS2829712830</td>
+                        <td>1,000.00</td>
+                        <td>$93.02</td>
+                        <td>$93,020.00</td>
+                        <td>0.48%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Callable</td>
+                        <td>XS2110079584</td>
+                        <td>900.00</td>
+                        <td>$99.95</td>
+                        <td>$89,955.00</td>
+                        <td>0.46%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>136429245
+Zero Bonds</td>
+                        <td>XS2848820754</td>
+                        <td>967.05</td>
+                        <td>$93.02</td>
+                        <td>$89,955.00</td>
+                        <td>0.46%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>.2025
+Structured Bonds</td>
+                        <td>XS2838389430</td>
+                        <td>646.78</td>
+                        <td>$97.53</td>
+                        <td>$63,080.00</td>
+                        <td>0.32%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>741100</td>
+                        <td>XS2381717250</td>
+                        <td>500.00</td>
+                        <td>$100.00</td>
+                        <td>$50,000.00</td>
+                        <td>0.26%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>66</td>
+                        <td>XS2481066111</td>
+                        <td>500.00</td>
+                        <td>$100.00</td>
+                        <td>$50,000.00</td>
+                        <td>0.26%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Currency Countervalue USD
+Bonds</td>
+                        <td>XS2782869916</td>
+                        <td>500.00</td>
+                        <td>$97.52</td>
+                        <td>$48,758.00</td>
+                        <td>0.25%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>Perf Currency Countervalue USD
+Bonds</td>
+                        <td>XS2746319610</td>
+                        <td>444.71</td>
+                        <td>$100.20</td>
+                        <td>$44,560.00</td>
+                        <td>0.23%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>rity</td>
+                        <td>XS2665592833</td>
+                        <td>274.42</td>
+                        <td>$98.39</td>
+                        <td>$27,000.00</td>
+                        <td>0.14%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>69916</td>
+                        <td>XS2824054402</td>
+                        <td>185.29</td>
+                        <td>$100.10</td>
+                        <td>$18,548.00</td>
+                        <td>0.10%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>ds</td>
+                        <td>XS2714429128</td>
+                        <td>174.87</td>
+                        <td>$97.84</td>
+                        <td>$17,109.00</td>
+                        <td>0.09%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>ty</td>
+                        <td>XS2736388732</td>
+                        <td>169.24</td>
+                        <td>$98.62</td>
+                        <td>$16,690.00</td>
+                        <td>0.09%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>138689613
+Zero Bonds</td>
+                        <td>XS2381723902</td>
+                        <td>172.33</td>
+                        <td>$96.85</td>
+                        <td>$16,690.00</td>
+                        <td>0.09%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>nds</td>
+                        <td>XS0461497009</td>
+                        <td>117.95</td>
+                        <td>$100.10</td>
+                        <td>$11,807.00</td>
+                        <td>0.06%</td>
+                    </tr>
+                        
+                </table>
+                    
+                <h2>Equities Holdings</h2>
+                <table>
+                    <tr>
+                        <th>Security</th>
+                        <th>ISIN</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                        <th>% of Portfolio</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>f assets
+Price Date Perf Currency Countervalue USD
+Hedge Funds & Private Equity
+USD 204.071 EXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1 1</td>
+                        <td>XD0466760473</td>
+                        <td>299.30</td>
+                        <td>$87.30</td>
+                        <td>$26,129.00</td>
+                        <td>0.13%</td>
+                    </tr>
+                        
+                    <tr>
+                        <td>of accruals of assets
+Price Date Perf Currency Countervalue USD
+Equities</td>
+                        <td>CH0244767585</td>
+                        <td>287.27</td>
+                        <td>$86.05</td>
+                        <td>$24,720.00</td>
+                        <td>0.13%</td>
+                    </tr>
+                        
+                </table>
+                    
+                <div class="disclaimer">
+                    <strong>Important Information:</strong> Past performance is not a reliable indicator of future results. The value of investments and the income from them can go down as well as up and investors may not get back the amount originally invested. This statement is for informational purposes only and does not constitute investment advice. Please consult with a financial advisor before making investment decisions.
+                </div>
+
+                <div class="footer">
+                    <div>Global Investment Bank</div>
+                    <div>123 Financial Street, New York, NY 10001</div>
+                    <div>Tel: +1 (555) 123-4567 | Email: info@globalinvestmentbank.com</div>
+                    <div>© 2025 Global Investment Bank. All rights reserved.</div>
+                </div>
+            </div>
+        </body>
+        </html>
+        

@@ -1,0 +1,8 @@
+{
+  "name": "Optimus1",
+  "model": "anthropic/claude-3-opus",
+  "key": "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",
+  "status": "error",
+  "error_code": 401,
+  "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
+}

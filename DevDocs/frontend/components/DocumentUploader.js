@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiUpload, FiFile, FiCheckCircle, FiAlertCircle, FiLoader } from 'react-icons/fi';
 import axios from 'axios';
 
@@ -8,18 +9,18 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [error, setError] = useState(null);
-  
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
     setUploadStatus(null);
     setError(null);
   };
-  
+
   const handleDragOver = (event) => {
     event.preventDefault();
   };
-  
+
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
@@ -27,18 +28,18 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
     setUploadStatus(null);
     setError(null);
   };
-  
+
   const handleUpload = async () => {
     if (!selectedFile) return;
-    
+
     setUploading(true);
     setUploadProgress(0);
     setUploadStatus(null);
     setError(null);
-    
+
     const formData = new FormData();
     formData.append('file', selectedFile);
-    
+
     try {
       const response = await axios.post('/api/documents/process-and-analyze', formData, {
         headers: {
@@ -49,9 +50,9 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
           setUploadProgress(percentCompleted);
         }
       });
-      
+
       setUploadStatus('success');
-      
+
       if (onDocumentProcessed) {
         onDocumentProcessed(response.data);
       }
@@ -63,17 +64,18 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
       setUploading(false);
     }
   };
-  
+
   const isValidFileType = (file) => {
     const validTypes = ['application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/csv'];
     return file && validTypes.includes(file.type);
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-md p-6">
       <h3 className="text-lg font-medium text-gray-900 mb-4">Upload Financial Document</h3>
-      
-      <div 
+
+      <div
         className={`border-2 border-dashed rounded-lg p-8 text-center ${
           uploading ? 'border-gray-300 bg-gray-50' : 'border-gray-300 hover:border-blue-500'
         }`}
@@ -100,20 +102,20 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
             </p>
           </>
         )}
-        
+
         {selectedFile && !uploading && !uploadStatus && (
           <div className="mt-4">
             <div className="flex items-center justify-center">
               <FiFile className="h-5 w-5 text-gray-400 mr-2" />
               <span className="text-sm font-medium text-gray-900">{selectedFile.name}</span>
             </div>
-            
+
             {!isValidFileType(selectedFile) && (
               <p className="mt-2 text-xs text-red-500">
                 Invalid file type. Please upload a PDF, Excel, or CSV file.
               </p>
             )}
-            
+
             <button
               type="button"
               onClick={handleUpload}
@@ -126,17 +128,17 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
             </button>
           </div>
         )}
-        
+
         {uploading && (
           <div className="mt-4">
             <div className="flex items-center justify-center">
               <FiLoader className="h-8 w-8 text-blue-500 animate-spin mr-2" />
               <span className="text-sm font-medium text-gray-900">Processing document...</span>
             </div>
-            
+
             <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
-              <div 
-                className="bg-blue-600 h-2.5 rounded-full" 
+              <div
+                className="bg-blue-600 h-2.5 rounded-full"
                 style={{ width: `${uploadProgress}%` }}
               ></div>
             </div>
@@ -145,14 +147,14 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
             </p>
           </div>
         )}
-        
+
         {uploadStatus === 'success' && (
           <div className="mt-4">
             <div className="flex items-center justify-center">
               <FiCheckCircle className="h-8 w-8 text-green-500 mr-2" />
               <span className="text-sm font-medium text-gray-900">Document processed successfully!</span>
             </div>
-            
+
             <button
               type="button"
               onClick={() => {
@@ -165,18 +167,18 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
             </button>
           </div>
         )}
-        
+
         {uploadStatus === 'error' && (
           <div className="mt-4">
             <div className="flex items-center justify-center">
               <FiAlertCircle className="h-8 w-8 text-red-500 mr-2" />
               <span className="text-sm font-medium text-gray-900">Error processing document</span>
             </div>
-            
+
             <p className="mt-2 text-xs text-red-500">
               {error || 'An error occurred while processing the document. Please try again.'}
             </p>
-            
+
             <button
               type="button"
               onClick={() => {
@@ -190,7 +192,7 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
           </div>
         )}
       </div>
-      
+
       <div className="mt-4">
         <h4 className="text-sm font-medium text-gray-900 mb-2">Supported Document Types:</h4>
         <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
@@ -203,6 +205,7 @@ const DocumentUploader = ({ onDocumentProcessed }) => {
         </ul>
       </div>
     </div>
+    </AccessibilityWrapper>
   );
 };
 

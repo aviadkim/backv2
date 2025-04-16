@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "preprocessed_image": "image data (not serialized)",
+  "original_shape": [
+    800,
+    600,
+    3
+  ],
+  "preprocessed_shape": [
+    3333,
+    2500
+  ],
+  "preprocessing_options": {
+    "enhance_contrast": true,
+    "fix_skew": true,
+    "remove_noise": true,
+    "binarize": false,
+    "target_dpi": 300
+  }
+}

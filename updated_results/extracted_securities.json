@@ -1,0 +1,353 @@
+[
+  {
+    "currency": "USD",
+    "nominal": "200000",
+    "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2530201644"
+  },
+  {
+    "currency": "USD",
+    "nominal": "200000",
+    "description": "CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28",
+    "price": "",
+    "value": "172",
+    "weight": "",
+    "isin": "XS2588105036"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1500000",
+    "description": "HARP ISSUER (4% MIN/5,5% MAX) NOTES 2023-18.09.2028",
+    "price": "",
+    "value": "27000",
+    "weight": "",
+    "isin": "XS2665592833"
+  },
+  {
+    "currency": "USD",
+    "nominal": "690000",
+    "description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2692298537"
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "LUMINIS (4.2 % MIN/5.5 % MAX) NOTES 2024-17.01.30",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2754416860"
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "CIBC 0% NOTES 2024-13.02.2030 VARIABLE RATE",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2761230684"
+  },
+  {
+    "currency": "USD",
+    "nominal": "250000",
+    "description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  },
+  {
+    "currency": "USD",
+    "nominal": "50000",
+    "description": "CITIGROUP GLBL 5.65 % CALL FIXED RATE NOTES 2024-",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "XS2782869916"
+  },
+  {
+    "currency": "USD",
+    "nominal": "440000",
+    "description": "BOFA 5.6% 2024-29.05.34 REGS",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2824054402"
+  },
+  {
+    "currency": "USD",
+    "nominal": "2450000",
+    "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2567543397"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1100000",
+    "description": "CITIGROUP 0% MTN 2024-09.07.34 REGS",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2110079584"
+  },
+  {
+    "currency": "USD",
+    "nominal": "90000",
+    "description": "CITIGROUP GLBL 0 % MEDIUM TERM NOTES 2024-01.08.34",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "XS2848820754"
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "GOLDMAN SACHS EMTN 2024-30.09.2024",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2829712830"
+  },
+  {
+    "currency": "USD",
+    "nominal": "200000",
+    "description": "BANK OF AMERICA 0% NOTES 2024-17.10.2034",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2912278723"
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "JPMORGAN CHASE  0 % NOTES 2024-29.10.34 SERIES 2021-",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  },
+  {
+    "currency": "USD",
+    "nominal": "250000",
+    "description": "GOLDMAN SACHS 0% EURO MEDIUM TERM NOTES 2024-",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "XS2829752976"
+  },
+  {
+    "currency": "USD",
+    "nominal": "150000",
+    "description": "BANK OF AMERICA 0 % NOTES 2024-11.12.34 REG S",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2953741100"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "JPMORGAN CHASE 0% NOTES 2024-19.12.2034",
+    "price": "26.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2381717250"
+  },
+  {
+    "currency": "USD",
+    "nominal": "50000",
+    "description": "GOLDMAN SACHS 0% NOTES 2025-03.02.2035",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2481066111"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1470000",
+    "description": "DEUTSCHE BANK 0 % NOTES 2025-14.02.35",
+    "price": "27.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2964611052"
+  },
+  {
+    "currency": "USD",
+    "nominal": "2581.79",
+    "description": "PREMIUM ALT.S.A. SICAV-SIF - COMMERCIAL FINANCE OPP.XB",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "LU2228214107"
+  },
+  {
+    "currency": "USD",
+    "nominal": "350000",
+    "description": "BK JULIUS BAER CAP.PROT.(3,25% MIN.4,5% MAX)23-26.05.28",
+    "price": "",
+    "value": "63",
+    "weight": "",
+    "isin": "CH1269060229"
+  },
+  {
+    "currency": "USD",
+    "nominal": "690000",
+    "description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  },
+  {
+    "currency": "USD",
+    "nominal": "140000",
+    "description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "6.91%",
+    "isin": "XS2746319610"
+  },
+  {
+    "currency": "USD",
+    "nominal": "200000",
+    "description": "BCO SAFRA CAYMAN 5% STRUCT.NOTE 2022-21.06.27 3,4%",
+    "price": "",
+    "value": "1917",
+    "weight": "",
+    "isin": "XS2519369867"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "BNP PARIBAS ISS STRUCT.NOTE 21-08.01.29 ON DBDK 29 631",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2315191069"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1200000",
+    "description": "CITIGROUP",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2792098779"
+  },
+  {
+    "currency": "USD",
+    "nominal": "690000",
+    "description": "EMERALD BAY NOTES 23-17.09.29 S.2023-05 REG-S VRN",
+    "price": "",
+    "value": "17109",
+    "weight": "",
+    "isin": "XS2714429128"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "GOLDMAN SACHS GR.STRUCT.NOTE 21-20.12.28 VRN ON NAT",
+    "price": "",
+    "value": "5714",
+    "weight": "",
+    "isin": "XS2105981117"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1600000",
+    "description": "LUMINIS 5.7% STR NOTE 2024-26.04.33 WFC 24W",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2838389430"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "LUMINIS REPACK NOTES 23-25.05.29 VRN ON 4,625%",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "NATIXIS STRUC.NOTES 19-20.6.26 VRN ON 4,75%METLIFE 21",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "XS1700087403"
+  },
+  {
+    "currency": "USD",
+    "nominal": "200000",
+    "description": "NOVUS CAPITAL CREDIT LINKED NOTES 2023-27.09.2029",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2594173093"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "NOVUS CAPITAL STRUCT.NOTE 2021-12.01.28 VRN ON",
+    "price": "",
+    "value": "4009",
+    "weight": "",
+    "isin": "XS2407295554"
+  },
+  {
+    "currency": "USD",
+    "nominal": "100000",
+    "description": "RBC TORONTO 5,06% CREDIT LINKED NOTE 2022-20.06.2027",
+    "price": "24.02.2025",
+    "value": "",
+    "weight": "",
+    "isin": "XS2518123653"
+  },
+  {
+    "currency": "USD",
+    "nominal": "1000000",
+    "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": "XS2252299883"
+  },
+  {
+    "currency": "USD",
+    "nominal": "500000",
+    "description": "RAIFF 4.5% STRUC NTS 23-11.07.28 ON REF ASSET",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  },
+  {
+    "currency": "USD",
+    "nominal": "250000",
+    "description": "RAIFF 4.75% STR.NTS 23-11.07.28 ON REF ASSET",
+    "price": "28.02.2025",
+    "value": "",
+    "weight": "8.91%",
+    "isin": "CH1259344831"
+  },
+  {
+    "currency": "USD",
+    "nominal": "204.071",
+    "description": "EXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1",
+    "price": "",
+    "value": "",
+    "weight": "",
+    "isin": ""
+  }
+]

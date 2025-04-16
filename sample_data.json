@@ -1,0 +1,144 @@
+{
+  "extracted_text": "\n    Portfolio Statement\n    Date: 15/06/2023\n    \n    This document contains information about your investment portfolio.\n    The portfolio includes stocks, bonds, and other securities.\n    \n    Total Portfolio Value: $1,250,000.00\n    ",
+  "tables_data": [
+    {
+      "id": "table_1",
+      "type": "portfolio",
+      "data": [
+        {
+          "Security": "Apple Inc.",
+          "ISIN": "US0378331005",
+          "Quantity": 100,
+          "Price": 150.25,
+          "Value": 15025.0,
+          "Return": 12.5
+        },
+        {
+          "Security": "Microsoft Corp.",
+          "ISIN": "US5949181045",
+          "Quantity": 50,
+          "Price": 300.5,
+          "Value": 15025.0,
+          "Return": 8.3
+        },
+        {
+          "Security": "Amazon.com Inc.",
+          "ISIN": "US0231351067",
+          "Quantity": 20,
+          "Price": 3200.75,
+          "Value": 64015.0,
+          "Return": -2.1
+        },
+        {
+          "Security": "Tesla Inc.",
+          "ISIN": "US88160R1014",
+          "Quantity": 30,
+          "Price": 700.5,
+          "Value": 21015.0,
+          "Return": 15.7
+        },
+        {
+          "Security": "Alphabet Inc.",
+          "ISIN": "US02079K1079",
+          "Quantity": 15,
+          "Price": 2500.25,
+          "Value": 37503.75,
+          "Return": 5.2
+        }
+      ],
+      "columns": [
+        "Security",
+        "ISIN",
+        "Quantity",
+        "Price",
+        "Value",
+        "Return"
+      ],
+      "row_count": 5,
+      "column_count": 6
+    }
+  ],
+  "financial_data": {
+    "portfolio": {
+      "securities": [
+        {
+          "security_name": "Apple Inc.",
+          "isin": "US0378331005",
+          "quantity": 100,
+          "price": 150.25,
+          "value": 15025.0,
+          "return": 12.5
+        },
+        {
+          "security_name": "Microsoft Corp.",
+          "isin": "US5949181045",
+          "quantity": 50,
+          "price": 300.5,
+          "value": 15025.0,
+          "return": 8.3
+        },
+        {
+          "security_name": "Amazon.com Inc.",
+          "isin": "US0231351067",
+          "quantity": 20,
+          "price": 3200.75,
+          "value": 64015.0,
+          "return": -2.1
+        },
+        {
+          "security_name": "Tesla Inc.",
+          "isin": "US88160R1014",
+          "quantity": 30,
+          "price": 700.5,
+          "value": 21015.0,
+          "return": 15.7
+        },
+        {
+          "security_name": "Alphabet Inc.",
+          "isin": "US02079K1079",
+          "quantity": 15,
+          "price": 2500.25,
+          "value": 37503.75,
+          "return": 5.2
+        }
+      ],
+      "summary": {
+        "total_value": 152583.75,
+        "total_securities": 5,
+        "type_distribution": {
+          "Stocks": 100.0,
+          "Bonds": 0.0,
+          "Cash": 0.0,
+          "Other": 0.0
+        }
+      }
+    }
+  },
+  "isin_entities": [
+    {
+      "isin": "US0378331005",
+      "name": "Apple Inc.",
+      "type": "stock"
+    },
+    {
+      "isin": "US5949181045",
+      "name": "Microsoft Corp.",
+      "type": "stock"
+    },
+    {
+      "isin": "US0231351067",
+      "name": "Amazon.com Inc.",
+      "type": "stock"
+    },
+    {
+      "isin": "US88160R1014",
+      "name": "Tesla Inc.",
+      "type": "stock"
+    },
+    {
+      "isin": "US02079K1079",
+      "name": "Alphabet Inc.",
+      "type": "stock"
+    }
+  ]
+}

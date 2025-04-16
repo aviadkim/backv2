@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Financial Document Processor{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title">Recent Documents</h5>
+            </div>
+            <div class="card-body">
+                {% if documents %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for document in documents[:5] %}
+                            <tr>
+                                <td><a href="/documents/{{ document.id }}">{{ document.filename }}</a></td>
+                                <td>{{ document.document_type or 'Unknown' }}</td>
+                                <td>
+                                    {% if document.processing_status == 'completed' %}
+                                    <span class="badge bg-success">Completed</span>
+                                    {% elif document.processing_status == 'processing' %}
+                                    <span class="badge bg-primary">Processing</span>
+                                    {% elif document.processing_status == 'failed' %}
+                                    <span class="badge bg-danger">Failed</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">{{ document.processing_status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ document.extraction_date.split('T')[0] if document.extraction_date else 'N/A' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if documents|length > 5 %}
+                <a href="/documents" class="btn btn-sm btn-outline-primary">View All Documents</a>
+                {% endif %}
+                {% else %}
+                <p>No documents found. <a href="/upload">Upload a document</a> to get started.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/upload" class="btn btn-primary">
+                        <i class="bi bi-cloud-upload"></i> Upload Document
+                    </a>
+                    <a href="/documents" class="btn btn-outline-secondary">
+                        <i class="bi bi-file-earmark-text"></i> View All Documents
+                    </a>
+                    <a href="/query" class="btn btn-outline-secondary">
+                        <i class="bi bi-search"></i> Query Documents
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title">System Status</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Database Connection
+                        <span class="badge bg-success">Connected</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        OpenRouter API
+                        <span class="badge bg-success">Available</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Document Processor
+                        <span class="badge bg-success">Ready</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title">About Financial Document Processor</h5>
+            </div>
+            <div class="card-body">
+                <p>The Financial Document Processor is a comprehensive solution for processing financial documents, extracting data, and enabling AI-powered querying and analysis.</p>
+                
+                <h6>Features:</h6>
+                <ul>
+                    <li><strong>Document Extraction:</strong> Extract text, tables, and structured data from financial PDFs</li>
+                    <li><strong>Database Storage:</strong> Store extracted data in a structured database</li>
+                    <li><strong>AI-Powered Querying:</strong> Ask natural language questions about your financial documents</li>
+                    <li><strong>Table Generation:</strong> Generate custom tables based on your financial data</li>
+                    <li><strong>Financial Analysis:</strong> Get insights and recommendations based on your portfolio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

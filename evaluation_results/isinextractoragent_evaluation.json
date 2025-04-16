@@ -1,0 +1,215 @@
+{
+  "agent_name": "ISINExtractorAgent",
+  "test_date": "2025-04-14T22:59:17.972425",
+  "total_tests": 6,
+  "passed_tests": 6,
+  "failed_tests": 0,
+  "test_results": [
+    {
+      "test_id": 1,
+      "description": "Basic ISIN extraction",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Apple Inc.\n                ISIN: US0378331005\n                Quantity: 100\n                Price: $150.25\n                Value: $15,025.00\n                \n                Security Name: Microsoft Corporation\n                ISIN: US5949181045\n                Quantity: 50\n                Price: $300.50\n                Value: $15,025.00\n                ",
+        "validate": true,
+        "include_metadata": true
+      },
+      "expected": {
+        "status": "success",
+        "count": 2
+      },
+      "actual": {
+        "status": "success",
+        "isins": [
+          {
+            "isin": "US0378331005",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "037833100",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          },
+          {
+            "isin": "US5949181045",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "594918104",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          }
+        ],
+        "count": 2
+      }
+    },
+    {
+      "test_id": 2,
+      "description": "ISIN extraction without validation",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Apple Inc.\n                ISIN: US0378331005\n                Quantity: 100\n                \n                Security Name: Invalid ISIN\n                ISIN: XX1234567890\n                Quantity: 50\n                ",
+        "validate": false,
+        "include_metadata": true
+      },
+      "expected": {
+        "status": "success",
+        "count": 2
+      },
+      "actual": {
+        "status": "success",
+        "isins": [
+          {
+            "isin": "US0378331005",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "037833100",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          },
+          {
+            "isin": "XX1234567890",
+            "metadata": {
+              "country_code": "XX",
+              "country_name": "Unknown",
+              "security_code": "123456789",
+              "check_digit": "0",
+              "is_valid": true
+            }
+          }
+        ],
+        "count": 2
+      }
+    },
+    {
+      "test_id": 3,
+      "description": "ISIN extraction without metadata",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Apple Inc.\n                ISIN: US0378331005\n                Quantity: 100\n                ",
+        "validate": true,
+        "include_metadata": false
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "isins": [
+          "US0378331005"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "test_id": 4,
+      "description": "ISIN extraction with multiple occurrences",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Apple Inc.\n                ISIN: US0378331005\n                Quantity: 100\n                \n                Reference to Apple Inc. (US0378331005) again.\n                ",
+        "validate": true,
+        "include_metadata": true
+      },
+      "expected": {
+        "status": "success",
+        "count": 1
+      },
+      "actual": {
+        "status": "success",
+        "isins": [
+          {
+            "isin": "US0378331005",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "037833100",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          }
+        ],
+        "count": 1
+      }
+    },
+    {
+      "test_id": 5,
+      "description": "ISIN extraction with no ISINs",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Unknown Company\n                No ISIN available\n                Quantity: 100\n                ",
+        "validate": true,
+        "include_metadata": true
+      },
+      "expected": {
+        "status": "success",
+        "count": 0
+      },
+      "actual": {
+        "status": "success",
+        "isins": [],
+        "count": 0
+      }
+    },
+    {
+      "test_id": 6,
+      "description": "ISIN extraction with context",
+      "passed": true,
+      "execution_time": 0.0,
+      "input": {
+        "text": "\n                Portfolio Statement\n                \n                Security Name: Apple Inc.\n                ISIN: US0378331005\n                Quantity: 100\n                Price: $150.25\n                Value: $15,025.00\n                \n                Security Name: Microsoft Corporation\n                ISIN: US5949181045\n                Quantity: 50\n                Price: $300.50\n                Value: $15,025.00\n                \n                Security Name: Amazon.com Inc.\n                ISIN: US0231351067\n                Quantity: 25\n                Price: $130.75\n                Value: $3,268.75\n                ",
+        "validate": true,
+        "include_metadata": true
+      },
+      "expected": {
+        "status": "success",
+        "count": 3
+      },
+      "actual": {
+        "status": "success",
+        "isins": [
+          {
+            "isin": "US0378331005",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "037833100",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          },
+          {
+            "isin": "US5949181045",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "594918104",
+              "check_digit": "5",
+              "is_valid": true
+            }
+          },
+          {
+            "isin": "US0231351067",
+            "metadata": {
+              "country_code": "US",
+              "country_name": "United States",
+              "security_code": "023135106",
+              "check_digit": "7",
+              "is_valid": true
+            }
+          }
+        ],
+        "count": 3
+      }
+    }
+  ],
+  "success_rate": 100.0
+}

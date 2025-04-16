@@ -1,0 +1,70 @@
+{
+  "Other assets Liquidity\nLiquidity": {
+    "value": 47850.0,
+    "percentage": 0.25
+  },
+  "Bonds": {
+    "value": 11558957.0,
+    "percentage": 59.24
+  },
+  "Equities": {
+    "value": 27406.0,
+    "percentage": 0.14
+  },
+  "Mixed funds\nStructured products Structured products": {
+    "value": 7850257.0,
+    "percentage": 40.24
+  },
+  "Precious metals\nAssets Real Estate\nOther assets": {
+    "value": 26129.0,
+    "percentage": 0.13
+  },
+  "Bonds Total": {
+    "value": 19510599.0,
+    "percentage": 100.0
+  },
+  "USD": {
+    "value": 19483193.0,
+    "percentage": 99.86
+  },
+  "Total": {
+    "value": 19510599.0,
+    "percentage": 100.0
+  },
+  "Assets and Liabilities Structure\naeouiAEOUI aeouiAEOUI\nAsset Allocation Countervalue USD Weight Liabilities and obligations Countervalue USD\nLiquidity": {
+    "value": 47850.0,
+    "percentage": 0.25
+  },
+  "Liabilities\nCash accounts": {
+    "value": 47850.0,
+    "percentage": 0.25
+  },
+  "loss\nBonds": {
+    "value": 11558957.0,
+    "percentage": 59.24
+  },
+  "IRS\nFutures\nBonds": {
+    "value": 10211442.0,
+    "percentage": 52.34
+  },
+  "certificates": {
+    "value": 1347515.0,
+    "percentage": 6.91
+  },
+  "Convertibles\nEquities": {
+    "value": 27406.0,
+    "percentage": 0.14
+  },
+  "certificates\nMixed funds\nStructured products": {
+    "value": 7850257.0,
+    "percentage": 40.24
+  },
+  "Various Certificates\nMetal accounts and precious metals\nMetal accounts\nPrecious metals\nReal Estate\nOther assets": {
+    "value": 26129.0,
+    "percentage": 0.13
+  },
+  "Private Equity": {
+    "value": 26129.0,
+    "percentage": 0.13
+  }
+}

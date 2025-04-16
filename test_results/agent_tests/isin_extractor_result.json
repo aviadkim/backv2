@@ -1,0 +1,406 @@
+{
+  "status": "success",
+  "isins": [
+    {
+      "isin": "XS2792098779",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "279209877",
+        "check_digit": "9",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2782869916",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "278286991",
+        "check_digit": "6",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2105981117",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "210598111",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS0461497009",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "046149700",
+        "check_digit": "9",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "CH1269060229",
+      "metadata": {
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "security_code": "126906022",
+        "check_digit": "9",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2407295554",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "240729555",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2665592833",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "266559283",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XD0466760473",
+      "metadata": {
+        "country_code": "XD",
+        "country_name": "Unknown",
+        "security_code": "046676047",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2567543397",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "256754339",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "CH1259345242",
+      "metadata": {
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "security_code": "125934524",
+        "check_digit": "2",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "CH1259344831",
+      "metadata": {
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "security_code": "125934483",
+        "check_digit": "1",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2588105036",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "258810503",
+        "check_digit": "6",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2252299883",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "225229988",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2761230684",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "276123068",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2824054402",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "282405440",
+        "check_digit": "2",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2912278723",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "291227872",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2692298537",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "269229853",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2736388732",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "273638873",
+        "check_digit": "2",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2381717250",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "238171725",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2953741100",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "295374110",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "LU2228214107",
+      "metadata": {
+        "country_code": "LU",
+        "country_name": "Luxembourg",
+        "security_code": "222821410",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2530201644",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "253020164",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2518123653",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "251812365",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2829752976",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "282975297",
+        "check_digit": "6",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2848820754",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "284882075",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2315191069",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "231519106",
+        "check_digit": "9",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS1700087403",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "170008740",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2631782468",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "263178246",
+        "check_digit": "8",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "CH0244767585",
+      "metadata": {
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "security_code": "024476758",
+        "check_digit": "5",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2594173093",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "259417309",
+        "check_digit": "3",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2754416860",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "275441686",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2714429128",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "271442912",
+        "check_digit": "8",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2110079584",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "211007958",
+        "check_digit": "4",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2964611052",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "296461105",
+        "check_digit": "2",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2838389430",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "283838943",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2829712830",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "282971283",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2481066111",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "248106611",
+        "check_digit": "1",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2381723902",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "238172390",
+        "check_digit": "2",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2746319610",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "274631961",
+        "check_digit": "0",
+        "is_valid": true
+      }
+    },
+    {
+      "isin": "XS2519369867",
+      "metadata": {
+        "country_code": "XS",
+        "country_name": "Unknown",
+        "security_code": "251936986",
+        "check_digit": "7",
+        "is_valid": true
+      }
+    }
+  ],
+  "count": 40
+}

@@ -1,3 +1,6 @@
+import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
+
 import { useState, useEffect } from 'react';
 import { 
   Chart as ChartJS, 
@@ -61,6 +64,8 @@ const Chart = ({ type = 'line', data, options = {}, height = 300 }) => {
 
   if (error) {
     return (
+    <AccessibilityWrapper>
+      
       <div className="flex flex-col items-center justify-center" style={{ height }}>
         <div className="text-gray-400 text-sm">{error}</div>
         {chartData && renderChart(type, chartData, options, height)}

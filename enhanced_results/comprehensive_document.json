@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "document_type": "portfolio_statement",
+    "document_date": "",
+    "client_name": "",
+    "client_number": "",
+    "valuation_currency": "USD"
+  },
+  "tables": [],
+  "financial_data": {
+    "portfolio": {
+      "securities": [],
+      "summary": {
+        "total_value": 0,
+        "total_securities": 0
+      }
+    },
+    "isins": []
+  }
+}

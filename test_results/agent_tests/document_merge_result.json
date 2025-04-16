@@ -1,0 +1,510 @@
+{
+  "merged_document": {
+    "merge_date": "2025-04-15T10:56:17.813688",
+    "original_documents": 2,
+    "document_types": [
+      "portfolio_statement",
+      "asset_allocation"
+    ],
+    "merged_data": {
+      "portfolio": {
+        "securities": [
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2530201644",
+            "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2588105036",
+            "description": "CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28\nVRN",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2665592833",
+            "description": "HARP ISSUER (4% MIN/5,5% MAX) NOTES 2023-18.09.2028\nSE.195",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2692298537",
+            "description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2754416860",
+            "description": "LUMINIS (4.2 % MIN/5.5 % MAX) NOTES 2024-17.01.30",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2761230684",
+            "description": "CIBC 0% NOTES 2024-13.02.2030 VARIABLE RATE",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2736388732",
+            "description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2782869916",
+            "description": "CITIGROUP GLBL 5.65 % CALL FIXED RATE NOTES 2024-\n09.05.34",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2824054402",
+            "description": "BOFA 5.6% 2024-29.05.34 REGS",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2567543397",
+            "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2110079584",
+            "description": "CITIGROUP 0% MTN 2024-09.07.34 REGS",
+            "currency": "OFA",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2848820754",
+            "description": "CITIGROUP GLBL 0 % MEDIUM TERM NOTES 2024-01.08.34\nGLOBAL RE",
+            "currency": "OTE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2829712830",
+            "description": "GOLDMAN SACHS EMTN 2024-30.09.2024",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2912278723",
+            "description": "BANK OF AMERICA 0% NOTES 2024-17.10.2034",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2381723902",
+            "description": "JPMORGAN CHASE  0 % NOTES 2024-29.10.34 SERIES 2021-\n37954",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2829752976",
+            "description": "GOLDMAN SACHS 0% EURO MEDIUM TERM NOTES 2024-\n18.11.2034",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2953741100",
+            "description": "BANK OF AMERICA 0 % NOTES 2024-11.12.34 REG S",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2381717250",
+            "description": "JPMORGAN CHASE 0% NOTES 2024-19.12.2034",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2481066111",
+            "description": "GOLDMAN SACHS 0% NOTES 2025-03.02.2035",
+            "currency": "CHS",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Zero Bonds",
+            "isin": "XS2964611052",
+            "description": "DEUTSCHE BANK 0 % NOTES 2025-14.02.35",
+            "currency": "ICA",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "LU2228214107",
+            "description": "PREMIUM ALT.S.A. SICAV-SIF - COMMERCIAL FINANCE OPP.XB\nSP",
+            "currency": "ASE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "CH1269060229",
+            "description": "BK JULIUS BAER CAP.PROT.(3,25% MIN.4,5% MAX)23-26.05.28\nVRN",
+            "currency": "CHS",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS0461497009",
+            "description": "DEUTSCHE BANK NOTES 23-08.11.28 VRN",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Bonds",
+            "isin": "XS2746319610",
+            "description": "SOCIETE GENERALE 32.46 % NOTES 2024-01.03.30 REG S",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Ordinary Stocks",
+            "isin": "CH0244767585",
+            "description": "CHF\n\n800\n\nUBS GROUP INC NAMEN-AKT.",
+            "currency": "CHF",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2519369867",
+            "description": "BCO SAFRA CAYMAN 5% STRUCT.NOTE 2022-21.06.27 3,4%\nCITD 26",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2315191069",
+            "description": "BNP PARIBAS ISS STRUCT.NOTE 21-08.01.29 ON DBDK 29 631",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2792098779",
+            "description": "CITIGROUP",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2714429128",
+            "description": "EMERALD BAY NOTES 23-17.09.29 S.2023-05 REG-S VRN\nWELLS F.",
+            "currency": "OTE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2105981117",
+            "description": "GOLDMAN SACHS GR.STRUCT.NOTE 21-20.12.28 VRN ON NAT\n34",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2838389430",
+            "description": "LUMINIS 5.7% STR NOTE 2024-26.04.33 WFC 24W",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2631782468",
+            "description": "LUMINIS REPACK NOTES 23-25.05.29 VRN ON 4,625%\nRABOBANK 29",
+            "currency": "OTE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS1700087403",
+            "description": "NATIXIS STRUC.NOTES 19-20.6.26 VRN ON 4,75%METLIFE 21\nSRN",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2594173093",
+            "description": "NOVUS CAPITAL CREDIT LINKED NOTES 2023-27.09.2029",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2407295554",
+            "description": "NOVUS CAPITAL STRUCT.NOTE 2021-12.01.28 VRN ON\nNATWEST GROUP",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2518123653",
+            "description": "RBC TORONTO 5,06% CREDIT LINKED NOTE 2022-20.06.2027",
+            "currency": "TES",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "XS2252299883",
+            "description": "NOVUS CAPITAL STRUCTURED NOTES 20-15.05.26 ON CS\nGROUP",
+            "currency": "OTE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured Bonds",
+            "isin": "CH1259345242",
+            "description": "INTERBK LIBOR 3 MTH\n\nRAIFF 4.5% STRUC NTS 23-11.07.28 ON REF ASSET",
+            "currency": "OTE",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": "Structured products equity",
+            "isin": "CH1259344831",
+            "description": "RAIFF 4.75% STR.NTS 23-11.07.28 ON REF ASSET",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          },
+          {
+            "type": NaN,
+            "isin": "XD0466760473",
+            "description": "USD\n\n204.071\n\nEXIGENT ENHANCED INCOME FUND LTD SHS A SERIES 2019 1\nR",
+            "currency": "USD",
+            "price": NaN,
+            "value": NaN,
+            "weight": NaN
+          }
+        ],
+        "summary": {
+          "total_value": 0.0,
+          "total_securities": 40
+        }
+      }
+    },
+    "summary": {
+      "financial_health": {},
+      "asset_overview": {
+        "total_portfolio_value": 0.0,
+        "security_count": 40
+      },
+      "income_overview": {},
+      "key_metrics": {}
+    }
+  },
+  "comprehensive_report": {
+    "report_date": "2025-04-15T10:56:17.813688",
+    "report_type": "comprehensive_financial_report",
+    "data_sources": [
+      "portfolio_statement",
+      "asset_allocation"
+    ],
+    "financial_snapshot": {
+      "total_assets": 0,
+      "total_liabilities": 0,
+      "net_worth": 0,
+      "monthly_income": 0,
+      "monthly_expenses": 0,
+      "portfolio_value": 0.0,
+      "debt_to_equity_ratio": 0,
+      "profit_margin": 0
+    },
+    "assets_and_liabilities": {
+      "total_assets": 0,
+      "total_liabilities": 0,
+      "net_worth": 0,
+      "debt_to_equity_ratio": 0,
+      "asset_breakdown": [],
+      "liability_breakdown": [],
+      "recommendations": []
+    },
+    "income_and_expenses": {
+      "total_income": 0,
+      "total_expenses": 0,
+      "net_income": 0,
+      "income_breakdown": [],
+      "expense_breakdown": [],
+      "monthly_cash_flow": 0,
+      "recommendations": []
+    },
+    "investments": {
+      "total_portfolio_value": 0.0,
+      "asset_allocation": [
+        {
+          "type": "Ordinary Bonds",
+          "value": NaN,
+          "percentage": 0
+        },
+        {
+          "type": "Zero Bonds",
+          "value": NaN,
+          "percentage": 0
+        },
+        {
+          "type": "Ordinary Stocks",
+          "value": NaN,
+          "percentage": 0
+        },
+        {
+          "type": "Structured Bonds",
+          "value": NaN,
+          "percentage": 0
+        },
+        {
+          "type": "Structured products equity",
+          "value": NaN,
+          "percentage": 0
+        },
+        {
+          "type": NaN,
+          "value": NaN,
+          "percentage": 0
+        }
+      ],
+      "top_performers": [
+        {
+          "type": "Ordinary Bonds",
+          "isin": "XS2530201644",
+          "description": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+          "currency": "USD",
+          "price": NaN,
+          "value": NaN,
+          "weight": NaN
+        },
+        {
+          "type": "Ordinary Bonds",
+          "isin": "XS2588105036",
+          "description": "CANADIAN IMPERIAL BANK OF COMMERCE NOTES 23-22.08.28\nVRN",
+          "currency": "USD",
+          "price": NaN,
+          "value": NaN,
+          "weight": NaN
+        },
+        {
+          "type": "Ordinary Bonds",
+          "isin": "XS2665592833",
+          "description": "HARP ISSUER (4% MIN/5,5% MAX) NOTES 2023-18.09.2028\nSE.195",
+          "currency": "USD",
+          "price": NaN,
+          "value": NaN,
+          "weight": NaN
+        },
+        {
+          "type": "Ordinary Bonds",
+          "isin": "XS2692298537",
+          "description": "GOLDMAN SACHS 0% NOTES 23-07.11.29 SERIES P",
+          "currency": "TES",
+          "price": NaN,
+          "value": NaN,
+          "weight": NaN
+        },
+        {
+          "type": "Ordinary Bonds",
+          "isin": "XS2754416860",
+          "description": "LUMINIS (4.2 % MIN/5.5 % MAX) NOTES 2024-17.01.30",
+          "currency": "TES",
+          "price": NaN,
+          "value": NaN,
+          "weight": NaN
+        }
+      ],
+      "historical_performance": {},
+      "recommendations": []
+    },
+    "recommendations": []
+  }
+}

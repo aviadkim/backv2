@@ -1,0 +1,8 @@
+{
+  "name": "Gemini Finance",
+  "model": "google/gemini-1.5-pro",
+  "key": "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",
+  "status": "error",
+  "error_code": 400,
+  "error_message": "{\"error\":{\"message\":\"google/gemini-1.5-pro is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+}

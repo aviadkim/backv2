@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -25,7 +26,8 @@ function FinDocLayout({ children }) {
   ];
 
   return (
-    <div className="findoc-layout">
+    <AccessibilityWrapper>
+      <div className="findoc-layout">
       {/* Sidebar */}
       <aside className="sidebar">
         <div className="sidebar-header">
@@ -394,6 +396,7 @@ function FinDocLayout({ children }) {
         .icon-cloud:before { content: '☁️'; }
       `}</style>
     </div>
+    </AccessibilityWrapper>
   );
 }
 

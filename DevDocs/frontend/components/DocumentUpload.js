@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { useDropzone } from 'react-dropzone';
 import { FiUpload, FiFile, FiX, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import { useDocument } from '../providers/DocumentProvider';
@@ -11,13 +12,13 @@ const DocumentUpload = ({ onUploadComplete }) => {
   const [uploadSuccess, setUploadSuccess] = useState({});
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
-  
+
   const { uploadDocument } = useDocument();
   const fileInputRef = useRef(null);
-  
+
   // Maximum file size (10MB)
   const MAX_FILE_SIZE = 10 * 1024 * 1024;
-  
+
   // Accepted file types
   const ACCEPTED_FILE_TYPES = {
     'application/pdf': ['.pdf'],
@@ -28,7 +29,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
     'text/csv': ['.csv']
   };
-  
+
   // Handle file drop
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     // Handle accepted files
@@ -37,21 +38,21 @@ const DocumentUpload = ({ onUploadComplete }) => {
       id: `${file.name}-${Date.now()}`,
       title: file.name.split('.')[0] // Default title is filename without extension
     }));
-    
+
     setFiles(prevFiles => [...prevFiles, ...newFiles]);
-    
+
     // Handle rejected files
     rejectedFiles.forEach(rejected => {
       const { file, errors } = rejected;
       const errorMessages = errors.map(e => e.message).join(', ');
-      
+
       setUploadErrors(prev => ({
         ...prev,
         [`${file.name}-${Date.now()}`]: errorMessages
       }));
     });
   }, []);
-  
+
   // Configure dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -59,37 +60,37 @@ const DocumentUpload = ({ onUploadComplete }) => {
     maxSize: MAX_FILE_SIZE,
     multiple: true
   });
-  
+
   // Handle file removal
   const removeFile = (id) => {
     setFiles(files.filter(file => file.id !== id));
-    
+
     // Also remove any progress, errors, or success states
     const newProgress = { ...uploadProgress };
     const newErrors = { ...uploadErrors };
     const newSuccess = { ...uploadSuccess };
-    
+
     delete newProgress[id];
     delete newErrors[id];
     delete newSuccess[id];
-    
+
     setUploadProgress(newProgress);
     setUploadErrors(newErrors);
     setUploadSuccess(newSuccess);
   };
-  
+
   // Handle title change
   const handleTitleChange = (id, newTitle) => {
-    setFiles(files.map(file => 
+    setFiles(files.map(file =>
       file.id === id ? { ...file, title: newTitle } : file
     ));
   };
-  
+
   // Handle tag input
   const handleTagInputChange = (e) => {
     setTagInput(e.target.value);
   };
-  
+
   // Add tag
   const addTag = () => {
     if (tagInput.trim() && !tags.includes(tagInput.trim())) {
@@ -97,7 +98,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
       setTagInput('');
     }
   };
-  
+
   // Handle tag input key press
   const handleTagKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -105,24 +106,24 @@ const DocumentUpload = ({ onUploadComplete }) => {
       addTag();
     }
   };
-  
+
   // Remove tag
   const removeTag = (tag) => {
     setTags(tags.filter(t => t !== tag));
   };
-  
+
   // Upload files
   const uploadFiles = async () => {
     if (files.length === 0) return;
-    
+
     setUploading(true);
-    
+
     // Process files sequentially
     for (const fileObj of files) {
       try {
         // Create a new XMLHttpRequest to track progress
         const xhr = new XMLHttpRequest();
-        
+
         // Track upload progress
         xhr.upload.addEventListener('progress', (event) => {
           if (event.lengthComputable) {
@@ -133,42 +134,42 @@ const DocumentUpload = ({ onUploadComplete }) => {
             }));
           }
         });
-        
+
         // Create form data
         const formData = new FormData();
         formData.append('file', fileObj.file);
         formData.append('title', fileObj.title);
-        
+
         if (tags.length > 0) {
           formData.append('tags', JSON.stringify(tags));
         }
-        
+
         // Upload the file
         const response = await fetch('/api/documents/upload', {
           method: 'POST',
           body: formData,
           xhr: xhr
         });
-        
+
         if (!response.ok) {
           throw new Error(`Upload failed: ${response.statusText}`);
         }
-        
+
         const result = await response.json();
-        
+
         // Mark as success
         setUploadSuccess(prev => ({
           ...prev,
           [fileObj.id]: true
         }));
-        
+
         // Call the callback if provided
         if (onUploadComplete) {
           onUploadComplete(result.document);
         }
       } catch (error) {
         console.error(`Error uploading ${fileObj.file.name}:`, error);
-        
+
         // Mark as error
         setUploadErrors(prev => ({
           ...prev,
@@ -176,14 +177,14 @@ const DocumentUpload = ({ onUploadComplete }) => {
         }));
       }
     }
-    
+
     setUploading(false);
   };
-  
+
   // Get file icon based on type
   const getFileIcon = (file) => {
     const type = file.type;
-    
+
     if (type.includes('pdf')) {
       return <FiFile className="text-red-500" />;
     } else if (type.includes('word') || type.includes('doc')) {
@@ -194,9 +195,10 @@ const DocumentUpload = ({ onUploadComplete }) => {
       return <FiFile className="text-gray-500" />;
     }
   };
-  
+
   return (
-    <div className="space-y-6">
+    <AccessibilityWrapper>
+      <div className="space-y-6">
       {/* Dropzone */}
       <div
         {...getRootProps()}
@@ -205,7 +207,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
         }`}
       >
         <input {...getInputProps()} ref={fileInputRef} />
-        
+
         <div className="flex flex-col items-center justify-center space-y-3">
           <FiUpload className="h-12 w-12 text-gray-400" />
           <p className="text-lg font-medium text-gray-700">
@@ -224,7 +226,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
           </p>
         </div>
       </div>
-      
+
       {/* Tags */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">Tags</label>
@@ -263,7 +265,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
           </button>
         </div>
       </div>
-      
+
       {/* File list */}
       {files.length > 0 && (
         <div className="space-y-4">
@@ -321,7 +323,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
               </li>
             ))}
           </ul>
-          
+
           <div className="flex justify-end">
             <button
               type="button"
@@ -339,6 +341,7 @@ const DocumentUpload = ({ onUploadComplete }) => {
         </div>
       )}
     </div>
+    </AccessibilityWrapper>
   );
 };
 

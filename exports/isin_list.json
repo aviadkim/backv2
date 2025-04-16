@@ -1,0 +1,26 @@
+{
+  "extraction_date": "2025-04-14T20:15:18.743636",
+  "document_id": "",
+  "isin_entities": [
+    {
+      "isin": "US0378331005",
+      "company_name": "Apple Inc."
+    },
+    {
+      "isin": "US5949181045",
+      "company_name": "Microsoft Corp."
+    },
+    {
+      "isin": "US0231351067",
+      "company_name": "Amazon.com Inc."
+    },
+    {
+      "isin": "US88160R1014",
+      "company_name": "Tesla Inc."
+    },
+    {
+      "isin": "US02079K1079",
+      "company_name": "Alphabet Inc."
+    }
+  ]
+}

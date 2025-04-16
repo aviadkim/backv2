@@ -1,0 +1,72 @@
+{
+  "comparison_date": "2025-04-14T22:44:04.745302",
+  "period_start": "2025-02-13T22:44:04.742299",
+  "period_end": "2025-04-14T22:44:04.727301",
+  "document_count": 2,
+  "trends": {
+    "portfolio": {
+      "value_change": 0.0,
+      "value_change_pct": 0.0,
+      "top_performers": [
+        {
+          "name": "Apple Inc.",
+          "isin": "US0378331005",
+          "type": "stock",
+          "quantity": 100,
+          "price": 150.0,
+          "value": 15000.0,
+          "return": 12.5,
+          "average_return": 12.5
+        },
+        {
+          "name": "Microsoft Corp.",
+          "isin": "US5949181045",
+          "type": "stock",
+          "quantity": 50,
+          "price": 300.0,
+          "value": 15000.0,
+          "return": 8.2,
+          "average_return": 8.2
+        },
+        {
+          "name": "US Treasury Bond",
+          "isin": "US912810TW33",
+          "type": "bond",
+          "quantity": 10,
+          "price": 1000.0,
+          "value": 10000.0,
+          "return": 3.5,
+          "average_return": 3.5
+        }
+      ]
+    },
+    "balance_sheet": {
+      "assets_change": 0.0,
+      "assets_change_pct": 0.0,
+      "liabilities_change": 0.0,
+      "liabilities_change_pct": 0.0,
+      "equity_change": 0.0,
+      "equity_change_pct": 0.0,
+      "major_changes": []
+    },
+    "income_statement": {
+      "revenue_change": 0.0,
+      "revenue_change_pct": 0.0,
+      "expenses_change": 0.0,
+      "expenses_change_pct": 0.0,
+      "profit_change": 0.0,
+      "profit_change_pct": 0.0,
+      "major_changes": []
+    },
+    "salary": {
+      "gross_change": 0.0,
+      "gross_change_pct": 0,
+      "net_change": 0.0,
+      "net_change_pct": 0,
+      "deduction_changes": []
+    }
+  },
+  "summary": {
+    "significant_changes": []
+  }
+}

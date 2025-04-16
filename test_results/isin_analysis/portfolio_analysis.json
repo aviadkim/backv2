@@ -1,0 +1,13 @@
+{
+  "total_value": 0.0,
+  "total_securities": 40,
+  "asset_allocation": {},
+  "currency_allocation": {},
+  "maturity_profile": {},
+  "performance": {
+    "average_ytd": 0,
+    "average_total": 0,
+    "best_performers": [],
+    "worst_performers": []
+  }
+}

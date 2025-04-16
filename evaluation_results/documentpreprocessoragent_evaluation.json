@@ -1,0 +1,155 @@
+{
+  "agent_name": "DocumentPreprocessorAgent",
+  "test_date": "2025-04-14T22:58:46.411234",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "test_results": [
+    {
+      "test_id": 1,
+      "description": "Basic image preprocessing",
+      "passed": true,
+      "execution_time": 0.01908,
+      "input": {
+        "options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": false
+        }
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "original_shape": "(500, 500)",
+        "preprocessed_shape": "(2083, 2083)",
+        "preprocessing_options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": false,
+          "target_dpi": 300
+        }
+      }
+    },
+    {
+      "test_id": 2,
+      "description": "Image preprocessing with binarization",
+      "passed": true,
+      "execution_time": 0.006998,
+      "input": {
+        "options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": true
+        }
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "original_shape": "(500, 500)",
+        "preprocessed_shape": "(2083, 2083)",
+        "preprocessing_options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": true,
+          "target_dpi": 300
+        }
+      }
+    },
+    {
+      "test_id": 3,
+      "description": "Image preprocessing without skew correction",
+      "passed": true,
+      "execution_time": 0.004999,
+      "input": {
+        "options": {
+          "enhance_contrast": true,
+          "fix_skew": false,
+          "remove_noise": true,
+          "binarize": false
+        }
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "original_shape": "(500, 500)",
+        "preprocessed_shape": "(2083, 2083)",
+        "preprocessing_options": {
+          "enhance_contrast": true,
+          "fix_skew": false,
+          "remove_noise": true,
+          "binarize": false,
+          "target_dpi": 300
+        }
+      }
+    },
+    {
+      "test_id": 4,
+      "description": "Image preprocessing with high DPI",
+      "passed": true,
+      "execution_time": 0.009001,
+      "input": {
+        "options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": false,
+          "dpi": 600
+        }
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "original_shape": "(500, 500)",
+        "preprocessed_shape": "(4166, 4166)",
+        "preprocessing_options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": false,
+          "target_dpi": 600
+        }
+      }
+    },
+    {
+      "test_id": 5,
+      "description": "Text region detection",
+      "passed": true,
+      "execution_time": 0.011001,
+      "input": {
+        "options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true
+        }
+      },
+      "expected": {
+        "status": "success"
+      },
+      "actual": {
+        "status": "success",
+        "original_shape": "(600, 800)",
+        "preprocessed_shape": "(2500, 3333)",
+        "preprocessing_options": {
+          "enhance_contrast": true,
+          "fix_skew": true,
+          "remove_noise": true,
+          "binarize": false,
+          "target_dpi": 300
+        }
+      }
+    }
+  ],
+  "success_rate": 100.0
+}

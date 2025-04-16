@@ -1,0 +1,31 @@
+{
+  "extraction": {
+    "pdfplumber": {
+      "text_length": 30961,
+      "tables_count": 25
+    },
+    "unstructured": {
+      "text_length": 0,
+      "elements_count": 0
+    },
+    "camelot": {
+      "tables_count": 23
+    }
+  },
+  "securities": [],
+  "portfolio_value": null,
+  "analysis": {
+    "document_type": "Unknown",
+    "portfolio_summary": "Error analyzing document",
+    "asset_allocation": [],
+    "top_holdings": [],
+    "key_insights": []
+  },
+  "answers": {
+    "What is the total portfolio value?": "Error answering question: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************2dc8. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",
+    "What are the top 5 holdings?": "Error answering question: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************2dc8. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",
+    "What is the asset allocation?": "Error answering question: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************2dc8. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",
+    "What is the currency of the portfolio?": "Error answering question: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************2dc8. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",
+    "What is the risk profile of the portfolio?": "Error answering question: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************2dc8. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}"
+  }
+}

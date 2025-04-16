@@ -1,3 +1,6 @@
+import React from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../providers/AuthProvider';

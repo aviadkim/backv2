@@ -1,0 +1,12 @@
+{
+  "test_date": "2025-04-15T10:56:17.814687",
+  "api_key_provided": true,
+  "securities_count": 40,
+  "results": {
+    "document_preprocessor": "success",
+    "isin_extractor": "success",
+    "financial_table_detector": "failed",
+    "financial_data_analyzer": "failed",
+    "document_merge": "success"
+  }
+}

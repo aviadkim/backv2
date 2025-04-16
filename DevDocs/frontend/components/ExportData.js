@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessibilityWrapper from './AccessibilityWrapper';
 import { FiDownload, FiFileText, FiDatabase, FiList } from 'react-icons/fi';
 import exportController from '../controllers/exportController';
 
@@ -12,69 +13,69 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
     dateFormat: 'YYYY-MM-DD'
   });
   const [exporting, setExporting] = useState(false);
-  
+
   const handleOptionChange = (key, value) => {
     setOptions(prev => ({
       ...prev,
       [key]: value
     }));
   };
-  
+
   const handleExport = async () => {
     if (exportType === 'portfolio' && !portfolio) {
       alert('No portfolio selected');
       return;
     }
-    
-    if ((exportType === 'document' || exportType === 'selectedDocuments') && 
-        (!documents || documents.length === 0) && 
+
+    if ((exportType === 'document' || exportType === 'selectedDocuments') &&
+        (!documents || documents.length === 0) &&
         (!selectedDocuments || selectedDocuments.length === 0)) {
       alert('No documents available');
       return;
     }
-    
+
     setExporting(true);
-    
+
     try {
       let blob;
       let fileName = options.fileName || 'export';
-      
+
       switch (exportType) {
         case 'portfolio':
           blob = await exportController.exportPortfolio(portfolio, exportFormat, options);
           fileName = options.fileName || `${portfolio.name}_export`;
           break;
-          
+
         case 'portfolioHoldings':
           blob = await exportController.exportPortfolioHoldings(portfolio, exportFormat, options);
           fileName = options.fileName || `${portfolio.name}_holdings`;
           break;
-          
+
         case 'document':
           if (documents && documents.length > 0) {
             blob = await exportController.exportDocument(documents[0], exportFormat, options);
             fileName = options.fileName || `${documents[0].title}_export`;
           }
           break;
-          
+
         case 'allDocuments':
           if (documents && documents.length > 0) {
             blob = await exportController.exportDocuments(documents, exportFormat, options);
             fileName = options.fileName || 'all_documents_export';
           }
           break;
-          
+
         case 'selectedDocuments':
           if (selectedDocuments && selectedDocuments.length > 0) {
             blob = await exportController.exportDocuments(selectedDocuments, exportFormat, options);
             fileName = options.fileName || 'selected_documents_export';
           }
           break;
-          
+
         default:
           throw new Error(`Unsupported export type: ${exportType}`);
       }
-      
+
       if (blob) {
         // Create a download link
         const url = URL.createObjectURL(blob);
@@ -93,11 +94,12 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
       setExporting(false);
     }
   };
-  
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <AccessibilityWrapper>
+      <div className="bg-white rounded-lg shadow-md p-6">
       <h3 className="text-lg font-medium text-gray-900 mb-4">Export Data</h3>
-      
+
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Export Type</label>
@@ -116,7 +118,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-xs text-gray-500">Export portfolio summary</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportType === 'portfolioHoldings' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -131,7 +133,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-xs text-gray-500">Export portfolio holdings</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportType === 'document' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -146,7 +148,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-xs text-gray-500">Export single document</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportType === 'allDocuments' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -161,7 +163,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-xs text-gray-500">Export all documents</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportType === 'selectedDocuments' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -178,7 +180,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
             </label>
           </div>
         </div>
-        
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Export Format</label>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
@@ -196,7 +198,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-sm font-medium text-gray-700">CSV</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportFormat === 'excel' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -211,7 +213,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
                 <span className="block text-sm font-medium text-gray-700">Excel</span>
               </div>
             </label>
-            
+
             <label className={`flex items-center p-3 rounded-md ${
               exportFormat === 'json' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50 border border-gray-200'
             }`}>
@@ -228,7 +230,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
             </label>
           </div>
         </div>
-        
+
         <div>
           <label htmlFor="file-name" className="block text-sm font-medium text-gray-700 mb-1">
             File Name (optional)
@@ -245,10 +247,10 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
             File extension will be added automatically
           </p>
         </div>
-        
+
         <div className="flex flex-col space-y-2">
           <label className="block text-sm font-medium text-gray-700">Options</label>
-          
+
           <div className="flex items-center">
             <input
               id="include-metadata"
@@ -261,7 +263,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
               Include Metadata
             </label>
           </div>
-          
+
           {(exportType === 'document' || exportType === 'allDocuments' || exportType === 'selectedDocuments') && (
             <div className="flex items-center">
               <input
@@ -277,7 +279,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
             </div>
           )}
         </div>
-        
+
         <div className="pt-4">
           <button
             type="button"
@@ -293,6 +295,7 @@ const ExportData = ({ portfolio, documents, selectedDocuments }) => {
         </div>
       </div>
     </div>
+    </AccessibilityWrapper>
   );
 };
 
