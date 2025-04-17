@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FinDoc Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+            color: #333;
+            background: #f7f9fc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .findoc-layout {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f7f9fc;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .app-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-nav li.active a {
+            background-color: #3498db;
+            color: white;
+            border-left: 4px solid #2980b9;
+        }
+
+        .sidebar-nav li a:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar-nav .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 20px;
+            padding: 5px 15px;
+            width: 300px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 8px;
+            width: 100%;
+            outline: none;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .upload-btn {
+            display: flex;
+            align-items: center;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .user-avatar-small {
+            width: 32px;
+            height: 32px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .page-content {
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .page-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .dashboard-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .card-content {
+            margin-bottom: 15px;
+            color: #7f8c8d;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .card-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .notifications-dropdown, .user-menu-dropdown {
+            position: absolute;
+            right: 20px;
+            top: 70px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            min-width: 250px;
+            z-index: 100;
+        }
+
+        .notifications-dropdown h3, .user-menu-dropdown h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .notifications-dropdown ul, .user-menu-dropdown ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notifications-dropdown li, .user-menu-dropdown li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .notifications-dropdown li:last-child, .user-menu-dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .user-menu-dropdown {
+            top: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="findoc-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="app-title">FinDoc Analyzer</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="/"><i class="icon fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="/upload"><i class="icon fas fa-upload"></i> Upload Documents</a></li>
+                    <li><a href="/documents"><i class="icon fas fa-file"></i> My Documents</a></li>
+                    <li><a href="/analysis"><i class="icon fas fa-chart-bar"></i> Analysis</a></li>
+                    <li><a href="/portfolio"><i class="icon fas fa-chart-pie"></i> Portfolio</a></li>
+                    <li><a href="/agents"><i class="icon fas fa-robot"></i> Agents</a></li>
+                    <li><a href="/document-understanding-demo"><i class="icon fas fa-search"></i> Document Understanding</a></li>
+                    <li><a href="/test-sql-agent"><i class="icon fas fa-database"></i> SQL Agent</a></li>
+                    <li><a href="/test-web-browser"><i class="icon fas fa-globe"></i> Web Browser</a></li>
+                    <li><a href="/mcp-integration"><i class="icon fas fa-cloud"></i> Google Cloud MCP</a></li>
+                    <li><a href="/dev-test-center"><i class="icon fas fa-tools"></i> Testing</a></li>
+                    <li><a href="/api-key-setup"><i class="icon fas fa-key"></i> API Setup</a></li>
+                    <li><a href="/settings"><i class="icon fas fa-cog"></i> Settings</a></li>
+                    <li><a href="/api-keys"><i class="icon fas fa-key"></i> API Keys</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">AB</div>
+                    <div class="user-details">
+                        <div class="user-name">Aviad B.</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="search-box">
+                    <input type="text" placeholder="Search documents..." />
+                    <i class="icon fas fa-search"></i>
+                </div>
+                <div class="header-actions">
+                    <a href="/upload" class="upload-btn">
+                        <i class="icon fas fa-upload"></i>
+                        <span>Upload Document</span>
+                    </a>
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="user-menu-btn">
+                        <div class="user-avatar-small">AB</div>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page content -->
+            <div class="page-content">
+                <h1 class="page-title">Financial Document Dashboard</h1>
+                <p class="page-description">Welcome to the FinDoc Analyzer dashboard. Here you can manage and analyze your financial documents.</p>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Documents</h2>
+                            <div class="card-icon"><i class="fas fa-file"></i></div>
+                        </div>
+                        <div class="card-content">
+                            <p>You have 3 recently processed documents.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/documents" class="card-link">View All Documents</a>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Portfolio Summary</h2>
+                            <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                        </div>
+                        <div class="card-content">
+                            <p>Total portfolio value: $19,510,599</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/portfolio" class="card-link">View Portfolio</a>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Document Analysis</h2>
+                            <div class="card-icon"><i class="fas fa-search"></i></div>
+                        </div>
+                        <div class="card-content">
+                            <p>Run analysis on your financial documents.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/analysis" class="card-link">Start Analysis</a>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Data Export</h2>
+                            <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
+                        </div>
+                        <div class="card-content">
+                            <p>Export your financial data in various formats.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/export" class="card-link">Export Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -2,8 +2,12 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+COPY package*.json ./
+
+RUN npm install
+
 COPY server.js .
-COPY index.html .
+COPY index-proper.html .
 
 ENV PORT=3002
 

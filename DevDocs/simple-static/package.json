@@ -1,0 +1,12 @@
+{
+  "name": "findoc-analyzer-static",
+  "version": "1.0.0",
+  "description": "FinDoc Analyzer Static UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
