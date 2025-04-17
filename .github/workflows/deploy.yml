@@ -93,7 +93,7 @@ jobs:
 
     - name: Build and push DevDocs image
       run: |
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.fixed ./DevDocs/frontend
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/simple-static/Dockerfile ./DevDocs/simple-static
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
 
     - name: Build and push MCP server image
