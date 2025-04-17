@@ -1,6 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const { MCPClient } = require('gcp-mcp');
+// Try to load the real MCP client, fall back to mock if not available
+let MCPClient;
+try {
+  MCPClient = require('gcp-mcp').MCPClient;
+  console.log('Using real MCP client');
+} catch (error) {
+  console.log('Using mock MCP client');
+  MCPClient = require('./mcp-mock').MCPClient;
+}
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const path = require('path');
