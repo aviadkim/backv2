@@ -380,20 +380,22 @@ function FinDocLayout({ children }) {
           font-family: 'Font Awesome 5 Free';
           font-weight: 900;
         }
-        .icon-home:before { content: '🏠'; }
-        .icon-upload:before { content: '📤'; }
-        .icon-file:before { content: '📄'; }
-        .icon-chart-bar:before { content: '📊'; }
-        .icon-chart-pie:before { content: '📈'; }
-        .icon-robot:before { content: '🤖'; }
-        .icon-cog:before { content: '⚙️'; }
-        .icon-key:before { content: '🔑'; }
-        .icon-bell:before { content: '🔔'; }
-        .icon-search:before { content: '🔍'; }
-        .icon-file-search:before { content: '🔎'; }
-        .icon-database:before { content: '💾'; }
-        .icon-globe:before { content: '🌐'; }
-        .icon-cloud:before { content: '☁️'; }
+        .icon-home:before { content: '\f015'; }
+        .icon-upload:before { content: '\f093'; }
+        .icon-file:before { content: '\f15b'; }
+        .icon-chart-bar:before { content: '\f080'; }
+        .icon-chart-pie:before { content: '\f200'; }
+        .icon-robot:before { content: '\f544'; }
+        .icon-cog:before { content: '\f013'; }
+        .icon-key:before { content: '\f084'; }
+        .icon-bell:before { content: '\f0f3'; }
+        .icon-search:before { content: '\f002'; }
+        .icon-file-search:before { content: '\f002'; }
+        .icon-database:before { content: '\f1c0'; }
+        .icon-globe:before { content: '\f0ac'; }
+        .icon-cloud:before { content: '\f0c2'; }
+        .icon-key-square:before { content: '\f084'; }
+        .icon-tool:before { content: '\f7d9'; }
       `}</style>
     </div>
     </AccessibilityWrapper>

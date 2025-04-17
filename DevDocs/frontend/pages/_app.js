@@ -5,6 +5,7 @@ import { DocumentProvider } from '../providers/DocumentProvider';
 import Layout from '../components/Layout';
 import ChakraWrapper from '../components/ChakraWrapper';
 import RouterWrapper from '../components/RouterWrapper';
+import FontLoader from '../components/FontLoader';
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ChakraWrapper>
+      <FontLoader />
       <RouterWrapper>
         <AuthProvider>
           <DocumentProvider>

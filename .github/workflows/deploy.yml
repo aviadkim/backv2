@@ -105,9 +105,17 @@ jobs:
     - name: Deploy DevDocs to Cloud Run
       run: |
         echo "Deploying DevDocs app with Supabase key from GitHub secrets"
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.nextjs-custom ./DevDocs/frontend
+        # Install dependencies for the frontend
+        cd ./DevDocs/frontend
+        npm install
+        cd ../..
+
+        # Build and push the Docker image
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.fresh ./DevDocs/frontend
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
-        gcloud run deploy devdocs-app \
+
+        # Deploy to Google Cloud Run
+        gcloud run deploy devdocs-app-fresh \
           --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
