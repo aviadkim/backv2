@@ -107,7 +107,7 @@ jobs:
         echo "Deploying DevDocs app with Supabase key from GitHub secrets"
         docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.new ./DevDocs/frontend
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
-        gcloud run deploy devdocs-app \
+        gcloud run deploy devdocs-app-v3 \
           --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
