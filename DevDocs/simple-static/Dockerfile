@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY server.js .
-COPY index-proper.html .
+COPY index-redirect.html .
 
 ENV PORT=3002
 

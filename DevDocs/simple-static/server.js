@@ -5,11 +5,11 @@ const path = require('path');
 const PORT = process.env.PORT || 3002;
 
 const server = http.createServer((req, res) => {
-  // Read the index-proper.html file
-  fs.readFile(path.join(__dirname, 'index-proper.html'), (err, content) => {
+  // Read the index-redirect.html file
+  fs.readFile(path.join(__dirname, 'index-redirect.html'), (err, content) => {
     if (err) {
       res.writeHead(500);
-      res.end('Error loading index-proper.html');
+      res.end('Error loading index-redirect.html');
       return;
     }
 
