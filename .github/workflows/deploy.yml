@@ -93,8 +93,8 @@ jobs:
 
     - name: Build and push DevDocs image
       run: |
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/simple-static/Dockerfile ./DevDocs/simple-static
-        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}-v2 -f ./DevDocs/simple-static/Dockerfile ./DevDocs/simple-static
+        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}-v2
 
     - name: Build and push MCP server image
       run: |
@@ -106,7 +106,7 @@ jobs:
       run: |
         echo "Deploying DevDocs app with Supabase key from GitHub secrets"
         gcloud run deploy devdocs-app \
-          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
+          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}-v2 \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
