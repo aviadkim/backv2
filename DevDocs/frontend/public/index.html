@@ -1,81 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevDocs - Financial Document Analysis</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f7fa;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      max-width: 600px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-    p {
-      color: #718096;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-    .spinner {
-      width: 64px;
-      height: 64px;
-      border: 4px solid #e2e8f0;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1.5rem;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .button {
-      display: inline-block;
-      background-color: #3498db;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
-    .button:hover {
-      background-color: #2980b9;
-    }
-  </style>
+    <title>DevDocs - Financial Document Processing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            color: #3498db;
+            margin-top: 0;
+        }
+        .card p {
+            margin-bottom: 1rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="spinner"></div>
-    <h1>DevDocs - Financial Document Analysis</h1>
-    <p>Welcome to DevDocs, your comprehensive solution for financial document analysis, portfolio management, and report generation.</p>
-    <p>The application is loading. Please wait a moment...</p>
-    <p>If the application doesn't load automatically, please click the button below:</p>
-    <a href="/dashboard" class="button">Go to Dashboard</a>
-  </div>
+    <div class="container">
+        <h1>DevDocs - Financial Document Processing</h1>
+        <p>Welcome to the Financial Document Processing Platform</p>
 
-  <script>
-    // Redirect to dashboard after a short delay
-    setTimeout(function() {
-      window.location.href = '/dashboard';
-    }, 3000);
-  </script>
+        <div class="dashboard">
+            <div class="card">
+                <h2>Document Upload</h2>
+                <p>Upload and process financial documents</p>
+                <a href="#" class="button">Upload Document</a>
+            </div>
+            <div class="card">
+                <h2>Financial Analysis</h2>
+                <p>Analyze financial data and generate reports</p>
+                <a href="#" class="button">View Analysis</a>
+            </div>
+            <div class="card">
+                <h2>Data Export</h2>
+                <p>Export financial data to various formats</p>
+                <a href="#" class="button">Export Data</a>
+            </div>
+            <div class="card">
+                <h2>Document Comparison</h2>
+                <p>Compare multiple financial documents</p>
+                <a href="#" class="button">Compare Documents</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
