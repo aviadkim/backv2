@@ -106,13 +106,21 @@ jobs:
       run: |
         echo "Deploying DevDocs app with Supabase key from GitHub secrets"
 
-        # Build and push the Docker image
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.nextjs-proper ./DevDocs/frontend
-        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
-
-        # Deploy to Google Cloud Run
+        # Deploy the simple static website with redirect to proper UI
         gcloud run deploy devdocs-app \
-          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
+          --source ./DevDocs/simple-static \
+          --region me-west1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --set-env-vars=PORT=3002,OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
+
+        # Build and push the Docker image for the proper UI
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-proper-ui:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.nextjs-proper ./DevDocs/frontend
+        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-proper-ui:${{ github.sha }}
+
+        # Deploy the proper UI to Google Cloud Run
+        gcloud run deploy devdocs-proper-ui \
+          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-proper-ui:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
