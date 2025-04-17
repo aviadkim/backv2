@@ -64,6 +64,10 @@ memory/
 *.env.*
 mcp.json
 mcp.env
+DevDocs/frontend/utils/mcpClient.js
+DevDocs/frontend/components/McpTester.js
+DevDocs/frontend/pages/mcp-test.js
+DevDocs/mcp-config.json
 
 # Google Cloud service account credentials
 key.json
