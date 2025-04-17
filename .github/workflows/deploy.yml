@@ -111,11 +111,11 @@ jobs:
         cd ../..
 
         # Build and push the Docker image
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.fresh ./DevDocs/frontend
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.original ./DevDocs/frontend
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
 
         # Deploy to Google Cloud Run
-        gcloud run deploy devdocs-app-fresh \
+        gcloud run deploy devdocs-app-original \
           --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
           --region me-west1 \
           --platform managed \
