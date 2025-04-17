@@ -1,13 +1,25 @@
 # Stage 1: Build the Next.js application
 FROM node:18-alpine AS builder
 
+# Install required packages for fonts and character encoding
+RUN apk add --no-cache \
+    ttf-dejavu \
+    ttf-liberation \
+    ttf-freefont \
+    fontconfig \
+    icu-libs
+
+# Set the locale to UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
 WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
@@ -18,13 +30,25 @@ RUN npm run build
 # Stage 2: Create a lightweight production image
 FROM node:18-alpine
 
+# Install required packages for fonts and character encoding
+RUN apk add --no-cache \
+    ttf-dejavu \
+    ttf-liberation \
+    ttf-freefont \
+    fontconfig \
+    icu-libs
+
+# Set the locale to UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
 WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm ci --production
+RUN npm install --production
 
 # Copy the built application from the builder stage
 COPY --from=builder /app/.next ./.next
@@ -37,6 +61,7 @@ EXPOSE 3002
 # Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3002
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Start the application
 CMD ["npm", "start"]
