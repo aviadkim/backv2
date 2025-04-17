@@ -93,7 +93,7 @@ jobs:
 
     - name: Build and push DevDocs image
       run: |
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile ./DevDocs/frontend
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.simple ./DevDocs/frontend
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
 
     - name: Build and push MCP server image
@@ -111,8 +111,8 @@ jobs:
           --platform managed \
           --allow-unauthenticated \
           --port=3002 \
-          --command="serve" \
-          --args="-s,out,-p,3002" \
+          --command="node" \
+          --args="server.js" \
           --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
     # Deploy MCP server to Cloud Run

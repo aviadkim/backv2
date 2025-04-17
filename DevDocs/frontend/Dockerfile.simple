@@ -1,0 +1,21 @@
+# Use a smaller base image for the production build
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3002
+ENV NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co
+
+# Copy the server-simple.js file
+COPY server-simple.js ./server.js
+
+# Create the out directory
+RUN mkdir -p ./out
+
+# Expose the port the app will run on
+EXPOSE 3002
+
+# Set the command to run the app
+CMD ["node", "server.js"]
