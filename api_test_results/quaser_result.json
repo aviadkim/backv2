@@ -2,7 +2,7 @@
   "name": "Quaser",
   "model": "anthropic/claude-3-haiku",
   "key": "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",
-  "status": "success",
-  "response_time": 1.598003625869751,
-  "answer": "Based on the information provided, the key details are:\n\nClient:\n- Name: MESSOS ENTERPRISES LTD.\n- Number: 366223\n\nDocument Date:\n- 28.02.2025\n\nPortfolio Value:\n- 19510599.0\n\nTo summarize:\n\n1. The client is MESSOS ENTERPRISES LTD. with client number 366223.\n\n2. The total portfolio value is 19,510,599.0."
+  "status": "error",
+  "error_code": 401,
+  "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
 }

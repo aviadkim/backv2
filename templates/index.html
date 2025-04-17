@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Enhanced Financial Document Processor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #3498db;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .correction-form {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .hidden {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .loading {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Enhanced Financial Document Processor</h1>
+
+        <div class="form-group">
+            <h2>Upload Financial Document</h2>
+            <form id="upload-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Select PDF file:</label>
+                    <input type="file" id="file" name="file" accept=".pdf" required>
+                </div>
+                <button type="submit" class="btn">Process Document</button>
+            </form>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <p>Processing document... This may take a few minutes.</p>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+
+        <div id="result" class="result hidden">
+            <h2>Processing Results</h2>
+            <div id="result-content"></div>
+
+            <h3>Top Securities</h3>
+            <table id="securities-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ISIN</th>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h3>AI Analysis</h3>
+            <div id="ai-analysis"></div>
+
+            <h3>AI Corrections</h3>
+            <div id="ai-corrections"></div>
+
+            <button id="suggestions-btn" class="btn">Generate Improvement Suggestions</button>
+
+            <div id="suggestions" class="hidden">
+                <h3>Improvement Suggestions</h3>
+                <ul id="suggestions-list"></ul>
+            </div>
+        </div>
+
+        <div id="correction-form" class="correction-form hidden">
+            <h2>Record Correction</h2>
+            <form id="correction-submit-form">
+                <div class="form-group">
+                    <label for="field">Field:</label>
+                    <input type="text" id="field" name="field" required>
+                </div>
+                <div class="form-group">
+                    <label for="original-value">Original Value:</label>
+                    <input type="text" id="original-value" name="original-value" required>
+                </div>
+                <div class="form-group">
+                    <label for="corrected-value">Corrected Value:</label>
+                    <input type="text" id="corrected-value" name="corrected-value" required>
+                </div>
+                <button type="submit" class="btn">Submit Correction</button>
+            </form>
+            <div id="correction-result" class="hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variable to store the current filename
+        let currentFilename = '';
+
+        // Handle form submission
+        document.getElementById('upload-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show loading indicator
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('correction-form').classList.add('hidden');
+
+            // Get form data
+            const formData = new FormData();
+            const fileInput = document.getElementById('file');
+            formData.append('file', fileInput.files[0]);
+
+            // Store filename
+            currentFilename = fileInput.files[0].name;
+
+            // Send request
+            fetch('/process', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading indicator
+                document.getElementById('loading').classList.add('hidden');
+
+                if (data.error) {
+                    // Show error
+                    const errorElement = document.getElementById('error');
+                    errorElement.textContent = data.error;
+                    errorElement.classList.remove('hidden');
+                } else {
+                    // Show result
+                    document.getElementById('result').classList.remove('hidden');
+                    document.getElementById('correction-form').classList.remove('hidden');
+
+                    // Populate result content
+                    const resultContent = document.getElementById('result-content');
+                    resultContent.innerHTML = `
+                        <p><strong>Portfolio Value:</strong> $${data.portfolio_value ? data.portfolio_value.toLocaleString() : 'Not found'}</p>
+                        <p><strong>Securities Count:</strong> ${data.securities_count}</p>
+                        <p><strong>Asset Allocation Count:</strong> ${data.asset_allocation_count}</p>
+                        <p><strong>Structured Products Count:</strong> ${data.structured_products_count}</p>
+                    `;
+
+                    // Populate securities table
+                    const securitiesTable = document.getElementById('securities-table').getElementsByTagName('tbody')[0];
+                    securitiesTable.innerHTML = '';
+
+                    if (data.top_securities && data.top_securities.length > 0) {
+                        data.top_securities.forEach((security, index) => {
+                            const row = securitiesTable.insertRow();
+                            row.insertCell(0).textContent = index + 1;
+                            row.insertCell(1).textContent = security.isin || '';
+                            row.insertCell(2).textContent = security.description || '';
+                            row.insertCell(3).textContent = security.valuation ? `$${security.valuation.toLocaleString()}` : '';
+                        });
+                    } else {
+                        const row = securitiesTable.insertRow();
+                        const cell = row.insertCell(0);
+                        cell.colSpan = 4;
+                        cell.textContent = 'No securities found';
+                    }
+
+                    // Populate AI analysis
+                    const aiAnalysis = document.getElementById('ai-analysis');
+                    if (data.ai_analysis) {
+                        aiAnalysis.innerHTML = `<pre>${data.ai_analysis}</pre>`;
+                    } else {
+                        aiAnalysis.innerHTML = '<p>No AI analysis available</p>';
+                    }
+
+                    // Populate AI corrections
+                    const aiCorrections = document.getElementById('ai-corrections');
+                    if (data.ai_corrections && Object.keys(data.ai_corrections).length > 0) {
+                        let correctionsHtml = '<ul>';
+                        for (const [field, correction] of Object.entries(data.ai_corrections)) {
+                            correctionsHtml += `<li><strong>${field}:</strong> ${correction}</li>`;
+                        }
+                        correctionsHtml += '</ul>';
+                        aiCorrections.innerHTML = correctionsHtml;
+                    } else {
+                        aiCorrections.innerHTML = '<p>No AI corrections available</p>';
+                    }
+                }
+            })
+            .catch(error => {
+                // Hide loading indicator
+                document.getElementById('loading').classList.add('hidden');
+
+                // Show error
+                const errorElement = document.getElementById('error');
+                errorElement.textContent = 'Error processing document: ' + error.message;
+                errorElement.classList.remove('hidden');
+            });
+        });
+
+        // Handle correction form submission
+        document.getElementById('correction-submit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const field = document.getElementById('field').value;
+            const originalValue = document.getElementById('original-value').value;
+            const correctedValue = document.getElementById('corrected-value').value;
+
+            // Send request
+            fetch('/correct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    filename: currentFilename,
+                    field: field,
+                    original_value: originalValue,
+                    corrected_value: correctedValue
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show correction result
+                const correctionResult = document.getElementById('correction-result');
+                if (data.error) {
+                    correctionResult.innerHTML = `<p class="error">${data.error}</p>`;
+                } else {
+                    correctionResult.innerHTML = `<p>${data.message}</p>`;
+                }
+                correctionResult.classList.remove('hidden');
+            })
+            .catch(error => {
+                // Show error
+                const correctionResult = document.getElementById('correction-result');
+                correctionResult.innerHTML = `<p class="error">Error submitting correction: ${error.message}</p>`;
+                correctionResult.classList.remove('hidden');
+            });
+        });
+
+        // Handle suggestions button click
+        document.getElementById('suggestions-btn').addEventListener('click', function() {
+            // Send request
+            fetch('/suggestions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    filename: currentFilename
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show suggestions
+                const suggestions = document.getElementById('suggestions');
+                const suggestionsList = document.getElementById('suggestions-list');
+                
+                if (data.error) {
+                    suggestionsList.innerHTML = `<li class="error">${data.error}</li>`;
+                } else if (data.suggestions && data.suggestions.length > 0) {
+                    suggestionsList.innerHTML = '';
+                    data.suggestions.forEach(suggestion => {
+                        const li = document.createElement('li');
+                        li.textContent = suggestion;
+                        suggestionsList.appendChild(li);
+                    });
+                } else {
+                    suggestionsList.innerHTML = '<li>No suggestions available</li>';
+                }
+                
+                suggestions.classList.remove('hidden');
+            })
+            .catch(error => {
+                // Show error
+                const suggestions = document.getElementById('suggestions');
+                const suggestionsList = document.getElementById('suggestions-list');
+                suggestionsList.innerHTML = `<li class="error">Error generating suggestions: ${error.message}</li>`;
+                suggestions.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

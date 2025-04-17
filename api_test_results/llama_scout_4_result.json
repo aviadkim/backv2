@@ -2,7 +2,7 @@
   "name": "Llama Scout 4",
   "model": "meta-llama/llama-3-70b-instruct",
   "key": "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",
-  "status": "success",
-  "response_time": 2.8925750255584717,
-  "answer": "Based on the provided financial document data, here are my findings:\n\n**Total Portfolio Value:** The total portfolio value is **19,510,599.00**.\n\n**Client Information:** The client is **MESSOS ENTERPRISES LTD.**, with a client number of **366223**."
+  "status": "error",
+  "error_code": 401,
+  "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
 }

@@ -1,0 +1,46 @@
+{
+  "DocumentPreprocessorAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "HebrewOCRAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "ISINExtractorAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "FinancialTableDetectorAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "FinancialDataAnalyzerAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "QueryEngineAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "DocumentIntegrationAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "DocumentMergeAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "DataExportAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "DocumentComparisonAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  },
+  "FinancialAdvisorAgent": {
+    "status": "error",
+    "message": "Failed to get response"
+  }
+}

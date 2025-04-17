@@ -142,7 +142,7 @@ jobs:
 
     - name: Build and push AI Enhanced Processor image
       run: |
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }} .
+        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }} -f Dockerfile.ai-processor .
         docker push me-west1-docker.pkg.dev/github-456508/devdocs/ai-enhanced-processor:${{ github.sha }}
 
     - name: Deploy AI Enhanced Processor to Cloud Run

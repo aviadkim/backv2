@@ -12,8 +12,8 @@
     "model": "deepseek-ai/deepseek-v1",
     "key": "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",
     "status": "error",
-    "error_code": 400,
-    "error_message": "{\"error\":{\"message\":\"deepseek-ai/deepseek-v1 is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   },
   {
     "name": "Optimus1",
@@ -28,39 +28,39 @@
     "model": "google/gemini-1.5-pro",
     "key": "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",
     "status": "error",
-    "error_code": 400,
-    "error_message": "{\"error\":{\"message\":\"google/gemini-1.5-pro is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   },
   {
     "name": "Llama Scout 4",
     "model": "meta-llama/llama-3-70b-instruct",
     "key": "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",
-    "status": "success",
-    "response_time": 2.8925750255584717,
-    "answer": "Based on the provided financial document data, here are my findings:\n\n**Total Portfolio Value:** The total portfolio value is **19,510,599.00**.\n\n**Client Information:** The client is **MESSOS ENTERPRISES LTD.**, with a client number of **366223**."
+    "status": "error",
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   },
   {
     "name": "Gemini 2 Flash",
     "model": "google/gemini-1.5-flash",
     "key": "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",
     "status": "error",
-    "error_code": 400,
-    "error_message": "{\"error\":{\"message\":\"google/gemini-1.5-flash is not a valid model ID\",\"code\":400},\"user_id\":\"user_2tADT2cR2ZLTQB8YpbRq1xuyTNL\"}"
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   },
   {
     "name": "Quaser",
     "model": "anthropic/claude-3-haiku",
     "key": "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",
-    "status": "success",
-    "response_time": 1.598003625869751,
-    "answer": "Based on the information provided, the key details are:\n\nClient:\n- Name: MESSOS ENTERPRISES LTD.\n- Number: 366223\n\nDocument Date:\n- 28.02.2025\n\nPortfolio Value:\n- 19510599.0\n\nTo summarize:\n\n1. The client is MESSOS ENTERPRISES LTD. with client number 366223.\n\n2. The total portfolio value is 19,510,599.0."
+    "status": "error",
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   },
   {
     "name": "Quaser2",
     "model": "anthropic/claude-3-haiku",
     "key": "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",
-    "status": "success",
-    "response_time": 1.6116559505462646,
-    "answer": "Based on the information provided, the key details are:\n\nClient:\n- Name: MESSOS ENTERPRISES LTD.\n- Number: 366223\n\nDocument Date:\n- 28.02.2025\n\nPortfolio Value:\n- 19510599.0\n\nTo summarize:\n\n1. The client is MESSOS ENTERPRISES LTD. with client number 366223.\n\n2. The total portfolio value is 19,510,599.0."
+    "status": "error",
+    "error_code": 401,
+    "error_message": "{\"error\":{\"message\":\"No auth credentials found\",\"code\":401}}"
   }
 ]

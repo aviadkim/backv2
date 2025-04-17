@@ -1,0 +1,62 @@
+[
+  {
+    "isin": "XS2567543397",
+    "value": 2560667.0,
+    "description": "GS 10Y CALLABLE NOTE 2024-18.06.2034",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2665592833",
+    "value": 1502850.0,
+    "description": "HARP ISSUER (4% MIN/5,5% MAX) NOTES 2023-18.09.2028",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2964611052",
+    "value": 1488375.0,
+    "description": "DEUTSCHE BANK 0% NOTES 2025-14.02.35",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2315191069",
+    "value": 498133.0,
+    "description": "BNP PARIBAS ISS STRUCT.NOTE 21-08.01.29 ON DBDK 29 631 100.5241 98.7000 -0.08% -1.81% 498",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2736388732",
+    "value": 255383.0,
+    "description": "BANK OF AMERICA NOTES 2023-20.12.31 VARIABLE RATE 100.2000 98.6200 -3.20% -1.58% 255",
+    "type": "Bond"
+  },
+  {
+    "isin": "CH1259344831",
+    "value": 249800.0,
+    "description": "RAIFF 4.75% STR.NTS 23-11.07.28 ON REF ASSET 97.1934 99.9200 -0.05% 2.81% 249",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2519369867",
+    "value": 197888.0,
+    "description": "BCO SAFRA CAYMAN 5% STRUCT.NOTE 2022-21.06.27 3,4% 100.7288 97.9853 -2.01% -2.72% 197",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2594173093",
+    "value": 192895.0,
+    "description": "NOVUS CAPITAL CREDIT LINKED NOTES 2023-27.09.2029 99.0592 96.4000 -1.70% -2.68% 192",
+    "type": "Bond"
+  },
+  {
+    "isin": "XS2848820754",
+    "value": 9500.0,
+    "description": "CITIGROUP GLBL 0 % MEDIUM TERM NOTES 2024-01.08.34 100.2000 99.9500 2.24% -0.25% 89",
+    "type": "Bond"
+  },
+  {
+    "isin": "CH0244767585",
+    "value": 9000.0,
+    "description": "0.14%",
+    "type": "Bond"
+  }
+]
