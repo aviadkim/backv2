@@ -1,0 +1,13 @@
+{
+  "name": "devdocs-frontend",
+  "version": "1.0.0",
+  "description": "DevDocs Frontend with Beautiful UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "next build && next export"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

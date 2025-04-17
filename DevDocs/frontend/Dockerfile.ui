@@ -1,0 +1,50 @@
+# Stage 1: Build the Next.js application
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Install specific dependencies for Chakra UI and other UI components
+RUN npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom --save
+
+# Copy the rest of the application
+COPY . .
+
+# Set environment variables for build
+ENV NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuam5zb3RlbW5mcmpsb3RndmVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI4NTI0MDAsImV4cCI6MjAyODQyODQwMH0.placeholder-key
+
+# Build the application
+RUN npm run build
+
+# Stage 2: Create a lightweight production image
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package-ui.json as package.json for the Express server
+COPY package-ui.json ./package.json
+
+# Install Express.js
+RUN npm install
+
+# Copy the server-ui.js file as server.js
+COPY server-ui.js ./server.js
+
+# Copy the built Next.js application from the builder stage
+COPY --from=builder /app/out ./out
+
+# Expose the port the app will run on
+EXPOSE 3002
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3002
+
+# Start the Express.js server
+CMD ["node", "server.js"]
