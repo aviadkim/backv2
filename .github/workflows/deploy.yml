@@ -105,23 +105,14 @@ jobs:
     - name: Deploy DevDocs to Cloud Run
       run: |
         echo "Deploying DevDocs app with Supabase key from GitHub secrets"
-        # Install dependencies for the frontend
-        cd ./DevDocs/frontend
-        npm install
-        cd ../..
 
-        # Build and push the Docker image
-        docker build -t me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} -f ./DevDocs/frontend/Dockerfile.original ./DevDocs/frontend
-        docker push me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }}
-
-        # Deploy to Google Cloud Run
-        gcloud run deploy devdocs-app-original \
-          --image me-west1-docker.pkg.dev/github-456508/devdocs/devdocs-app:${{ github.sha }} \
+        # Deploy the simple static website with proper UI
+        gcloud run deploy devdocs-app \
+          --source ./DevDocs/simple-static \
           --region me-west1 \
           --platform managed \
           --allow-unauthenticated \
-          --port=3002 \
-          --set-env-vars=NODE_ENV=production,PORT=3002,NEXT_PUBLIC_SUPABASE_URL=https://dnjnsotemnfrjlotgved.supabase.co,NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }},OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
+          --set-env-vars=PORT=3002,OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
 
     # Deploy MCP server to Cloud Run
     - name: Deploy MCP server to Cloud Run
