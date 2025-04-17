@@ -1,0 +1,12 @@
+{
+  "name": "devdocs-simple-app",
+  "version": "1.0.0",
+  "description": "DevDocs Simple App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
