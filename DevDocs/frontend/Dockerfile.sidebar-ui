@@ -1,0 +1,23 @@
+# Use a smaller base image for the production build
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install Express.js
+RUN npm install express
+
+# Copy the server-sidebar.js file as server.js
+COPY server-sidebar.js ./server.js
+
+# Create a public directory for static files
+RUN mkdir -p ./public
+
+# Expose the port the app will run on
+EXPOSE 3002
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3002
+
+# Start the Express.js server
+CMD ["node", "server.js"]
