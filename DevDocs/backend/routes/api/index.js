@@ -15,6 +15,7 @@ const ocrRoutes = require('./ocr');
 const financialRoutes = require('./financial');
 const queryRoutes = require('./query');
 const comparisonRoutes = require('./comparison');
+const exportRoutes = require('./export');
 
 // Mount routes
 router.use('/auth', authRoutes);
@@ -24,6 +25,7 @@ router.use('/ocr', ocrRoutes);
 router.use('/financial', financialRoutes);
 router.use('/query', queryRoutes);
 router.use('/comparison', comparisonRoutes);
+router.use('/export', exportRoutes);
 
 // Add more routes as needed
 // router.use('/organizations', organizationRoutes);
