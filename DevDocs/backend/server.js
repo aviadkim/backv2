@@ -33,6 +33,7 @@ const dataRetentionService = require('./services/security/dataRetentionService')
 const gdprService = require('./services/security/gdprService');
 const performanceMonitor = require('./services/performance/performanceMonitor');
 const cacheService = require('./services/cache/cacheService');
+const storageService = require('./services/storage/supabaseStorageService');
 
 // Middleware
 securityMiddleware.applyAll(app); // Apply security middleware (CORS, Helmet, Rate Limiting)
@@ -43,6 +44,9 @@ app.use(morgan('combined', { stream: { write: message => logger.info(message.tri
 app.use(performanceMonitor.performanceMiddleware()); // Performance monitoring
 
 // API Routes
+app.use('/api', require('./routes/api'));
+
+// Legacy API Routes (for backward compatibility)
 app.use('/api/health', require('./routes/api/health'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/security', require('./routes/api/security'));
@@ -79,6 +83,9 @@ async function initServices() {
 
     // Initialize cache service
     cacheService.initCacheService();
+
+    // Initialize storage service
+    await storageService.initStorage();
 
     // Start performance monitoring
     performanceMonitor.startMonitoring();
