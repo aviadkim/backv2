@@ -1,0 +1,226 @@
+[33mcommit e4cdb086abaffe3b4d49ab4f9a2755f02cf362c0[m
+Author: Aviad Kim <aviadkim@gmail.com>
+Date:   Thu Apr 17 06:59:54 2025 +0300
+
+    Fix deployment issues: 1. Add dedicated Dockerfile for AI Enhanced Processor, 2. Fix DevDocs app loading screen, 3. Add templates for AI Enhanced Processor
+
+[1mdiff --git a/DevDocs/frontend/server.js b/DevDocs/frontend/server.js[m
+[1mindex 10d95ce..04192f6 100644[m
+[1m--- a/DevDocs/frontend/server.js[m
+[1m+++ b/DevDocs/frontend/server.js[m
+[36m@@ -15,6 +15,188 @@[m [mconst MIME_TYPES = {[m
+   ".ico": "image/x-icon"[m
+ };[m
+ [m
+[32m+[m[32m// Create a simple HTML page for the loading state[m
+[32m+[m[32mconst loadingHtml = `[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html>[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <title>DevDocs - Financial Document Processing</title>[m
+[32m+[m[32m    <style>[m
+[32m+[m[32m        body {[m
+[32m+[m[32m            font-family: Arial, sans-serif;[m
+[32m+[m[32m            margin: 0;[m
+[32m+[m[32m            padding: 0;[m
+[32m+[m[32m            display: flex;[m
+[32m+[m[32m            justify-content: center;[m
+[32m+[m[32m            align-items: center;[m
+[32m+[m[32m            height: 100vh;[m
+[32m+[m[32m            background-color: #f5f5f5;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .container {[m
+[32m+[m[32m            text-align: center;[m
+[32m+[m[32m            padding: 2rem;[m
+[32m+[m[32m            background-color: white;[m
+[32m+[m[32m            border-radius: 8px;[m
+[32m+[m[32m            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);[m
+[32m+[m[32m            max-width: 600px;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        h1 {[m
+[32m+[m[32m            color: #2c3e50;[m
+[32m+[m[32m            margin-bottom: 1rem;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        p {[m
+[32m+[m[32m            color: #7f8c8d;[m
+[32m+[m[32m            margin-bottom: 2rem;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .loader {[m
+[32m+[m[32m            border: 5px solid #f3f3f3;[m
+[32m+[m[32m            border-top: 5px solid #3498db;[m
+[32m+[m[32m            border-radius: 50%;[m
+[32m+[m[32m            width: 50px;[m
+[32m+[m[32m            height: 50px;[m
+[32m+[m[32m            animation: spin 2s linear infinite;[m
+[32m+[m[32m            margin: 0 auto;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        @keyframes spin {[m
+[32m+[m[32m            0% { transform: rotate(0deg); }[m
+[32m+[m[32m            100% { transform: rotate(360deg); }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .dashboard-link {[m
+[32m+[m[32m            display: inline-block;[m
+[32m+[m[32m            margin-top: 2rem;[m
+[32m+[m[32m            padding: 0.75rem 1.5rem;[m
+[32m+[m[32m            background-color: #3498db;[m
+[32m+[m[32m            color: white;[m
+[32m+[m[32m            text-decoration: none;[m
+[32m+[m[32m            border-radius: 4px;[m
+[32m+[m[32m            font-weight: bold;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .dashboard-link:hover {[m
+[32m+[m[32m            background-color: #2980b9;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    </style>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body>[m
+[32m+[m[32m    <div class="container">[m
+[32m+[m[32m        <h1>DevDocs - Financial Document Processing</h1>[m
+[32m+[m[32m        <p>Welcome to the Financial Document Processing Platform</p>[m
+[32m+[m[32m        <div class="loader"></div>[m
+[32m+[m[32m        <p>Loading the application...</p>[m
+[32m+[m[32m        <a href="/dashboard" class="dashboard-link">Go to Dashboard</a>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m    <script>[m
+[32m+[m[32m        // Simple dashboard page[m
+[32m+[m[32m        if (window.location.pathname === '/dashboard') {[m
+[32m+[m[32m            document.querySelector('.container').innerHTML = `[m
+[32m+[m[32m                <h1>Financial Document Dashboard</h1>[m
+[32m+[m[32m                <p>Welcome to the Financial Document Dashboard</p>[m
+[32m+[m[32m                <div style="text-align: left; margin-top: 2rem;">[m
+[32m+[m[32m                    <h2>Available Tools</h2>[m
+[32m+[m[32m                    <ul style="list-style-type: none; padding: 0;">[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="/upload" style="color: #3498db; text-decoration: none; font-weight: bold;">Upload Document</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Upload and process financial documents</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="/analysis" style="color: #3498db; text-decoration: none; font-weight: bold;">Financial Analysis</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Analyze financial data and generate reports</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="/export" style="color: #3498db; text-decoration: none; font-weight: bold;">Data Export</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Export financial data to various formats</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                    </ul>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <a href="/" class="dashboard-link" style="background-color: #2c3e50;">Back to Home</a>[m
+[32m+[m[32m            `;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Simple upload page[m
+[32m+[m[32m        if (window.location.pathname === '/upload') {[m
+[32m+[m[32m            document.querySelector('.container').innerHTML = `[m
+[32m+[m[32m                <h1>Upload Financial Document</h1>[m
+[32m+[m[32m                <p>Upload a financial document for processing</p>[m
+[32m+[m[32m                <form style="text-align: left; margin-top: 2rem;">[m
+[32m+[m[32m                    <div style="margin-bottom: 1rem;">[m
+[32m+[m[32m                        <label for="file" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Select File</label>[m
+[32m+[m[32m                        <input type="file" id="file" name="file" accept=".pdf" style="width: 100%;">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div style="margin-bottom: 1rem;">[m
+[32m+[m[32m                        <label for="type" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Document Type</label>[m
+[32m+[m[32m                        <select id="type" name="type" style="width: 100%; padding: 0.5rem;">[m
+[32m+[m[32m                            <option value="bank_statement">Bank Statement</option>[m
+[32m+[m[32m                            <option value="portfolio_report">Portfolio Report</option>[m
+[32m+[m[32m                            <option value="financial_statement">Financial Statement</option>[m
+[32m+[m[32m                        </select>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #3498db; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Upload Document</button>[m
+[32m+[m[32m                </form>[m
+[32m+[m[32m                <a href="/dashboard" class="dashboard-link" style="background-color: #2c3e50; margin-top: 1rem;">Back to Dashboard</a>[m
+[32m+[m[32m            `;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Simple analysis page[m
+[32m+[m[32m        if (window.location.pathname === '/analysis') {[m
+[32m+[m[32m            document.querySelector('.container').innerHTML = `[m
+[32m+[m[32m                <h1>Financial Analysis</h1>[m
+[32m+[m[32m                <p>Analyze financial data and generate reports</p>[m
+[32m+[m[32m                <div style="text-align: left; margin-top: 2rem;">[m
+[32m+[m[32m                    <h2>Available Reports</h2>[m
+[32m+[m[32m                    <ul style="list-style-type: none; padding: 0;">[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="#" style="color: #3498db; text-decoration: none; font-weight: bold;">Portfolio Summary</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Summary of portfolio performance</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="#" style="color: #3498db; text-decoration: none; font-weight: bold;">Asset Allocation</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Breakdown of asset allocation</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                        <li style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <a href="#" style="color: #3498db; text-decoration: none; font-weight: bold;">Performance Analysis</a>[m
+[32m+[m[32m                            <p style="margin: 0.5rem 0;">Analysis of portfolio performance</p>[m
+[32m+[m[32m                        </li>[m
+[32m+[m[32m                    </ul>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <a href="/dashboard" class="dashboard-link" style="background-color: #2c3e50;">Back to Dashboard</a>[m
+[32m+[m[32m            `;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // Simple export page[m
+[32m+[m[32m        if (window.location.pathname === '/export') {[m
+[32m+[m[32m            document.querySelector('.container').innerHTML = `[m
+[32m+[m[32m                <h1>Data Export</h1>[m
+[32m+[m[32m                <p>Export financial data to various formats</p>[m
+[32m+[m[32m                <div style="text-align: left; margin-top: 2rem;">[m
+[32m+[m[32m                    <h2>Export Options</h2>[m
+[32m+[m[32m                    <form>[m
+[32m+[m[32m                        <div style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <label for="format" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Export Format</label>[m
+[32m+[m[32m                            <select id="format" name="format" style="width: 100%; padding: 0.5rem;">[m
+[32m+[m[32m                                <option value="csv">CSV</option>[m
+[32m+[m[32m                                <option value="json">JSON</option>[m
+[32m+[m[32m                                <option value="pdf">PDF</option>[m
+[32m+[m[32m                                <option value="excel">Excel</option>[m
+[32m+[m[32m                            </select>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div style="margin-bottom: 1rem;">[m
+[32m+[m[32m                            <label for="data" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Data to Export</label>[m
+[32m+[m[32m                            <select id="data" name="data" style="width: 100%; padding: 0.5rem;">[m
+[32m+[m[32m                                <option value="portfolio">Portfolio Data</option>[m
+[32m+[m[32m                                <option value="transactions">Transaction History</option>[m
+[32m+[m[32m                                <option value="performance">Performance Metrics</option>[m
+[32m+[m[32m                            </select>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #3498db; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Export Data</button>[m
+[32m+[m[32m                    </form>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <a href="/dashboard" class="dashboard-link" style="background-color: #2c3e50; margin-top: 1rem;">Back to Dashboard</a>[m
+[32m+[m[32m            `;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    </script>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[32m+[m[32m`;[m
+[32m+[m
+ const server = http.createServer((req, res) => {[m
+   console.log(`Request: ${req.method} ${req.url}`);[m
+ [m
+[36m@@ -30,6 +212,14 @@[m [mconst server = http.createServer((req, res) => {[m
+     return;[m
+   }[m
+ [m
+[32m+[m[32m  // Check if the out directory exists[m
+[32m+[m[32m  if (!fs.existsSync('./out')) {[m
+[32m+[m[32m    // If out directory doesn't exist, serve the loading page[m
+[32m+[m[32m    res.writeHead(200, { 'Content-Type': 'text/html' });[m
+[32m+[m[32m    res.end(loadingHtml);[m
+[32m+[m[32m    return;[m
+[32m+[m[32m  }[m
+[32m+[m
+   // Handle root path[m
+   let filePath = req.url === "/" ? "./out/index.html" : `./out${req.url}`;[m
+ [m
+[36m@@ -55,8 +245,9 @@[m [mconst server = http.createServer((req, res) => {[m
+         // File not found, serve index.html[m
+         fs.readFile("./out/index.html", (err, content) => {[m
+           if (err) {[m
+[31m-            res.writeHead(500);[m
+[31m-            res.end(`Server Error: ${err.code}`);[m
+[32m+[m[32m            // If index.html is not found, serve the loading page[m
+[32m+[m[32m            res.writeHead(200, { "Content-Type": "text/html" });[m
+[32m+[m[32m            res.end(loadingHtml);[m
+           } else {[m
+             res.writeHead(200, { "Content-Type": "text/html" });[m
+             res.end(content, "utf-8");[m

@@ -1,0 +1,18 @@
+
+This is a sample text for OCR testing.
+It contains some English text.
+
+וזה טקסט בעברית לבדיקת OCR.
+יש כאן גם מספרים: 123456789
+וגם סימני פיסוק: .,;:!?
+
+This text has some common OCR errors:
+- Misrecognized characters: 0 (zero) vs O (letter), 1 (one) vs l (letter)
+- Broken words: recog nition instead of recognition
+- Missing spaces:missingspaces
+- Extra spaces:  too  many  spaces
+
+שגיאות OCR נפוצות בעברית:
+- אותיות דומות: ב vs נ, ה vs ח
+- רווחים חסרים:מיליםמחוברות
+- רווחים מיותרים:  יותר  מדי  רווחים

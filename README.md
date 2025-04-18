@@ -12,16 +12,24 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 - **Multi-tenant Architecture**: Secure isolation of client data
 - **Serverless Architecture**: Fully serverless deployment on Vercel
 - **Google ADK Integration**: Agent Development Kit for advanced AI capabilities
+- **Advanced OCR**: Hebrew language support with enhanced accuracy
+- **Document Integration**: Combine data from multiple financial documents
+- **Security & Compliance**: GDPR compliance, data encryption, and audit logging
+- **Performance Optimization**: Caching and monitoring for optimal performance
 
 ## Tech Stack
 
 - **Frontend**: Next.js, React, TailwindCSS
-- **API**: Next.js API Routes (serverless functions)
+- **Backend**: Express.js, Node.js
+- **API**: Next.js API Routes and Express.js
 - **Database**: Supabase (PostgreSQL)
 - **Storage**: Supabase Storage
-- **Deployment**: Vercel
+- **Deployment**: Vercel, Google Cloud Run
 - **AI**: OpenRouter API, Google ADK
-- **Authentication**: Supabase Auth
+- **Authentication**: Supabase Auth, JWT
+- **Security**: bcrypt, crypto, helmet
+- **Containerization**: Docker
+- **CI/CD**: GitHub Actions
 
 ## Getting Started
 
@@ -60,13 +68,23 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 
 ## Deployment
 
-This project is configured for deployment on Vercel with Supabase as the database and storage solution.
+This project is configured for deployment on both Vercel and Google Cloud Run:
 
-See [VERCEL_SUPABASE_DEPLOYMENT.md](VERCEL_SUPABASE_DEPLOYMENT.md) for detailed deployment instructions.
+### Vercel Deployment
+
+The frontend can be deployed on Vercel with Supabase as the database and storage solution.
+
+See [VERCEL_SUPABASE_DEPLOYMENT.md](VERCEL_SUPABASE_DEPLOYMENT.md) for detailed Vercel deployment instructions.
+
+### Google Cloud Run Deployment
+
+The backend can be deployed as a containerized application on Google Cloud Run using Docker and GitHub Actions.
+
+See [DevDocs/DEPLOYMENT.md](DevDocs/DEPLOYMENT.md) for detailed Google Cloud Run deployment instructions.
 
 ## Development Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for the detailed development plan.
+See [DevDocs/ROADMAP.md](DevDocs/ROADMAP.md) for the detailed development plan. The roadmap outlines a 12-week development process that has been completed, covering everything from initial setup to performance optimization and deployment.
 
 ## Database Schema
 

@@ -47,6 +47,12 @@ RUN cd mcp-integration && npm install
 # Install puppeteer for web browsing
 RUN cd mcp-integration && npm install puppeteer axios cheerio cors
 
+# Install backend dependencies
+RUN cd DevDocs/backend && npm install
+
+# Install frontend dependencies and build
+RUN cd DevDocs/frontend && npm install && npm run build
+
 # Create enhanced MCP server with web capabilities
 COPY mcp-integration/devdocs-mcp-server.js ./server.js
 
@@ -70,7 +76,7 @@ COPY DevDocs/ocr-test.html ./public/ocr-test.html
 RUN mkdir -p uploads results templates
 
 # Start the backend API server with AI-enhanced processor
-RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\npython3 web_interface.py --host 0.0.0.0 --port 8081 &\nnode server.js' > start.sh
+RUN echo '#!/bin/bash\npython3 DevDocs/backend/main.py --host 0.0.0.0 --port 8000 &\npython3 web_interface.py --host 0.0.0.0 --port 8081 &\nnode DevDocs/backend/server.js &\nnode server.js' > start.sh
 RUN chmod +x start.sh
 
 # Expose ports

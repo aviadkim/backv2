@@ -20,19 +20,29 @@ jobs:
         cache: 'npm'
         cache-dependency-path: 'DevDocs/frontend/package.json'
 
-    - name: Install dependencies
+    - name: Install frontend dependencies
       run: |
         cd DevDocs/frontend
         npm ci
 
-    - name: Build application
+    - name: Build frontend
       run: |
         cd DevDocs/frontend
         npm run build
 
-    - name: Run tests
+    - name: Install backend dependencies
+      run: |
+        cd DevDocs/backend
+        npm ci
+
+    - name: Run frontend tests
       run: |
         cd DevDocs/frontend
+        npm test || true
+
+    - name: Run backend tests
+      run: |
+        cd DevDocs/backend
         npm test || true
 
     - name: Authenticate to Google Cloud
@@ -51,6 +61,11 @@ jobs:
         service: backv2
         region: me-west1
         source: .
+        env_vars: |
+          NODE_ENV=production
+          OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          ENCRYPTION_KEY=${{ secrets.ENCRYPTION_KEY }}
 
     - name: Show Output
       run: echo ${{ steps.deploy.outputs.url }}

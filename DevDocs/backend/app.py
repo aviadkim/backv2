@@ -48,30 +48,33 @@ financial_document_processor = FinancialDocumentProcessor(upload_dir="uploads")
 portfolio_analyzer = PortfolioAnalyzer()
 portfolio_report_generator = PortfolioReportGenerator(template_dir="report_templates")
 financial_statement_report_generator = FinancialStatementReportGenerator(template_dir="report_templates")
-financial_analysis_agent = FinancialAnalysisAgent(api_key=os.environ.get("OPENAI_API_KEY"))
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+if not openai_api_key:
+    print("Warning: OPENAI_API_KEY not set. AI analysis features will be disabled.")
+financial_analysis_agent = FinancialAnalysisAgent(api_key=openai_api_key)
 
 # Create required directories if they don't exist
 os.makedirs("memory", exist_ok=True)
 os.makedirs("report_templates", exist_ok=True)
 
-# Sample data
-documents = [
-    {"id": 1, "title": "Q4 Financial Report 2024.pdf", "content": "Financial report content with ISINs: US0378331005, US5949181045", "tags": ["financial", "report"], "date": "2025-03-24", "pages": 12},
-    {"id": 2, "title": "Investment Portfolio Summary.pdf", "content": "Portfolio content with ISINs: US0378331005, US5949181045, US88160R1014", "tags": ["investment", "portfolio"], "date": "2025-03-22", "pages": 8},
-    {"id": 3, "title": "Bank Statement March 2025.pdf", "content": "Bank statement content", "tags": ["banking", "statement"], "date": "2025-03-20", "pages": 4}
-]
-document_id_counter = 4
+# TODO: Replace with database connection in production environment
+# documents = [
+#     {"id": 1, "title": "Q4 Financial Report 2024.pdf", "content": "Financial report content with ISINs: US0378331005, US5949181045", "tags": ["financial", "report"], "date": "2025-03-24", "pages": 12},
+#     {"id": 2, "title": "Investment Portfolio Summary.pdf", "content": "Portfolio content with ISINs: US0378331005, US5949181045, US88160R1014", "tags": ["investment", "portfolio"], "date": "2025-03-22", "pages": 8},
+#     {"id": 3, "title": "Bank Statement March 2025.pdf", "content": "Bank statement content", "tags": ["banking", "statement"], "date": "2025-03-20", "pages": 4}
+# ]
+document_id_counter = 1
 
-# Sample portfolio data
-portfolio_data = [
-    {"isin": "US0378331005", "name": "Apple Inc.", "quantity": 10, "price": 176.35, "value": 1763.50, "currency": "USD", "asset_class": "Equity", "sector": "Technology", "region": "North America"},
-    {"isin": "US5949181045", "name": "Microsoft Corporation", "quantity": 5, "price": 412.27, "value": 2061.35, "currency": "USD", "asset_class": "Equity", "sector": "Technology", "region": "North America"},
-    {"isin": "US88160R1014", "name": "Tesla Inc.", "quantity": 8, "price": 175.34, "value": 1402.72, "currency": "USD", "asset_class": "Equity", "sector": "Consumer Discretionary", "region": "North America"},
-    {"isin": "US0231351067", "name": "Amazon.com Inc.", "quantity": 3, "price": 178.75, "value": 536.25, "currency": "USD", "asset_class": "Equity", "sector": "Consumer Discretionary", "region": "North America"},
-    {"isin": "US30303M1027", "name": "Meta Platforms Inc.", "quantity": 4, "price": 485.58, "value": 1942.32, "currency": "USD", "asset_class": "Equity", "sector": "Communication Services", "region": "North America"},
-    {"isin": "US912810SP08", "name": "US Treasury Bond 1.375% 15/08/2050", "quantity": 10000, "price": 0.8734, "value": 8734.00, "currency": "USD", "asset_class": "Bond", "sector": "Government", "region": "North America"},
-    {"isin": "IE00B4L5Y983", "name": "iShares Core MSCI World UCITS ETF", "quantity": 50, "price": 85.64, "value": 4282.00, "currency": "USD", "asset_class": "ETF", "sector": "Diversified", "region": "Global"}
-]
+# TODO: Replace with database connection in production environment
+# portfolio_data = [
+#     {"isin": "US0378331005", "name": "Apple Inc.", "quantity": 10, "price": 176.35, "value": 1763.50, "currency": "USD", "asset_class": "Equity", "sector": "Technology", "region": "North America"},
+#     {"isin": "US5949181045", "name": "Microsoft Corporation", "quantity": 5, "price": 412.27, "value": 2061.35, "currency": "USD", "asset_class": "Equity", "sector": "Technology", "region": "North America"},
+#     {"isin": "US88160R1014", "name": "Tesla Inc.", "quantity": 8, "price": 175.34, "value": 1402.72, "currency": "USD", "asset_class": "Equity", "sector": "Consumer Discretionary", "region": "North America"},
+#     {"isin": "US0231351067", "name": "Amazon.com Inc.", "quantity": 3, "price": 178.75, "value": 536.25, "currency": "USD", "asset_class": "Equity", "sector": "Consumer Discretionary", "region": "North America"},
+#     {"isin": "US30303M1027", "name": "Meta Platforms Inc.", "quantity": 4, "price": 485.58, "value": 1942.32, "currency": "USD", "asset_class": "Equity", "sector": "Communication Services", "region": "North America"},
+#     {"isin": "US912810SP08", "name": "US Treasury Bond 1.375% 15/08/2050", "quantity": 10000, "price": 0.8734, "value": 8734.00, "currency": "USD", "asset_class": "Bond", "sector": "Government", "region": "North America"},
+#     {"isin": "IE00B4L5Y983", "name": "iShares Core MSCI World UCITS ETF", "quantity": 50, "price": 85.64, "value": 4282.00, "currency": "USD", "asset_class": "ETF", "sector": "Diversified", "region": "Global"}
+# ]
 
 # Sample financial data
 financial_data = {
@@ -506,6 +509,7 @@ def agent_chat():
 @app.route("/api/agents/config", methods=["POST"])
 def configure_agent():
     """Configure an agent with API key"""
+    # TODO: Add authentication to prevent unauthorized access
     data = request.json
 
     if not data:

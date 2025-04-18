@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { AuthProvider } from '../providers/AuthProvider';
 import { DocumentProvider } from '../providers/DocumentProvider';
 import Layout from '../components/Layout';
-import ChakraWrapper from '../components/ChakraWrapper';
+import SimpleWrapper from '../components/SimpleWrapper';
 import RouterWrapper from '../components/RouterWrapper';
 import FontLoader from '../components/FontLoader';
 
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
   return (
-    <ChakraWrapper>
+    <SimpleWrapper>
       <FontLoader />
       <RouterWrapper>
         <AuthProvider>
@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
           </DocumentProvider>
         </AuthProvider>
       </RouterWrapper>
-    </ChakraWrapper>
+    </SimpleWrapper>
   );
 }
 
