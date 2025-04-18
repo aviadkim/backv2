@@ -1,0 +1,80 @@
+# Multi-stage build for FinDoc Analyzer
+# Stage 1: Build frontend
+FROM node:18-alpine AS frontend-builder
+
+WORKDIR /app/frontend
+
+# Copy frontend package files
+COPY DevDocs/frontend/package*.json ./
+
+# Install frontend dependencies
+RUN npm ci
+
+# Copy frontend source code
+COPY DevDocs/frontend ./
+
+# Build frontend
+RUN npm run build
+
+# Stage 2: Build backend
+FROM node:18-alpine AS backend-builder
+
+WORKDIR /app/backend
+
+# Copy backend package files
+COPY DevDocs/backend/package*.json ./
+
+# Install backend dependencies
+RUN npm ci
+
+# Copy backend source code
+COPY DevDocs/backend ./
+
+# Stage 3: Final image
+FROM node:18-alpine
+
+# Install system dependencies
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-data-heb \
+    tesseract-ocr-data-eng \
+    graphicsmagick
+
+# Set working directory
+WORKDIR /app
+
+# Create necessary directories
+RUN mkdir -p /app/logs /app/temp /app/uploads /app/public
+
+# Copy backend from builder
+COPY --from=backend-builder /app/backend /app/backend
+
+# Copy frontend build from builder
+COPY --from=frontend-builder /app/frontend/.next /app/frontend/.next
+COPY --from=frontend-builder /app/frontend/public /app/frontend/public
+COPY --from=frontend-builder /app/frontend/next.config.js /app/frontend/next.config.js
+COPY --from=frontend-builder /app/frontend/package.json /app/frontend/package.json
+
+# Install Python dependencies
+COPY DevDocs/backend/requirements.txt /app/
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV BACKEND_PORT=3001
+ENV FRONTEND_PORT=3002
+ENV PYTHONUNBUFFERED=1
+
+# Expose port
+EXPOSE 8080
+
+# Copy startup script
+COPY docker-entrypoint.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh
+
+# Start the application
+CMD ["/app/docker-entrypoint.sh"]

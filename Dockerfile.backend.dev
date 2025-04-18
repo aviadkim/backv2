@@ -1,0 +1,32 @@
+FROM node:18-alpine
+
+# Install system dependencies
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-data-heb \
+    tesseract-ocr-data-eng \
+    graphicsmagick
+
+WORKDIR /app/backend
+
+# Install Node.js dependencies
+COPY DevDocs/backend/package*.json ./
+RUN npm install
+
+# Install Python dependencies
+COPY DevDocs/backend/requirements.txt ./
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Set environment variables
+ENV NODE_ENV=development
+ENV PORT=3001
+ENV PYTHONUNBUFFERED=1
+
+# Expose port
+EXPOSE 3001
+
+# Start development server with nodemon for hot reloading
+CMD ["npx", "nodemon", "server.js"]
