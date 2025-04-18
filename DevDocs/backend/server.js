@@ -5,29 +5,37 @@
  */
 
 const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const { createClient } = require('@supabase/supabase-js');
 const logger = require('./utils/logger');
+const config = require('./config');
+const supabase = require('./db/supabase');
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 8000;
-
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL || 'https://dnjnsotemnfrjlotgved.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const PORT = config.server.port;
 
 // Make Supabase client available to all routes
-app.locals.supabase = supabase;
+try {
+  app.locals.supabase = supabase.getClient();
+} catch (error) {
+  logger.warn('Supabase client not available:', error.message);
+}
+
+// Import middleware
+const securityMiddleware = require('./middleware/securityMiddleware');
+const authMiddleware = require('./middleware/authMiddleware');
+
+// Initialize services
+const auditService = require('./services/security/auditService');
+const dataRetentionService = require('./services/security/dataRetentionService');
+const gdprService = require('./services/security/gdprService');
+const performanceMonitor = require('./services/performance/performanceMonitor');
+const cacheService = require('./services/cache/cacheService');
 
 // Middleware
-app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+securityMiddleware.applyAll(app); // Apply security middleware (CORS, Helmet, Rate Limiting)
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser()); // Parse cookies
@@ -48,22 +56,14 @@ app.use('/api/financial/ocr-document', require('./routes/api/financial/ocr-docum
 app.use('/api/integration/external-systems', require('./routes/api/integration/external-systems'));
 app.use('/api/config/api-key', require('./routes/api/config/api-key'));
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  logger.error(`Unhandled error: ${err.message}`, err);
+// Import error handling middleware
+const { errorHandler, notFoundHandler } = require('./middleware/errorMiddleware');
 
-  res.status(500).json({
-    error: 'Server error',
-    detail: process.env.NODE_ENV === 'production' ? 'An unexpected error occurred' : err.message
-  });
-});
+// 404 handler - must be after all routes
+app.use(notFoundHandler);
 
-// Initialize services
-const auditService = require('./services/security/auditService');
-const dataRetentionService = require('./services/security/dataRetentionService');
-const gdprService = require('./services/security/gdprService');
-const performanceMonitor = require('./services/performance/performanceMonitor');
-const cacheService = require('./services/cache/cacheService');
+// Error handling middleware - must be the last middleware
+app.use(errorHandler);
 
 // Initialize services
 async function initServices() {
@@ -77,8 +77,19 @@ async function initServices() {
     // Initialize GDPR service
     await gdprService.initGdprService();
 
+    // Initialize cache service
+    cacheService.initCacheService();
+
     // Start performance monitoring
     performanceMonitor.startMonitoring();
+
+    // Check database connection
+    const dbConnected = await supabase.checkConnection();
+    if (dbConnected) {
+      logger.info('Database connection successful');
+    } else {
+      logger.warn('Database connection failed');
+    }
 
     logger.info('All services initialized successfully');
   } catch (error) {
@@ -87,9 +98,57 @@ async function initServices() {
 }
 
 // Start server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
 
   // Initialize services
   initServices();
+});
+
+// Graceful shutdown handler
+const gracefulShutdown = (signal) => {
+  logger.info(`Received ${signal}. Shutting down gracefully...`);
+
+  // Close server
+  server.close(() => {
+    logger.info('HTTP server closed');
+
+    // Perform cleanup
+    try {
+      // Flush cache
+      cacheService.flush();
+      logger.info('Cache flushed');
+
+      // Stop performance monitoring
+      performanceMonitor.stopMonitoring();
+      logger.info('Performance monitoring stopped');
+
+      logger.info('Cleanup completed');
+      process.exit(0);
+    } catch (error) {
+      logger.error('Error during cleanup:', error);
+      process.exit(1);
+    }
+  });
+
+  // Force shutdown after timeout
+  setTimeout(() => {
+    logger.error('Forced shutdown due to timeout');
+    process.exit(1);
+  }, 10000); // 10 seconds
+};
+
+// Handle termination signals
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+// Handle uncaught exceptions and unhandled rejections
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught exception:', error);
+  gracefulShutdown('uncaughtException');
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled rejection at:', promise, 'reason:', reason);
+  // Don't shut down for unhandled rejections
 });

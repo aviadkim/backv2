@@ -1,6 +1,6 @@
 /**
  * Cache Service
- * 
+ *
  * Provides caching functionality for frequently accessed data.
  */
 
@@ -185,20 +185,80 @@ function size() {
 function memoize(fn, keyFn, ttl = DEFAULT_TTL) {
   return async function(...args) {
     const key = keyFn(...args);
-    
+
     // Check if result is in cache
     if (has(key)) {
       logger.debug(`Cache hit for key: ${key}`);
       return get(key);
     }
-    
+
     // Execute function and cache result
     logger.debug(`Cache miss for key: ${key}`);
     const result = await fn(...args);
     set(key, result, ttl);
-    
+
     return result;
   };
+}
+
+/**
+ * Cache middleware for Express routes
+ * @param {number} ttl - Time to live in seconds (optional)
+ * @returns {Function} Express middleware
+ */
+function cacheMiddleware(ttl = DEFAULT_TTL) {
+  return (req, res, next) => {
+    // Skip caching for non-GET requests
+    if (req.method !== 'GET') {
+      return next();
+    }
+
+    // Create cache key from URL and query parameters
+    const key = `cache:${req.originalUrl || req.url}`;
+
+    // Try to get from cache
+    const cachedBody = get(key);
+
+    if (cachedBody) {
+      // Return cached response
+      logger.debug(`Cache hit for route: ${req.originalUrl}`);
+      return res.send(cachedBody);
+    }
+
+    // Cache the response
+    const originalSend = res.send;
+
+    res.send = function(body) {
+      // Only cache successful responses
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        set(key, body, ttl);
+        logger.debug(`Cached route: ${req.originalUrl}`);
+      }
+
+      originalSend.call(this, body);
+    };
+
+    next();
+  };
+}
+
+/**
+ * Initialize cache service
+ * @returns {boolean} True if successful
+ */
+function initCacheService() {
+  logger.info('Cache service initialized');
+
+  // Set up cache events
+  cache.on('expired', (key, value) => {
+    logger.debug(`Cache key expired: ${key}`);
+  });
+
+  cache.on('flush', () => {
+    logger.debug('Cache flushed');
+  });
+
+  return true;
 }
 
 module.exports = {
@@ -213,5 +273,7 @@ module.exports = {
   getStats,
   keys,
   size,
-  memoize
+  memoize,
+  cacheMiddleware,
+  initCacheService
 };
