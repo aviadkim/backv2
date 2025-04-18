@@ -14,6 +14,7 @@ const documentRoutes = require('./documents');
 const ocrRoutes = require('./ocr');
 const financialRoutes = require('./financial');
 const queryRoutes = require('./query');
+const comparisonRoutes = require('./comparison');
 
 // Mount routes
 router.use('/auth', authRoutes);
@@ -22,6 +23,7 @@ router.use('/documents', documentRoutes);
 router.use('/ocr', ocrRoutes);
 router.use('/financial', financialRoutes);
 router.use('/query', queryRoutes);
+router.use('/comparison', comparisonRoutes);
 
 // Add more routes as needed
 // router.use('/organizations', organizationRoutes);
