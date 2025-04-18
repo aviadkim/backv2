@@ -1,0 +1,160 @@
+{
+  "portfolio": {
+    "total_value": 846420.25,
+    "currency": "USD",
+    "securities": [
+      {
+        "isin": "US30303M1027",
+        "name": "Meta Platforms Inc.",
+        "quantity": 40,
+        "price": 485.20,
+        "value": 19408.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US5949181045",
+        "name": "Microsoft Corp.",
+        "quantity": 50,
+        "price": 410.30,
+        "value": 20515.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US0378331005",
+        "name": "Apple Inc.",
+        "quantity": 100,
+        "price": 175.50,
+        "value": 17550.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US67066G1040",
+        "name": "NVIDIA Corp.",
+        "quantity": 15,
+        "price": 890.50,
+        "value": 13357.50,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US4781601046",
+        "name": "Johnson & Johnson",
+        "quantity": 60,
+        "price": 157.80,
+        "value": 9468.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US1912161007",
+        "name": "Coca-Cola Co.",
+        "quantity": 120,
+        "price": 60.15,
+        "value": 7218.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US0231351067",
+        "name": "Amazon.com Inc.",
+        "quantity": 30,
+        "price": 178.75,
+        "value": 5362.50,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US02079K1079",
+        "name": "Alphabet Inc.",
+        "quantity": 25,
+        "price": 175.85,
+        "value": 4396.25,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US88160R1014",
+        "name": "Tesla Inc.",
+        "quantity": 20,
+        "price": 219.50,
+        "value": 4390.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "US9311421039",
+        "name": "Walmart Inc.",
+        "quantity": 80,
+        "price": 59.75,
+        "value": 4780.00,
+        "currency": "USD",
+        "type": "Equity"
+      },
+      {
+        "isin": "XS2315191069",
+        "name": "UBS Group 4.25% 2028",
+        "quantity": 200000,
+        "price": 99.30,
+        "value": 198600.00,
+        "currency": "USD",
+        "type": "Fixed Income"
+      },
+      {
+        "isin": "XS2281342878",
+        "name": "Credit Suisse 3.75% 2026",
+        "quantity": 200000,
+        "price": 97.50,
+        "value": 195000.00,
+        "currency": "USD",
+        "type": "Fixed Income"
+      },
+      {
+        "isin": "US91282CFX29",
+        "name": "US Treasury Bond 4.25% 2028",
+        "quantity": 150000,
+        "price": 101.25,
+        "value": 151875.00,
+        "currency": "USD",
+        "type": "Fixed Income"
+      },
+      {
+        "isin": "US91282CJL79",
+        "name": "US Treasury Bond 3.5% 2033",
+        "quantity": 100000,
+        "price": 98.75,
+        "value": 98750.00,
+        "currency": "USD",
+        "type": "Fixed Income"
+      },
+      {
+        "isin": "US037833DX25",
+        "name": "Apple Inc. 3.85% 2043",
+        "quantity": 100000,
+        "price": 95.75,
+        "value": 95750.00,
+        "currency": "USD",
+        "type": "Fixed Income"
+      }      
+    ],
+    "asset_allocation": {
+      "Equities": 12.58,
+      "Fixed Income": 87.42
+    },
+    "currency_allocation": {
+      "USD": 100
+    }
+  },
+  "metrics": {
+    "total_securities": 15,
+    "total_asset_classes": 2,
+    "ytd_performance": 2.45,
+    "1_year_performance": 5.67,
+    "3_year_performance": 12.34,
+    "client_number": 366223,
+    "valuation_date": "2025-02-28",
+    "risk_profile": "Medium-high"
+  }
+}

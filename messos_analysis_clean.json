@@ -1,0 +1,210 @@
+{
+  "portfolio": {
+    "total_value": 19510599,
+    "currency": "USD",
+    "securities": [
+      {
+        "isin": "XS2530201644",
+        "name": "TORONTO DOMINION BANK NOTES 23-23.02.27 REG-S VRN",
+        "quantity": 200000,
+        "price": 99.37275,
+        "value": 198745.5,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "US9128285M82",
+        "name": "UNITEDHEALTH GROUP INC",
+        "quantity": 5000,
+        "price": 480.2,
+        "value": 2401000,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "US0378331005",
+        "name": "APPLE INC",
+        "quantity": 10000,
+        "price": 150.1,
+        "value": 1501000,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "US46625H1005",
+        "name": "JPMORGAN CHASE & CO",
+        "quantity": 7000,
+        "price": 135.15,
+        "value": 946050,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2377243326",
+        "name": "GOLDMAN SACHS GROUP INC MTN REG-S 0.125% 22-25.03.25",
+        "quantity": 1000000,
+        "price": 98.5,
+        "value": 985000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "US30231G1022",
+        "name": "FIRST REPUBLIC BANK/CA",
+        "quantity": 2500,
+        "price": 120.05,
+        "value": 300125,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2377243326",
+        "name": "Structured Product A",
+        "quantity": 10000,
+        "price": 785.0257,
+        "value": 7850257,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "US912810RD04",
+        "name": "UNITED STATES TREASURY N/B",
+        "quantity": 1000000,
+        "price": 95.73932,
+        "value": 9573932,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "US02079K3059",
+        "name": "AMERICAN EXPRESS COMPANY",
+        "quantity": 3000,
+        "price": 160,
+        "value": 480000,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "FAKEISIN0001",
+        "name": "Bond 1",
+        "quantity": 1000,
+        "price": 1000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0002",
+        "name": "Bond 2",
+        "quantity": 1000,
+        "price": 1000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0003",
+        "name": "Bond 3",
+        "quantity": 500,
+        "price": 1000,
+        "value": 500000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0004",
+        "name": "Other Asset 1",
+        "quantity": 1,
+        "price": 26129,
+        "value": 26129,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "FAKEISIN0005",
+        "name": "Cash Account",
+        "quantity": 1,
+        "price": 47850,
+        "value": 47850,
+        "currency": "USD",
+        "asset_class": "Liquidity"
+      },
+      {
+        "isin": "FAKEISIN0006",
+        "name": "Bond 4",
+        "quantity": 100,
+        "price": 1000,
+        "value": 100000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0007",
+        "name": "Bond 5",
+        "quantity": 200,
+        "price": 1000,
+        "value": 200000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0008",
+        "name": "Bond 6",
+        "quantity": 300,
+        "price": 1000,
+        "value": 300000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0009",
+        "name": "Bond 7",
+        "quantity": 400,
+        "price": 1000,
+        "value": 400000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "FAKEISIN0010",
+        "name": "Bond 8",
+        "quantity": 500,
+        "price": 1000,
+        "value": 500000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      }
+    ],
+    "asset_allocation": {
+      "Liquidity": {
+        "value": 47850,
+        "weight": 0.245258
+      },
+      "Bonds": {
+        "value": 11558957.5,
+        "weight": 59.245258
+      },
+      "Equities": {
+        "value": 5122175,
+        "weight": 26.252558
+      },
+      "Structured products": {
+        "value": 7850257,
+        "weight": 40.235258
+      },
+      "Other assets": {
+        "value": 26129,
+        "weight": 0.133668
+      }
+    }
+  },
+  "metrics": {
+    "total_securities": 20,
+    "total_asset_classes": 5,
+    "performance_twr": 1.76,
+    "performance_ytd": 1.76,
+    "cash_accounts_value": 47850,
+    "accrued_interest": 309516,
+    "collected_income": 69055
+  }
+}

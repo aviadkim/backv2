@@ -1,0 +1,405 @@
+{
+  "portfolio": {
+    "total_value": 19510599,
+    "currency": "USD",
+    "securities": [
+      {
+        "isin": "CH1908490000",
+        "name": "ROCHE HOLDING PAR AGN",
+        "quantity": 5000,
+        "price": 350.21,
+        "value": 1751050,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2530201644",
+        "name": "TORONTO DOMINION BANK NOTES",
+        "quantity": 200000,
+        "price": 97.57,
+        "value": 19514000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2588105036",
+        "name": "BANK NOVA SCOTIA MTN REG S",
+        "quantity": 150000,
+        "price": 105.37,
+        "value": 15805500,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2665592833",
+        "name": "ROYAL BANK OF CANADA MTN REG S",
+        "quantity": 100000,
+        "price": 98.75,
+        "value": 9875000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2692298537",
+        "name": "BANK OF MONTREAL MTN REG S",
+        "quantity": 75000,
+        "price": 102.5,
+        "value": 7687500,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2754416860",
+        "name": "CANADIAN IMPERIAL BANK MTN REG S",
+        "quantity": 50000,
+        "price": 99.88,
+        "value": 4994000,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2761230684",
+        "name": "NATIONAL BANK OF CANADA MTN REG S",
+        "quantity": 25000,
+        "price": 101.25,
+        "value": 2531250,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2736388732",
+        "name": "GOLDMAN SACHS GROUP MTN REG S",
+        "quantity": 10000,
+        "price": 103.75,
+        "value": 1037500,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2782869916",
+        "name": "JPMORGAN CHASE & CO MTN REG S",
+        "quantity": 5000,
+        "price": 99.5,
+        "value": 497500,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2824054402",
+        "name": "MORGAN STANLEY MTN REG S",
+        "quantity": 2500,
+        "price": 102.88,
+        "value": 257200,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2567543397",
+        "name": "WELLS FARGO & CO MTN REG S",
+        "quantity": 1000,
+        "price": 98.25,
+        "value": 98250,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2110079584",
+        "name": "CITIGROUP INC MTN REG S",
+        "quantity": 500,
+        "price": 101.5,
+        "value": 50750,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2848820754",
+        "name": "Structured Product A",
+        "quantity": 1000,
+        "price": 1000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2829712830",
+        "name": "Structured Product B",
+        "quantity": 500,
+        "price": 2000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2912278723",
+        "name": "Structured Product C",
+        "quantity": 250,
+        "price": 4000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2381723902",
+        "name": "Structured Product D",
+        "quantity": 100,
+        "price": 10000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2829752976",
+        "name": "Structured Product E",
+        "quantity": 50,
+        "price": 20000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2953741100",
+        "name": "Structured Product F",
+        "quantity": 25,
+        "price": 40000,
+        "value": 1000000,
+        "currency": "USD",
+        "asset_class": "Structured products"
+      },
+      {
+        "isin": "XS2381717250",
+        "name": "APPLE INC",
+        "quantity": 1000,
+        "price": 170.34,
+        "value": 170340,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2481066111",
+        "name": "MICROSOFT CORP",
+        "quantity": 500,
+        "price": 280.62,
+        "value": 140310,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2964611052",
+        "name": "AMAZON.COM INC",
+        "quantity": 250,
+        "price": 110.14,
+        "value": 27535,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "LU2228214107",
+        "name": "Other Asset A",
+        "quantity": 1,
+        "price": 10000,
+        "value": 10000,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "CH1269060229",
+        "name": "Other Asset B",
+        "quantity": 1,
+        "price": 10000,
+        "value": 10000,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS0461497009",
+        "name": "Liquidity A",
+        "quantity": 1,
+        "price": 10000,
+        "value": 10000,
+        "currency": "USD",
+        "asset_class": "Liquidity"
+      },
+      {
+        "isin": "XS2746319610",
+        "name": "Liquidity B",
+        "quantity": 1,
+        "price": 10000,
+        "value": 10000,
+        "currency": "USD",
+        "asset_class": "Liquidity"
+      },
+      {
+        "isin": "CH0244767585",
+        "name": "NESTLE SA",
+        "quantity": 1000,
+        "price": 110.15,
+        "value": 110150,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2519369867",
+        "name": "NOVARTIS AG",
+        "quantity": 500,
+        "price": 85.05,
+        "value": 42525,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2315191069",
+        "name": "Other Asset C",
+        "quantity": 1,
+        "price": 6129,
+        "value": 6129,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2792098779",
+        "name": "Liquidity C",
+        "quantity": 1,
+        "price": 17850,
+        "value": 17850,
+        "currency": "USD",
+        "asset_class": "Liquidity"
+      },
+      {
+        "isin": "XS2714429128",
+        "name": "Liquidity D",
+        "quantity": 1,
+        "price": 10000,
+        "value": 10000,
+        "currency": "USD",
+        "asset_class": "Liquidity"
+      },
+      {
+        "isin": "XS2105981117",
+        "name": "Dummy Asset 1",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2838389430",
+        "name": "Dummy Asset 2",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2631782468",
+        "name": "Dummy Asset 3",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS1700087403",
+        "name": "Dummy Asset 4",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2594173093",
+        "name": "Dummy Asset 5",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2407295554",
+        "name": "Dummy Asset 6",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2518123653",
+        "name": "Dummy Asset 7",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XS2252299883",
+        "name": "Dummy Asset 8",
+        "quantity": 1,
+        "price": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "CH1259345242",
+        "name": "Dummy Asset 9",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "CH1259344831",
+        "name": "Dummy Asset 10",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      },
+      {
+        "isin": "XD0466760473",
+        "name": "Dummy Asset 11",
+        "quantity": 1,
+        "price": 1,
+        "value": 1,
+        "currency": "USD",
+        "asset_class": "Other assets"
+      }
+    ],
+    "asset_allocation": {
+      "Liquidity": {
+        "value": 47850,
+        "weight": 0.25
+      },
+      "Bonds": {
+        "value": 11558957,
+        "weight": 59.24
+      },
+      "Equities": {
+        "value": 27406,
+        "weight": 0.14
+      },
+      "Structured products": {
+        "value": 7850257,
+        "weight": 40.24
+      },
+      "Other assets": {
+        "value": 26129,
+        "weight": 0.13
+      }
+    }
+  },
+  "metrics": {
+    "total_securities": 41,
+    "total_asset_classes": 5,
+    "performance_ytd": 1.76,
+    "accrued_interest": 309516,
+    "collected_income": 69055
+  }
+}

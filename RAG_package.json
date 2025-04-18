@@ -1,0 +1,21 @@
+{
+  "name": "rag-multimodal-financial-document-processor",
+  "version": "1.0.0",
+  "description": "A comprehensive solution for processing financial documents with high accuracy using RAG and multimodal analysis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node run_comprehensive_test.js messos.pdf test_output",
+    "process": "node test_processor.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.0",
+    "dotenv": "^16.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
+}

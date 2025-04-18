@@ -43,6 +43,10 @@ app.use(cookieParser()); // Parse cookies
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } })); // HTTP request logging
 app.use(performanceMonitor.performanceMiddleware()); // Performance monitoring
 
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/output', express.static(path.join(__dirname, 'output'))); // Serve output files
+
 // API Routes
 app.use('/api', require('./routes/api'));
 
@@ -59,6 +63,9 @@ app.use('/api/financial/integrate-documents', require('./routes/api/financial/in
 app.use('/api/financial/ocr-document', require('./routes/api/financial/ocr-document'));
 app.use('/api/integration/external-systems', require('./routes/api/integration/external-systems'));
 app.use('/api/config/api-key', require('./routes/api/config/api-key'));
+
+// Enhanced Processing Routes
+app.use('/api/enhanced', require('./routes/enhancedProcessingRoutes'));
 
 // Import error handling middleware
 const { errorHandler, notFoundHandler } = require('./middleware/errorMiddleware');

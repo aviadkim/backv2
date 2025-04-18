@@ -6,6 +6,7 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 
 - **Document Upload and Storage**: Securely upload and store financial documents in various formats (PDF, Excel, CSV, images)
 - **OCR and Document Processing**: Extract text and tables from documents using advanced OCR techniques optimized for Hebrew
+- **RAG Multimodal Financial Document Processor**: Process financial documents using Retrieval-Augmented Generation (RAG) and multimodal AI models
 - **Financial Data Analysis**: Analyze financial data, identify securities, calculate portfolio metrics
 - **Query Engine**: Ask natural language questions about your financial documents
 - **Document Comparison**: Compare multiple financial documents to identify changes and trends
@@ -25,7 +26,7 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 - **Database**: Supabase (PostgreSQL)
 - **Storage**: Supabase Storage
 - **Deployment**: Google Cloud Run
-- **AI**: OpenRouter API (Claude, GPT-4)
+- **AI**: OpenRouter API (Claude, GPT-4), RAG (Retrieval-Augmented Generation)
 - **OCR**: Tesseract, Camelot, PDFPlumber
 - **Authentication**: JWT, bcrypt
 - **Security**: Helmet, crypto
@@ -122,6 +123,13 @@ See [DevDocs/ROADMAP.md](DevDocs/ROADMAP.md) for the detailed development plan. 
 - `GET /api/financial/portfolio/:id`: Get portfolio summary for a document
 - `GET /api/financial/securities/:id`: Get securities for a document
 - `GET /api/financial/asset-allocation/:id`: Get asset allocation for a document
+
+### RAG Multimodal Processing
+
+- `POST /api/enhanced/process`: Process a document with RAG Multimodal Processor
+- `GET /api/enhanced/status/:taskId`: Get processing status
+- `GET /api/enhanced/result/:taskId`: Get processing result
+- `GET /api/enhanced/visualizations/:taskId`: Get visualizations
 
 ### Query Engine
 

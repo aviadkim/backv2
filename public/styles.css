@@ -1,0 +1,59 @@
+body {
+  background-color: #f8f9fa;
+  padding-bottom: 2rem;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+}
+
+.progress {
+  height: 1.5rem;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}
+
+.table th {
+  width: 40%;
+}
+
+.visualization-item {
+  margin-bottom: 1.5rem;
+}
+
+.visualization-item img {
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.accuracy-item {
+  margin-bottom: 0.5rem;
+}
+
+.accuracy-label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+}
+
+.accuracy-value {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+}
+
+.accuracy-bar {
+  display: inline-block;
+  height: 1rem;
+  background-color: #0d6efd;
+  border-radius: 0.25rem;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}

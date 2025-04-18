@@ -13,7 +13,9 @@ import {
   FaClipboardCheck,
   FaUserCircle,
   FaBars,
-  FaTimes
+  FaTimes,
+  FaRobot,
+  FaFileInvoiceDollar
 } from 'react-icons/fa';
 
 const Sidebar = () => {
@@ -25,6 +27,8 @@ const Sidebar = () => {
     { name: 'Upload Documents', href: '/upload', icon: FaFileUpload },
     { name: 'Analytics', href: '/analytics', icon: FaChartBar },
     { name: 'Reports', href: '/reports', icon: FaFileAlt },
+    { name: 'RAG Processor', href: '/rag-processor', icon: FaRobot },
+    { name: 'Financial Analysis', href: '/financial-analysis', icon: FaFileInvoiceDollar },
     { name: 'Testing', href: '/test-center', icon: FaClipboardCheck },
     { name: 'Dev Testing', href: '/dev-test-center', icon: FaClipboardCheck },
     { name: 'MCP Demo', href: '/mcp-demo', icon: FaFileAlt },

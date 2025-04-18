@@ -1,0 +1,398 @@
+{
+  "portfolio": {
+    "securities": [
+      {
+        "isin": "XS2754416860",
+        "name": "Security 1",
+        "quantity": 1000,
+        "price": 100.0,
+        "value": 100000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2567543397",
+        "name": "Security 2",
+        "quantity": 2000,
+        "price": 100.0,
+        "value": 200000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2518123653",
+        "name": "Security 3",
+        "quantity": 3000,
+        "price": 100.0,
+        "value": 300000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "CH1908490000",
+        "name": "Security 4",
+        "quantity": 4000,
+        "price": 100.0,
+        "value": 400000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2381717250",
+        "name": "Security 5",
+        "quantity": 5000,
+        "price": 100.0,
+        "value": 500000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2964611052",
+        "name": "Security 6",
+        "quantity": 6000,
+        "price": 100.0,
+        "value": 600000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2838389430",
+        "name": "Security 7",
+        "quantity": 7000,
+        "price": 100.0,
+        "value": 700000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XD0466760473",
+        "name": "Security 8",
+        "quantity": 8000,
+        "price": 100.0,
+        "value": 800000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2848820754",
+        "name": "Security 9",
+        "quantity": 9000,
+        "price": 100.0,
+        "value": 900000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2665592833",
+        "name": "Security 10",
+        "quantity": 10000,
+        "price": 100.0,
+        "value": 1000000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2588105036",
+        "name": "Security 11",
+        "quantity": 11000,
+        "price": 100.0,
+        "value": 1100000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2714429128",
+        "name": "Security 12",
+        "quantity": 12000,
+        "price": 100.0,
+        "value": 1200000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2829752976",
+        "name": "Security 13",
+        "quantity": 13000,
+        "price": 100.0,
+        "value": 1300000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2105981117",
+        "name": "Security 14",
+        "quantity": 14000,
+        "price": 100.0,
+        "value": 1400000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2782869916",
+        "name": "Security 15",
+        "quantity": 15000,
+        "price": 100.0,
+        "value": 1500000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2407295554",
+        "name": "Security 16",
+        "quantity": 16000,
+        "price": 100.0,
+        "value": 1600000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2761230684",
+        "name": "Security 17",
+        "quantity": 17000,
+        "price": 100.0,
+        "value": 1700000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2381723902",
+        "name": "Security 18",
+        "quantity": 18000,
+        "price": 100.0,
+        "value": 1800000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2824054402",
+        "name": "Security 19",
+        "quantity": 19000,
+        "price": 100.0,
+        "value": 1900000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2829712830",
+        "name": "Security 20",
+        "quantity": 20000,
+        "price": 100.0,
+        "value": 2000000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS1700087403",
+        "name": "Security 21",
+        "quantity": 21000,
+        "price": 100.0,
+        "value": 2100000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2519369867",
+        "name": "Security 22",
+        "quantity": 22000,
+        "price": 100.0,
+        "value": 2200000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2631782468",
+        "name": "Security 23",
+        "quantity": 23000,
+        "price": 100.0,
+        "value": 2300000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2594173093",
+        "name": "Security 24",
+        "quantity": 24000,
+        "price": 100.0,
+        "value": 2400000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS0461497009",
+        "name": "Security 25",
+        "quantity": 25000,
+        "price": 100.0,
+        "value": 2500000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2746319610",
+        "name": "Security 26",
+        "quantity": 26000,
+        "price": 100.0,
+        "value": 2600000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "CH1259345242",
+        "name": "Security 27",
+        "quantity": 27000,
+        "price": 100.0,
+        "value": 2700000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2736388732",
+        "name": "Security 28",
+        "quantity": 28000,
+        "price": 100.0,
+        "value": 2800000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2912278723",
+        "name": "Security 29",
+        "quantity": 29000,
+        "price": 100.0,
+        "value": 2900000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "CH1259344831",
+        "name": "Security 30",
+        "quantity": 30000,
+        "price": 100.0,
+        "value": 3000000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2953741100",
+        "name": "Security 31",
+        "quantity": 31000,
+        "price": 100.0,
+        "value": 3100000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "CH1269060229",
+        "name": "Security 32",
+        "quantity": 32000,
+        "price": 100.0,
+        "value": 3200000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2252299883",
+        "name": "Security 33",
+        "quantity": 33000,
+        "price": 100.0,
+        "value": 3300000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2315191069",
+        "name": "Security 34",
+        "quantity": 34000,
+        "price": 100.0,
+        "value": 3400000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2792098779",
+        "name": "Security 35",
+        "quantity": 35000,
+        "price": 100.0,
+        "value": 3500000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2481066111",
+        "name": "Security 36",
+        "quantity": 36000,
+        "price": 100.0,
+        "value": 3600000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "CH0244767585",
+        "name": "Security 37",
+        "quantity": 37000,
+        "price": 100.0,
+        "value": 3700000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "LU2228214107",
+        "name": "Security 38",
+        "quantity": 38000,
+        "price": 100.0,
+        "value": 3800000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2692298537",
+        "name": "Security 39",
+        "quantity": 39000,
+        "price": 100.0,
+        "value": 3900000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      },
+      {
+        "isin": "XS2530201644",
+        "name": "Security 40",
+        "quantity": 40000,
+        "price": 100.0,
+        "value": 4000000.0,
+        "currency": "USD",
+        "asset_class": "Equities"
+      },
+      {
+        "isin": "XS2110079584",
+        "name": "Security 41",
+        "quantity": 41000,
+        "price": 100.0,
+        "value": 4100000.0,
+        "currency": "USD",
+        "asset_class": "Bonds"
+      }
+    ],
+    "asset_allocation": {
+      "Bonds": {
+        "value": 44100000.0,
+        "weight": 0.6
+      },
+      "Equities": {
+        "value": 42000000.0,
+        "weight": 0.4
+      }
+    },
+    "total_value": 86100000.0,
+    "currency": "USD"
+  },
+  "metrics": {
+    "total_securities": 41,
+    "total_asset_classes": 2
+  },
+  "document_info": {
+    "document_id": "messos",
+    "document_name": "messos.pdf",
+    "document_date": "2025-04-18",
+    "processing_date": "2025-04-18 15:49:42",
+    "processing_time": 1.1748485565185547
+  }
+}

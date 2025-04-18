@@ -15,7 +15,6 @@
     "@supabase/supabase-js": "^2.38.4",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.0",
-    "camelot-node": "^0.1.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
