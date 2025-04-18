@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud
+name: Build and Test
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,36 +44,3 @@ jobs:
       run: |
         cd DevDocs/backend
         npm test || true
-
-    - name: Authenticate to Google Cloud
-      id: auth
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-    - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
-      with:
-        project_id: github-456508
-
-    - name: Configure Docker
-      run: gcloud auth configure-docker
-
-    - name: Build and push Docker image
-      run: |
-        docker build -t gcr.io/github-456508/findoc-analyzer:${{ github.sha }} -f Dockerfile.optimized .
-        docker push gcr.io/github-456508/findoc-analyzer:${{ github.sha }}
-
-    - name: Deploy to Cloud Run
-      id: deploy
-      uses: google-github-actions/deploy-cloudrun@v1
-      with:
-        service: findoc-analyzer
-        region: me-west1
-        image: gcr.io/github-456508/findoc-analyzer:${{ github.sha }}
-        env_vars: |
-          NODE_ENV=production
-          OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
-
-    - name: Show Output
-      run: echo ${{ steps.deploy.outputs.url }}
