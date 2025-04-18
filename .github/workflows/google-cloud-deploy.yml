@@ -47,25 +47,33 @@ jobs:
 
     - name: Authenticate to Google Cloud
       id: auth
-      uses: google-github-actions/auth@v2
+      uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
 
     - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v2
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: github-456508
+
+    - name: Configure Docker
+      run: gcloud auth configure-docker
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t gcr.io/github-456508/findoc-analyzer:${{ github.sha }} -f Dockerfile.optimized .
+        docker push gcr.io/github-456508/findoc-analyzer:${{ github.sha }}
 
     - name: Deploy to Cloud Run
       id: deploy
-      uses: google-github-actions/deploy-cloudrun@v2
+      uses: google-github-actions/deploy-cloudrun@v1
       with:
-        service: backv2
+        service: findoc-analyzer
         region: me-west1
-        source: .
+        image: gcr.io/github-456508/findoc-analyzer:${{ github.sha }}
         env_vars: |
           NODE_ENV=production
           OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}
-          JWT_SECRET=${{ secrets.JWT_SECRET }}
-          ENCRYPTION_KEY=${{ secrets.ENCRYPTION_KEY }}
 
     - name: Show Output
       run: echo ${{ steps.deploy.outputs.url }}
