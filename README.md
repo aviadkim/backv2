@@ -4,32 +4,35 @@ FinDoc is a powerful financial document analysis platform that helps users extra
 
 ## Features
 
-- **Document Upload**: Upload and process PDF, Excel, and CSV files
-- **Financial Data Extraction**: Automatically extract ISINs, financial metrics, and key data
-- **Portfolio Analysis**: Analyze investment portfolios with advanced metrics
+- **Document Upload and Storage**: Securely upload and store financial documents in various formats (PDF, Excel, CSV, images)
+- **OCR and Document Processing**: Extract text and tables from documents using advanced OCR techniques optimized for Hebrew
+- **Financial Data Analysis**: Analyze financial data, identify securities, calculate portfolio metrics
+- **Query Engine**: Ask natural language questions about your financial documents
+- **Document Comparison**: Compare multiple financial documents to identify changes and trends
+- **Data Export**: Export financial data in various formats (Excel, CSV, PDF, JSON)
+- **Financial Advisor**: Get personalized recommendations and insights based on portfolio analysis
+- **Multi-tenant Architecture**: Secure isolation of client data
 - **AI Agents**: Intelligent agents for document analysis and insights
 - **Data Visualization**: Interactive charts and dashboards
-- **Multi-tenant Architecture**: Secure isolation of client data
-- **Serverless Architecture**: Fully serverless deployment on Vercel
-- **Google ADK Integration**: Agent Development Kit for advanced AI capabilities
-- **Advanced OCR**: Hebrew language support with enhanced accuracy
-- **Document Integration**: Combine data from multiple financial documents
 - **Security & Compliance**: GDPR compliance, data encryption, and audit logging
 - **Performance Optimization**: Caching and monitoring for optimal performance
 
 ## Tech Stack
 
-- **Frontend**: Next.js, React, TailwindCSS
+- **Frontend**: Next.js, React, Chakra UI
 - **Backend**: Express.js, Node.js
 - **API**: Next.js API Routes and Express.js
 - **Database**: Supabase (PostgreSQL)
 - **Storage**: Supabase Storage
-- **Deployment**: Vercel, Google Cloud Run
-- **AI**: OpenRouter API, Google ADK
-- **Authentication**: Supabase Auth, JWT
-- **Security**: bcrypt, crypto, helmet
+- **Deployment**: Google Cloud Run
+- **AI**: OpenRouter API (Claude, GPT-4)
+- **OCR**: Tesseract, Camelot, PDFPlumber
+- **Authentication**: JWT, bcrypt
+- **Security**: Helmet, crypto
 - **Containerization**: Docker
 - **CI/CD**: GitHub Actions
+- **Data Visualization**: Chart.js
+- **Export**: ExcelJS, PDFKit, json2csv
 
 ## Getting Started
 
@@ -85,6 +88,63 @@ See [DevDocs/DEPLOYMENT.md](DevDocs/DEPLOYMENT.md) for detailed Google Cloud Run
 ## Development Roadmap
 
 See [DevDocs/ROADMAP.md](DevDocs/ROADMAP.md) for the detailed development plan. The roadmap outlines a 12-week development process that has been completed, covering everything from initial setup to performance optimization and deployment.
+
+## API Documentation
+
+### Authentication
+
+- `POST /api/auth/register`: Register a new user
+- `POST /api/auth/login`: Login and get JWT token
+- `POST /api/auth/refresh`: Refresh JWT token
+- `GET /api/auth/me`: Get current user information
+
+### Documents
+
+- `POST /api/documents`: Upload a document
+- `GET /api/documents`: Get all documents
+- `GET /api/documents/:id`: Get a document by ID
+- `PUT /api/documents/:id`: Update a document
+- `DELETE /api/documents/:id`: Delete a document
+- `GET /api/documents/:id/download`: Download a document
+
+### OCR
+
+- `POST /api/ocr/process/:id`: Process a document with OCR
+- `POST /api/ocr/detect-tables/:id`: Detect tables in a document
+- `POST /api/ocr/process-image`: Process an image with OCR
+- `GET /api/ocr/results/:id`: Get OCR results for a document
+- `GET /api/ocr/table-results/:id`: Get table detection results for a document
+
+### Financial Analysis
+
+- `POST /api/financial/analyze/:id`: Analyze financial data in a document
+- `GET /api/financial/data/:id`: Get financial data for a document
+- `GET /api/financial/portfolio/:id`: Get portfolio summary for a document
+- `GET /api/financial/securities/:id`: Get securities for a document
+- `GET /api/financial/asset-allocation/:id`: Get asset allocation for a document
+
+### Query Engine
+
+- `POST /api/query/answer/:id`: Answer a query about a document
+- `GET /api/query/history/:id`: Get previous queries for a document
+
+### Document Comparison
+
+- `POST /api/comparison/compare`: Compare two documents
+- `GET /api/comparison/:id`: Get comparison result
+- `GET /api/comparison/history/:id`: Get comparison history for a document
+
+### Data Export
+
+- `POST /api/export/:id`: Export document data
+- `GET /api/export/formats`: Get export formats
+
+### Financial Advisor
+
+- `POST /api/advisor/analyze/:id`: Analyze portfolio and provide recommendations
+- `GET /api/advisor/analysis/:id`: Get advisor analysis for a document
+- `GET /api/advisor/recommendations/:id`: Get recommendations for a document
+- `GET /api/advisor/risk/:id`: Get risk analysis for a document
 
 ## Database Schema
 
